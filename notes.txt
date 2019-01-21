@@ -1,0 +1,95 @@
+
+
+
+MasterRequestRestart
+Your server needs to be restarted in order to receive the latest update.
+
+
+autoexec.cfg - executed before the first map starts.
+server.cfg - executed every map change
+gamemode_competitive_server.cfg - executed at every map change
+
+
+
+
+[COMMANDS]
+mp_warmup_end
+
+
+
+
+[]			- Loading map "de_dust2"
+[server cvars]		- server cvars start
+			- server cvars end
+[match-start]		- World triggered "Match_Start" on "de_train"
+[]			- Team playing "CT": Retirement
+[]			- Team playing "TERRORIST": Not_fast
+[round-start]		- World triggered "Round_Start"
+[]			- Team "CT" scored "11" with "2" players
+[]			- Team "TERRORIST" scored "10" with "1" players
+[round-end]		- World triggered "Round_End
+[match-end]		- Game Over: competitive  de_train score 11:16 after 26 min
+
+
+
+
+[set: map]		- Started map "de_dust2" (CRC "1357023846")
+
+
+
+
+
+
+
+UNKNOWN
+
+	World triggered "Game_Commencing"
+
+
+
+
+
+
+
+
+[player state changes]
+"Angry | GFL @ LAN<4><STEAM_1:0:13749057><>" connected, address ""
+"Angry | GFL @ LAN<4><STEAM_1:0:13749057><>" STEAM USERID validated
+"Angry | GFL @ LAN<4><STEAM_1:0:13749057><>" entered the game
+"blinK @ Lan<6><STEAM_1:1:33626697><CT>" purchased "m4a1"
+"Miles<8><STEAM_1:1:45808813><TERRORIST>" say "Where's sunny"
+"blinK @ Lan<6><STEAM_1:1:33626697><CT>" left buyzone with [ ]
+"blinK @ Lan<6><STEAM_1:1:33626697><CT>" left buyzone with [ weapon_knife_m9_bayonet weapon_usp_silencer weapon_m4a1 kevlar(100) helmet ]
+"Bronze Kneecap<5><STEAM_1:0:59942879><Unassigned>" disconnected (reason "Bronze Kneecap timed out")
+"Rick<7><BOT><CT>" disconnected (reason "Kicked by Console")
+"TRANCE<9><STEAM_1:1:91023470>" switched from team <Unassigned> to <TERRORIST>
+"nootie<3><STEAM_1:1:155617015><TERRORIST>" say_team ".r"
+
+
+
+p<><><>	say
+		connected, address ""
+		STEAM USERID validated
+		entered the game
+		[] killed "p<><><>" [] with "" (damage "") (damage_armor "") (health "") (armor "") (hitgroup "")
+		[] attacked "p<><><>" [] with ""
+		triggered ""
+		purchased
+		left buyzone with []
+
+
+
+
+
+"NAME<SLOT-NUMBER><STEAM-ID>" action
+"NAME<SLOT-NUMBER><STEAM-ID>" action "details"
+
+
+
+
+
+valid teams: "CT", "TERRORIST", "Unassigned" / ""
+
+
+
+1646
