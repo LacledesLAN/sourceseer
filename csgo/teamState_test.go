@@ -63,7 +63,7 @@ func Test_PlayerRemove(t *testing.T) {
 
 	sut.PlayerRemove(teamStateTestPlayer0)
 	if sut.playerIndex(teamStateTestPlayer2) < 0 {
-		t.Errorf("Player %q should be found in %q", teamStateTestPlayer2, sut.knownPlayers)
+		t.Errorf("Player %q should be found in known players.", teamStateTestPlayer2)
 	}
 
 	sut.PlayerRemove(teamStateTestPlayer1) // Make sure there's no panic

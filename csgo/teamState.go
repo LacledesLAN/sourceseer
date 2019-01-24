@@ -11,13 +11,13 @@ type teamState struct {
 	name           string
 	pausedTimeUsed time.Duration
 	roundsWon      uint8
-	knownPlayers   []srcds.Client
+	knownPlayers   []csgoClient
 }
 
 // playerIndex find the index of the player in the knownPlayers pool (-1 if not found)
 func (m *teamState) playerIndex(player srcds.Client) int {
 	for i := range m.knownPlayers {
-		if srcds.ClientsAreEquivalent(&m.knownPlayers[i], &player) {
+		if srcds.ClientsAreEquivalent(&m.knownPlayers[i].Client, &player) {
 			return i
 		}
 	}
@@ -28,7 +28,7 @@ func (m *teamState) playerIndex(player srcds.Client) int {
 // PlayerJoin adds a player to the team
 func (m *teamState) PlayerJoin(player srcds.Client) {
 	if m.playerIndex(player) < 0 {
-		m.knownPlayers = append(m.knownPlayers, player)
+		m.knownPlayers = append(m.knownPlayers, csgoClient{Client: player})
 	}
 }
 
@@ -42,7 +42,7 @@ func (m *teamState) PlayerRemove(player srcds.Client) {
 		if l > 1 {
 			m.knownPlayers = append(m.knownPlayers[:i], m.knownPlayers[i+1:]...)
 		} else if l == 1 {
-			m.knownPlayers = []srcds.Client{}
+			m.knownPlayers = []csgoClient{}
 		}
 	}
 }

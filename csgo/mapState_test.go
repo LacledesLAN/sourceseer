@@ -20,13 +20,13 @@ func Test_CTPlayerJoin(testing *testing.T) {
 	// Joins when empty
 	sut.CTPlayerJoin(mapStateTestPlayer0)
 	if ct.playerIndex(mapStateTestPlayer0) == -1 {
-		testing.Errorf("CT should have player %q but was %q.", mapStateTestPlayer0, ct.knownPlayers)
+		testing.Errorf("CT should have player %q.", mapStateTestPlayer0)
 	}
 
 	// Joins when not empty
 	sut.CTPlayerJoin(mapStateTestPlayer1)
 	if ct.playerIndex(mapStateTestPlayer1) == -1 {
-		testing.Errorf("CT should have player %q but was %q.", mapStateTestPlayer1, ct.knownPlayers)
+		testing.Errorf("CT should have player %q.", mapStateTestPlayer1)
 	}
 
 	// Doesn't re-join when already on team
@@ -40,7 +40,7 @@ func Test_CTPlayerJoin(testing *testing.T) {
 	sut.CTPlayerJoin(mapStateTestPlayer2)
 
 	if t.playerIndex(mapStateTestPlayer2) != -1 {
-		testing.Errorf("Player %q should have been removed from T when joining CT; but T was %q.", mapStateTestPlayer2, t.knownPlayers)
+		testing.Errorf("Player %q should have been removed from T when joining CT.", mapStateTestPlayer2)
 	}
 }
 
@@ -96,13 +96,13 @@ func Test_TerroristPlayerJoin(testing *testing.T) {
 	// Joins when empty
 	sut.TerroristPlayerJoin(mapStateTestPlayer0)
 	if t.playerIndex(mapStateTestPlayer0) == -1 {
-		testing.Errorf("T should have player %q but was %q.", mapStateTestPlayer0, ct.knownPlayers)
+		testing.Errorf("T should have player %q.", mapStateTestPlayer0)
 	}
 
 	// Joins when not empty
 	sut.TerroristPlayerJoin(mapStateTestPlayer1)
 	if t.playerIndex(mapStateTestPlayer1) == -1 {
-		testing.Errorf("T should have player %q but was %q.", mapStateTestPlayer1, ct.knownPlayers)
+		testing.Errorf("T should have player %q.", mapStateTestPlayer1)
 	}
 
 	// Doesn't re-join when already on team
@@ -116,7 +116,7 @@ func Test_TerroristPlayerJoin(testing *testing.T) {
 	sut.TerroristPlayerJoin(mapStateTestPlayer2)
 
 	if ct.playerIndex(mapStateTestPlayer2) != -1 {
-		testing.Errorf("Player %q should have been removed from CT when joining T; but CT was %q.", mapStateTestPlayer2, ct.knownPlayers)
+		testing.Errorf("Player %q should have been removed from CT when joining T.", mapStateTestPlayer2)
 	}
 }
 
