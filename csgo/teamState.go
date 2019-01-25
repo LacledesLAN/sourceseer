@@ -1,50 +1,40 @@
 package csgo
 
 import (
+	"math"
 	"strings"
 	"time"
-
-	"github.com/lacledeslan/sourceseer/srcds"
 )
 
 type teamState struct {
+	players        Players
 	name           string
 	pausedTimeUsed time.Duration
+	roundsLost     uint8
 	roundsWon      uint8
-	knownPlayers   []csgoClient
 }
 
-// playerIndex find the index of the player in the knownPlayers pool (-1 if not found)
-func (m *teamState) playerIndex(player srcds.Client) int {
-	for i := range m.knownPlayers {
-		if srcds.ClientsAreEquivalent(&m.knownPlayers[i].Client, &player) {
-			return i
-		}
-	}
-
-	return -1
+func (m *teamState) HasPlayer(player Player) bool {
+	return m.players.HasPlayer(player)
 }
 
-// PlayerJoin adds a player to the team
-func (m *teamState) PlayerJoin(player srcds.Client) {
-	if m.playerIndex(player) < 0 {
-		m.knownPlayers = append(m.knownPlayers, csgoClient{Client: player})
+// ClientCount returns the number of known clients
+func (m *teamState) PlayerCount() uint8 {
+	c := len(m.players)
+
+	if c > math.MaxUint8 {
+		return math.MaxUint8
 	}
+
+	return uint8(c)
 }
 
-// PlayerRemove removes a player from the team
-func (m *teamState) PlayerRemove(player srcds.Client) {
-	i := m.playerIndex(player)
+func (m *teamState) PlayerDropped(player Player) {
+	m.players.PlayerDropped(player)
+}
 
-	if i >= 0 {
-		l := len(m.knownPlayers)
-
-		if l > 1 {
-			m.knownPlayers = append(m.knownPlayers[:i], m.knownPlayers[i+1:]...)
-		} else if l == 1 {
-			m.knownPlayers = []csgoClient{}
-		}
-	}
+func (m *teamState) PlayerJoined(player Player) {
+	m.players.PlayerJoined(player)
 }
 
 // SetName sets the team's name

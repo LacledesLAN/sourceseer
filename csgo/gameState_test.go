@@ -5,13 +5,13 @@ import (
 	"time"
 )
 
-func Test_ChangeLevel(t *testing.T) {
-	sut := csgoState{
+func Test_mapChanged(t *testing.T) {
+	sut := gameState{
 		started:     time.Now(),
 		mpTeamname1: "Angleyne",
 		mpTeamname2: "Nikolai"}
 
-	sut.ChangeLevel("one")
+	sut.mapChanged("one")
 	mapOneAddress := sut.currentMap
 
 	if sut.currentMap == nil {
@@ -30,7 +30,7 @@ func Test_ChangeLevel(t *testing.T) {
 		t.Errorf("Current map's mpTeam2 name should be %q but was %q.", sut.mpTeamname2, sut.currentMap.mpTeam2.name)
 	}
 
-	sut.ChangeLevel("two")
+	sut.mapChanged("two")
 	mapTwoAddress := sut.currentMap
 
 	if &mapOneAddress == &mapTwoAddress {

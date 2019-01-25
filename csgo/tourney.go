@@ -6,18 +6,19 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"time"
 
-	csgo "github.com/lacledeslan/sourceseer/csgo/playbooks"
+	"github.com/lacledeslan/sourceseer/csgo/playbooks"
 	"github.com/lacledeslan/sourceseer/srcds"
 )
 
 const (
-	// If all players not ready by this time period auto start (seconds)
-	maxReadyupTime = ""
+	// Max amount of time for players to readyup for the very first map (seconds)
+	maxReadyupConnectTime = time.Minute * 7
 	// Max amount of seconds for players to readyup for knife rounds 2+
-	maxReadyupTimeFirst = ""
-	// Max amount of time for players to readyup for the very first knife round (seconds)
-	maxReadyupTimeKnifeFirst = ""
+	maxReadyUpKnifeTime = time.Minute * 3
+	// If all players not ready by this time period auto start (seconds)
+	maxReadyUpPlayTime = time.Minute * 3
 )
 
 var (
@@ -34,6 +35,8 @@ func StartTourney(mpTeamname1 string, mpTeamname2 string, maps []string) {
 		panic(err)
 	}
 	mapCycle := maps
+
+	gameState := NewGameState()
 
 	launchArgs := []string{"-game csgo", "+game_type 0", "+game_mode 1", "-tickrate 128", "+sv_lan 1"} //TODO: add "-nobots"
 	launchArgs = append(launchArgs, "+map "+mapCycle[0])
@@ -60,6 +63,7 @@ func StartTourney(mpTeamname1 string, mpTeamname2 string, maps []string) {
 	go func() {
 		for s := range csgoStderr {
 			fmt.Println("std err>", s)
+			UpdateFromStdErr(&gameState, s)
 		}
 	}()
 
@@ -93,7 +97,7 @@ func StartTourney(mpTeamname1 string, mpTeamname2 string, maps []string) {
 			if len(text) > 0 {
 				switch cmd := strings.ToLower(text); cmd {
 				case "lo3":
-					csgo.LiveoOnThree(csgoCLI)
+					playbooks.LiveOnThree(csgoCLI)
 				case "knife":
 					csgoCLI <- "exec kniferound"
 				case "reset":

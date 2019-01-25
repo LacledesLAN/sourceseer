@@ -7,66 +7,79 @@ import (
 )
 
 var (
-	teamStateTestPlayer0 = srcds.Client{Username: "Lulubelle 7", SteamID: "7r355-m4cn31ll3"}
-	teamStateTestPlayer1 = srcds.Client{Username: "Daisy-Mae 128K"}
-	teamStateTestPlayer2 = srcds.Client{Username: "The Crushinator", SteamID: "m4ur1c3-l4m4rch3"}
+	teamStateTestClient0 = Player{Client: srcds.Client{Username: "Lulubelle 7", SteamID: "7r355-m4cn31ll3"}}
+	teamStateTestClient1 = Player{Client: srcds.Client{Username: "Daisy-Mae 128K"}}
+	teamStateTestClient2 = Player{Client: srcds.Client{Username: "The Crushinator", SteamID: "m4ur1c3-l4m4rch3"}}
 )
 
-func Test_PlayerJoin(t *testing.T) {
+func Test_HasPlayer(t *testing.T) {
 	sut := teamState{}
 
-	sut.PlayerJoin(teamStateTestPlayer0)
-	if len(sut.knownPlayers) != 1 {
-		t.Error("Should have 1 player")
+	sut.PlayerJoined(teamStateTestClient0)
+	sut.PlayerJoined(teamStateTestClient2)
+
+	if !sut.HasPlayer(teamStateTestClient2) {
+		t.Errorf("Team should have player %q", teamStateTestClient2.Username)
 	}
 
-	sut.PlayerJoin(teamStateTestPlayer1)
-	if len(sut.knownPlayers) != 2 {
-		t.Error("Should have 2 players")
-	}
-
-	sut.PlayerJoin(teamStateTestPlayer0)
-	if len(sut.knownPlayers) != 2 {
-		t.Error("Should still have 2 players")
-	}
-
-	sut.PlayerJoin(teamStateTestPlayer2)
-	if len(sut.knownPlayers) != 3 {
-		t.Error("Should still have 3 players")
-	}
-
-	sut.PlayerJoin(teamStateTestPlayer0)
-	if len(sut.knownPlayers) != 3 {
-		t.Error("Should still have 3 player")
+	if sut.HasPlayer(teamStateTestClient1) {
+		t.Errorf("Team should not have player %q", teamStateTestClient1.Username)
 	}
 }
 
-func Test_PlayerRemove(t *testing.T) {
+func Test_PlayerCount(t *testing.T) {
 	sut := teamState{}
 
-	sut.PlayerRemove(teamStateTestPlayer2) // Make sure there's no panic
-
-	sut.PlayerJoin(teamStateTestPlayer1)
-	sut.PlayerRemove(teamStateTestPlayer1)
-
-	if len(sut.knownPlayers) != 0 {
-		t.Errorf("Should have 0 players not %d", len(sut.knownPlayers))
+	if sut.PlayerCount() != uint8(0) {
+		t.Error("Client count should be 0.")
 	}
 
-	sut.PlayerJoin(teamStateTestPlayer0)
-	sut.PlayerJoin(teamStateTestPlayer1)
-	sut.PlayerJoin(teamStateTestPlayer2)
-	sut.PlayerRemove(teamStateTestPlayer1)
-	if len(sut.knownPlayers) != 2 {
-		t.Errorf("Should have 2 players not %d", len(sut.knownPlayers))
+	sut.PlayerJoined(teamStateTestClient0)
+	sut.PlayerJoined(teamStateTestClient1)
+	sut.PlayerJoined(teamStateTestClient2)
+
+	if sut.PlayerCount() != uint8(3) {
+		t.Error("Client count should be 3.")
+	}
+}
+
+func TestMapState_PlayerDropped(t *testing.T) {
+	sut := teamState{}
+
+	sut.PlayerJoined(teamStateTestClient0)
+	sut.PlayerJoined(teamStateTestClient1)
+	sut.PlayerJoined(teamStateTestClient2)
+
+	sut.PlayerDropped(teamStateTestClient0)
+	sut.PlayerDropped(teamStateTestClient2)
+
+	if sut.HasPlayer(teamStateTestClient0) {
+		t.Errorf("Team should not have player %q", teamStateTestClient0.Username)
 	}
 
-	sut.PlayerRemove(teamStateTestPlayer0)
-	if sut.playerIndex(teamStateTestPlayer2) < 0 {
-		t.Errorf("Player %q should be found in known players.", teamStateTestPlayer2)
+	if !sut.HasPlayer(teamStateTestClient1) {
+		t.Errorf("Team should have player %q", teamStateTestClient1.Username)
 	}
 
-	sut.PlayerRemove(teamStateTestPlayer1) // Make sure there's no panic
+	if sut.HasPlayer(teamStateTestClient2) {
+		t.Errorf("Team should not have player %q", teamStateTestClient2.Username)
+	}
+
+	sut.PlayerDropped(teamStateTestClient1)
+	if sut.HasPlayer(teamStateTestClient1) {
+		t.Errorf("Team should not have player %q", teamStateTestClient1.Username)
+	}
+}
+
+func Test_PlayerJoined(t *testing.T) {
+	sut := teamState{}
+
+	sut.PlayerJoined(teamStateTestClient0)
+	sut.PlayerJoined(teamStateTestClient2)
+
+	if !sut.HasPlayer(teamStateTestClient2) {
+		t.Errorf("Team should have player %q", teamStateTestClient2.Username)
+	}
 }
 
 func Test_SetName(t *testing.T) {
