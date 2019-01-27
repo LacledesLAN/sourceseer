@@ -121,7 +121,7 @@ func UpdateFromStdIn(g *gameState, logEntry srcds.LogEntry) {
 				}
 			}
 		} else {
-			result := variableEchoRegex.FindStringSubmatch(logEntry.Message)
+			result := serverCvarEchoRegex.FindStringSubmatch(logEntry.Message)
 
 			if result != nil {
 				updatedCvar(g, result[1], result[2])
