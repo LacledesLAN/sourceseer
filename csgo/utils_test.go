@@ -110,3 +110,49 @@ func Test_SanitizeTeamName(t *testing.T) {
 		}
 	}
 }
+
+func Test_strToFloat(t *testing.T) {
+	testDatum := []struct {
+		strValue      string
+		expectedValue float32
+	}{
+		{"", 0},
+		{"Are you back to your original age, Professor?", 0},
+		{"320", 320},
+		{"320.5", 320.5},
+		{"-320", -320},
+		{"-320.5", -320.5},
+	}
+
+	for _, testData := range testDatum {
+		t.Run(testData.strValue, func(t *testing.T) {
+			result := strToFloat(testData.strValue)
+
+			if result != testData.expectedValue {
+				t.Errorf("Expected %f but got %f", testData.expectedValue, result)
+			}
+		})
+	}
+}
+
+func Test_strToInt(t *testing.T) {
+	testDatum := []struct {
+		strValue      string
+		expectedValue int
+	}{
+		{"", 0},
+		{"I'm 40% lucky!", 0},
+		{"320", 320},
+		{"-320", -320},
+	}
+
+	for _, testData := range testDatum {
+		t.Run(testData.strValue, func(t *testing.T) {
+			result := strToInt(testData.strValue)
+
+			if result != testData.expectedValue {
+				t.Errorf("Expected %d but got %d", testData.expectedValue, result)
+			}
+		})
+	}
+}

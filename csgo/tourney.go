@@ -43,12 +43,12 @@ func StartTourney(mpTeamname1 string, mpTeamname2 string, maps []string) {
 
 	mpTeamname1 = SanitizeTeamName(mpTeamname1)
 	if len(mpTeamname1) > 0 {
-		launchArgs = append(launchArgs, "+mp_teamname_1 "+mpTeamname1)
+		launchArgs = append(launchArgs, "+mp_teamname_1 ", mpTeamname1)
 	}
 
 	mpTeamname2 = SanitizeTeamName(mpTeamname2)
 	if len(mpTeamname2) > 0 {
-		launchArgs = append(launchArgs, "+mp_teamname_2 "+mpTeamname2)
+		launchArgs = append(launchArgs, "+mp_teamname_2 ", mpTeamname2)
 	}
 
 	launchArgs = append(launchArgs, `+hostname "`+HostnameFromTeamNames(mpTeamname1, mpTeamname2)+`"`)

@@ -3,6 +3,7 @@ package csgo
 import (
 	"errors"
 	"math"
+	"strconv"
 	"strings"
 
 	"github.com/lacledeslan/sourceseer/srcds"
@@ -59,7 +60,13 @@ func HostnameFromTeamNames(mpTeamname1 string, mpTeamname2 string) string {
 // SanitizeTeamName for safe use in SRCDS
 func SanitizeTeamName(s string) string {
 	s = strings.Join(strings.Fields(strings.TrimSpace(s)), "_")
-	return srcdsSafeChars.ReplaceAllString(s, "")
+	s = srcdsSafeChars.ReplaceAllString(s, "")
+
+	if len(s) > 32 {
+		return s[:28] + "..." + s[len(s)-1:]
+	}
+
+	return s
 }
 
 // validateStockMapName test if the provide map name is a valid stock map
@@ -92,4 +99,25 @@ func validateStockMapNames(maps []string) error {
 	}
 
 	return nil
+}
+
+func strToFloat(val string) float32 {
+
+	i, err := strconv.ParseFloat(val, 32)
+
+	if err != nil {
+		return float32(0)
+	}
+
+	return float32(i)
+}
+
+func strToInt(val string) int {
+	i, err := strconv.Atoi(val)
+
+	if err != nil {
+		return 0
+	}
+
+	return i
 }

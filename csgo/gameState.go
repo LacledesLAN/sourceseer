@@ -15,6 +15,7 @@ var (
 
 type gameState struct {
 	currentMap  *mapState
+	cvars       map[string]string
 	maps        []mapState
 	mpTeamname1 string
 	mpTeamname2 string
@@ -52,7 +53,9 @@ func (g *gameState) RoundNumber() byte {
 }
 
 func NewGameState() gameState {
-	return gameState{started: time.Now()}
+	return gameState{
+		started: time.Now(),
+	}
 }
 
 func (g *gameState) TeamsSwappedSides() {
@@ -97,7 +100,7 @@ func UpdateFromStdErr(g *gameState, err string) {
 // UpdateFromStdIn updates the gameState from the processe's standard in
 func UpdateFromStdIn(g *gameState, logEntry srcds.LogEntry) {
 
-	if strings.HasPrefix(logEntry.Message, "\"") {
+	if strings.HasPrefix(logEntry.Message, `"`) {
 		originator, target := srcds.ExtractClients(logEntry)
 
 		if originator != nil {
@@ -116,11 +119,13 @@ func UpdateFromStdIn(g *gameState, logEntry srcds.LogEntry) {
 				if strings.Contains(logEntry.Message, `" disconnected (reason "`) {
 					g.ClientDropped(*originator)
 				}
-
-				return
 			}
 		} else {
-			// a variable was assigned
+			result := variableEchoRegex.FindStringSubmatch(logEntry.Message)
+
+			if result != nil {
+				updatedCvar(g, result[1], result[2])
+			}
 		}
 
 		return
@@ -131,25 +136,41 @@ func UpdateFromStdIn(g *gameState, logEntry srcds.LogEntry) {
 			g.ctWonRound()
 		} else if strings.HasPrefix(logEntry.Message, `Team "TERRORIST" scored "`) {
 			g.terroristWonRound()
-		} else if strings.HasPrefix(logEntry.Message, `Team playing "CT": `) {
-			// verify CT team name?
-		} else if strings.HasPrefix(logEntry.Message, `Team playing "TERRORIST": `) {
-			// verify T team name?
+		} else if strings.HasPrefix(logEntry.Message, `Team playing "`) {
+			result := teamSetSideRegex.FindStringSubmatch(logEntry.Message)
+
+			if result[1] == "CT" {
+				if g.currentMap.terrorist().name == result[2] {
+					g.TeamsSwappedSides()
+				}
+			} else if result[1] == "TERRORIST" {
+				if g.currentMap.ct().name == result[2] {
+					g.TeamsSwappedSides()
+				}
+			}
 		}
 
 		return
 	}
 
 	if strings.HasPrefix(logEntry.Message, "World triggered") {
-		if strings.HasPrefix(logEntry.Message, `World triggered "Match_Start" on "`) {
-			/// TODO - add map check? --- World triggered "Match_Start" on "de_overpass"
+		if strings.HasPrefix(logEntry.Message, `World triggered "Match_Start"`) {
+			mapName := worldTriggeredMatchStartRegex.FindStringSubmatch(logEntry.Message)[1]
 			g.currentMap.mode = ModePlay
+
+			if g.currentMap.name != mapName {
+				// log as issue?
+			}
 		}
 
 		return
 	}
 
 	if strings.HasPrefix(logEntry.Message, "Game Over:") {
+		//result := gameOverRegex.FindStringSubmatch(logEntry.Message)
+		//resultScore1 := result[3]
+		//resultScore2 := result[4]
+
 		// hook for change level
 
 		return
@@ -162,5 +183,27 @@ func UpdateFromStdIn(g *gameState, logEntry srcds.LogEntry) {
 		g.mapChanged(mapName)
 
 		return
+	}
+
+	if strings.HasPrefix(logEntry.Message, `server_cvar: "`) {
+		result := serverCvarSetRegex.FindStringSubmatch(logEntry.Message)
+
+		if result != nil {
+			updatedCvar(g, result[1], result[2])
+		}
+	}
+}
+
+func updatedCvar(g *gameState, name, value string) {
+	if _, found := g.cvars[name]; found {
+		g.cvars[name] = value
+	}
+}
+
+func watchCvar(g *gameState, names ...string) {
+	for _, name := range names {
+		if _, found := g.cvars[name]; !found {
+			g.cvars[name] = ""
+		}
 	}
 }
