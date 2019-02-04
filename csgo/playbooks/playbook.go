@@ -38,3 +38,9 @@ func LiveOnThree(stdin chan string) {
 
 	stdin <- "say GLHF!"
 }
+
+func Reset(stdin chan string) {
+	stdin <- "exec gamemode_competitive"
+	stdin <- "exec gamemode_competitive_server"
+	stdin <- "mp_restartgame 1"
+}

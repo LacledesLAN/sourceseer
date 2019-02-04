@@ -1,6 +1,4 @@
 
-
-
 MasterRequestRestart
 Your server needs to be restarted in order to receive the latest update.
 
@@ -11,14 +9,8 @@ gamemode_competitive_server.cfg - executed at every map change
 
 
 
-ModeServerCrash = ^GameMode(0)
-
-
-
-
 [COMMANDS]
 mp_warmup_end
-
 
 
 
@@ -40,18 +32,9 @@ mp_warmup_end
 [set: map]		- Started map "de_dust2" (CRC "1357023846")
 
 
-
-
-
-
-
 UNKNOWN
 
 	World triggered "Game_Commencing"
-
-
-
-
 
 
 

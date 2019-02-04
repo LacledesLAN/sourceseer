@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"regexp"
 	"strings"
 	"time"
 
@@ -22,65 +21,65 @@ const (
 )
 
 var (
-	csgoStderr     chan string
-	csgoStdin      chan string
-	csgoStdout     chan string
-	srcdsSafeChars = regexp.MustCompile(`[^a-zA-Z0-9_-]+`)
+	csgoStdin chan string
 )
 
-// StartTourney starts a csgo tournament
 func StartTourney(mpTeamname1 string, mpTeamname2 string, maps []string) {
+	if len(maps) == 0 {
+		panic("At least one map must be provided")
+	}
+
+	if len(maps)%2 == 0 {
+		panic("Must provide an odd number of maps")
+	}
 
 	if err := validateStockMapNames(maps); err != nil {
 		panic(err)
 	}
-	mapCycle := maps
 
-	gameState := NewGameState()
+	srcdsLaunchArgs := []string{"-game csgo", "+game_type 0", "+game_mode 1", "-tickrate 128", "+sv_lan 1"} //TODO: add "-nobots"
 
-	launchArgs := []string{"-game csgo", "+game_type 0", "+game_mode 1", "-tickrate 128", "+sv_lan 1"} //TODO: add "-nobots"
-	launchArgs = append(launchArgs, "+map "+mapCycle[0])
-
+	// Process mpTeamname1
 	mpTeamname1 = SanitizeTeamName(mpTeamname1)
 	if len(mpTeamname1) > 0 {
-		launchArgs = append(launchArgs, "+mp_teamname_1 ", mpTeamname1)
+		srcdsLaunchArgs = append(srcdsLaunchArgs, "+mp_teamname_1 ", mpTeamname1)
 	}
 
+	// Process mpTeamname2
 	mpTeamname2 = SanitizeTeamName(mpTeamname2)
 	if len(mpTeamname2) > 0 {
-		launchArgs = append(launchArgs, "+mp_teamname_2 ", mpTeamname2)
+		srcdsLaunchArgs = append(srcdsLaunchArgs, "+mp_teamname_2 ", mpTeamname2)
 	}
 
-	launchArgs = append(launchArgs, `+hostname "`+HostnameFromTeamNames(mpTeamname1, mpTeamname2)+`"`)
+	srcdsLaunchArgs = append(srcdsLaunchArgs, `+hostname "`+HostnameFromTeamNames(mpTeamname1, mpTeamname2)+`"`)
+	srcdsLaunchArgs = append(srcdsLaunchArgs, "+map "+maps[0])
 
-	csgoStdin = make(chan string, 12)
-	defer close(csgoStdin)
-	csgoStderr = make(chan string, 2)
-	defer close(csgoStderr)
-	csgoStdout = make(chan string, 32)
-	defer close(csgoStdout)
+	logStream := make(chan srcds.LogEntry, 9)
+	defer close(logStream)
 
-	go func() {
-		for s := range csgoStderr {
-			fmt.Println("std err>", s)
-			UpdateFromStdErr(&gameState, s)
+	csgoState := NewGameState()
+
+	go func(g *gameState) {
+		for logEntry := range logStream {
+			fmt.Println("std out>", logEntry.Message)
+			g.updateFromStdIn(logEntry)
 		}
-	}()
+	}(csgoState)
 
-	go func() {
-		for s := range csgoStdout {
-			fmt.Println("std out>", s)
-		}
-	}()
-
+	cmdStream := make(chan string, 6)
+	defer close(cmdStream)
 	csgoCLI := make(chan string)
-	//csgoCMD := make(chan string)
+	defer close(csgoCLI)
+	csgoCMD := make(chan string)
+	defer close(csgoCMD)
 
 	// pass cli and playbooks to csgo's stdin
 	go func() {
 		for {
 			select {
 			case s := <-csgoCLI:
+				csgoStdin <- s
+			case s := <-csgoCMD:
 				csgoStdin <- s
 			}
 		}
@@ -96,14 +95,12 @@ func StartTourney(mpTeamname1 string, mpTeamname2 string, maps []string) {
 
 			if len(text) > 0 {
 				switch cmd := strings.ToLower(text); cmd {
-				case "lo3":
+				case "!lo3":
 					playbooks.LiveOnThree(csgoCLI)
-				case "knife":
+				case "!knife":
 					csgoCLI <- "exec kniferound"
-				case "reset":
-					csgoCLI <- "exec gamemode_competitive"
-					csgoCLI <- "exec gamemode_competitive_server"
-					csgoCLI <- "mp_restartgame 1"
+				case "!reset":
+					playbooks.Reset(csgoCLI)
 				default:
 					csgoCLI <- text
 				}
@@ -111,5 +108,5 @@ func StartTourney(mpTeamname1 string, mpTeamname2 string, maps []string) {
 		}
 	}()
 
-	srcds.WrapProc(launchArgs, csgoStdin, csgoStdout, csgoStderr)
+	srcds.WrapProc(srcdsLaunchArgs, csgoStdin, logStream)
 }

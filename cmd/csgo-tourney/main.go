@@ -9,18 +9,17 @@ import (
 )
 
 func main() {
-	ct_name := flag.String("mp_teamname_1", "", "The name of the team starting on CT")
-	t_name := flag.String("mp_teamname_2", "", "The name of the team starting on Terrorist")
-
+	ctName := flag.String("mp_teamname_1", "", "The name of the team starting on CT")
+	tName := flag.String("mp_teamname_2", "", "The name of the team starting on Terrorist")
 	flag.Parse()
 	maps := flag.Args()
 
-	mpTeamname1 := strings.TrimSpace(*ct_name)
+	mpTeamname1 := strings.TrimSpace(*ctName)
 	if len(strings.TrimSpace(mpTeamname1)) == 0 {
 		panic("mp_teamname_1 must be provided.")
 	}
 
-	mpTeamname2 := strings.TrimSpace(*t_name)
+	mpTeamname2 := strings.TrimSpace(*tName)
 	if len(strings.TrimSpace(mpTeamname2)) == 0 {
 		panic("mp_teamname_2 must be provided.")
 	}

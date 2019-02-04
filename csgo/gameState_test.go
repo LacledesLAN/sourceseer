@@ -2,12 +2,10 @@ package csgo
 
 import (
 	"testing"
-	"time"
 )
 
 func Test_mapChanged(t *testing.T) {
 	sut := gameState{
-		started:     time.Now(),
 		mpTeamname1: "Angleyne",
 		mpTeamname2: "Nikolai"}
 

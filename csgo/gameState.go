@@ -1,7 +1,6 @@
 package csgo
 
 import (
-	"log"
 	"regexp"
 	"strings"
 	"time"
@@ -13,6 +12,14 @@ var (
 	regexBetweenQuotes = regexp.MustCompile("(?:\")([0-9A-Za-z_]*)(\")")
 )
 
+type GameMode uint8
+
+const (
+	ModeUnknown GameMode = 0
+	LoadingMap  GameMode = iota
+	MapLoaded
+)
+
 type gameState struct {
 	currentMap  *mapState
 	cvars       map[string]string
@@ -20,7 +27,7 @@ type gameState struct {
 	mpTeamname1 string
 	mpTeamname2 string
 	spectators  srcds.Clients
-	started     time.Time
+	gameMode    GameMode
 }
 
 func (g *gameState) ClientJoinedCT(player srcds.Client) {
@@ -52,10 +59,12 @@ func (g *gameState) RoundNumber() byte {
 	return g.currentMap.roundNumber
 }
 
-func NewGameState() gameState {
-	return gameState{
-		started: time.Now(),
-	}
+func NewGameState() *gameState {
+	g := gameState{}
+
+	watchCvar(&g, "mp_do_warmup_period", "mp_maxrounds", "mp_overtime_enable", "mp_overtime_maxrounds", "mp_warmup_pausetimer")
+
+	return &g
 }
 
 func (g *gameState) TeamsSwappedSides() {
@@ -92,13 +101,8 @@ func (g *gameState) mapChanged(mapName string) {
 	g.currentMap.mpTeam2.SetName(g.mpTeamname2)
 }
 
-// UpdateFromStdErr updates the gameState from the processes's standard error
-func UpdateFromStdErr(g *gameState, err string) {
-	log.Print("Received output from standard error:", err)
-}
-
 // UpdateFromStdIn updates the gameState from the processe's standard in
-func UpdateFromStdIn(g *gameState, logEntry srcds.LogEntry) {
+func (g *gameState) updateFromStdIn(logEntry srcds.LogEntry) {
 
 	if strings.HasPrefix(logEntry.Message, `"`) {
 		originator, target := srcds.ExtractClients(logEntry)
@@ -119,12 +123,6 @@ func UpdateFromStdIn(g *gameState, logEntry srcds.LogEntry) {
 				if strings.Contains(logEntry.Message, `" disconnected (reason "`) {
 					g.ClientDropped(*originator)
 				}
-			}
-		} else {
-			result := serverCvarEchoRegex.FindStringSubmatch(logEntry.Message)
-
-			if result != nil {
-				updatedCvar(g, result[1], result[2])
 			}
 		}
 
@@ -154,9 +152,15 @@ func UpdateFromStdIn(g *gameState, logEntry srcds.LogEntry) {
 	}
 
 	if strings.HasPrefix(logEntry.Message, "World triggered") {
+
+		if logEntry.Message == `World triggered "Game_Commencing"` {
+
+		}
+
+		// set up
+
 		if strings.HasPrefix(logEntry.Message, `World triggered "Match_Start"`) {
 			mapName := worldTriggeredMatchStartRegex.FindStringSubmatch(logEntry.Message)[1]
-			g.currentMap.mode = ModePlay
 
 			if g.currentMap.name != mapName {
 				// log as issue?
@@ -181,16 +185,9 @@ func UpdateFromStdIn(g *gameState, logEntry srcds.LogEntry) {
 		mapName = strings.Trim(mapName[1:len(mapName)-1], "")
 
 		g.mapChanged(mapName)
+		g.gameMode = LoadingMap
 
 		return
-	}
-
-	if strings.HasPrefix(logEntry.Message, `server_cvar: "`) {
-		result := serverCvarSetRegex.FindStringSubmatch(logEntry.Message)
-
-		if result != nil {
-			updatedCvar(g, result[1], result[2])
-		}
 	}
 }
 
@@ -202,6 +199,12 @@ func updatedCvar(g *gameState, name, value string) {
 
 func watchCvar(g *gameState, names ...string) {
 	for _, name := range names {
+		name = strings.Trim(name, "")
+
+		if len(name) == 0 {
+			continue
+		}
+
 		if _, found := g.cvars[name]; !found {
 			g.cvars[name] = ""
 		}

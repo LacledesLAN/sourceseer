@@ -3,6 +3,7 @@ package csgo
 import (
 	"errors"
 	"math"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -12,6 +13,10 @@ import (
 const (
 	// List of valid stock map names
 	validMaps = "/ar_baggage/ar_dizzy/ar_monastery/ar_shoots/cs_agency/cs_assault/cs_italy/cs_militia/cs_office/de_austria/de_bank/de_biome/de_cache/de_canals/de_cbble/de_dust2/de_inferno/de_lake/de_mirage/de_nuke/de_overpass/de_safehouse/de_shortnuke/de_stmarc/de_subzero/de_sugarcane/de_train/"
+)
+
+var (
+	srcdsSafeChars = regexp.MustCompile(`[^a-zA-Z0-9_-]+`)
 )
 
 // HostnameFromTeamNames generates a hostname for srcds from two teamnames

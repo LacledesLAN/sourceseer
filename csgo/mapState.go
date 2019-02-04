@@ -4,15 +4,6 @@ import (
 	"time"
 )
 
-type MapMode uint8
-
-const (
-	ModeUnknown MapMode = 0
-	ModeWarmUp  MapMode = iota
-	ModePlay
-	ModeOvertime
-)
-
 type mapState struct {
 	name           string
 	mpTeam1        teamState // Start as CT
@@ -22,7 +13,6 @@ type mapState struct {
 	isSwappedSides bool
 	roundNumber    byte
 	mapStarted     time.Time
-	mode           MapMode
 }
 
 func (m *mapState) ct() *teamState {
