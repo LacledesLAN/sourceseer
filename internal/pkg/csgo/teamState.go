@@ -16,6 +16,7 @@ type teamState struct {
 
 func (m *teamState) HasPlayer(player Player) bool {
 	return m.players.HasPlayer(player)
+
 }
 
 // ClientCount returns the number of known clients

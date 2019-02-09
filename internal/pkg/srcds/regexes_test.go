@@ -1,6 +1,8 @@
 package srcds
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_serverCvarEchoRegex(t *testing.T) {
 	datum := []struct {
@@ -16,18 +18,26 @@ func Test_serverCvarEchoRegex(t *testing.T) {
 		{`"sv_tags" = ""`, "sv_tags", ""},
 		{`"mp_respawnwavetime" = "10.0"`, "mp_respawnwavetime", "10.0"},
 		{`"metamod_version" = "1.11.0-dev+1097V"`, "metamod_version", "1.11.0-dev+1097V"},
+		{`"mp_do_warmup_period" = "1" min. 0.000000 max. 1.000000 game replicated          - Whether or not to do a warmup period at the start of a match.`, "mp_do_warmup_period", "1"},
+		{`"mp_maxrounds" = "30" ( def. "0" ) min. 0.000000 game notify replicated          - max number of rounds to play before server changes maps`, "mp_maxrounds", "30"},
 	}
+
+	//TODO - what happens when variable value has either whitespace or a double quote in it?
 
 	for _, testData := range datum {
 		t.Run(testData.srcdsMessage, func(t *testing.T) {
 			result := serverCvarEchoRegex.FindStringSubmatch(testData.srcdsMessage)
 
-			if result[1] != testData.expectedVarName {
-				t.Errorf("Expected var name %q but got %q", testData.expectedVarName, result[1])
-			}
+			if len(result) == 0 {
+				t.Errorf("Was unable to parse %q", testData.srcdsMessage)
+			} else {
+				if result[1] != testData.expectedVarName {
+					t.Errorf("Expected var name %q but got %q", testData.expectedVarName, result[1])
+				}
 
-			if result[2] != testData.expectedVarValue {
-				t.Errorf("Expected var name %q but got %q", testData.expectedVarValue, result[2])
+				if result[2] != testData.expectedVarValue {
+					t.Errorf("Expected var name %q but got %q", testData.expectedVarValue, result[2])
+				}
 			}
 		})
 	}

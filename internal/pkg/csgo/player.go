@@ -1,7 +1,7 @@
 package csgo
 
 import (
-	"github.com/lacledeslan/sourceseer/srcds"
+	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 )
 
 // Player is a srcds client that is actively playing csgo

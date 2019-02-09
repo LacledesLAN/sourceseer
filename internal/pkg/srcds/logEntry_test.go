@@ -11,6 +11,7 @@ func Test_ExtractLogEntry(t *testing.T) {
 		expectedMsg  string
 		expectedTime time.Time
 	}{
+		{"Server will auto-restart if there is a crash.", "", time.Time{}},
 		{"L 1/2/2000 - 03:04:00: Sweet llamas of the Bahamas!", "Sweet llamas of the Bahamas!", time.Unix(946803840, 0)},
 		{"L 01/2/2000 - 03:04:00: Excuse my language but I have had it with you ruffling my petticoats!", "Excuse my language but I have had it with you ruffling my petticoats!", time.Unix(946803840, 0)},
 		{"L 1/02/2000 - 03:04:00: Your music is bad & you should feel bad!", "Your music is bad & you should feel bad!", time.Unix(946803840, 0)},

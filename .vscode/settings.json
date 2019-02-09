@@ -4,5 +4,9 @@
         "cvar",
         "cvars",
         "srcds"
-    ]
+    ],
+    "go.enableCodeLens":{
+        "references": false,
+        "runtest": true
+    }
 }

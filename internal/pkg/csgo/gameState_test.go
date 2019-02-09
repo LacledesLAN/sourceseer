@@ -5,7 +5,7 @@ import (
 )
 
 func Test_mapChanged(t *testing.T) {
-	sut := gameState{
+	sut := CSGO{
 		mpTeamname1: "Angleyne",
 		mpTeamname2: "Nikolai"}
 

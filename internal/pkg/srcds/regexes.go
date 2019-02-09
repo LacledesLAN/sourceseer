@@ -4,7 +4,7 @@ import "regexp"
 
 const (
 	extractPlayerInfoPattern = `"(.{1,32})<(\d{0,1})><([a-zA-Z0-9:_]*)><{0,1}([a-zA-Z0-9]*?)>{0,1}" ([^[\-?\d+ -?\d+ -?\d+\]]?)`
-	serverCvarEchoPattern    = `^"([^\s]{3,})" = "(.*)"$`
+	serverCvarEchoPattern    = `^"([^\s]{3,})" = "([^\s"]{0,})"`
 	serverCvarSetPattern     = `^server_cvar: "([^\s]{3,})" "(.*)"$`
 )
 

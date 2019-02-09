@@ -3,7 +3,7 @@ package csgo
 import (
 	"testing"
 
-	"github.com/lacledeslan/sourceseer/srcds"
+	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 )
 
 func Test_Clients(t *testing.T) {

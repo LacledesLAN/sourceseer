@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/lacledeslan/sourceseer/srcds"
+	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 )
 
 var (

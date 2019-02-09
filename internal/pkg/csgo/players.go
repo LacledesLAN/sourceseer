@@ -1,6 +1,6 @@
 package csgo
 
-import "github.com/lacledeslan/sourceseer/srcds"
+import "github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 
 // Players is a collection of type Player
 type Players []Player
