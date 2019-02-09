@@ -20,20 +20,20 @@ func main() {
 	mpTeamname1 := strings.TrimSpace(*ctName)
 	if len(strings.TrimSpace(mpTeamname1)) == 0 {
 		fmt.Print("Argument mp_teamname_1 must be provided!\n\n")
-		fmt.Print("\texample: -mp_teamname_1 red\n\n")
+		fmt.Print("\tExample: -mp_teamname_1 red\n\n")
 		os.Exit(87)
 	}
 
 	mpTeamname2 := strings.TrimSpace(*tName)
 	if len(strings.TrimSpace(mpTeamname2)) == 0 {
 		fmt.Print("Argument mp_teamname_2 must be provided!\n\n")
-		fmt.Print("\texample: -mp_teamname_2 blu\n\n")
+		fmt.Print("\tExample: -mp_teamname_2 blu\n\n")
 		os.Exit(87)
 	}
 
 	if l := len(maps); l == 0 || l%2 == 0 {
 		fmt.Print("A positive, odd-number of maps must be provided!\n\n")
-		fmt.Print("\texample: -mp_teamname_1 red -mp_teamname_2 blu de_inferno de_biome de_inferno\n\n")
+		fmt.Print("\tExample: -mp_teamname_1 red -mp_teamname_2 blu de_inferno de_biome de_inferno\n\n")
 		os.Exit(87)
 	}
 
@@ -52,13 +52,16 @@ func main() {
 	server, err := srcds.New(osArgs)
 
 	if err != nil {
-		panic(err)
+		fmt.Print("Unable to create a Source Dedicated Server!\n\n")
+		fmt.Print("\tReason: ", err, "\n\n")
+		os.Exit(-1)
 	}
 
 	csgoTourney, err := csgo.New(&server, csgo.ClassicCompetitive, csgo.CompetitiveWarmUp(mpTeamname1, mpTeamname2), csgo.ClinchableMapCycle(maps))
 
 	if csgoTourney == nil {
-		fmt.Println("Did not run successfully.")
+		fmt.Print("Unable to create a CSGO Tournament server!\n\n")
+		fmt.Print("\tReason: ", err, "\n\n")
 		os.Exit(-1)
 	}
 

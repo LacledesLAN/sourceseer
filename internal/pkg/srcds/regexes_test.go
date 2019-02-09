@@ -5,6 +5,8 @@ import (
 )
 
 func Test_serverCvarEchoRegex(t *testing.T) {
+	//TODO - what happens when variable value has either whitespace or a double quote in it?
+
 	datum := []struct {
 		srcdsMessage     string
 		expectedVarName  string
@@ -21,8 +23,6 @@ func Test_serverCvarEchoRegex(t *testing.T) {
 		{`"mp_do_warmup_period" = "1" min. 0.000000 max. 1.000000 game replicated          - Whether or not to do a warmup period at the start of a match.`, "mp_do_warmup_period", "1"},
 		{`"mp_maxrounds" = "30" ( def. "0" ) min. 0.000000 game notify replicated          - max number of rounds to play before server changes maps`, "mp_maxrounds", "30"},
 	}
-
-	//TODO - what happens when variable value has either whitespace or a double quote in it?
 
 	for _, testData := range datum {
 		t.Run(testData.srcdsMessage, func(t *testing.T) {
