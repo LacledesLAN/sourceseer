@@ -4,6 +4,7 @@ import "regexp"
 
 const (
 	gameOverPattern                   = `^Game Over: (\w+)[ ]+(\w+) score (\d+):(\d+) after (\d+) min$`
+	loadingMapPattern                 = `^Loading map "([a-zA-Z0-9_]*)"`
 	matchStartPattern                 = `^World triggered "Match_Start" on "(\w+)"$`
 	teamScoredPattern                 = `^Team "(CT|TERRORIST)" scored "(\d+)" with "(\d+)" players$`
 	teamSetSidePattern                = `^Team playing "(.{1,})": (.{1,})$`
@@ -13,6 +14,7 @@ const (
 
 var (
 	gameOverRegex                   = regexp.MustCompile(gameOverPattern)
+	loadingMapRegex                 = regexp.MustCompile(loadingMapPattern)
 	matchStartRegex                 = regexp.MustCompile(matchStartPattern)
 	teamScoredRegex                 = regexp.MustCompile(teamScoredPattern)
 	teamSetSideRegex                = regexp.MustCompile(teamSetSidePattern)

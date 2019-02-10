@@ -191,7 +191,7 @@ func (s *SRCDS) linkStdOut(i io.ReadCloser) {
 				if len(le.Message) > 0 {
 					s.logProcessorStack(le)
 				} else {
-					fmt.Println(outLine)
+					//fmt.Println(outLine)
 				}
 			}
 		}

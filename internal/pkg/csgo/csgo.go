@@ -1,34 +1,35 @@
 package csgo
 
 import (
+	"fmt"
+	"log"
+	"strconv"
 	"strings"
 	"time"
 
 	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 )
 
-// GameMode determines the rulesets used by a CSGO server.
-type GameMode byte
-
 const (
-	// ClassicCasual features a simplified economy, no team damage, and all players automatically receive armor and defuse kits.
-	ClassicCasual GameMode = iota + 1
-
-	// ClassicCompetitive is a classic mode where two teams compete in a best-of match using standard competitive Counter-Strike rules.
-	ClassicCompetitive
-
 	// ArmsRace is a gun-progression mode where players gain new weapons after registering a kill and work their way through each weapon in the game. Get a kill with the final weapon, the golden knife, and win the match!
-	ArmsRace
+	ArmsRace GameMode = iota + 1
 
-	// Demolition is a round-based mode where players take turns attacking and defending a single bombsite in a series of maps designed for fast-paced gameplay.
-	Demolition
+	// ClassicCasual features a simplified economy, no team damage, and all players automatically receive armor and defuse kits.
+	ClassicCasual
+
+	// ClassicCompetitive is the "original" mode where two teams compete in a best-of match using standard competitive Counter-Strike rules.
+	ClassicCompetitive
 
 	// Deathmatch is a fast-paced casual mode where every player is for themselves, respawn instantly, and have a unlimited amount of time to buy weapons.
 	Deathmatch
+
+	// Demolition is a round-based mode where players take turns attacking and defending a single bombsite in a series of maps designed for fast-paced, casual gameplay.
+	Demolition
 )
 
 // CSGO represents the state of a CSGO server
 type CSGO struct {
+	cmdIn       chan string
 	currentMap  *mapState
 	gameMode    GameMode
 	maps        []mapState
@@ -36,8 +37,10 @@ type CSGO struct {
 	mpTeamname2 string
 	spectators  srcds.Clients
 	srcds       *srcds.SRCDS
-	cmdIn       chan string
 }
+
+// GameMode determines the rulesets used by a CSGO server.
+type GameMode byte
 
 // New creates a CSGO server
 func New(server *srcds.SRCDS, gameMode GameMode, scenarios ...Scenario) (*CSGO, error) {
@@ -48,7 +51,6 @@ func New(server *srcds.SRCDS, gameMode GameMode, scenarios ...Scenario) (*CSGO, 
 	}
 
 	game.srcds.AddCvarWatch("mp_do_warmup_period", "mp_maxrounds", "mp_overtime_enable", "mp_overtime_maxrounds", "mp_warmup_pausetimer")
-
 	game.srcds.AddLaunchArg(gameMode.launchArgs()...)
 	game.srcds.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart") //TODO: add "-nobots"
 	game.srcds.AddLogProcessor(game.processLogEntry)
@@ -60,9 +62,46 @@ func New(server *srcds.SRCDS, gameMode GameMode, scenarios ...Scenario) (*CSGO, 
 	return &game, nil
 }
 
+// RoundNumber of the current CSGO map
+func (g *CSGO) RoundNumber() byte {
+	return g.currentMap.roundNumber
+}
+
 // Start begins a CSGO server
 func (g *CSGO) Start() {
 	g.srcds.Start(g.cmdIn)
+}
+
+func (g *CSGO) clientJoinedCT(player srcds.Client) {
+	c := playerFromSrcdsClient(player)
+	g.currentMap.PlayerJoinedCT(c)
+}
+
+func (g *CSGO) clientJoinedSpectator(client srcds.Client) {
+	g.spectators.ClientJoined(client)
+}
+
+func (g *CSGO) clientJoinedTerrorist(player srcds.Client) {
+	c := playerFromSrcdsClient(player)
+	g.currentMap.PlayerJoinedTerrorist(c)
+}
+
+func (g *CSGO) clientDropped(client srcds.Client) {
+	g.spectators.ClientDropped(client)
+
+	p := playerFromSrcdsClient(client)
+	g.currentMap.PlayerDropped(p)
+}
+
+func (g *CSGO) SetScore(teamAffiliation, score string) {
+	switch affiliation := strings.ToUpper(teamAffiliation); affiliation {
+	case "CT":
+		g.currentMap.CTSetScore(score)
+	case "TERRORIST":
+		g.currentMap.TerroristSetScore(score)
+	default:
+		log.Println("UNABLE TO SETSCORE()")
+	}
 }
 
 func (m GameMode) launchArgs() []string {
@@ -82,53 +121,91 @@ func (m GameMode) launchArgs() []string {
 	}
 }
 
+func (g *CSGO) mapChanged(mapName string) {
+	i := len(g.maps)
+
+	if i > 0 {
+		g.maps[i-1].ended = time.Now()
+	}
+
+	g.maps = append(g.maps, mapState{
+		name:    mapName,
+		started: time.Now()},
+	)
+
+	g.currentMap = &g.maps[i]
+
+	if (len(g.mpTeamname1)) == 0 {
+		g.mpTeamname1 = "mp_team_1"
+	}
+	g.currentMap.mpTeam1.SetName(g.mpTeamname1)
+
+	if (len(g.mpTeamname2)) == 0 {
+		g.mpTeamname2 = "mp_team_2"
+	}
+	g.currentMap.mpTeam2.SetName(g.mpTeamname2)
+}
+
+func debugPrint(t, s string) {
+	fmt.Println("============================================")
+	fmt.Println("\t\t", t)
+	fmt.Println(s)
+	fmt.Println("============================================")
+}
+
 func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
+
 	// A player did something
 	if strings.HasPrefix(le.Message, `"`) {
-		originator, target := srcds.ExtractClients(le)
+		player, playersTarget := srcds.ExtractClients(le)
 
-		if originator != nil {
-			if target == nil {
-				if strings.Contains(le.Message, `" switched from team <`) {
+		if player != nil {
+			if playersTarget == nil {
+				if strings.Contains(le.Message, `>" connected, address "`) {
+					g.clientJoinedSpectator(*player)
+				} else if strings.Contains(le.Message, `>" switched from team <`) {
 					if strings.HasSuffix(le.Message, "<CT>") {
-						g.clientJoinedCT(*originator)
+						g.clientJoinedCT(*player)
 					} else if strings.HasSuffix(le.Message, "<TERRORIST>") {
-						g.clientJoinedTerrorist(*originator)
+						g.clientJoinedTerrorist(*player)
 					}
-
-					return
 				}
 
 				if strings.Contains(le.Message, `" disconnected (reason "`) {
-					g.clientDropped(*originator)
+					g.clientDropped(*player)
 				}
 			}
 		}
 
-		return
+		return true
 	}
 
 	// A team did something
 	if strings.HasPrefix(le.Message, "Team") {
-		if strings.HasPrefix(le.Message, `Team "CT" scored "`) {
-			g.ctWonRound()
-		} else if strings.HasPrefix(le.Message, `Team "TERRORIST" scored "`) {
-			g.terroristWonRound()
-		} else if strings.HasPrefix(le.Message, `Team playing "`) {
-			result := teamSetSideRegex.FindStringSubmatch(le.Message)
 
-			if result[1] == "CT" {
-				if g.currentMap.terrorist().name == result[2] {
+		teamScoreUpdate := teamScoredRegex.FindStringSubmatch(le.Message)
+		if len(teamScoreUpdate) >= 2 {
+			g.SetScore(teamScoreUpdate[1], teamScoreUpdate[2])
+			return true
+		}
+
+		teamUpdateSide := teamSetSideRegex.FindStringSubmatch(le.Message)
+		if len(teamUpdateSide) >= 2 {
+			resultAffiliation := strings.ToUpper(teamUpdateSide[1])
+			resultTeamName := teamUpdateSide[2]
+
+			if resultAffiliation == "CT" {
+				if g.currentMap.terrorist().name == resultTeamName {
 					g.teamsSwappedSides()
 				}
-			} else if result[1] == "TERRORIST" {
-				if g.currentMap.ct().name == result[2] {
+			} else if resultAffiliation == "TERRORIST" {
+				if g.currentMap.ct().name == resultTeamName {
 					g.teamsSwappedSides()
 				}
 			}
 		}
 
-		return
+		return true
 	}
 
 	if strings.HasPrefix(le.Message, `Started map`) {
@@ -175,64 +252,42 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 	return true
 }
 
-func (g *CSGO) clientJoinedCT(player srcds.Client) {
-	c := playerFromSrcdsClient(player)
-	g.currentMap.PlayerJoinedCT(c)
-}
-
-func (g *CSGO) clientJoinedSpectator(client srcds.Client) {
-	g.spectators.ClientJoined(client)
-}
-
-func (g *CSGO) clientJoinedTerrorist(player srcds.Client) {
-	c := playerFromSrcdsClient(player)
-	g.currentMap.PlayerJoinedTerrorist(c)
-}
-
-func (g *CSGO) clientDropped(client srcds.Client) {
-	g.spectators.ClientDropped(client)
-
-	p := playerFromSrcdsClient(client)
-	g.currentMap.PlayerDropped(p)
-}
-
-func (g *CSGO) ctWonRound() {
-	g.currentMap.CTWonRound()
-}
-
-func (g *CSGO) RoundNumber() byte {
-	return g.currentMap.roundNumber
-}
-
 func (g *CSGO) teamsSwappedSides() {
 	g.currentMap.TeamsSwappedSides()
 }
 
-func (g *CSGO) terroristWonRound() {
-	g.currentMap.TerroristWonRound()
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+func (g *CSGO) maxOvertimeRounds() int {
+	if s, found := g.srcds.GetCvar("mp_overtime_maxrounds"); found {
+		if i, err := strconv.Atoi(s); err == nil {
+			return i
+		}
+	}
+
+	return 6
 }
 
-func (g *CSGO) mapChanged(mapName string) {
-	i := len(g.maps)
-
-	if i > 0 {
-		g.maps[i-1].ended = time.Now()
+func (g *CSGO) maxRounds() int {
+	if s, found := g.srcds.GetCvar("mp_maxrounds"); found {
+		if i, err := strconv.Atoi(s); err == nil {
+			return i
+		}
 	}
 
-	g.maps = append(g.maps, mapState{
-		name:    mapName,
-		started: time.Now()},
-	)
+	return 30
+}
 
-	g.currentMap = &g.maps[i]
-
-	if (len(g.mpTeamname1)) == 0 {
-		g.mpTeamname1 = "mp_team_1"
+func (g *CSGO) isOvertime() bool {
+	if g.currentMap.ct().roundsWon+g.currentMap.ct().roundsLost >= g.maxRounds() {
+		return true
 	}
-	g.currentMap.mpTeam1.SetName(g.mpTeamname1)
 
-	if (len(g.mpTeamname2)) == 0 {
-		g.mpTeamname2 = "mp_team_2"
+	if g.currentMap.terrorist().roundsWon+g.currentMap.terrorist().roundsLost >= g.maxRounds() {
+		return true
 	}
-	g.currentMap.mpTeam2.SetName(g.mpTeamname2)
+
+	return false
 }

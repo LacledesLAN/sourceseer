@@ -14,6 +14,7 @@ func Test_gameOverRegex(t *testing.T) {
 		expectedTime   string
 	}{
 		{"Game Over: competitive  de_nuke score 18:19 after 34 min", "competitive", "de_nuke", "18", "19", "34"},
+		{"Game Over: competitive  de_inferno score 3:16 after 38 min", "competitive", "de_inferno", "3", "16", "38"},
 	}
 
 	for _, testData := range datum {
@@ -43,6 +44,27 @@ func Test_gameOverRegex(t *testing.T) {
 			resultTime := result[5]
 			if resultTime != testData.expectedTime {
 				t.Errorf("Expected team %q but got %q", testData.expectedTime, resultTime)
+			}
+		})
+	}
+}
+
+func Test_loadingMapRegex(t *testing.T) {
+	datum := []struct {
+		srcdsMessage string
+		expectedMap  string
+	}{
+		{`Loading map "de_nuke"`, "de_nuke"},
+		{`Loading map "de_dust2"`, "de_dust2"},
+	}
+
+	for _, testData := range datum {
+		t.Run(testData.srcdsMessage, func(t *testing.T) {
+			result := loadingMapRegex.FindStringSubmatch(testData.srcdsMessage)
+			resultMap := result[1]
+
+			if resultMap != testData.expectedMap {
+				t.Errorf("Expected map %q but got %q", testData.expectedMap, resultMap)
 			}
 		})
 	}
@@ -114,15 +136,15 @@ func Test_teamSetSidePattern(t *testing.T) {
 	for _, testData := range datum {
 		t.Run(testData.srcdsMessage, func(t *testing.T) {
 			result := teamSetSideRegex.FindStringSubmatch(testData.srcdsMessage)
-			resultSide := result[1]
-			resultTeam := result[2]
+			resultAffiliation := result[1]
+			resultTeamName := result[2]
 
-			if resultSide != testData.expectedSide {
-				t.Errorf("Expected side %q but got %q", testData.expectedSide, resultSide)
+			if resultAffiliation != testData.expectedSide {
+				t.Errorf("Expected side %q but got %q", testData.expectedSide, resultAffiliation)
 			}
 
-			if resultTeam != testData.expectedTeam {
-				t.Errorf("Expected team %q but got %q", testData.expectedTeam, resultTeam)
+			if resultTeamName != testData.expectedTeam {
+				t.Errorf("Expected team %q but got %q", testData.expectedTeam, resultTeamName)
 			}
 		})
 	}

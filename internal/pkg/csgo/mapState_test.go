@@ -21,38 +21,6 @@ func TestMain(m *testing.M) {
 	os.Exit(returnCode)
 }
 
-func Test_CTWonRound(testing *testing.T) {
-	sut := mapState{}
-	ct := sut.ct()
-	t := sut.terrorist()
-
-	if ct.roundsWon != 0 {
-		testing.Errorf("New CT Team should show 0 rounds won but have %d.", ct.roundsWon)
-	}
-
-	if sut.roundNumber != 0 {
-		testing.Errorf("New mapstate should show round 0 but was %d.", sut.roundNumber)
-	}
-
-	roundsToTest := uint8(rand.Intn(14) + 2)
-
-	for i := 0; i < int(roundsToTest); i++ {
-		sut.CTWonRound()
-	}
-
-	if ct.roundsWon != roundsToTest {
-		testing.Errorf("CT Team should show %d rounds won but have %d.", roundsToTest, ct.roundsWon)
-	}
-
-	if sut.roundNumber != roundsToTest {
-		testing.Errorf("Mapstate should show round %d but was %d.", roundsToTest, sut.roundNumber)
-	}
-
-	if t.roundsLost != roundsToTest {
-		testing.Errorf("Terrorist Team should show %d rounds lost but have %d.", roundsToTest, ct.roundsLost)
-	}
-}
-
 func Test_PlayerDropped(testing *testing.T) {
 	sut := mapState{}
 
@@ -159,37 +127,5 @@ func Test_TeamsSwappedSides(testing *testing.T) {
 
 	if &newT == &originalT {
 		testing.Errorf("The memory address for `newT` should not match the address for `originalT` (%X)", &newT)
-	}
-}
-
-func Test_TerroristWonRound(testing *testing.T) {
-	sut := mapState{}
-	ct := sut.ct()
-	t := sut.terrorist()
-
-	if t.roundsWon != 0 {
-		testing.Errorf("New T Team should show 0 rounds won but have %d.", t.roundsWon)
-	}
-
-	if sut.roundNumber != 0 {
-		testing.Errorf("New mapstate should show round 0 but was %d.", sut.roundNumber)
-	}
-
-	roundsToTest := uint8(rand.Intn(30) + 3)
-
-	for i := 0; i < int(roundsToTest); i++ {
-		sut.TerroristWonRound()
-	}
-
-	if t.roundsWon != roundsToTest {
-		testing.Errorf("T Team should show %d rounds won but have %d.", roundsToTest, t.roundsWon)
-	}
-
-	if sut.roundNumber != roundsToTest {
-		testing.Errorf("Mapstate should show round %d but was %d.", roundsToTest, sut.roundNumber)
-	}
-
-	if ct.roundsLost != roundsToTest {
-		testing.Errorf("CT Team should show %d rounds lost but have %d.", roundsToTest, sut.roundNumber)
 	}
 }

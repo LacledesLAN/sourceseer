@@ -57,7 +57,7 @@ func main() {
 		os.Exit(-1)
 	}
 
-	csgoTourney, err := csgo.New(&server, csgo.ClassicCompetitive, csgo.CompetitiveWarmUp(mpTeamname1, mpTeamname2), csgo.ClinchableMapCycle(maps))
+	csgoTourney, err := csgo.New(&server, csgo.ClassicCompetitive, csgo.MapPreliminaries(mpTeamname1, mpTeamname2), csgo.ClinchableMapCycle(maps))
 
 	if csgoTourney == nil {
 		fmt.Print("Unable to create a CSGO Tournament server!\n\n")

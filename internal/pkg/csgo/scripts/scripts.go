@@ -1,4 +1,4 @@
-package playbook
+package scripts
 
 import (
 	"strconv"

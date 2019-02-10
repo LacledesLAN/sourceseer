@@ -10,13 +10,12 @@ type teamState struct {
 	players        Players
 	name           string
 	pausedTimeUsed time.Duration
-	roundsLost     uint8
-	roundsWon      uint8
+	roundsLost     int
+	roundsWon      int
 }
 
 func (m *teamState) HasPlayer(player Player) bool {
 	return m.players.HasPlayer(player)
-
 }
 
 // ClientCount returns the number of known clients
