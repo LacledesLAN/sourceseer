@@ -21,6 +21,36 @@ func TestMain(m *testing.M) {
 	os.Exit(returnCode)
 }
 
+func Test_CTSetScore(testing *testing.T) {
+	sut := mapState{}
+
+	if sut.ct().roundsLost != 0 {
+		testing.Error("CT should have 0 rounds lost.")
+	}
+
+	if sut.ct().roundsWon != 0 {
+		testing.Error("CT should have 0 rounds won.")
+	}
+
+	if sut.terrorist().roundsLost != 0 {
+		testing.Error("T should have 0 rounds lost.")
+	}
+
+	if sut.terrorist().roundsWon != 0 {
+		testing.Error("T should have 0 rounds won.")
+	}
+
+	sut.CTSetScore("18")
+
+	if sut.ct().roundsWon != 18 {
+		testing.Error("CT should have 18 rounds won.")
+	}
+
+	if sut.terrorist().roundsLost != 18 {
+		testing.Error("T should have 18 rounds lost.")
+	}
+}
+
 func Test_PlayerDropped(testing *testing.T) {
 	sut := mapState{}
 
@@ -111,6 +141,33 @@ func Test_PlayerJoinedTerrorist(testing *testing.T) {
 	}
 }
 
+func Test_RoundsCompleted(testing *testing.T) {
+	sut := mapState{}
+
+	sut.CTSetScore("1")
+	sut.TerroristSetScore("0")
+	if sut.RoundsCompleted() != 1 {
+		testing.Errorf("Rounds completed should be equal to 1 but was %d", sut.RoundsCompleted())
+	}
+
+	sut.CTSetScore("2")
+	sut.TerroristSetScore("0")
+	if sut.RoundsCompleted() != 2 {
+		testing.Errorf("Rounds completed should be equal to 2 but was %d", sut.RoundsCompleted())
+	}
+
+	sut.CTSetScore("2")
+	sut.TerroristSetScore("1")
+	if sut.RoundsCompleted() != 3 {
+		testing.Errorf("Rounds completed should be equal to 3 but was %d", sut.RoundsCompleted())
+	}
+
+	sut.TerroristSetScore("7")
+	if sut.RoundsCompleted() != 9 {
+		testing.Errorf("Rounds completed should be equal to 9 but was %d", sut.RoundsCompleted())
+	}
+}
+
 func Test_TeamsSwappedSides(testing *testing.T) {
 	sut := mapState{}
 	originalCT := sut.ct()
@@ -127,5 +184,35 @@ func Test_TeamsSwappedSides(testing *testing.T) {
 
 	if &newT == &originalT {
 		testing.Errorf("The memory address for `newT` should not match the address for `originalT` (%X)", &newT)
+	}
+}
+
+func Test_TerroristSetScore(testing *testing.T) {
+	sut := mapState{}
+
+	if sut.ct().roundsLost != 0 {
+		testing.Error("CT should have 0 rounds lost.")
+	}
+
+	if sut.ct().roundsWon != 0 {
+		testing.Error("CT should have 0 rounds won.")
+	}
+
+	if sut.terrorist().roundsLost != 0 {
+		testing.Error("T should have 0 rounds lost.")
+	}
+
+	if sut.terrorist().roundsWon != 0 {
+		testing.Error("T should have 0 rounds won.")
+	}
+
+	sut.TerroristSetScore("65")
+
+	if sut.ct().roundsLost != 65 {
+		testing.Error("CT should have 65 rounds lost.")
+	}
+
+	if sut.terrorist().roundsWon != 65 {
+		testing.Error("T should have 65 rounds won.")
 	}
 }

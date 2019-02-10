@@ -4,7 +4,6 @@ import (
 	"errors"
 	"math"
 	"regexp"
-	"strconv"
 	"strings"
 
 	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
@@ -18,6 +17,26 @@ const (
 var (
 	srcdsSafeChars = regexp.MustCompile(`[^a-zA-Z0-9_-]+`)
 )
+
+// CalculateWinThreshold determines how many rounds a team needs to win to win a map given how many rounds have been completed so far
+func CalculateWinThreshold(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound int) int {
+	if mpMaxRounds < 1 {
+		mpMaxRounds = 30
+	}
+
+	if mpOvertimeMaxRounds < 1 {
+		mpMaxRounds = 6
+	}
+
+	winThreshold := mpMaxRounds/2 + 1
+
+	if totalOTRoundsCompleted := lastCompletedRound - mpMaxRounds; totalOTRoundsCompleted > 0 {
+		otPeriodsCompleted := (totalOTRoundsCompleted - 1) / mpOvertimeMaxRounds
+		return winThreshold + ((mpOvertimeMaxRounds/2 + 1) * (otPeriodsCompleted + 1))
+	}
+
+	return winThreshold
+}
 
 // HostnameFromTeamNames generates a hostname for srcds from two teamnames
 func HostnameFromTeamNames(mpTeamname1 string, mpTeamname2 string) string {
@@ -104,25 +123,4 @@ func validateStockMapNames(maps []string) error {
 	}
 
 	return nil
-}
-
-func strToFloat(val string) float32 {
-
-	i, err := strconv.ParseFloat(val, 32)
-
-	if err != nil {
-		return float32(0)
-	}
-
-	return float32(i)
-}
-
-func strToInt(val string) int {
-	i, err := strconv.Atoi(val)
-
-	if err != nil {
-		return 0
-	}
-
-	return i
 }

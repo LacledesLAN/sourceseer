@@ -12,7 +12,6 @@ type mapState struct {
 	started        time.Time
 	ended          time.Time
 	isSwappedSides bool
-	roundNumber    byte
 	mapStarted     time.Time
 }
 
@@ -52,6 +51,10 @@ func (m *mapState) PlayerJoinedTerrorist(player Player) {
 
 	t := m.terrorist()
 	t.PlayerJoined(player)
+}
+
+func (m *mapState) RoundsCompleted() int {
+	return m.ct().roundsWon + m.terrorist().roundsWon
 }
 
 func (m *mapState) TeamsSwappedSides() {

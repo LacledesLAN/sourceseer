@@ -26,10 +26,10 @@ func ClinchableMapCycle(maps []string) Scenario {
 		panic(err)
 	}
 
-	mapCycle := clinchableMapCycle{
-		mapsPending:  maps,
-		mapsFinished: make([]string, len(maps)),
-	}
+	//mapCycle := clinchableMapCycle{
+	//	mapsPending:  maps,
+	//	mapsFinished: make([]string, len(maps)),
+	//}
 
 	return func(gs *CSGO) *CSGO {
 		gs.srcds.AddCvarWatch("mp_match_restart_delay", "sv_pausable")
@@ -38,36 +38,6 @@ func ClinchableMapCycle(maps []string) Scenario {
 			if strings.HasPrefix(le.Message, `World triggered "Round_End"`) {
 
 				mapOver := false
-
-				if gs.isOvertime() {
-					// TODO account for mp_overtime_maxrounds even values
-					//// OVERTIME WIN CONDITION?
-					//
-					//delta = mpMaxRounds	//30
-					//while totalRoundsPlayed - delta > mpOvertimeMaxRounds {
-					//	delta = delta + mpOvertimeMaxRounds
-					//}
-					//
-					//if ct.RoundsWon - delta >= (mpOvertimeMaxRounds/2) + 1 {
-					//	// ct won
-					//} else if t.RoundsWon >= (mpOvertimeMaxRounds/2) + 1 {
-					//	// t won
-					//}
-				} else {
-					if gs.maxRounds() == 1 {
-						if gs.currentMap.ct().roundsWon > 0 {
-							mapOver = true //ct won
-						} else if gs.currentMap.terrorist().roundsWon > 0 {
-							mapOver = true //t won
-						}
-					} else {
-						if gs.currentMap.ct().roundsWon > (gs.maxRounds()/2)+1 {
-							mapOver = true //ct won
-						} else if gs.currentMap.terrorist().roundsWon > (gs.maxRounds()/2)+1 {
-							mapOver = true //t won
-						}
-					}
-				}
 
 				if mapOver /* && len(mapCycle.mapsPending) == 0 */ {
 					if value, found := gs.srcds.GetCvar("sv_pausable"); found && value == "1" {

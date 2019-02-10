@@ -62,11 +62,6 @@ func New(server *srcds.SRCDS, gameMode GameMode, scenarios ...Scenario) (*CSGO, 
 	return &game, nil
 }
 
-// RoundNumber of the current CSGO map
-func (g *CSGO) RoundNumber() byte {
-	return g.currentMap.roundNumber
-}
-
 // Start begins a CSGO server
 func (g *CSGO) Start() {
 	g.srcds.Start(g.cmdIn)
@@ -230,16 +225,6 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 		return
 	}
 
-	if strings.HasPrefix(le.Message, "Game Over:") {
-		//result := gameOverRegex.FindStringSubmatch(logEntry.Message)
-		//resultScore1 := result[3]
-		//resultScore2 := result[4]
-
-		// hook for change level
-
-		return
-	}
-
 	if strings.HasPrefix(le.Message, `Loading map "`) {
 		mapName := regexBetweenQuotes.FindString(le.Message)
 		mapName = strings.Trim(mapName[1:len(mapName)-1], "")
@@ -278,16 +263,4 @@ func (g *CSGO) maxRounds() int {
 	}
 
 	return 30
-}
-
-func (g *CSGO) isOvertime() bool {
-	if g.currentMap.ct().roundsWon+g.currentMap.ct().roundsLost >= g.maxRounds() {
-		return true
-	}
-
-	if g.currentMap.terrorist().roundsWon+g.currentMap.terrorist().roundsLost >= g.maxRounds() {
-		return true
-	}
-
-	return false
 }

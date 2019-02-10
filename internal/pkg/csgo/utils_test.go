@@ -6,7 +6,19 @@ import (
 	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 )
 
-func TestValidateStockMapName(t *testing.T) {
+func Test_CalculateWinThreshold(t *testing.T) {
+	testDatum := []struct {
+		mpMaxRounds         int
+		mpOvertimeMaxRounds int
+		lastCompletedRound  int
+		expectedResult      int
+	}{
+		{1, 1, 1, 1}
+		{30, 6},
+	}
+}
+
+func Test_ValidateStockMapName(t *testing.T) {
 	testDatum := []struct {
 		mapName     string
 		expectError bool
@@ -27,7 +39,7 @@ func TestValidateStockMapName(t *testing.T) {
 	}
 }
 
-func TestValidateStockMapNames(t *testing.T) {
+func Test_ValidateStockMapNames(t *testing.T) {
 	testDatum := []struct {
 		maps        []string
 		expectError bool
@@ -108,51 +120,5 @@ func Test_SanitizeTeamName(t *testing.T) {
 		if result != testData.expected {
 			t.Errorf("String %q should have been sanitized to %q but instead became %q.", testData.original, testData.expected, result)
 		}
-	}
-}
-
-func Test_strToFloat(t *testing.T) {
-	testDatum := []struct {
-		strValue      string
-		expectedValue float32
-	}{
-		{"", 0},
-		{"Are you back to your original age, Professor?", 0},
-		{"320", 320},
-		{"320.5", 320.5},
-		{"-320", -320},
-		{"-320.5", -320.5},
-	}
-
-	for _, testData := range testDatum {
-		t.Run(testData.strValue, func(t *testing.T) {
-			result := strToFloat(testData.strValue)
-
-			if result != testData.expectedValue {
-				t.Errorf("Expected %f but got %f", testData.expectedValue, result)
-			}
-		})
-	}
-}
-
-func Test_strToInt(t *testing.T) {
-	testDatum := []struct {
-		strValue      string
-		expectedValue int
-	}{
-		{"", 0},
-		{"I'm 40% lucky!", 0},
-		{"320", 320},
-		{"-320", -320},
-	}
-
-	for _, testData := range testDatum {
-		t.Run(testData.strValue, func(t *testing.T) {
-			result := strToInt(testData.strValue)
-
-			if result != testData.expectedValue {
-				t.Errorf("Expected %d but got %d", testData.expectedValue, result)
-			}
-		})
 	}
 }
