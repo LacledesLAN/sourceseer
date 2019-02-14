@@ -2,10 +2,12 @@ package srcds
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"io"
 	"log"
 	"os/exec"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -70,6 +72,16 @@ func (s *SRCDS) AddLogProcessor(p LogEntryProcessor) {
 func (s *SRCDS) GetCvar(name string) (value string, found bool) {
 	value, found = s.cvars[name]
 	return
+}
+
+func (s *SRCDS) GetCvarAsInt(name string) (value int, err error) {
+	v, found := s.cvars[name]
+
+	if !found {
+		return 0, errors.New("cvar '" + name + "' was not found.")
+	}
+
+	return strconv.Atoi(v)
 }
 
 // New creates a new CSGO server instance.

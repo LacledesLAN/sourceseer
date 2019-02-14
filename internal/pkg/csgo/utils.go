@@ -18,7 +18,7 @@ var (
 	srcdsSafeChars = regexp.MustCompile(`[^a-zA-Z0-9_-]+`)
 )
 
-// CalculateWinThreshold determines how many rounds a team needs to win to win a map given how many rounds have been completed so far
+// CalculateWinThreshold determines how the minimum number of rounds a team needs to win given how many rounds have been completed so far
 func CalculateWinThreshold(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound int) int {
 	if mpMaxRounds < 1 {
 		mpMaxRounds = 30
@@ -28,14 +28,23 @@ func CalculateWinThreshold(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound 
 		mpMaxRounds = 6
 	}
 
-	winThreshold := mpMaxRounds/2 + 1
+	if notClinchable := mpMaxRounds%2 == 0; notClinchable {
+		if otRoundsCompleted := lastCompletedRound - mpMaxRounds; otRoundsCompleted > 0 {
+			if otNotClinchable := mpOvertimeMaxRounds%2 == 0; otNotClinchable {
+				otPeriodsCompleted := otRoundsCompleted / mpOvertimeMaxRounds
 
-	if totalOTRoundsCompleted := lastCompletedRound - mpMaxRounds; totalOTRoundsCompleted > 0 {
-		otPeriodsCompleted := (totalOTRoundsCompleted - 1) / mpOvertimeMaxRounds
-		return winThreshold + ((mpOvertimeMaxRounds/2 + 1) * (otPeriodsCompleted + 1))
+				if otRoundsCompleted%mpOvertimeMaxRounds == 0 {
+					otPeriodsCompleted = otPeriodsCompleted - 1
+				}
+
+				return mpMaxRounds/2 + (mpOvertimeMaxRounds / 2 * (otPeriodsCompleted + 1)) + 1
+			}
+
+			return mpMaxRounds/2 + mpOvertimeMaxRounds/2 + 1
+		}
 	}
 
-	return winThreshold
+	return mpMaxRounds/2 + 1
 }
 
 // HostnameFromTeamNames generates a hostname for srcds from two teamnames

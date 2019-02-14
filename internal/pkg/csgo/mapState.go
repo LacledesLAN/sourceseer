@@ -1,7 +1,6 @@
 package csgo
 
 import (
-	"strconv"
 	"time"
 )
 
@@ -23,13 +22,12 @@ func (m *mapState) ct() *teamState {
 	return &m.mpTeam1
 }
 
-func (m *mapState) CTSetScore(score string) {
-	s, _ := strconv.Atoi(score)
+func (m *mapState) CTSetScore(score int) {
 	ct := m.ct()
-	ct.roundsWon = s
+	ct.roundsWon = score
 
 	t := m.terrorist()
-	t.roundsLost = s
+	t.roundsLost = score
 }
 
 func (m *mapState) PlayerDropped(player Player) {
@@ -69,11 +67,10 @@ func (m *mapState) terrorist() *teamState {
 	return &m.mpTeam2
 }
 
-func (m *mapState) TerroristSetScore(score string) {
-	s, _ := strconv.Atoi(score)
+func (m *mapState) TerroristSetScore(score int) {
 	ct := m.ct()
-	ct.roundsLost = s
+	ct.roundsLost = score
 
 	t := m.terrorist()
-	t.roundsWon = s
+	t.roundsWon = score
 }

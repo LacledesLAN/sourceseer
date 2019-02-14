@@ -1,6 +1,8 @@
 package srcds
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_Clients(t *testing.T) {
 	c0 := Client{Username: "Lulubelle 7", SteamID: "7r355 m4cn31ll3", ServerSlot: "", ServerTeam: ""}
@@ -32,5 +34,39 @@ func Test_Clients(t *testing.T) {
 	if sut.HasClient(c1) {
 		t.Errorf("Client %q should not have been found.", c1.Username)
 	}
+}
 
+func Test_ExtractClient(t *testing.T) {
+	datum := []struct {
+		actual   string
+		expected Client
+	}{
+		{`"Lulubelle 7<6><7r355:m4cn31ll3><CT>"`, Client{Username: "Lulubelle 7", SteamID: "7r355:m4cn31ll3", ServerSlot: "6", ServerTeam: "CT"}},
+	}
+
+	for _, testData := range datum {
+		t.Run(testData.actual, func(t *testing.T) {
+			c, err := ExtractClient(testData.actual)
+
+			if err != nil {
+				t.Error("Reason: ", err)
+			}
+
+			if c.Username != testData.expected.Username {
+				t.Errorf("Expected Username '%q' but got '%q' instead.", testData.expected.Username, c.Username)
+			}
+
+			if c.SteamID != testData.expected.SteamID {
+				t.Errorf("Expected SteamID '%q' but got '%q' instead.", testData.expected.SteamID, c.SteamID)
+			}
+
+			if c.ServerSlot != testData.expected.ServerSlot {
+				t.Errorf("Expected ServerSlot '%q' but got '%q' instead.", testData.expected.ServerSlot, c.ServerSlot)
+			}
+
+			if c.ServerTeam != testData.expected.ServerTeam {
+				t.Errorf("Expected ServerTeam '%q' but got '%q' instead.", testData.expected.ServerTeam, c.ServerTeam)
+			}
+		})
+	}
 }

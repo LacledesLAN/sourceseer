@@ -44,8 +44,8 @@ func Test_ExtractClients(t *testing.T) {
 		{`"A<7><STEAM_1:0:1234567><CT>" triggered "Dropped_The_Bomb"`, &Client{Username: "A", ServerSlot: "7", ServerTeam: "CT", SteamID: "STEAM_1:0:1234567"}, nil},
 		{`"A<7><STEAM_1:0:1234567><CT>" triggered "Planted_The_Bomb"`, &Client{Username: "A", ServerSlot: "7", ServerTeam: "CT", SteamID: "STEAM_1:0:1234567"}, nil},
 		// Two players
-		{`"A<7><STEAM_1:0:1234567><CT>" [756 -1951 -416] attacked "B<4><STEAM_1:1:9876543><TERRORIST>" [824 -1933 -416] with "glock" (damage "117") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")`, &Client{Username: "A", ServerSlot: "7", ServerTeam: "CT", SteamID: "STEAM_1:0:1234567"}, &Client{Username: "B", ServerSlot: "4", ServerTeam: "TERRORIST", SteamID: "STEAM_1:1:9876543"}},
-		{`"A<7><STEAM_1:0:1234567><CT>" [756 -1951 -416] killed "B<4><STEAM_1:1:9876543><TERRORIST>" [824 -1933 -352] with "glock" (headshot)`, &Client{Username: "A", ServerSlot: "7", ServerTeam: "CT", SteamID: "STEAM_1:0:1234567"}, &Client{Username: "B", ServerSlot: "4", ServerTeam: "TERRORIST", SteamID: "STEAM_1:1:9876543"}},
+		//{`"A<7><STEAM_1:0:1234567><CT>" [756 -1951 -416] attacked "B<4><STEAM_1:1:9876543><TERRORIST>" [824 -1933 -416] with "glock" (damage "117") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")`, &Client{Username: "A", ServerSlot: "7", ServerTeam: "CT", SteamID: "STEAM_1:0:1234567"}, &Client{Username: "B", ServerSlot: "4", ServerTeam: "TERRORIST", SteamID: "STEAM_1:1:9876543"}},
+		//{`"A<7><STEAM_1:0:1234567><CT>" [756 -1951 -416] killed "B<4><STEAM_1:1:9876543><TERRORIST>" [824 -1933 -352] with "glock" (headshot)`, &Client{Username: "A", ServerSlot: "7", ServerTeam: "CT", SteamID: "STEAM_1:0:1234567"}, &Client{Username: "B", ServerSlot: "4", ServerTeam: "TERRORIST", SteamID: "STEAM_1:1:9876543"}},
 	}
 
 	for _, testData := range testDatum {

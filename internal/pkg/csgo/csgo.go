@@ -27,6 +27,20 @@ const (
 	Demolition
 )
 
+const (
+	UnknownTrigger WorldTrigger = iota
+	GameCommencing
+	MatchStart
+	RoundEnd
+	RoundRestarting
+	RoundStart
+)
+
+type listeners struct {
+	teamScored  func(TeamScored) bool
+	teamSideSet func(TeamSideSet) bool
+}
+
 // CSGO represents the state of a CSGO server
 type CSGO struct {
 	cmdIn       chan string
@@ -37,10 +51,13 @@ type CSGO struct {
 	mpTeamname2 string
 	spectators  srcds.Clients
 	srcds       *srcds.SRCDS
+	listeners   listeners
 }
 
 // GameMode determines the rulesets used by a CSGO server.
 type GameMode byte
+
+type WorldTrigger byte
 
 // New creates a CSGO server
 func New(server *srcds.SRCDS, gameMode GameMode, scenarios ...Scenario) (*CSGO, error) {
@@ -86,17 +103,6 @@ func (g *CSGO) clientDropped(client srcds.Client) {
 
 	p := playerFromSrcdsClient(client)
 	g.currentMap.PlayerDropped(p)
-}
-
-func (g *CSGO) SetScore(teamAffiliation, score string) {
-	switch affiliation := strings.ToUpper(teamAffiliation); affiliation {
-	case "CT":
-		g.currentMap.CTSetScore(score)
-	case "TERRORIST":
-		g.currentMap.TerroristSetScore(score)
-	default:
-		log.Println("UNABLE TO SETSCORE()")
-	}
 }
 
 func (m GameMode) launchArgs() []string {
@@ -150,8 +156,15 @@ func debugPrint(t, s string) {
 
 func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 
-	// A player did something
+	// player did something
 	if strings.HasPrefix(le.Message, `"`) {
+		_, err := parsePlayerSay(le)
+
+		if err != nil {
+			// process player said
+			return true
+		}
+
 		player, playersTarget := srcds.ExtractClients(le)
 
 		if player != nil {
@@ -175,29 +188,25 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 		return true
 	}
 
-	// A team did something
+	// team did something
 	if strings.HasPrefix(le.Message, "Team") {
+		var err error
 
-		teamScoreUpdate := teamScoredRegex.FindStringSubmatch(le.Message)
-		if len(teamScoreUpdate) >= 2 {
-			g.SetScore(teamScoreUpdate[1], teamScoreUpdate[2])
+		teamScored, err := parseTeamScored(le)
+		if err == nil {
+			g.teamScored(teamScored)
 			return true
 		}
 
-		teamUpdateSide := teamSetSideRegex.FindStringSubmatch(le.Message)
-		if len(teamUpdateSide) >= 2 {
-			resultAffiliation := strings.ToUpper(teamUpdateSide[1])
-			resultTeamName := teamUpdateSide[2]
+		teamUpdateSides, err := parseTeamSetSide(le)
+		if err == nil {
+			g.teamSetSide(teamUpdateSides)
+			return true
+		}
 
-			if resultAffiliation == "CT" {
-				if g.currentMap.terrorist().name == resultTeamName {
-					g.teamsSwappedSides()
-				}
-			} else if resultAffiliation == "TERRORIST" {
-				if g.currentMap.ct().name == resultTeamName {
-					g.teamsSwappedSides()
-				}
-			}
+		_, err = parseTeamTriggered(le)
+		if err == nil {
+			return true
 		}
 
 		return true
@@ -207,22 +216,15 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 		g.srcds.RefreshCvars()
 	}
 
+	// The world got triggered
 	if strings.HasPrefix(le.Message, "World triggered") {
+		_, err := parseWorldTriggered(le)
 
-		if le.Message == `World triggered "Game_Commencing"` {
+		if err != nil {
 
 		}
 
-		// set up
-		if strings.HasPrefix(le.Message, `World triggered "Match_Start"`) {
-			mapName := worldTriggeredMatchStartRegex.FindStringSubmatch(le.Message)[1]
-
-			if g.currentMap.name != mapName {
-				// log as issue?
-			}
-		}
-
-		return
+		return true
 	}
 
 	if strings.HasPrefix(le.Message, `Loading map "`) {
@@ -230,15 +232,42 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 		mapName = strings.Trim(mapName[1:len(mapName)-1], "")
 
 		g.mapChanged(mapName)
-		return
+		return true
 	}
 
 	// update game state
 	return true
 }
 
-func (g *CSGO) teamsSwappedSides() {
-	g.currentMap.TeamsSwappedSides()
+func (g *CSGO) teamScored(m TeamScored) {
+	switch m.teamAffiliation {
+	case "CT":
+		g.currentMap.CTSetScore(m.teamScore)
+	case "TERRORIST":
+		g.currentMap.TerroristSetScore(m.teamScore)
+	default:
+		log.Println("UNABLE TO teamScored() for affiliation '" + m.teamAffiliation + "'")
+	}
+
+	if g.listeners.teamScored != nil {
+		g.listeners.teamScored(m)
+	}
+}
+
+func (g *CSGO) teamSetSide(m TeamSideSet) {
+	if m.teamAffiliation == "CT" {
+		if g.currentMap.terrorist().name == m.teamName {
+			g.currentMap.TeamsSwappedSides()
+		}
+	} else if m.teamAffiliation == "TERRORIST" {
+		if g.currentMap.ct().name == m.teamName {
+			g.currentMap.TeamsSwappedSides()
+		}
+	}
+
+	if g.listeners.teamSideSet != nil {
+		g.listeners.teamSideSet(m)
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////

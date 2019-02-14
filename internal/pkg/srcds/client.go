@@ -1,6 +1,9 @@
 package srcds
 
-import "strings"
+import (
+	"errors"
+	"strings"
+)
 
 // Client represents a client connected to (or simulated by) the srcds
 type Client struct {
@@ -27,12 +30,28 @@ func ClientsAreEquivalent(client0, client1 *Client) bool {
 	return client0.Username == client1.Username
 }
 
+// ExtractClient extract the srcds client from a string
+func ExtractClient(s string) (Client, error) {
+	c := extractClientRegex.FindStringSubmatch(s)
+
+	if len(c) != 5 {
+		return Client{}, errors.New("Unable to parse: " + s)
+	}
+
+	return Client{
+		Username:   c[1],
+		ServerSlot: c[2],
+		SteamID:    c[3],
+		ServerTeam: c[4],
+	}, nil
+}
+
 // ExtractClients extracts the players from a srcds log message
 func ExtractClients(logEntry LogEntry) (originator, target *Client) {
 	originator = nil
 	target = nil
 
-	players := extractPlayerInfoRegex.FindAllStringSubmatch(logEntry.Message, -1)
+	players := extractClientRegex.FindAllStringSubmatch(logEntry.Message, -1)
 
 	if len(players) >= 1 {
 		originatorRaw := players[0]

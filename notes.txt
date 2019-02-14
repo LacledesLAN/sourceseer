@@ -71,12 +71,3 @@ p<><><>	say
 "NAME<SLOT-NUMBER><STEAM-ID>" action
 "NAME<SLOT-NUMBER><STEAM-ID>" action "details"
 
-
-
-
-
-valid teams: "CT", "TERRORIST", "Unassigned" / ""
-
-
-
-1646

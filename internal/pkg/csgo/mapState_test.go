@@ -40,7 +40,7 @@ func Test_CTSetScore(testing *testing.T) {
 		testing.Error("T should have 0 rounds won.")
 	}
 
-	sut.CTSetScore("18")
+	sut.CTSetScore(18)
 
 	if sut.ct().roundsWon != 18 {
 		testing.Error("CT should have 18 rounds won.")
@@ -144,25 +144,25 @@ func Test_PlayerJoinedTerrorist(testing *testing.T) {
 func Test_RoundsCompleted(testing *testing.T) {
 	sut := mapState{}
 
-	sut.CTSetScore("1")
-	sut.TerroristSetScore("0")
+	sut.CTSetScore(1)
+	sut.TerroristSetScore(0)
 	if sut.RoundsCompleted() != 1 {
 		testing.Errorf("Rounds completed should be equal to 1 but was %d", sut.RoundsCompleted())
 	}
 
-	sut.CTSetScore("2")
-	sut.TerroristSetScore("0")
+	sut.CTSetScore(2)
+	sut.TerroristSetScore(0)
 	if sut.RoundsCompleted() != 2 {
 		testing.Errorf("Rounds completed should be equal to 2 but was %d", sut.RoundsCompleted())
 	}
 
-	sut.CTSetScore("2")
-	sut.TerroristSetScore("1")
+	sut.CTSetScore(2)
+	sut.TerroristSetScore(1)
 	if sut.RoundsCompleted() != 3 {
 		testing.Errorf("Rounds completed should be equal to 3 but was %d", sut.RoundsCompleted())
 	}
 
-	sut.TerroristSetScore("7")
+	sut.TerroristSetScore(7)
 	if sut.RoundsCompleted() != 9 {
 		testing.Errorf("Rounds completed should be equal to 9 but was %d", sut.RoundsCompleted())
 	}
@@ -206,7 +206,7 @@ func Test_TerroristSetScore(testing *testing.T) {
 		testing.Error("T should have 0 rounds won.")
 	}
 
-	sut.TerroristSetScore("65")
+	sut.TerroristSetScore(65)
 
 	if sut.ct().roundsLost != 65 {
 		testing.Error("CT should have 65 rounds lost.")
