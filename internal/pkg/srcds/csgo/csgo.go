@@ -60,11 +60,10 @@ type GameMode byte
 type WorldTrigger byte
 
 // New creates a CSGO server
-func New(server *srcds.SRCDS, gameMode GameMode, scenarios ...Scenario) (*CSGO, error) {
+func New(gameMode GameMode, scenarios ...Scenario) (*CSGO, error) {
 	game := CSGO{
 		cmdIn:    make(chan string, 6),
 		gameMode: gameMode,
-		srcds:    server,
 	}
 
 	game.srcds.AddCvarWatch("mp_do_warmup_period", "mp_maxrounds", "mp_overtime_enable", "mp_overtime_maxrounds", "mp_warmup_pausetimer")
@@ -156,33 +155,38 @@ func debugPrint(t, s string) {
 
 func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 
-	// player did something
+	// client did something
 	if strings.HasPrefix(le.Message, `"`) {
 		_, err := parsePlayerSay(le)
-
 		if err != nil {
 			// process player said
 			return true
 		}
 
-		player, playersTarget := srcds.ExtractClients(le)
+		client, err := parseClientConnected(le)
+		if err != nil {
+			g.clientJoinedSpectator(client)
+			return true
+		}
 
-		if player != nil {
-			if playersTarget == nil {
-				if strings.Contains(le.Message, `>" connected, address "`) {
-					g.clientJoinedSpectator(*player)
-				} else if strings.Contains(le.Message, `>" switched from team <`) {
-					if strings.HasSuffix(le.Message, "<CT>") {
-						g.clientJoinedCT(*player)
-					} else if strings.HasSuffix(le.Message, "<TERRORIST>") {
-						g.clientJoinedTerrorist(*player)
-					}
-				}
+		clientDisconnected, err := parseClientDisconnected(le)
+		if err != nil {
+			g.clientDropped(clientDisconnected.client)
+			return true
+		}
 
-				if strings.Contains(le.Message, `" disconnected (reason "`) {
-					g.clientDropped(*player)
-				}
+		clientSwitchedTeam, err := parseClientSwitchedAffiliation(le)
+		if err != nil {
+			switch strings.ToUpper(clientSwitchedTeam.to) {
+			case "CT":
+				g.clientJoinedCT(clientSwitchedTeam.client)
+			case "TERRORIST":
+				g.clientJoinedTerrorist(clientSwitchedTeam.client)
+			default:
+				g.clientJoinedSpectator(clientSwitchedTeam.client)
 			}
+
+			return true
 		}
 
 		return true
@@ -212,30 +216,26 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 		return true
 	}
 
-	if strings.HasPrefix(le.Message, `Started map`) {
-		g.srcds.RefreshCvars()
-	}
-
 	// The world got triggered
 	if strings.HasPrefix(le.Message, "World triggered") {
-		_, err := parseWorldTriggered(le)
+		worldTriggered, err := parseWorldTriggered(le)
 
 		if err != nil {
-
+			switch worldTriggered.trigger {
+			case MatchStart:
+				g.srcds.RefreshCvars()
+			}
 		}
 
 		return true
 	}
 
-	if strings.HasPrefix(le.Message, `Loading map "`) {
-		mapName := regexBetweenQuotes.FindString(le.Message)
-		mapName = strings.Trim(mapName[1:len(mapName)-1], "")
-
+	mapName, err := parseLoadingMap(le)
+	if err == nil {
 		g.mapChanged(mapName)
 		return true
 	}
 
-	// update game state
 	return true
 }
 

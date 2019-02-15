@@ -2,7 +2,16 @@ package srcds
 
 import (
 	"errors"
+	"regexp"
 	"strings"
+)
+
+const (
+	clientPattern = `^"(.{1,32})<(\d{0,2})><([\w:]*)><{0,1}([a-zA-Z0-9]*?)>{0,1}"`
+)
+
+var (
+	clientRegex = regexp.MustCompile(clientPattern)
 )
 
 // Client represents a client connected to (or simulated by) the srcds
@@ -12,6 +21,9 @@ type Client struct {
 	ServerSlot string
 	ServerTeam string
 }
+
+//Clients is a collection of type Client
+type Clients []Client
 
 // ClientsAreEquivalent determines if two srcds clients are effectively the same client
 func ClientsAreEquivalent(client0, client1 *Client) bool {
@@ -30,9 +42,54 @@ func ClientsAreEquivalent(client0, client1 *Client) bool {
 	return client0.Username == client1.Username
 }
 
-// ExtractClient extract the srcds client from a string
-func ExtractClient(s string) (Client, error) {
-	c := extractClientRegex.FindStringSubmatch(s)
+// IsBot determines if the client is a bot
+func IsBot(m *Client) bool {
+	// TODO: UNIT TEST
+	if strings.ToUpper(m.SteamID) == "BOT" {
+		return true
+	}
+
+	return false
+}
+
+func (m *Clients) ClientDropped(client Client) {
+	i := m.clientIndex(client)
+
+	if i >= 0 {
+		l := len(*m)
+
+		if l > 1 {
+			*m = append((*m)[:i], (*m)[i+1:]...)
+		} else if l == 1 {
+			*m = Clients{}
+		}
+	}
+}
+
+func (m Clients) clientIndex(client Client) int {
+
+	for i := range m {
+		if ClientsAreEquivalent(&m[i], &client) {
+			return i
+		}
+	}
+
+	return -1
+}
+
+func (m *Clients) ClientJoined(client Client) {
+	if !m.HasClient(client) {
+		*m = append(*m, client)
+	}
+}
+
+func (m Clients) HasClient(client Client) bool {
+	return m.clientIndex(client) > -1
+}
+
+// ParseClient attempts to parse a srcds client
+func ParseClient(s string) (Client, error) {
+	c := clientRegex.FindStringSubmatch(s)
 
 	if len(c) != 5 {
 		return Client{}, errors.New("Unable to parse: " + s)
@@ -44,34 +101,4 @@ func ExtractClient(s string) (Client, error) {
 		SteamID:    c[3],
 		ServerTeam: c[4],
 	}, nil
-}
-
-// ExtractClients extracts the players from a srcds log message
-func ExtractClients(logEntry LogEntry) (originator, target *Client) {
-	originator = nil
-	target = nil
-
-	players := extractClientRegex.FindAllStringSubmatch(logEntry.Message, -1)
-
-	if len(players) >= 1 {
-		originatorRaw := players[0]
-		originator = &Client{Username: originatorRaw[1], ServerSlot: originatorRaw[2], ServerTeam: originatorRaw[4], SteamID: originatorRaw[3]}
-	}
-
-	if len(players) >= 2 {
-		targetRaw := players[1]
-		target = &Client{Username: targetRaw[1], ServerSlot: targetRaw[2], ServerTeam: targetRaw[4], SteamID: targetRaw[3]}
-	}
-
-	return
-}
-
-// IsBot determines if the client is a bot
-func IsBot(m *Client) bool {
-	// TODO: UNIT TEST
-	if strings.ToUpper(m.SteamID) == "BOT" {
-		return true
-	}
-
-	return false
 }

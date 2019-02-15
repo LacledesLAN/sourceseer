@@ -4,32 +4,69 @@ import (
 	"testing"
 )
 
-func Test_ClientsAreEquivalent(t *testing.T) {
-	testDatum := []struct {
-		name           string
-		client0        *Client
-		client1        *Client
-		expectedResult bool
-	}{
-		{"`nil` clients should not match", nil, nil, false},
-		{"Defaulted clients should not match", &Client{}, &Client{}, false},
-		{"Empty client should not match", &Client{Username: "", SteamID: ""}, &Client{Username: "", SteamID: ""}, false},
-		{"`nil` should not match with an actual client", &Client{Username: "Mark 7-G"}, nil, false},
-		{"Defaulted client should not match with an actual client", &Client{}, &Client{Username: "Mark 7-G"}, false},
-		{"Empty client should not match with an actual client", &Client{Username: "", SteamID: ""}, &Client{Username: "Mark 7-G"}, false},
-		{"Same Username and no SteamID should match", &Client{Username: "John Quincy Adding Machine"}, &Client{Username: "John Quincy Adding Machine"}, true},
-		{"Different Username should not match", &Client{Username: "Macaulay Culkon"}, &Client{Username: "Dr. Widnar"}, false},
-		{"Matching Username and SteamId should match", &Client{Username: "iZac", SteamID: "ph1l l4m4rr"}, &Client{Username: "iZac", SteamID: "ph1l l4m4rr"}, true},
-		{"Matching Username but different SteamID should not match", &Client{Username: "iZac", SteamID: "l4m4rr"}, &Client{Username: "iZac", SteamID: "ph1l"}, false},
-		{"Different Username but matching SteamID should not match", &Client{Username: "ABC", SteamID: "123"}, &Client{Username: "DEF", SteamID: "123"}, false},
+func Test_Clients(t *testing.T) {
+	c0 := Client{Username: "Lulubelle 7", SteamID: "7r355 m4cn31ll3", ServerSlot: "", ServerTeam: ""}
+	c1 := Client{Username: "Animatronio", SteamID: "d4v1d h3rm4n", ServerSlot: "3", ServerTeam: ""}
+	c2 := Client{Username: "Parts Hilton", SteamID: "7h3 7h13f 0f b46h34d", ServerSlot: "", ServerTeam: "b46h34d"}
+
+	var sut Clients
+
+	sut.ClientJoined(c0)
+	sut.ClientJoined(c1)
+	sut.ClientJoined(c2)
+	sut.ClientJoined(c2) // Make sure client can't join twice
+
+	if len(sut) != 3 {
+		t.Error("Should have 3 clients.")
 	}
 
-	for _, testData := range testDatum {
-		t.Run(testData.name, func(t *testing.T) {
-			actualResult := ClientsAreEquivalent(testData.client0, testData.client1)
+	if !sut.HasClient(c1) {
+		t.Errorf("Client %q should have been found.", c1.Username)
+	}
 
-			if actualResult != testData.expectedResult {
-				t.Errorf("Test %q failed; expected '%t' but got '%t'.", testData.name, testData.expectedResult, actualResult)
+	sut.ClientDropped(c1)
+	sut.ClientDropped(c1) // Make sure doesn't panic
+
+	if len(sut) != 2 {
+		t.Errorf("Should have 2 clients not %d.", len(sut))
+	}
+
+	if sut.HasClient(c1) {
+		t.Errorf("Client %q should not have been found.", c1.Username)
+	}
+}
+
+func Test_ParseClient(t *testing.T) {
+	datum := []struct {
+		actual   string
+		expected Client
+	}{
+		{`"Lulubelle 7<6><7r355:m4cn31ll3><CT>"`, Client{Username: "Lulubelle 7", SteamID: "7r355:m4cn31ll3", ServerSlot: "6", ServerTeam: "CT"}},
+		{`"Lulubelle 7<48><BOT><CT>"`, Client{Username: "Lulubelle 7", SteamID: "BOT", ServerSlot: "48", ServerTeam: "CT"}},
+	}
+
+	for _, testData := range datum {
+		t.Run(testData.actual, func(t *testing.T) {
+			c, err := ParseClient(testData.actual)
+
+			if err != nil {
+				t.Error("Reason: ", err)
+			}
+
+			if c.Username != testData.expected.Username {
+				t.Errorf("Expected Username '%q' but got '%q' instead.", testData.expected.Username, c.Username)
+			}
+
+			if c.SteamID != testData.expected.SteamID {
+				t.Errorf("Expected SteamID '%q' but got '%q' instead.", testData.expected.SteamID, c.SteamID)
+			}
+
+			if c.ServerSlot != testData.expected.ServerSlot {
+				t.Errorf("Expected ServerSlot '%q' but got '%q' instead.", testData.expected.ServerSlot, c.ServerSlot)
+			}
+
+			if c.ServerTeam != testData.expected.ServerTeam {
+				t.Errorf("Expected ServerTeam '%q' but got '%q' instead.", testData.expected.ServerTeam, c.ServerTeam)
 			}
 		})
 	}

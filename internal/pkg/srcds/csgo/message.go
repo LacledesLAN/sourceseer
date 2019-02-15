@@ -11,26 +11,41 @@ import (
 )
 
 const (
-	gameOverPattern        = `^Game Over: (\w+)[ ]+(\w+) score (\d+):(\d+) after (\d+) min$`
-	loadingMapPattern      = `^Loading map "(\w+)"`
-	playerConnectedPattern = `^(".*") (?:entered the game|connected, address "")$`
-	playerSayPattern       = `^(".*") (say_team|say) "(.+)"$`
-	teamScoredPattern      = `^Team "(CT|TERRORIST)" scored "(\d+)" with "(\d+)" players$`
-	teamSetSidePattern     = `^Team playing "(.{1,})": (.{1,})$`
-	teamTriggeredPattern   = `^Team "(CT|TERRORIST)" triggered \"(SFUI_Notice_[A-Za-z_]{4,34})\" \(CT \"([\d]{1,3})\"\) \(T \"([\d]{1,3})\"\)$`
-	worldTriggeredPattern  = `^World triggered \"(\w+)(?:_\((\d+)_seconds\))?\"(?: on \"(\w+)\")?$`
+	clientConnectedPattern           = `^(".*") (?:entered the game|connected, address "")$`
+	clientDisconnectedPattern        = `^(".*") disconnected(?: \(reason \"([\w ]{1,})\"\))?$`
+	clientSwitchedAffiliationPattern = `^(".*") switched from team <([a-zA-Z]*)> to <([a-zA-Z]*)>$`
+	gameOverPattern                  = `^Game Over: (\w+)[ ]+(\w+) score (\d+):(\d+) after (\d+) min$`
+	loadingMapPattern                = `^Loading map "(\w+)"$`
+	playerSayPattern                 = `^(".*") (say_team|say) "(.+)"$`
+	teamScoredPattern                = `^Team "(CT|TERRORIST)" scored "(\d+)" with "(\d+)" players$`
+	teamSetSidePattern               = `^Team playing "(.{1,})": (.{1,})$`
+	teamTriggeredPattern             = `^Team "(CT|TERRORIST)" triggered \"(SFUI_Notice_[A-Za-z_]{4,34})\" \(CT \"([\d]{1,3})\"\) \(T \"([\d]{1,3})\"\)$`
+	worldTriggeredPattern            = `^World triggered \"(\w+)(?:_\((\d+)_seconds\))?\"(?: on \"(\w+)\")?$`
 )
 
 var (
-	gameOverRegex        = regexp.MustCompile(gameOverPattern)
-	loadingMapRegex      = regexp.MustCompile(loadingMapPattern)
-	playerConnectedRegex = regexp.MustCompile(playerConnectedPattern)
-	playerSayRegex       = regexp.MustCompile(playerSayPattern)
-	teamScoredRegex      = regexp.MustCompile(teamScoredPattern)
-	teamSetSideRegex     = regexp.MustCompile(teamSetSidePattern)
-	teamTriggeredRegex   = regexp.MustCompile(teamTriggeredPattern)
-	worldTriggeredRegex  = regexp.MustCompile(worldTriggeredPattern)
+	clientConnectedRegex           = regexp.MustCompile(clientConnectedPattern)
+	clientDisconnectedRegex        = regexp.MustCompile(clientDisconnectedPattern)
+	clientSwitchedAffiliationRegex = regexp.MustCompile(clientSwitchedAffiliationPattern)
+	gameOverRegex                  = regexp.MustCompile(gameOverPattern)
+	loadingMapRegex                = regexp.MustCompile(loadingMapPattern)
+	playerSayRegex                 = regexp.MustCompile(playerSayPattern)
+	teamScoredRegex                = regexp.MustCompile(teamScoredPattern)
+	teamSetSideRegex               = regexp.MustCompile(teamSetSidePattern)
+	teamTriggeredRegex             = regexp.MustCompile(teamTriggeredPattern)
+	worldTriggeredRegex            = regexp.MustCompile(worldTriggeredPattern)
 )
+
+type ClientDisconnected struct {
+	client srcds.Client
+	reason string
+}
+
+type ClientSwitchedAffiliation struct {
+	client srcds.Client
+	from   string
+	to     string
+}
 
 // PlayerSaid message is sent whenever a player says something using their console
 type PlayerSaid struct {
@@ -73,20 +88,69 @@ type WorldTriggered struct {
 	eta     time.Time
 }
 
-func parsePlayerConnected(le srcds.LogEntry) (Player, error) {
-	result := playerConnectedRegex.FindStringSubmatch(le.Message)
+func parseClientConnected(le srcds.LogEntry) (srcds.Client, error) {
+	result := clientConnectedRegex.FindStringSubmatch(le.Message)
 
 	if len(result) != 2 {
-		return Player{}, errors.New("Could not parse " + le.Message)
+		return srcds.Client{}, errors.New("Could not client " + le.Message)
 	}
 
-	cl, err := srcds.ExtractClient(result[1])
+	cl, err := srcds.ParseClient(result[1])
 
 	if err != nil {
-		return Player{}, errors.New("Could not parse player in " + le.Message)
+		return srcds.Client{}, errors.New("Could not parse client in " + le.Message)
 	}
 
-	return playerFromSrcdsClient(cl), nil
+	return cl, nil
+}
+
+func parseClientDisconnected(le srcds.LogEntry) (ClientDisconnected, error) {
+	r := clientDisconnectedRegex.FindStringSubmatch(le.Message)
+
+	if len(r) < 1 {
+		return ClientDisconnected{}, errors.New("Could not parse " + le.Message)
+	}
+
+	cl, err := srcds.ParseClient(r[1])
+
+	if err != nil {
+		return ClientDisconnected{}, errors.New("Could not parse player in " + le.Message)
+	}
+
+	return ClientDisconnected{
+		client: cl,
+		reason: r[2],
+	}, nil
+}
+
+func parseClientSwitchedAffiliation(le srcds.LogEntry) (ClientSwitchedAffiliation, error) {
+	r := clientSwitchedAffiliationRegex.FindStringSubmatch(le.Message)
+
+	if len(r) != 4 {
+		return ClientSwitchedAffiliation{}, errors.New("Could not parse " + le.Message)
+	}
+
+	cl, err := srcds.ParseClient(r[1])
+
+	if err != nil {
+		return ClientSwitchedAffiliation{}, errors.New("Could not parse player in " + le.Message)
+	}
+
+	return ClientSwitchedAffiliation{
+		client: cl,
+		from:   r[2],
+		to:     r[3],
+	}, nil
+}
+
+func parseLoadingMap(le srcds.LogEntry) (string, error) {
+	r := loadingMapRegex.FindStringSubmatch(le.Message)
+
+	if len(r) != 2 {
+		return "", errors.New("Could not parse:" + le.Message)
+	}
+
+	return r[1], nil
 }
 
 func parsePlayerSay(le srcds.LogEntry) (PlayerSaid, error) {
@@ -96,7 +160,7 @@ func parsePlayerSay(le srcds.LogEntry) (PlayerSaid, error) {
 		return PlayerSaid{}, errors.New("Could not parse " + le.Message)
 	}
 
-	cl, err := srcds.ExtractClient(sayTokens[1])
+	cl, err := srcds.ParseClient(sayTokens[1])
 
 	if err != nil {
 		return PlayerSaid{}, errors.New("Could not parse player in " + le.Message)
@@ -115,16 +179,6 @@ func parsePlayerSay(le srcds.LogEntry) (PlayerSaid, error) {
 	}
 
 	return r, nil
-}
-
-func parseLoadingMap(le srcds.LogEntry) (string, error) {
-	result := loadingMapRegex.FindStringSubmatch(le.Message)
-
-	if len(result) != 2 {
-		return "", errors.New("Could not parse " + le.Message)
-	}
-
-	return result[1], nil
 }
 
 func parseTeamScored(le srcds.LogEntry) (TeamScored, error) {

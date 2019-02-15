@@ -198,7 +198,7 @@ func (s *SRCDS) linkStdOut(i io.ReadCloser) {
 			outLine = strings.Trim(strings.TrimSuffix(outLine, "\n"), "")
 
 			if len(outLine) > 0 {
-				le := ExtractLogEntry(outLine)
+				le := parseLogEntry(outLine)
 
 				if len(le.Message) > 0 {
 					s.logProcessorStack(le)
@@ -211,15 +211,10 @@ func (s *SRCDS) linkStdOut(i io.ReadCloser) {
 }
 
 func (s *SRCDS) processLogEntry(le LogEntry) (keepProcessing bool) {
-	if strings.HasPrefix(le.Message, `server_cvar: "`) {
-		result := serverCvarSetRegex.FindStringSubmatch(le.Message)
 
-		if result != nil && len(result) >= 3 {
-			s.updatedCvar(result[1], result[2])
-			return false
-		}
-	} else if result := serverCvarEchoRegex.FindStringSubmatch(le.Message); len(result) > 1 {
-		s.updatedCvar(result[1], result[2])
+	cvarSet, err := parseCvarValueSet(le)
+	if err != nil {
+		s.updatedCvar(cvarSet.name, cvarSet.value)
 		return false
 	}
 

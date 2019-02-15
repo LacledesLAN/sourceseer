@@ -3,6 +3,8 @@
         "csgo",
         "cvar",
         "cvars",
+        "rcon",
+        "sourceseer",
         "srcds"
     ],
     "go.enableCodeLens":{

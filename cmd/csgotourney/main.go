@@ -7,8 +7,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/lacledeslan/sourceseer/internal/pkg/csgo"
-	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
+	"github.com/lacledeslan/sourceseer/internal/pkg/srcds/csgo"
 )
 
 func main() {
@@ -37,6 +36,8 @@ func main() {
 		os.Exit(87)
 	}
 
+	csgoTourney, err := csgo.New(csgo.ClassicCompetitive, csgo.MapPreliminaries(mpTeamname1, mpTeamname2), csgo.ClinchableMapCycle(maps))
+
 	var osArgs []string
 	if _, err := os.Stat("/app/srcds_run"); err == nil {
 		osArgs = []string{"/app/srcds_run"} // we're inside docker
@@ -49,15 +50,13 @@ func main() {
 		osArgs = append(osArgs, "docker", "run", "-i", "--rm", "-p 27015:27015", "-p 27015:27015/udp", "lltest/gamesvr-csgo-tourney", "./srcds_run")
 	}
 
-	server, err := srcds.New(osArgs)
+	//server, err := srcds.New(osArgs)
 
 	if err != nil {
 		fmt.Print("Unable to create a Source Dedicated Server!\n\n")
 		fmt.Print("\tReason: ", err, "\n\n")
 		os.Exit(-1)
 	}
-
-	csgoTourney, err := csgo.New(&server, csgo.ClassicCompetitive, csgo.MapPreliminaries(mpTeamname1, mpTeamname2), csgo.ClinchableMapCycle(maps))
 
 	if csgoTourney == nil {
 		fmt.Print("Unable to create a CSGO Tournament server!\n\n")
