@@ -3,7 +3,6 @@ package csgo
 import (
 	"fmt"
 	"log"
-	"strconv"
 	"strings"
 	"time"
 
@@ -43,24 +42,42 @@ type listeners struct {
 
 // CSGO represents the state of a CSGO server
 type CSGO struct {
-	cmdIn       chan string
-	currentMap  *mapState
-	gameMode    GameMode
-	maps        []mapState
-	mpTeamname1 string
-	mpTeamname2 string
-	spectators  srcds.Clients
-	srcds       *srcds.SRCDS
-	listeners   listeners
+	cmdIn             chan string
+	currentMap        *mapState
+	gameMode          GameMode
+	logProcessorStack LogEntryProcessor
+	maps              []mapState
+	mpTeamname1       string
+	mpTeamname2       string
+	spectators        srcds.Clients
+	srcds             *srcds.SRCDS
+	listeners         listeners
 }
 
 // GameMode determines the rulesets used by a CSGO server.
 type GameMode byte
 
+// LogEntryProcessor represents a function that can parse log entires; returning false when the log entry has been consumed or its effects undone.
+type LogEntryProcessor func(srcds.LogEntry) (keepProcessing bool)
+
 type WorldTrigger byte
 
+// AddLogProcessor to top of the log processor stack.
+func (g *CSGO) AddLogProcessor(p LogEntryProcessor) {
+	if p != nil {
+		prev := g.logProcessorStack
+		g.logProcessorStack = func(le srcds.LogEntry) (keepProcessing bool) {
+			if !prev(le) {
+				return false
+			}
+
+			return p(le)
+		}
+	}
+}
+
 // New creates a CSGO server
-func New(gameMode GameMode, scenarios ...Scenario) (*CSGO, error) {
+func New(gameMode GameMode, scenarios ...Scenario) (srcds.GameServer, error) {
 	game := CSGO{
 		cmdIn:    make(chan string, 6),
 		gameMode: gameMode,
@@ -69,7 +86,6 @@ func New(gameMode GameMode, scenarios ...Scenario) (*CSGO, error) {
 	game.srcds.AddCvarWatch("mp_do_warmup_period", "mp_maxrounds", "mp_overtime_enable", "mp_overtime_maxrounds", "mp_warmup_pausetimer")
 	game.srcds.AddLaunchArg(gameMode.launchArgs()...)
 	game.srcds.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart") //TODO: add "-nobots"
-	game.srcds.AddLogProcessor(game.processLogEntry)
 
 	for _, scenario := range scenarios {
 		game = *scenario(&game)
@@ -78,9 +94,15 @@ func New(gameMode GameMode, scenarios ...Scenario) (*CSGO, error) {
 	return &game, nil
 }
 
-// Start begins a CSGO server
-func (g *CSGO) Start() {
-	g.srcds.Start(g.cmdIn)
+func (g *CSGO) ClientConnected(client srcds.Client) {
+	g.clientJoinedSpectator(client)
+}
+
+func (g *CSGO) ClientDisconnected(c srcds.ClientDisconnected) {
+	g.spectators.ClientDropped(c.Client)
+
+	p := playerFromSrcdsClient(c.Client)
+	g.currentMap.PlayerDropped(p)
 }
 
 func (g *CSGO) clientJoinedCT(player srcds.Client) {
@@ -97,11 +119,16 @@ func (g *CSGO) clientJoinedTerrorist(player srcds.Client) {
 	g.currentMap.PlayerJoinedTerrorist(c)
 }
 
-func (g *CSGO) clientDropped(client srcds.Client) {
-	g.spectators.ClientDropped(client)
+func (g *CSGO) CmdSender() chan string {
+	return g.cmdIn
+}
 
-	p := playerFromSrcdsClient(client)
-	g.currentMap.PlayerDropped(p)
+func (g *CSGO) LogReceiver(le srcds.LogEntry) {
+	r := g.processLogEntry(le)
+
+	if r {
+		g.logProcessorStack(le)
+	}
 }
 
 func (m GameMode) launchArgs() []string {
@@ -154,24 +181,11 @@ func debugPrint(t, s string) {
 }
 
 func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
-
 	// client did something
 	if strings.HasPrefix(le.Message, `"`) {
 		_, err := parsePlayerSay(le)
 		if err != nil {
 			// process player said
-			return true
-		}
-
-		client, err := parseClientConnected(le)
-		if err != nil {
-			g.clientJoinedSpectator(client)
-			return true
-		}
-
-		clientDisconnected, err := parseClientDisconnected(le)
-		if err != nil {
-			g.clientDropped(clientDisconnected.client)
 			return true
 		}
 
@@ -268,28 +282,4 @@ func (g *CSGO) teamSetSide(m TeamSideSet) {
 	if g.listeners.teamSideSet != nil {
 		g.listeners.teamSideSet(m)
 	}
-}
-
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-
-func (g *CSGO) maxOvertimeRounds() int {
-	if s, found := g.srcds.GetCvar("mp_overtime_maxrounds"); found {
-		if i, err := strconv.Atoi(s); err == nil {
-			return i
-		}
-	}
-
-	return 6
-}
-
-func (g *CSGO) maxRounds() int {
-	if s, found := g.srcds.GetCvar("mp_maxrounds"); found {
-		if i, err := strconv.Atoi(s); err == nil {
-			return i
-		}
-	}
-
-	return 30
 }

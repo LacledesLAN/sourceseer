@@ -18,17 +18,21 @@ const (
 	srcdsTimeLayout   string = "1/2/2006 - 15:04:05"
 )
 
-// LogEntryProcessor represents a function that can parse log entires; returning false when the log entry has been consumed or its effects undone.
-type LogEntryProcessor func(LogEntry) (keepProcessing bool)
-
 // SRCDS represents a source dedicated server
 type SRCDS struct {
-	cmdIn             chan string
-	cvars             map[string]string
-	launchArgs        []string
-	logProcessorStack LogEntryProcessor
-	started           time.Time
-	finished          time.Time
+	cmdIn      chan string
+	cvars      map[string]string
+	game       GameServer
+	launchArgs []string
+	started    time.Time
+	finished   time.Time
+}
+
+type GameServer interface {
+	ClientConnected(Client)
+	ClientDisconnected(ClientDisconnected)
+	CmdSender() chan string
+	LogReceiver(LogEntry)
 }
 
 // AddCvarWatch to watch for and update from the log stream.
@@ -54,26 +58,13 @@ func (s *SRCDS) AddLaunchArg(args ...string) {
 	}
 }
 
-// AddLogProcessor to top of the log processor stack.
-func (s *SRCDS) AddLogProcessor(p LogEntryProcessor) {
-	if p != nil {
-		prev := s.logProcessorStack
-		s.logProcessorStack = func(le LogEntry) (keepProcessing bool) {
-			if !prev(le) {
-				return false
-			}
-
-			return p(le)
-		}
-	}
-}
-
 // GetCvar value and a boolean as to if the value was found or not.
 func (s *SRCDS) GetCvar(name string) (value string, found bool) {
 	value, found = s.cvars[name]
 	return
 }
 
+// GetCvarAsInt attempts to return a cvar as an integer
 func (s *SRCDS) GetCvarAsInt(name string) (value int, err error) {
 	v, found := s.cvars[name]
 
@@ -84,13 +75,13 @@ func (s *SRCDS) GetCvarAsInt(name string) (value int, err error) {
 	return strconv.Atoi(v)
 }
 
-// New creates a new CSGO server instance.
-func New(osArgs []string) (SRCDS, error) {
+// New creates and wraps around srcds instance.
+func New(gameRunner GameServer, osArgs []string) (SRCDS, error) {
 	s := SRCDS{
+		cmdIn:      make(chan string, 12),
 		cvars:      make(map[string]string),
 		launchArgs: osArgs,
 	}
-	s.logProcessorStack = s.processLogEntry
 
 	return s, nil
 }
@@ -105,31 +96,75 @@ func (s *SRCDS) RefreshCvars() {
 }
 
 // Start the instance of the SRCDS; connecting a channel to its standard input stream.
-func (s *SRCDS) Start(cmdInd chan string) {
+func (s *SRCDS) Start() error {
 	srcdsProcess := exec.Command(s.launchArgs[0], s.launchArgs[1:len(s.launchArgs)-1]...)
 
+	// link standard error
 	stdErr, err := srcdsProcess.StderrPipe()
 	if err != nil {
-		defer stdErr.Close()
-		s.linkStdErr(stdErr)
+		return errors.New("Unable to link standard error")
 	}
+	defer stdErr.Close()
+	go func(reader *bufio.Reader) {
+		for {
+			errLine, _ := reader.ReadString('\n')
+			errLine = strings.Trim(strings.TrimSuffix(errLine, "\n"), "")
 
+			if len(errLine) > 0 {
+				log.Println("Standard Error:>", errLine)
+			}
+		}
+	}(bufio.NewReader(stdErr))
+
+	// link standard out
 	stdOut, err := srcdsProcess.StdoutPipe()
 	if err != nil {
-		fmt.Println("Unable to link std out!")
-		panic(err)
+		return errors.New("Unable to link standard out")
 	}
 	defer stdOut.Close()
-	s.linkStdOut(stdOut)
+	go func(reader *bufio.Reader) {
+		for {
+			outLine, _ := reader.ReadString('\n')
+			outLine = strings.Trim(strings.TrimSuffix(outLine, "\n"), "")
+
+			if len(outLine) > 0 {
+				le := parseLogEntry(outLine)
+
+				if len(le.Message) > 0 {
+					s.processLogEntry(le)
+				}
+			}
+		}
+	}(bufio.NewReader(stdOut))
 
 	// go routine to grab stdin, combine with timer, send to process
 	stdIn, err := srcdsProcess.StdinPipe()
 	if err != nil {
-		fmt.Println("Unable to link standard in!")
-		panic(err)
+		return errors.New("Unable to link standard in")
 	}
 	defer stdIn.Close()
-	s.linkStdIn(stdIn)
+
+	go func(downStream io.WriteCloser, upStream chan string) {
+		timer := time.NewTimer(time.Millisecond * 500).C
+		var lastSent time.Time
+
+		for {
+			select {
+			case s := <-upStream:
+				downStream.Write([]byte(s))
+				downStream.Write([]byte("\n"))
+				lastSent = time.Now()
+			case <-timer:
+				// ensure srcds buffer get flushed at regular interval
+				if time.Now().Sub(lastSent) > (time.Millisecond * 750) {
+					downStream.Write([]byte("\n"))
+					lastSent = time.Now()
+				}
+
+				timer = time.NewTimer(time.Millisecond * 500).C
+			}
+		}
+	}(stdIn, s.cmdIn)
 
 	// Start SRCDS
 	fmt.Println("Starting srcds using", s.launchArgs)
@@ -148,81 +183,36 @@ func (s *SRCDS) Start(cmdInd chan string) {
 	}
 
 	s.finished = time.Now()
-}
 
-func (s *SRCDS) linkStdErr(e io.ReadCloser) {
-	go func(reader *bufio.Reader) {
-		for {
-			errLine, _ := reader.ReadString('\n')
-			errLine = strings.Trim(strings.TrimSuffix(errLine, "\n"), "")
-
-			if len(errLine) > 0 {
-				log.Println("Standard Error:>", errLine)
-			}
-		}
-	}(bufio.NewReader(e))
-}
-
-func (s *SRCDS) linkStdIn(stdIn io.WriteCloser) {
-	timer := time.NewTimer(time.Millisecond * 500).C
-	var lastSent time.Time
-
-	if s.cmdIn == nil {
-		s.cmdIn = make(chan string, 12)
-	}
-
-	go func() {
-		for {
-			select {
-			case s := <-s.cmdIn:
-				stdIn.Write([]byte(s))
-				stdIn.Write([]byte("\n"))
-				lastSent = time.Now()
-			case <-timer:
-				// ensure srcds buffer get flushed at regular interval
-				if time.Now().Sub(lastSent) > (time.Millisecond * 750) {
-					stdIn.Write([]byte("\n"))
-					lastSent = time.Now()
-				}
-
-				timer = time.NewTimer(time.Millisecond * 500).C
-			}
-		}
-	}()
-}
-
-func (s *SRCDS) linkStdOut(i io.ReadCloser) {
-	go func(reader *bufio.Reader) {
-		for {
-			outLine, _ := reader.ReadString('\n')
-			outLine = strings.Trim(strings.TrimSuffix(outLine, "\n"), "")
-
-			if len(outLine) > 0 {
-				le := parseLogEntry(outLine)
-
-				if len(le.Message) > 0 {
-					s.logProcessorStack(le)
-				} else {
-					//fmt.Println(outLine)
-				}
-			}
-		}
-	}(bufio.NewReader(i))
+	return nil
 }
 
 func (s *SRCDS) processLogEntry(le LogEntry) (keepProcessing bool) {
 
 	cvarSet, err := parseCvarValueSet(le)
 	if err != nil {
-		s.updatedCvar(cvarSet.name, cvarSet.value)
+		if _, found := s.cvars[cvarSet.name]; found {
+			s.cvars[cvarSet.name] = cvarSet.value
+		}
+
 		return false
 	}
 
-	return true
-}
+	if strings.HasPrefix(le.Message, `"`) {
+		client, err := parseClientConnected(le)
+		if err != nil {
+			s.game.ClientConnected(client)
+			return false
+		}
 
-func (s *SRCDS) updatedCvar(name, value string) {
-	if _, found := s.cvars[name]; found {
-		s.cvars[name] = value
+		clientDisconnected, err := parseClientDisconnected(le)
+		if err != nil {
+			s.game.ClientDisconnected(clientDisconnected)
+			return false
+		}
 	}
+
+	s.game.LogReceiver(le)
+
+	return true
 }

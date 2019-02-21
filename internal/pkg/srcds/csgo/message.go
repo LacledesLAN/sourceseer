@@ -11,8 +11,6 @@ import (
 )
 
 const (
-	clientConnectedPattern           = `^(".*") (?:entered the game|connected, address "")$`
-	clientDisconnectedPattern        = `^(".*") disconnected(?: \(reason \"([\w ]{1,})\"\))?$`
 	clientSwitchedAffiliationPattern = `^(".*") switched from team <([a-zA-Z]*)> to <([a-zA-Z]*)>$`
 	gameOverPattern                  = `^Game Over: (\w+)[ ]+(\w+) score (\d+):(\d+) after (\d+) min$`
 	loadingMapPattern                = `^Loading map "(\w+)"$`
@@ -24,8 +22,6 @@ const (
 )
 
 var (
-	clientConnectedRegex           = regexp.MustCompile(clientConnectedPattern)
-	clientDisconnectedRegex        = regexp.MustCompile(clientDisconnectedPattern)
 	clientSwitchedAffiliationRegex = regexp.MustCompile(clientSwitchedAffiliationPattern)
 	gameOverRegex                  = regexp.MustCompile(gameOverPattern)
 	loadingMapRegex                = regexp.MustCompile(loadingMapPattern)
@@ -35,11 +31,6 @@ var (
 	teamTriggeredRegex             = regexp.MustCompile(teamTriggeredPattern)
 	worldTriggeredRegex            = regexp.MustCompile(worldTriggeredPattern)
 )
-
-type ClientDisconnected struct {
-	client srcds.Client
-	reason string
-}
 
 type ClientSwitchedAffiliation struct {
 	client srcds.Client
@@ -86,41 +77,6 @@ type TeamTriggered struct {
 type WorldTriggered struct {
 	trigger WorldTrigger
 	eta     time.Time
-}
-
-func parseClientConnected(le srcds.LogEntry) (srcds.Client, error) {
-	result := clientConnectedRegex.FindStringSubmatch(le.Message)
-
-	if len(result) != 2 {
-		return srcds.Client{}, errors.New("Could not client " + le.Message)
-	}
-
-	cl, err := srcds.ParseClient(result[1])
-
-	if err != nil {
-		return srcds.Client{}, errors.New("Could not parse client in " + le.Message)
-	}
-
-	return cl, nil
-}
-
-func parseClientDisconnected(le srcds.LogEntry) (ClientDisconnected, error) {
-	r := clientDisconnectedRegex.FindStringSubmatch(le.Message)
-
-	if len(r) < 1 {
-		return ClientDisconnected{}, errors.New("Could not parse " + le.Message)
-	}
-
-	cl, err := srcds.ParseClient(r[1])
-
-	if err != nil {
-		return ClientDisconnected{}, errors.New("Could not parse player in " + le.Message)
-	}
-
-	return ClientDisconnected{
-		client: cl,
-		reason: r[2],
-	}, nil
 }
 
 func parseClientSwitchedAffiliation(le srcds.LogEntry) (ClientSwitchedAffiliation, error) {

@@ -34,7 +34,7 @@ func ClinchableMapCycle(maps []string) Scenario {
 	return func(gs *CSGO) *CSGO {
 		gs.srcds.AddCvarWatch("mp_match_restart_delay", "sv_pausable")
 		gs.srcds.AddLaunchArg("+map " + maps[0])
-		gs.srcds.AddLogProcessor(func(le srcds.LogEntry) (keepProcessing bool) {
+		gs.AddLogProcessor(func(le srcds.LogEntry) (keepProcessing bool) {
 			if strings.HasPrefix(le.Message, `World triggered "Round_End"`) {
 
 				mapOver := false

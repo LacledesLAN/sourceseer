@@ -52,41 +52,6 @@ func Test_gameOverRegex(t *testing.T) {
 	}
 }
 
-func Test_parseClientConnected(t *testing.T) {
-	goodDatum := []string{
-		`"Beelzebot | theinfosphere.org<2><STEAM_1:0:8675309><>" connected, address ""`,
-		`"[FUTURAMA] Hedonismbot<3><STEAM_1:0:8675309><>" entered the game`,
-	}
-
-	for _, testString := range goodDatum {
-		t.Run(testString, func(t *testing.T) {
-			_, err := parseClientConnected(srcds.LogEntry{Message: testString})
-
-			if err != nil {
-				t.Errorf("Should have parse successfully but got error: %q", err)
-			}
-		})
-	}
-
-}
-
-func Test_parseClientDisconnected(t *testing.T) {
-	goodDatum := []string{
-		`"Don<17><BOT><CT>" disconnected (reason "Kicked by Console")`,
-		`"Don<17><BOT><CT>" disconnected`,
-	}
-
-	for _, testString := range goodDatum {
-		t.Run(testString, func(t *testing.T) {
-			_, err := parseClientDisconnected(srcds.LogEntry{Message: testString})
-
-			if err != nil {
-				t.Errorf("Should have parse successfully but got error: %q", err)
-			}
-		})
-	}
-}
-
 func Test_parseLoadingMap(t *testing.T) {
 	datum := []struct {
 		srcdsMessage string
