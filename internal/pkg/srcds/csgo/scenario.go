@@ -31,36 +31,54 @@ func ClinchableMapCycle(maps []string) Scenario {
 	//	mapsFinished: make([]string, len(maps)),
 	//}
 
-	return func(gs *CSGO) *CSGO {
-		gs.srcds.AddCvarWatch("mp_match_restart_delay", "sv_pausable")
-		gs.srcds.AddLaunchArg("+map " + maps[0])
-		gs.AddLogProcessor(func(le srcds.LogEntry) (keepProcessing bool) {
+	return func(g *CSGO) *CSGO {
+		g.AddCvarWatch("mp_maxrounds", "mp_overtime_maxrounds", "mp_match_restart_delay", "sv_pausable")
+		g.AddLaunchArg("+map " + maps[0])
+
+		g.AddLogProcessor(func(le srcds.LogEntry) (keepProcessing bool) {
 			if strings.HasPrefix(le.Message, `World triggered "Round_End"`) {
+
+				// determine win threshold
+				mpMaxrounds, _ := g.GetCvarAsInt("mp_maxrounds")
+				mpOvertimeMaxrounds, _ := g.GetCvarAsInt("mp_overtime_maxrounds")
+
+				fmt.Println("mp_maxrounds", mpMaxrounds)
+				fmt.Println("mp_overtime_maxrounds", mpOvertimeMaxrounds)
+
+				winThreshold := calculateWinThreshold(mpMaxrounds, mpOvertimeMaxrounds, g.currentMap.RoundsCompleted())
+
+				if g.currentMap.RoundsCompleted() >= winThreshold {
+
+				}
+
+				//g.currentMap.RoundsCompleted
+
+				// determine if any team won
 
 				mapOver := false
 
 				if mapOver /* && len(mapCycle.mapsPending) == 0 */ {
-					if value, found := gs.srcds.GetCvar("sv_pausable"); found && value == "1" {
-						gs.cmdIn <- "pause"
+					if value, found := g.GetCvar("sv_pausable"); found && value == "1" {
+						g.cmdIn <- "pause"
 					} else {
-						gs.cmdIn <- "mp_warmup_start"
+						g.cmdIn <- "mp_warmup_start"
 					}
 
 					go func() {
 						for {
-							gs.cmdIn <- "say GAME OVER; TEAM CAPTAINS REPORT TO TOURNEY ADMIN"
+							g.cmdIn <- "say GAME OVER; TEAM CAPTAINS REPORT TO TOURNEY ADMIN"
 							time.Sleep(5 * time.Second)
 						}
 					}()
 				}
 			} else {
-				fmt.Println(">>>>", le.Message)
+				//fmt.Println("?? ", le.Message)
 			}
 
 			return true
 		})
 
-		return gs
+		return g
 	}
 }
 
@@ -82,9 +100,9 @@ func MapPreliminaries(mpTeamname1, mpTeamname2 string) Scenario {
 
 	args = append(args, `+hostname "`+HostnameFromTeamNames(mpTeamname1, mpTeamname2)+`"`)
 
-	return func(gs *CSGO) *CSGO {
-		gs.srcds.AddLaunchArg(args...)
+	return func(g *CSGO) *CSGO {
+		g.AddLaunchArg(args...)
 
-		return gs
+		return g
 	}
 }

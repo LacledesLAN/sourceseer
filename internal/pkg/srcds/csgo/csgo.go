@@ -1,8 +1,10 @@
 package csgo
 
 import (
+	"errors"
 	"fmt"
 	"log"
+	"strconv"
 	"strings"
 	"time"
 
@@ -44,14 +46,16 @@ type listeners struct {
 type CSGO struct {
 	cmdIn             chan string
 	currentMap        *mapState
+	cvars             map[string]srcds.Cvar
 	gameMode          GameMode
+	launchArgs        []string
+	listeners         listeners
 	logProcessorStack LogEntryProcessor
 	maps              []mapState
 	mpTeamname1       string
 	mpTeamname2       string
 	spectators        srcds.Clients
-	srcds             *srcds.SRCDS
-	listeners         listeners
+	Srcds             *srcds.SRCDS //todo; make private
 }
 
 // GameMode determines the rulesets used by a CSGO server.
@@ -62,36 +66,122 @@ type LogEntryProcessor func(srcds.LogEntry) (keepProcessing bool)
 
 type WorldTrigger byte
 
-// AddLogProcessor to top of the log processor stack.
-func (g *CSGO) AddLogProcessor(p LogEntryProcessor) {
-	if p != nil {
-		prev := g.logProcessorStack
-		g.logProcessorStack = func(le srcds.LogEntry) (keepProcessing bool) {
-			if !prev(le) {
-				return false
-			}
+func (g *CSGO) AddCvarWatch(names ...string) {
+	for _, name := range names {
+		name = strings.Trim(name, "")
 
-			return p(le)
+		if len(name) > 0 {
+			cvarNameIsUnique := func() bool {
+				for key := range g.cvars {
+					if key == name {
+						return false
+					}
+				}
+
+				return true
+			}()
+
+			if cvarNameIsUnique {
+				g.cvars[name] = srcds.Cvar{}
+			}
 		}
 	}
 }
 
+// AddLaunchArg to be used when initializing the SRCDS instance.
+func (g *CSGO) AddLaunchArg(args ...string) {
+	for _, arg := range args {
+		arg = strings.Trim(arg, "")
+		if len(arg) > 0 {
+			g.launchArgs = append(g.launchArgs, arg)
+		}
+	}
+}
+
+// AddLogProcessor to top of the log processor stack.
+func (g *CSGO) AddLogProcessor(p LogEntryProcessor) {
+	if p != nil {
+		prev := g.logProcessorStack
+
+		if prev == nil {
+			g.logProcessorStack = p
+		} else {
+			g.logProcessorStack = func(le srcds.LogEntry) (keepProcessing bool) {
+				if !prev(le) {
+					return false
+				}
+
+				return p(le)
+			}
+		}
+	}
+}
+
+// GetCvar value and a boolean as to if the value was found or not.
+func (g *CSGO) GetCvar(name string) (value string, found bool) {
+	cvar, found := g.cvars[name]
+
+	fmt.Println(g.cvars)
+
+	if found {
+		if !cvar.LastUpdate.IsZero() {
+			return cvar.Value, found
+		}
+	}
+
+	return "", found
+}
+
+// GetCvarAsInt attempts to return a cvar as an integer
+func (g *CSGO) GetCvarAsInt(name string) (value int, err error) {
+	v, found := g.GetCvar(name)
+
+	if !found {
+		return 0, errors.New("cvar '" + name + "' was not found.")
+	}
+
+	return strconv.Atoi(v)
+}
+
 // New creates a CSGO server
-func New(gameMode GameMode, scenarios ...Scenario) (srcds.GameServer, error) {
+func New(gameMode GameMode, scenarios ...Scenario) (srcds.Game, error) {
 	game := CSGO{
-		cmdIn:    make(chan string, 6),
+		cmdIn:    make(chan string, 9),
+		cvars:    make(map[string]srcds.Cvar),
 		gameMode: gameMode,
 	}
 
-	game.srcds.AddCvarWatch("mp_do_warmup_period", "mp_maxrounds", "mp_overtime_enable", "mp_overtime_maxrounds", "mp_warmup_pausetimer")
-	game.srcds.AddLaunchArg(gameMode.launchArgs()...)
-	game.srcds.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart") //TODO: add "-nobots"
+	switch gameMode {
+	case ClassicCasual:
+		game.AddLaunchArg("-game csgo", "+game_type 0", "+game_mode 0")
+	case ArmsRace:
+		game.AddLaunchArg("-game csgo", "+game_type 1", "+game_mode 0")
+	case Demolition:
+		game.AddLaunchArg("-game csgo", "+game_type 1", "+game_mode 1")
+	case Deathmatch:
+		game.AddLaunchArg("-game csgo", "+game_type 1", "+game_mode 2")
+	default:
+		fallthrough
+	case ClassicCompetitive:
+		game.AddLaunchArg("-game csgo", "+game_type 0", "+game_mode 1")
+	}
+
+	game.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart") //TODO: add "-nobots"
 
 	for _, scenario := range scenarios {
 		game = *scenario(&game)
 	}
 
 	return &game, nil
+}
+
+// RefreshCvars triggers SRCDS to echo all watched cvars to the log stream.
+func (g *CSGO) RefreshCvars() {
+	go func(g *CSGO) {
+		for name := range g.cvars {
+			g.cmdIn <- name
+		}
+	}(g)
 }
 
 func (g *CSGO) ClientConnected(client srcds.Client) {
@@ -123,28 +213,23 @@ func (g *CSGO) CmdSender() chan string {
 	return g.cmdIn
 }
 
-func (g *CSGO) LogReceiver(le srcds.LogEntry) {
-	r := g.processLogEntry(le)
-
-	if r {
-		g.logProcessorStack(le)
+func (g *CSGO) CvarSet(name, value string) {
+	if _, found := g.cvars[name]; found {
+		g.cvars[name] = srcds.Cvar{LastUpdate: time.Now(), Value: value}
 	}
 }
 
-func (m GameMode) launchArgs() []string {
-	switch m {
-	case ClassicCasual:
-		return []string{"-game csgo", "+game_type 0", "+game_mode 0"}
-	case ArmsRace:
-		return []string{"-game csgo", "+game_type 1", "+game_mode 0"}
-	case Demolition:
-		return []string{"-game csgo", "+game_type 1", "+game_mode 1"}
-	case Deathmatch:
-		return []string{"-game csgo", "+game_type 1", "+game_mode 2"}
-	default:
-		fallthrough
-	case ClassicCompetitive:
-		return []string{"-game csgo", "+game_type 0", "+game_mode 1"}
+func (g *CSGO) LaunchArgs() []string {
+	return g.launchArgs
+}
+
+func (g *CSGO) LogReceiver(le srcds.LogEntry) {
+	r := g.processLogEntry(le)
+
+	if g.logProcessorStack != nil {
+		if r {
+			g.logProcessorStack(le)
+		}
 	}
 }
 
@@ -173,14 +258,14 @@ func (g *CSGO) mapChanged(mapName string) {
 	g.currentMap.mpTeam2.SetName(g.mpTeamname2)
 }
 
-func debugPrint(t, s string) {
-	fmt.Println("============================================")
-	fmt.Println("\t\t", t)
-	fmt.Println(s)
-	fmt.Println("============================================")
-}
-
 func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
+	// see if a cvar was set
+	cvarSet, err := srcds.ParseCvarValueSet(le.Message)
+	if err == nil {
+		g.CvarSet(cvarSet.Name, cvarSet.Value)
+		return
+	}
+
 	// client did something
 	if strings.HasPrefix(le.Message, `"`) {
 		_, err := parsePlayerSay(le)
@@ -234,10 +319,10 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 	if strings.HasPrefix(le.Message, "World triggered") {
 		worldTriggered, err := parseWorldTriggered(le)
 
-		if err != nil {
+		if err == nil {
 			switch worldTriggered.trigger {
 			case MatchStart:
-				g.srcds.RefreshCvars()
+				g.RefreshCvars()
 			}
 		}
 

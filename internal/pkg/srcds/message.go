@@ -27,8 +27,8 @@ type ClientDisconnected struct {
 }
 
 type CvarValueSet struct {
-	name  string
-	value string
+	Name  string
+	Value string
 }
 
 // LogEntry represents a log message from srcds
@@ -73,47 +73,47 @@ func parseClientDisconnected(le LogEntry) (ClientDisconnected, error) {
 	}, nil
 }
 
-func parseCvarValueSet(le LogEntry) (CvarValueSet, error) {
-	if strings.HasPrefix(le.Message, `"`) {
-		r := serverCvarEchoRegex.FindStringSubmatch(le.Message)
+func ParseCvarValueSet(s string) (CvarValueSet, error) {
+	if strings.HasPrefix(s, `"`) {
+		r := serverCvarEchoRegex.FindStringSubmatch(s)
 
 		if len(r) == 3 {
 			return CvarValueSet{
-				name:  r[1],
-				value: r[2],
+				Name:  r[1],
+				Value: r[2],
 			}, nil
 		}
-	} else if strings.HasPrefix(le.Message, `server_cvar: "`) {
-		r := serverCvarSetRegex.FindStringSubmatch(le.Message)
+	} else if strings.HasPrefix(s, `server_cvar: "`) {
+		r := serverCvarSetRegex.FindStringSubmatch(s)
 
 		if len(r) == 3 {
 			return CvarValueSet{
-				name:  r[1],
-				value: r[2],
+				Name:  r[1],
+				Value: r[2],
 			}, nil
 		}
 	}
 
-	return CvarValueSet{}, errors.New("Could not parse cvar out of :" + le.Message)
+	return CvarValueSet{}, errors.New("Could not parse cvar out of string '" + s + "'")
 }
 
 // parseLogEntry extracts the log entry from a srcds log message
-func parseLogEntry(rawLogEntry string) LogEntry {
-	rawLogEntry = strings.TrimSpace(rawLogEntry)
+func parseLogEntry(s string) (LogEntry, error) {
+	s = strings.TrimSpace(s)
 
-	if len(rawLogEntry) > 0 && strings.HasPrefix(rawLogEntry, "L ") && strings.Contains(rawLogEntry, ": ") {
-		i := strings.Index(rawLogEntry, ": ")
+	if len(s) > 0 && strings.HasPrefix(s, "L ") && strings.Contains(s, ": ") {
+		i := strings.Index(s, ": ")
 
-		msgTime, err := time.ParseInLocation(srcdsTimeLayout, rawLogEntry[2:i], time.Local)
+		msgTime, err := time.ParseInLocation(srcdsTimeLayout, s[2:i], time.Local)
 
 		if err == nil {
 			return LogEntry{
-				Raw:       rawLogEntry,
+				Raw:       s,
 				Timestamp: msgTime,
-				Message:   rawLogEntry[i+2:],
-			}
+				Message:   s[i+2:],
+			}, nil
 		}
 	}
 
-	return LogEntry{Raw: rawLogEntry}
+	return LogEntry{}, errors.New("Unable to parse log entry from: " + s)
 }

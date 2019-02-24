@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"os"
 	"os/exec"
-	"strconv"
 	"strings"
 	"time"
 )
@@ -21,31 +21,20 @@ const (
 // SRCDS represents a source dedicated server
 type SRCDS struct {
 	cmdIn      chan string
-	cvars      map[string]string
-	game       GameServer
+	game       Game
 	launchArgs []string
 	started    time.Time
 	finished   time.Time
 }
 
-type GameServer interface {
+// Game represents a SRCDS game
+type Game interface {
 	ClientConnected(Client)
 	ClientDisconnected(ClientDisconnected)
 	CmdSender() chan string
+	CvarSet(name, value string)
+	LaunchArgs() []string
 	LogReceiver(LogEntry)
-}
-
-// AddCvarWatch to watch for and update from the log stream.
-func (s *SRCDS) AddCvarWatch(names ...string) {
-	for _, name := range names {
-		name = strings.Trim(name, "")
-
-		if len(name) > 0 {
-			if _, found := s.cvars[name]; !found {
-				s.cvars[name] = ""
-			}
-		}
-	}
 }
 
 // AddLaunchArg to be used when initializing the SRCDS instance.
@@ -58,45 +47,21 @@ func (s *SRCDS) AddLaunchArg(args ...string) {
 	}
 }
 
-// GetCvar value and a boolean as to if the value was found or not.
-func (s *SRCDS) GetCvar(name string) (value string, found bool) {
-	value, found = s.cvars[name]
-	return
-}
-
-// GetCvarAsInt attempts to return a cvar as an integer
-func (s *SRCDS) GetCvarAsInt(name string) (value int, err error) {
-	v, found := s.cvars[name]
-
-	if !found {
-		return 0, errors.New("cvar '" + name + "' was not found.")
-	}
-
-	return strconv.Atoi(v)
-}
-
 // New creates and wraps around srcds instance.
-func New(gameRunner GameServer, osArgs []string) (SRCDS, error) {
+func New(srcdsGame Game, osArgs []string) (SRCDS, error) {
 	s := SRCDS{
 		cmdIn:      make(chan string, 12),
-		cvars:      make(map[string]string),
+		game:       srcdsGame,
 		launchArgs: osArgs,
 	}
 
 	return s, nil
 }
 
-// RefreshCvars triggers SRCDS to echo all watched cvars to the log stream.
-func (s *SRCDS) RefreshCvars() {
-	go func() {
-		for name := range s.cvars {
-			s.cmdIn <- name
-		}
-	}()
-}
-
 // Start the instance of the SRCDS; connecting a channel to its standard input stream.
 func (s *SRCDS) Start() error {
+	s.AddLaunchArg(s.game.LaunchArgs()...)
+
 	srcdsProcess := exec.Command(s.launchArgs[0], s.launchArgs[1:len(s.launchArgs)-1]...)
 
 	// link standard error
@@ -128,10 +93,14 @@ func (s *SRCDS) Start() error {
 			outLine = strings.Trim(strings.TrimSuffix(outLine, "\n"), "")
 
 			if len(outLine) > 0 {
-				le := parseLogEntry(outLine)
+				le, err := parseLogEntry(outLine)
 
-				if len(le.Message) > 0 {
+				if err == nil {
 					s.processLogEntry(le)
+				} else if cvarSet, err := ParseCvarValueSet(outLine); err == nil {
+					s.game.CvarSet(cvarSet.Name, cvarSet.Value)
+				} else {
+					fmt.Println("(skipped: ", outLine, ")")
 				}
 			}
 		}
@@ -164,7 +133,16 @@ func (s *SRCDS) Start() error {
 				timer = time.NewTimer(time.Millisecond * 500).C
 			}
 		}
-	}(stdIn, s.cmdIn)
+	}(stdIn, s.game.CmdSender())
+
+	go func() {
+		for {
+			reader := bufio.NewReader(os.Stdin)
+			text, _ := reader.ReadString('\n')
+			stdIn.Write([]byte(text))
+			stdIn.Write([]byte("\n"))
+		}
+	}()
 
 	// Start SRCDS
 	fmt.Println("Starting srcds using", s.launchArgs)
@@ -187,32 +165,20 @@ func (s *SRCDS) Start() error {
 	return nil
 }
 
-func (s *SRCDS) processLogEntry(le LogEntry) (keepProcessing bool) {
-
-	cvarSet, err := parseCvarValueSet(le)
-	if err != nil {
-		if _, found := s.cvars[cvarSet.name]; found {
-			s.cvars[cvarSet.name] = cvarSet.value
-		}
-
-		return false
-	}
-
+func (s *SRCDS) processLogEntry(le LogEntry) {
 	if strings.HasPrefix(le.Message, `"`) {
 		client, err := parseClientConnected(le)
-		if err != nil {
+		if err == nil {
 			s.game.ClientConnected(client)
-			return false
+			return
 		}
 
 		clientDisconnected, err := parseClientDisconnected(le)
-		if err != nil {
+		if err == nil {
 			s.game.ClientDisconnected(clientDisconnected)
-			return false
+			return
 		}
 	}
 
 	s.game.LogReceiver(le)
-
-	return true
 }

@@ -54,7 +54,7 @@ func Test_CalculateWinThreshold(t *testing.T) {
 	}
 
 	for _, d := range testDatum {
-		actual := CalculateWinThreshold(d.mpMaxRounds, d.mpOvertimeMaxRounds, d.lastCompletedRound)
+		actual := calculateWinThreshold(d.mpMaxRounds, d.mpOvertimeMaxRounds, d.lastCompletedRound)
 
 		if actual != d.expectedResult {
 			t.Errorf("With `mp_maxrounds` = `%d` and `mp_overtime_maxrounds` = `%d` and the last completed round being `%d` a calculated win threshold should be %d not %d!", d.mpMaxRounds, d.mpOvertimeMaxRounds, d.lastCompletedRound, d.expectedResult, actual)

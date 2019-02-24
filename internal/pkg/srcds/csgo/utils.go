@@ -18,8 +18,8 @@ var (
 	srcdsSafeChars = regexp.MustCompile(`[^a-zA-Z0-9_-]+`)
 )
 
-// CalculateWinThreshold determines how the minimum number of rounds a team needs to win given how many rounds have been completed so far
-func CalculateWinThreshold(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound int) int {
+// calculateWinThreshold determines how the minimum number of rounds a team needs to win given how many rounds have been completed so far
+func calculateWinThreshold(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound int) int {
 	if mpMaxRounds < 1 {
 		mpMaxRounds = 30
 	}
