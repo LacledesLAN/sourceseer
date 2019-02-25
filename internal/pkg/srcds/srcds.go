@@ -100,7 +100,7 @@ func (s *SRCDS) Start() error {
 				} else if cvarSet, err := ParseCvarValueSet(outLine); err == nil {
 					s.game.CvarSet(cvarSet.Name, cvarSet.Value)
 				} else {
-					fmt.Println("(skipped: ", outLine, ")")
+					//fmt.Println("(skipped: ", outLine, ")")
 				}
 			}
 		}

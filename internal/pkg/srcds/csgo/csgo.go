@@ -2,7 +2,6 @@ package csgo
 
 import (
 	"errors"
-	"fmt"
 	"log"
 	"strconv"
 	"strings"
@@ -37,11 +36,6 @@ const (
 	RoundStart
 )
 
-type listeners struct {
-	teamScored  func(TeamScored) bool
-	teamSideSet func(TeamSideSet) bool
-}
-
 // CSGO represents the state of a CSGO server
 type CSGO struct {
 	cmdIn             chan string
@@ -49,7 +43,6 @@ type CSGO struct {
 	cvars             map[string]srcds.Cvar
 	gameMode          GameMode
 	launchArgs        []string
-	listeners         listeners
 	logProcessorStack LogEntryProcessor
 	maps              []mapState
 	mpTeamname1       string
@@ -120,8 +113,6 @@ func (g *CSGO) AddLogProcessor(p LogEntryProcessor) {
 // GetCvar value and a boolean as to if the value was found or not.
 func (g *CSGO) GetCvar(name string) (value string, found bool) {
 	cvar, found := g.cvars[name]
-
-	fmt.Println(g.cvars)
 
 	if found {
 		if !cvar.LastUpdate.IsZero() {
@@ -347,24 +338,16 @@ func (g *CSGO) teamScored(m TeamScored) {
 	default:
 		log.Println("UNABLE TO teamScored() for affiliation '" + m.teamAffiliation + "'")
 	}
-
-	if g.listeners.teamScored != nil {
-		g.listeners.teamScored(m)
-	}
 }
 
 func (g *CSGO) teamSetSide(m TeamSideSet) {
 	if m.teamAffiliation == "CT" {
-		if g.currentMap.terrorist().name == m.teamName {
+		if m.teamName == g.currentMap.terrorist().name {
 			g.currentMap.TeamsSwappedSides()
 		}
 	} else if m.teamAffiliation == "TERRORIST" {
-		if g.currentMap.ct().name == m.teamName {
+		if m.teamName == g.currentMap.ct().name {
 			g.currentMap.TeamsSwappedSides()
 		}
-	}
-
-	if g.listeners.teamSideSet != nil {
-		g.listeners.teamSideSet(m)
 	}
 }

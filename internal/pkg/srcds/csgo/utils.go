@@ -18,14 +18,14 @@ var (
 	srcdsSafeChars = regexp.MustCompile(`[^a-zA-Z0-9_-]+`)
 )
 
-// calculateWinThreshold determines how the minimum number of rounds a team needs to win given how many rounds have been completed so far
+// calculateWinThreshold determines the minimum number of rounds a team needs to win to win a map given how many rounds have been completed so far
 func calculateWinThreshold(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound int) int {
 	if mpMaxRounds < 1 {
-		mpMaxRounds = 30
+		mpMaxRounds = defaultMpMaxrounds
 	}
 
 	if mpOvertimeMaxRounds < 1 {
-		mpMaxRounds = 6
+		mpOvertimeMaxRounds = defaultMpOvertimeMaxrounds
 	}
 
 	if notClinchable := mpMaxRounds%2 == 0; notClinchable {

@@ -40,7 +40,7 @@ func main() {
 		os.Exit(87)
 	}
 
-	csgoTourney, err := csgo.New(csgo.ClassicCompetitive, csgo.MapPreliminaries(mpTeamname1, mpTeamname2), csgo.ClinchableMapCycle(maps))
+	csgoTourney, err := csgo.New(csgo.ClassicCompetitive, csgo.UseTeamNames(mpTeamname1, mpTeamname2), csgo.ClinchableMapCycle(maps))
 
 	var osArgs []string
 	if _, err := os.Stat("/app/srcds_run"); err == nil {
