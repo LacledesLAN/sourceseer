@@ -2,7 +2,6 @@ package csgo
 
 import (
 	"errors"
-	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -45,9 +44,6 @@ type CSGO struct {
 	launchArgs        []string
 	logProcessorStack LogEntryProcessor
 	maps              []mapState
-	mpTeamname1       string
-	mpTeamname2       string
-	spectators        srcds.Clients
 	Srcds             *srcds.SRCDS //todo; make private
 }
 
@@ -157,6 +153,7 @@ func New(gameMode GameMode, scenarios ...Scenario) (srcds.Game, error) {
 		game.AddLaunchArg("-game csgo", "+game_type 0", "+game_mode 1")
 	}
 
+	game.AddCvarWatch("mp_halftime")
 	game.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart") //TODO: add "-nobots"
 
 	for _, scenario := range scenarios {
@@ -180,7 +177,7 @@ func (g *CSGO) ClientConnected(client srcds.Client) {
 }
 
 func (g *CSGO) ClientDisconnected(c srcds.ClientDisconnected) {
-	g.spectators.ClientDropped(c.Client)
+	g.currentMap.spectators.ClientDropped(c.Client)
 
 	p := playerFromSrcdsClient(c.Client)
 	g.currentMap.PlayerDropped(p)
@@ -188,16 +185,20 @@ func (g *CSGO) ClientDisconnected(c srcds.ClientDisconnected) {
 
 func (g *CSGO) clientJoinedCT(player srcds.Client) {
 	c := playerFromSrcdsClient(player)
-	g.currentMap.PlayerJoinedCT(c)
+
+	g.ct().PlayerJoined(c)
+	g.terrorist().PlayerDropped(c)
 }
 
 func (g *CSGO) clientJoinedSpectator(client srcds.Client) {
-	g.spectators.ClientJoined(client)
+	g.currentMap.spectators.ClientJoined(client)
 }
 
 func (g *CSGO) clientJoinedTerrorist(player srcds.Client) {
 	c := playerFromSrcdsClient(player)
-	g.currentMap.PlayerJoinedTerrorist(c)
+
+	g.ct().PlayerDropped(c)
+	g.terrorist().PlayerJoined(c)
 }
 
 func (g *CSGO) CmdSender() chan string {
@@ -224,6 +225,18 @@ func (g *CSGO) LogReceiver(le srcds.LogEntry) {
 	}
 }
 
+func (g *CSGO) ct() *teamState {
+	mpHalftime, _ := g.GetCvarAsInt("mp_halftime")
+	mpMaxrounds, _ := g.GetCvarAsInt("mp_maxrounds")
+	mpOvertimeMaxrounds, _ := g.GetCvarAsInt("mp_overtime_maxrounds")
+
+	if calculateSidesAreSwitched(mpHalftime, mpMaxrounds, mpOvertimeMaxrounds, g.currentMap.RoundsCompleted()) {
+		return &g.currentMap.mpTeam2
+	}
+
+	return &g.currentMap.mpTeam1
+}
+
 func (g *CSGO) mapChanged(mapName string) {
 	i := len(g.maps)
 
@@ -237,16 +250,6 @@ func (g *CSGO) mapChanged(mapName string) {
 	)
 
 	g.currentMap = &g.maps[i]
-
-	if (len(g.mpTeamname1)) == 0 {
-		g.mpTeamname1 = "mp_team_1"
-	}
-	g.currentMap.mpTeam1.SetName(g.mpTeamname1)
-
-	if (len(g.mpTeamname2)) == 0 {
-		g.mpTeamname2 = "mp_team_2"
-	}
-	g.currentMap.mpTeam2.SetName(g.mpTeamname2)
 }
 
 func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
@@ -294,6 +297,7 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 
 		teamUpdateSides, err := parseTeamSetSide(le)
 		if err == nil {
+
 			g.teamSetSide(teamUpdateSides)
 			return true
 		}
@@ -332,22 +336,45 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 func (g *CSGO) teamScored(m TeamScored) {
 	switch m.teamAffiliation {
 	case "CT":
-		g.currentMap.CTSetScore(m.teamScore)
+		g.ct().roundsWon = m.teamScore
+		g.terrorist().roundsLost = m.teamScore
 	case "TERRORIST":
-		g.currentMap.TerroristSetScore(m.teamScore)
-	default:
-		log.Println("UNABLE TO teamScored() for affiliation '" + m.teamAffiliation + "'")
+		g.ct().roundsLost = m.teamScore
+		g.terrorist().roundsWon = m.teamScore
 	}
 }
 
 func (g *CSGO) teamSetSide(m TeamSideSet) {
+	mpSwapTeams := func() {
+		// swap teams
+		t := g.currentMap.mpTeam1
+		g.currentMap.mpTeam1 = g.currentMap.mpTeam2
+		g.currentMap.mpTeam2 = t
+	}
+
 	if m.teamAffiliation == "CT" {
-		if m.teamName == g.currentMap.terrorist().name {
-			g.currentMap.TeamsSwappedSides()
+		if len(m.teamName) > 0 && m.teamName == g.terrorist().name {
+			mpSwapTeams()
+		} else {
+			g.ct().SetName(m.teamName)
 		}
 	} else if m.teamAffiliation == "TERRORIST" {
-		if m.teamName == g.currentMap.ct().name {
-			g.currentMap.TeamsSwappedSides()
+		if len(m.teamName) > 0 && m.teamName == g.ct().name {
+			mpSwapTeams()
+		} else {
+			g.terrorist().SetName(m.teamName)
 		}
 	}
+}
+
+func (g *CSGO) terrorist() *teamState {
+	mpHalftime, _ := g.GetCvarAsInt("mp_halftime")
+	mpMaxrounds, _ := g.GetCvarAsInt("mp_maxrounds")
+	mpOvertimeMaxrounds, _ := g.GetCvarAsInt("mp_overtime_maxrounds")
+
+	if calculateSidesAreSwitched(mpHalftime, mpMaxrounds, mpOvertimeMaxrounds, g.currentMap.RoundsCompleted()) {
+		return &g.currentMap.mpTeam1
+	}
+
+	return &g.currentMap.mpTeam2
 }

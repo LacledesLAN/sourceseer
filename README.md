@@ -24,3 +24,7 @@ Our reservations for using eBot stem from its orchestration requirements. While 
 
 ## How
 
+## Definition
+
+Match = map
+Set = set of matches

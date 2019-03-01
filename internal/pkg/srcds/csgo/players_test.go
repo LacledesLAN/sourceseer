@@ -38,3 +38,39 @@ func Test_Clients(t *testing.T) {
 	}
 
 }
+
+func Test_playerFromSrcdsClient(t *testing.T) {
+	testDatum := []struct {
+		input    srcds.Client
+		expected Player
+	}{
+		{input: srcds.Client{Username: "Robo-Puppy", SteamID: "b1lly w357", ServerSlot: "12", ServerTeam: "blu"},
+			expected: Player{Client: srcds.Client{Username: "Robo-Puppy", SteamID: "b1lly w357", ServerSlot: "12", ServerTeam: "blu"}}},
+	}
+
+	for _, testData := range testDatum {
+		t.Run(testData.input.Username, func(t *testing.T) {
+			result := playerFromSrcdsClient(testData.input)
+
+			if result.Username != testData.input.Username {
+				t.Errorf("Username %q did not carry over.", testData.input.Username)
+			}
+
+			if result.SteamID != testData.input.SteamID {
+				t.Errorf("SteamID %q did not carry over.", testData.input.SteamID)
+			}
+
+			if result.ServerSlot != testData.input.ServerSlot {
+				t.Errorf("ServerSlot %q did not carry over.", testData.input.ServerSlot)
+			}
+
+			if result.ServerTeam != testData.input.ServerTeam {
+				t.Errorf("ServerTeam %q did not carry over.", testData.input.ServerTeam)
+			}
+
+			if len(result.flags) > 0 {
+				t.Error("Flags slice should be empty.")
+			}
+		})
+	}
+}

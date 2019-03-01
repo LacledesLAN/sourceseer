@@ -71,3 +71,13 @@ p<><><>	say
 "NAME<SLOT-NUMBER><STEAM-ID>" action
 "NAME<SLOT-NUMBER><STEAM-ID>" action "details"
 
+
+
+==========SCRAPED TOURNEY MODE STUFF==========
+
+	// Max amount of time for players to readyup for the very first map (seconds)
+	maxReadyupConnectTime = time.Minute * 7
+	// Max amount of seconds for players to readyup for knife rounds 2+
+	maxReadyUpKnifeTime = time.Minute * 3
+	// If all players not ready by this time period auto start (seconds)
+	maxReadyUpPlayTime = time.Minute * 3

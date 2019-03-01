@@ -10,6 +10,14 @@ import (
 )
 
 const (
+	defaultMpHalftime          int = 1
+	defaultMpMaxrounds         int = 30
+	defaultMpMatchRestartDelay int = 15
+	defaultMpOvertimeMaxrounds int = 6
+	defaultSvPausable          int = 0
+)
+
+const (
 	// List of valid stock map names
 	validMaps = "/ar_baggage/ar_dizzy/ar_monastery/ar_shoots/cs_agency/cs_assault/cs_italy/cs_militia/cs_office/de_austria/de_bank/de_biome/de_cache/de_canals/de_cbble/de_dust2/de_inferno/de_tinyorange/de_lake/de_mirage/de_nuke/de_overpass/de_safehouse/de_shortnuke/de_stmarc/de_subzero/de_sugarcane/de_train/"
 )
@@ -17,6 +25,36 @@ const (
 var (
 	srcdsSafeChars = regexp.MustCompile(`[^a-zA-Z0-9_-]+`)
 )
+
+// calculateSidesAreSwitched determines if sides should currently be swapped (mp_team1 is affiliated Terrorist)
+func calculateSidesAreSwitched(mpHalftime, mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound int) bool {
+	// TODO - this function needs PROPER unit tests after in-game confirmation are done
+	if mpHalftime < 0 || mpHalftime > 1 {
+		mpHalftime = defaultMpHalftime
+	}
+
+	if mpMaxRounds < 1 {
+		mpMaxRounds = defaultMpMaxrounds
+	}
+
+	if mpOvertimeMaxRounds < 1 {
+		mpOvertimeMaxRounds = defaultMpOvertimeMaxrounds
+	}
+
+	currentRound := lastCompletedRound + 1
+
+	if mpHalftime == 1 && currentRound > mpMaxRounds/2 {
+		if currentRound <= mpMaxRounds+(mpOvertimeMaxRounds/2) {
+			return true
+		}
+
+		if otNotClinchable := mpOvertimeMaxRounds%2 == 0; otNotClinchable {
+			//// TODO
+		}
+	}
+
+	return false
+}
 
 // calculateWinThreshold determines the minimum number of rounds a team needs to win to win a map given how many rounds have been completed so far
 func calculateWinThreshold(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound int) int {

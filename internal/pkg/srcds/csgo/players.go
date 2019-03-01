@@ -2,6 +2,18 @@ package csgo
 
 import "github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 
+// Player is a srcds client that is actively playing csgo
+type Player struct {
+	srcds.Client
+	flags []string
+}
+
+func playerFromSrcdsClient(c srcds.Client) Player {
+	return Player{
+		Client: c,
+		flags:  []string{}}
+}
+
 // Players is a collection of type Player
 type Players []Player
 

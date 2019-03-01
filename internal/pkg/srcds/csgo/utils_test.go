@@ -6,7 +6,36 @@ import (
 	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 )
 
-func Test_CalculateWinThreshold(t *testing.T) {
+func Test_calculateSidesAreSwitched(t *testing.T) {
+	testDatum := []struct {
+		mpHalftime          int
+		mpMaxRounds         int
+		mpOvertimeMaxRounds int
+		completedRounds     []int
+		expectedResult      bool
+	}{
+
+		// "Hasty" server settings
+		{1, 4, 3, []int{0, 1, 5, 6}, false},
+		{1, 4, 3, []int{2, 3, 4}, true},
+
+		// prevailing community tourney settings
+		{1, 30, 7, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 33, 34, 35, 36}, false},
+		{1, 30, 7, []int{15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32}, true},
+	}
+
+	for _, d := range testDatum {
+		for _, n := range d.completedRounds {
+			actual := calculateSidesAreSwitched(d.mpHalftime, d.mpMaxRounds, d.mpOvertimeMaxRounds, n)
+
+			if actual != d.expectedResult {
+				t.Errorf("With `mp_halftime = %d`, `mp_maxrounds` = `%d`, `mp_overtime_maxrounds` = `%d`, and `last completed round = %d` the team sides swapped should be: %v", d.mpHalftime, d.mpMaxRounds, d.mpOvertimeMaxRounds, n, d.expectedResult)
+			}
+		}
+	}
+}
+
+func Test_calculateWinThreshold(t *testing.T) {
 	testDatum := []struct {
 		mpMaxRounds         int
 		mpOvertimeMaxRounds int

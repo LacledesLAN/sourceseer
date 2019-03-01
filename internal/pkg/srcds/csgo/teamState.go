@@ -47,3 +47,7 @@ func (m *teamState) SetName(teamName string) {
 		m.name = "Unspecified"
 	}
 }
+
+func (m *teamState) String() string {
+	return m.name
+}
