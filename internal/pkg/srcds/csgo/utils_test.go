@@ -14,7 +14,6 @@ func Test_calculateSidesAreSwitched(t *testing.T) {
 		completedRounds     []int
 		expectedResult      bool
 	}{
-
 		// "Hasty" server settings
 		{1, 4, 3, []int{0, 1, 5, 6}, false},
 		{1, 4, 3, []int{2, 3, 4}, true},

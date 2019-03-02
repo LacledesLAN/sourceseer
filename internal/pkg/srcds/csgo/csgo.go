@@ -133,7 +133,7 @@ func (g *CSGO) GetCvarAsInt(name string) (value int, err error) {
 // New creates a CSGO server
 func New(gameMode GameMode, scenarios ...Scenario) (srcds.Game, error) {
 	game := CSGO{
-		cmdIn:    make(chan string, 9),
+		cmdIn:    make(chan string, 12),
 		cvars:    make(map[string]srcds.Cvar),
 		gameMode: gameMode,
 	}
@@ -153,7 +153,7 @@ func New(gameMode GameMode, scenarios ...Scenario) (srcds.Game, error) {
 		game.AddLaunchArg("-game csgo", "+game_type 0", "+game_mode 1")
 	}
 
-	game.AddCvarWatch("mp_halftime")
+	game.AddCvarWatch("hostname", "mp_halftime")
 	game.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart") //TODO: add "-nobots"
 
 	for _, scenario := range scenarios {
@@ -230,7 +230,7 @@ func (g *CSGO) ct() *teamState {
 	mpMaxrounds, _ := g.GetCvarAsInt("mp_maxrounds")
 	mpOvertimeMaxrounds, _ := g.GetCvarAsInt("mp_overtime_maxrounds")
 
-	if calculateSidesAreSwitched(mpHalftime, mpMaxrounds, mpOvertimeMaxrounds, g.currentMap.RoundsCompleted()) {
+	if calculateSidesAreSwitched(mpHalftime, mpMaxrounds, mpOvertimeMaxrounds, g.currentMap.roundsCompleted) {
 		return &g.currentMap.mpTeam2
 	}
 
@@ -297,7 +297,6 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 
 		teamUpdateSides, err := parseTeamSetSide(le)
 		if err == nil {
-
 			g.teamSetSide(teamUpdateSides)
 			return true
 		}
@@ -318,12 +317,16 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 			switch worldTriggered.trigger {
 			case MatchStart:
 				g.RefreshCvars()
+				g.currentMap.ResetStats()
+			case RoundEnd:
+				g.currentMap.roundsCompleted = g.currentMap.roundsCompleted + 1
 			}
 		}
 
 		return true
 	}
 
+	// Map changed
 	mapName, err := parseLoadingMap(le)
 	if err == nil {
 		g.mapChanged(mapName)
@@ -339,8 +342,8 @@ func (g *CSGO) teamScored(m TeamScored) {
 		g.ct().roundsWon = m.teamScore
 		g.terrorist().roundsLost = m.teamScore
 	case "TERRORIST":
-		g.ct().roundsLost = m.teamScore
 		g.terrorist().roundsWon = m.teamScore
+		g.ct().roundsLost = m.teamScore
 	}
 }
 
@@ -372,7 +375,7 @@ func (g *CSGO) terrorist() *teamState {
 	mpMaxrounds, _ := g.GetCvarAsInt("mp_maxrounds")
 	mpOvertimeMaxrounds, _ := g.GetCvarAsInt("mp_overtime_maxrounds")
 
-	if calculateSidesAreSwitched(mpHalftime, mpMaxrounds, mpOvertimeMaxrounds, g.currentMap.RoundsCompleted()) {
+	if calculateSidesAreSwitched(mpHalftime, mpMaxrounds, mpOvertimeMaxrounds, g.currentMap.roundsCompleted) {
 		return &g.currentMap.mpTeam1
 	}
 

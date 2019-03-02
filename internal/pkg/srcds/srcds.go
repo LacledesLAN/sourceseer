@@ -75,7 +75,7 @@ func (s *SRCDS) Start() error {
 			errLine, _ := reader.ReadString('\n')
 			errLine = strings.Trim(strings.TrimSuffix(errLine, "\n"), "")
 
-			if len(errLine) > 0 {
+			if len(errLine) > 0 && false {
 				log.Println("Standard Error:>", errLine)
 			}
 		}

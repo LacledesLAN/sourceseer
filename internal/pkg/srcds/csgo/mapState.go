@@ -7,13 +7,14 @@ import (
 )
 
 type mapState struct {
-	name       string
-	mpTeam1    teamState // Start as CT
-	mpTeam2    teamState // Start as Terrorists
-	started    time.Time
-	ended      time.Time
-	mapStarted time.Time
-	spectators srcds.Clients
+	name            string
+	mpTeam1         teamState // Start as CT
+	mpTeam2         teamState // Start as Terrorists
+	roundsCompleted int
+	started         time.Time
+	ended           time.Time
+	mapStarted      time.Time
+	spectators      srcds.Clients
 }
 
 func (m *mapState) PlayerDropped(player Player) {
@@ -21,6 +22,8 @@ func (m *mapState) PlayerDropped(player Player) {
 	m.mpTeam2.PlayerDropped(player)
 }
 
-func (m *mapState) RoundsCompleted() int {
-	return m.mpTeam1.roundsWon + m.mpTeam2.roundsWon
+func (m *mapState) ResetStats() {
+	m.mpTeam1.ResetStats()
+	m.mpTeam2.ResetStats()
+	m.roundsCompleted = 0
 }

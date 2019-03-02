@@ -25,25 +25,46 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 		g.AddCvarWatch("mp_maxrounds", "mp_match_restart_delay", "mp_overtime_maxrounds", "sv_pausable")
 		g.AddLaunchArg("+map " + mapCycle[0])
 
+		matchHistory := make([]string, len(mapCycle)+1)
 		var mpTeam1MatchWins, mpTeam2MatchWins int
+
+		gameSay := func(g *CSGO, msg string) {
+			g.cmdIn <- "say " + msg
+			g.cmdIn <- "sm_csay " + msg
+		}
+
+		setOver := func(g *CSGO, matchHistory []string) {
+			for g.cmdIn != nil {
+				for _, m := range matchHistory {
+					gameSay(g, m)
+				}
+
+				gameSay(g, "GAME OVER - TEAM CAPTAINS REPORT TO TOURNEY ADMIN")
+				time.Sleep(12 * time.Second)
+			}
+		}
 
 		g.AddLogProcessor(func(le srcds.LogEntry) (keepProcessing bool) {
 			if strings.HasPrefix(le.Message, `World triggered "Round_End"`) {
 				mpMaxrounds, _ := g.GetCvarAsInt("mp_maxrounds")
 				mpOvertimeMaxrounds, _ := g.GetCvarAsInt("mp_overtime_maxrounds")
-				matchWinThreshold := calculateWinThreshold(mpMaxrounds, mpOvertimeMaxrounds, g.currentMap.RoundsCompleted())
+				matchWinThreshold := calculateWinThreshold(mpMaxrounds, mpOvertimeMaxrounds, g.currentMap.roundsCompleted)
 
-				if g.currentMap.RoundsCompleted() >= matchWinThreshold {
+				if g.currentMap.roundsCompleted >= matchWinThreshold {
 					if g.currentMap.mpTeam1.roundsWon >= matchWinThreshold {
 						mpTeam1MatchWins = mpTeam1MatchWins + 1
-						msg := g.currentMap.mpTeam1.name + " wins the match with " + strconv.Itoa(g.currentMap.mpTeam1.roundsWon)
-						g.cmdIn <- "say " + msg
-						g.cmdIn <- "sm_csay " + msg
+						msg := g.currentMap.mpTeam1.name + ` won "` + g.currentMap.name + `" ` + strconv.Itoa(g.currentMap.mpTeam1.roundsWon) + "-" + strconv.Itoa(g.currentMap.mpTeam2.roundsWon)
+						matchHistory = append(matchHistory, msg)
+						gameSay(g, "|--------------------------|")
+						gameSay(g, msg)
+						gameSay(g, "|--------------------------|")
 					} else if g.currentMap.mpTeam2.roundsWon >= matchWinThreshold {
 						mpTeam2MatchWins = mpTeam2MatchWins + 1
-						msg := g.currentMap.mpTeam2.name + " wins the match with " + strconv.Itoa(g.currentMap.mpTeam2.roundsWon)
-						g.cmdIn <- "say " + msg
-						g.cmdIn <- "sm_csay " + msg
+						msg := g.currentMap.mpTeam2.name + ` won "` + g.currentMap.name + `" ` + strconv.Itoa(g.currentMap.mpTeam2.roundsWon) + "-" + strconv.Itoa(g.currentMap.mpTeam1.roundsWon)
+						matchHistory = append(matchHistory, msg)
+						gameSay(g, "|--------------------------|")
+						gameSay(g, msg)
+						gameSay(g, "|--------------------------|")
 					} else {
 						return true
 					}
@@ -57,32 +78,24 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 						}
 
 						if len(winningTeamName) > 0 {
-							g.cmdIn <- "say " + winningTeamName + " wins the set!"
-							g.cmdIn <- "sm_csay " + winningTeamName + " wins the set!"
+							msg := winningTeamName + " wins the set!"
+							matchHistory = append(matchHistory, msg)
 
 							if svPausable, err := g.GetCvarAsInt("sv_pausable"); err == nil && svPausable == 1 {
-								time.Sleep(6 * time.Second)
+								go setOver(g, matchHistory)
+								time.Sleep(7 * time.Second)
 								g.cmdIn <- "pause"
-								g.cmdIn <- "say GAME OVER - TEAM CAPTAINS REPORT TO TOURNEY ADMIN"
-								g.cmdIn <- "sm_csay GAME OVER - TEAM CAPTAINS REPORT TO TOURNEY ADMIN"
 							} else {
 								mpMatchRestartDelay, err := g.GetCvarAsInt("mp_match_restart_delay")
 								if err != nil {
 									mpMatchRestartDelay = defaultMpMatchRestartDelay
 								}
-								go func() {
-									for {
-										g.cmdIn <- "say GAME OVER - TEAM CAPTAINS REPORT TO TOURNEY ADMIN"
-										g.cmdIn <- "sm_csay GAME OVER - TEAM CAPTAINS REPORT TO TOURNEY ADMIN"
-										time.Sleep(8 * time.Second)
-									}
-								}()
 
-								go func() {
-									time.Sleep(time.Duration(mpMatchRestartDelay-2) * time.Second)
-									g.cmdIn <- "mp_warmup_pausetimer 1"
-									g.cmdIn <- "mp_warmup_start"
-								}()
+								go setOver(g, matchHistory)
+
+								time.Sleep(time.Duration(mpMatchRestartDelay-2) * time.Second)
+								g.cmdIn <- "mp_warmup_pausetimer 1"
+								g.cmdIn <- "mp_warmup_start"
 							}
 
 							return false
@@ -94,9 +107,9 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 						mpMatchRestartDelay = defaultMpMatchRestartDelay
 					}
 
-					go func(g *CSGO, nextLevel string) {
-						g.cmdIn <- "say NEXT LEVEL: " + nextLevel
-						g.cmdIn <- "sm_csay NEXT LEVEL: " + nextLevel
+					go func(g *CSGO, nextMap string) {
+						g.cmdIn <- "say NEXT MAP: " + nextMap
+						g.cmdIn <- "sm_csay NEXT MAP: " + nextMap
 
 						mpMatchRestartDelay = mpMatchRestartDelay - 2
 						if mpMatchRestartDelay < 0 {
@@ -104,7 +117,7 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 						}
 
 						time.Sleep(time.Duration(mpMatchRestartDelay) * time.Second)
-						g.cmdIn <- "changelevel " + nextLevel
+						g.cmdIn <- "changelevel " + nextMap
 					}(g, mapCycle[len(g.maps)])
 				}
 			}
@@ -123,13 +136,13 @@ func UseTeamNames(mpTeamname1, mpTeamname2 string) Scenario {
 	// Process mpTeamname1
 	mpTeamname1 = SanitizeTeamName(mpTeamname1)
 	if len(mpTeamname1) > 0 {
-		args = append(args, "+mp_teamname_1", mpTeamname1)
+		args = append(args, "+mp_teamname_1", `"`+mpTeamname1+`"`)
 	}
 
 	// Process mpTeamname2
 	mpTeamname2 = SanitizeTeamName(mpTeamname2)
 	if len(mpTeamname2) > 0 {
-		args = append(args, "+mp_teamname_2", mpTeamname2)
+		args = append(args, "+mp_teamname_2", `"`+mpTeamname2+`"`)
 	}
 
 	args = append(args, `+hostname "`+HostnameFromTeamNames(mpTeamname1, mpTeamname2)+`"`)

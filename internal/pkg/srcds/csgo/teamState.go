@@ -37,6 +37,11 @@ func (m *teamState) PlayerJoined(player Player) {
 	m.players.PlayerJoined(player)
 }
 
+func (m *teamState) ResetStats() {
+	m.roundsLost = 0
+	m.roundsWon = 0
+}
+
 // SetName sets the team's name
 func (m *teamState) SetName(teamName string) {
 	teamName = strings.TrimSpace(teamName)
