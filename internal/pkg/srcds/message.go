@@ -27,6 +27,12 @@ type ClientDisconnected struct {
 	Reason string
 }
 
+//Cvar represents a SRCDS cvar
+type Cvar struct {
+	LastUpdate time.Time
+	Value      string
+}
+
 //CvarValueSet is sent when srcds outputs a cvar
 type CvarValueSet struct {
 	Name  string
