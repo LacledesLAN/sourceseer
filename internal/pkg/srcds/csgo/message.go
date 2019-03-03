@@ -193,8 +193,11 @@ func parseTeamTriggered(le srcds.LogEntry) (TeamTriggered, error) {
 	}
 
 	r.ctScore, err = strconv.Atoi(result[3])
-	r.terroristScore, err = strconv.Atoi(result[4])
+	if err != nil {
+		return TeamTriggered{}, err
+	}
 
+	r.terroristScore, err = strconv.Atoi(result[4])
 	if err != nil {
 		return TeamTriggered{}, err
 	}
