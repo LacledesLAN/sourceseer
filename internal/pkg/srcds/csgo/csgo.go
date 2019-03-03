@@ -56,7 +56,7 @@ type LogEntryProcessor func(srcds.LogEntry) (keepProcessing bool)
 
 type WorldTrigger byte
 
-func (g *CSGO) AddCvarWatch(names ...string) {
+func (g *CSGO) addCvarWatch(names ...string) {
 	for _, name := range names {
 		name = strings.Trim(name, "")
 
@@ -154,7 +154,7 @@ func New(gameMode GameMode, scenarios ...Scenario) (srcds.Game, error) {
 		game.AddLaunchArg("-game csgo", "+game_type 0", "+game_mode 1")
 	}
 
-	game.AddCvarWatch("hostname", "mp_halftime")
+	game.addCvarWatch("hostname", "mp_halftime")
 	game.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart") //TODO: "-nobots"
 
 	for _, scenario := range scenarios {
@@ -173,10 +173,12 @@ func (g *CSGO) RefreshCvars() {
 	}(g)
 }
 
+//ClientConnected handles when a client connects to the CSGO server
 func (g *CSGO) ClientConnected(client srcds.Client) {
 	g.clientJoinedSpectator(client)
 }
 
+//ClientDisconnected handles when a client disconnects from the CSGO server
 func (g *CSGO) ClientDisconnected(c srcds.ClientDisconnected) {
 	g.currentMap.spectators.ClientDropped(c.Client)
 
@@ -202,20 +204,24 @@ func (g *CSGO) clientJoinedTerrorist(player srcds.Client) {
 	g.terrorist().PlayerJoined(c)
 }
 
+//CmdSender returns the text channel used to send commands to the csgo server
 func (g *CSGO) CmdSender() chan string {
 	return g.cmdIn
 }
 
+//CvarSet handles when the server outputs a cvar
 func (g *CSGO) CvarSet(name, value string) {
 	if _, found := g.cvars[name]; found {
 		g.cvars[name] = srcds.Cvar{LastUpdate: time.Now(), Value: value}
 	}
 }
 
+//LaunchArgs gets the CSGO instance's arguments
 func (g *CSGO) LaunchArgs() []string {
 	return g.launchArgs
 }
 
+//LogReceiver handles log messages sent to the CSGO server
 func (g *CSGO) LogReceiver(le srcds.LogEntry) {
 	r := g.processLogEntry(le)
 

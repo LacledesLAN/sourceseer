@@ -22,7 +22,7 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 	}
 
 	return func(g *CSGO) *CSGO {
-		g.AddCvarWatch("mp_maxrounds", "mp_match_restart_delay", "mp_overtime_maxrounds", "sv_pausable")
+		g.addCvarWatch("mp_maxrounds", "mp_match_restart_delay", "mp_overtime_maxrounds", "sv_pausable")
 		g.AddLaunchArg("+map " + mapCycle[0] + "")
 
 		matchHistory := make([]string, len(mapCycle)+1)
