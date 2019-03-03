@@ -82,7 +82,7 @@ func Test_parsePlayerSay(t *testing.T) {
 		expectedChannel PlayerSaidChannel
 		expectedMessage string
 	}{
-		{`"Malfunctioning Eddie<2><STEAM_1:1:86753090><CT>" say_team "I'm malfunctioning so badly, I'm practically giving these cars away!"`, TeamChannel, `I'm malfunctioning so badly, I'm practically giving these cars away!`},
+		{`"Malfunctioning Eddie<2><STEAM_1:1:86753090><CT>" say_team "I'm malfunctioning so badly, I'm practically giving these cars away!"`, ChannelAffiliation, `I'm malfunctioning so badly, I'm practically giving these cars away!`},
 		//{``, "", ``},
 		//{``, "", ``},
 	}

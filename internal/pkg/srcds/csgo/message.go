@@ -32,6 +32,7 @@ var (
 	worldTriggeredRegex            = regexp.MustCompile(worldTriggeredPattern)
 )
 
+//ClientSwitchedAffiliation message is sent whenever a client switches affiliation (aka teams)
 type ClientSwitchedAffiliation struct {
 	client srcds.Client
 	from   string
@@ -45,11 +46,14 @@ type PlayerSaid struct {
 	msg     string
 }
 
+//PlayerSaidChannel represents the channel in which a player sends a message
 type PlayerSaidChannel int
 
 const (
-	GlobalChannel PlayerSaidChannel = iota + 1
-	TeamChannel
+	//ChannelGlobal is seen by everyone in the csgo server
+	ChannelGlobal PlayerSaidChannel = iota + 1
+	//ChannelAffiliation is seen by anyone in the relevant team
+	ChannelAffiliation
 )
 
 // TeamScored message is sent whenever a team wins a round
@@ -129,9 +133,9 @@ func parsePlayerSay(le srcds.LogEntry) (PlayerSaid, error) {
 
 	switch strings.ToUpper(sayTokens[2]) {
 	case "SAY_TEAM":
-		r.channel = TeamChannel
+		r.channel = ChannelAffiliation
 	default:
-		r.channel = GlobalChannel
+		r.channel = ChannelGlobal
 	}
 
 	return r, nil
