@@ -154,8 +154,11 @@ func parseTeamScored(le srcds.LogEntry) (TeamScored, error) {
 	}
 
 	r.teamScore, err = strconv.Atoi(result[2])
-	r.teamPlayerCount, err = strconv.Atoi(result[3])
+	if err != nil {
+		return TeamScored{}, err
+	}
 
+	r.teamPlayerCount, err = strconv.Atoi(result[3])
 	if err != nil {
 		return TeamScored{}, err
 	}
