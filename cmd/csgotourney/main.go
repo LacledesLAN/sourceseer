@@ -41,6 +41,10 @@ func main() {
 	}
 
 	csgoTourney, err := csgo.New(csgo.ClassicCompetitive, csgo.UseTeamNames(mpTeamname1, mpTeamname2), csgo.ClinchableMapCycle(maps))
+	if err != nil {
+		fmt.Fprint(os.Stderr, "Was unable to create a CSGO instance!\n\n")
+		os.Exit(87)
+	}
 
 	var osArgs []string
 	if _, err := os.Stat("/app/srcds_run"); err == nil {
