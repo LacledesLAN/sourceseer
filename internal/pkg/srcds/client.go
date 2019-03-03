@@ -52,6 +52,7 @@ func IsBot(m *Client) bool {
 	return false
 }
 
+//ClientDropped handles when a client drops from srcds
 func (m *Clients) ClientDropped(client Client) {
 	i := m.clientIndex(client)
 
@@ -77,12 +78,14 @@ func (m Clients) clientIndex(client Client) int {
 	return -1
 }
 
+//ClientJoined handles when a client connects to srcds
 func (m *Clients) ClientJoined(client Client) {
 	if !m.HasClient(client) {
 		*m = append(*m, client)
 	}
 }
 
+//HasClient determines when a client exists
 func (m Clients) HasClient(client Client) bool {
 	return m.clientIndex(client) > -1
 }

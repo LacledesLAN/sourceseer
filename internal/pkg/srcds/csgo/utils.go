@@ -18,7 +18,7 @@ const (
 )
 
 const (
-	maxTeamNameLength int = 31
+	maxTeamNameLength = 31
 	// List of valid stock map names
 	validMaps = "/ar_baggage/ar_dizzy/ar_monastery/ar_shoots/cs_agency/cs_assault/cs_italy/cs_militia/cs_office/de_austria/de_bank/de_biome/de_cache/de_canals/de_cbble/de_dust2/de_inferno/de_tinyorange/de_lake/de_lltest/de_mirage/de_nuke/de_overpass/de_safehouse/de_shortnuke/de_stmarc/de_subzero/de_sugarcane/de_train/"
 )
@@ -134,8 +134,8 @@ func SanitizeTeamName(s string) string {
 	s = strings.Join(strings.Fields(strings.TrimSpace(s)), "_")
 	s = srcdsSafeChars.ReplaceAllString(s, "")
 
-	if len(s) > 32 {
-		return s[:28] + "..." + s[len(s)-1:]
+	if len(s) > maxTeamNameLength {
+		return s[:maxTeamNameLength-3] + "..." + s[len(s)-1:]
 	}
 
 	return s
