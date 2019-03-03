@@ -21,11 +21,13 @@ var (
 	serverCvarSetRegex      = regexp.MustCompile(serverCvarSetPattern)
 )
 
+//ClientDisconnected is sent when a client disconnects from srcds
 type ClientDisconnected struct {
 	Client Client
 	Reason string
 }
 
+//CvarValueSet is sent when srcds outputs a cvar
 type CvarValueSet struct {
 	Name  string
 	Value string
@@ -73,6 +75,7 @@ func parseClientDisconnected(le LogEntry) (ClientDisconnected, error) {
 	}, nil
 }
 
+//ParseCvarValueSet parse when srcds outputs a cvar
 func ParseCvarValueSet(s string) (CvarValueSet, error) {
 	if strings.HasPrefix(s, `"`) {
 		r := serverCvarEchoRegex.FindStringSubmatch(s)
