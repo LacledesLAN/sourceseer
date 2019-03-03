@@ -37,15 +37,15 @@ const (
 
 // CSGO represents the state of a CSGO server
 type CSGO struct {
-	cmdIn              chan string
-	currentMap         *mapState
-	cvars              map[string]srcds.Cvar
-	gameMode           GameMode
-	launchArgs         []string
-	logProcessorStack  LogEntryProcessor
-	maps               []mapState
-	defaultMpTeamname1 string // needed hack for warmod :/
-	defaultMpTeamname2 string // needed hack for warmod :/
+	cmdIn                   chan string
+	currentMap              *mapState
+	cvars                   map[string]srcds.Cvar
+	gameMode                GameMode
+	launchArgs              []string
+	logProcessorStack       LogEntryProcessor
+	maps                    []mapState
+	teamAssignedToCT        string
+	teamAssignedToTerrorist string
 }
 
 // GameMode determines the rulesets used by a CSGO server.
@@ -134,9 +134,11 @@ func (g *CSGO) GetCvarAsInt(name string) (value int, err error) {
 // New creates a CSGO server
 func New(gameMode GameMode, scenarios ...Scenario) (srcds.Game, error) {
 	game := CSGO{
-		cmdIn:    make(chan string, 12),
-		cvars:    make(map[string]srcds.Cvar),
-		gameMode: gameMode,
+		cmdIn:                   make(chan string, 12),
+		cvars:                   make(map[string]srcds.Cvar),
+		gameMode:                gameMode,
+		teamAssignedToCT:        SanitizeTeamName("Gotham Rogues"),
+		teamAssignedToTerrorist: SanitizeTeamName("Average Joe's"),
 	}
 
 	switch gameMode {
@@ -245,6 +247,11 @@ func (g *CSGO) ct() *teamState {
 }
 
 func (g *CSGO) mapChanged(mapName string) {
+	//workaround for when server has to generate .nav files
+	if g.currentMap != nil && g.currentMap.mpTeam1.roundsWon+g.currentMap.mpTeam1.roundsLost == 0 {
+		return
+	}
+
 	i := len(g.maps)
 
 	if i > 0 {
@@ -253,11 +260,11 @@ func (g *CSGO) mapChanged(mapName string) {
 
 	g.maps = append(g.maps, mapState{
 		mpTeam1: teamState{
-			name:    g.defaultMpTeamname1,
+			name:    g.teamAssignedToCT,
 			players: Players{},
 		},
 		mpTeam2: teamState{
-			name:    g.defaultMpTeamname2,
+			name:    g.teamAssignedToTerrorist,
 			players: Players{},
 		},
 		name:    mapName,
@@ -345,12 +352,12 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 	if strings.HasPrefix(le.Message, "[WarMod_BFG]") {
 		// WarMod drops teamnames during the LO3 before knife fights
 		if strings.Contains(le.Message, `, "event": "knife_round_start",`) {
-			if len(g.defaultMpTeamname1) > 0 {
-				g.cmdIn <- "mp_teamname_1 " + g.defaultMpTeamname1
+			if len(g.teamAssignedToCT) > 0 {
+				g.cmdIn <- "mp_teamname_1 " + g.teamAssignedToCT
 			}
 
-			if len(g.defaultMpTeamname2) > 0 {
-				g.cmdIn <- "mp_teamname_2 " + g.defaultMpTeamname2
+			if len(g.teamAssignedToTerrorist) > 0 {
+				g.cmdIn <- "mp_teamname_2 " + g.teamAssignedToTerrorist
 			}
 		}
 	}
@@ -359,8 +366,8 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 	mapName, err := parseLoadingMap(le)
 	if err == nil {
 		g.mapChanged(mapName)
-		g.cmdIn <- "mp_teamname_1 " + g.defaultMpTeamname1
-		g.cmdIn <- "mp_teamname_2 " + g.defaultMpTeamname2
+		g.cmdIn <- "mp_teamname_1 " + g.teamAssignedToCT
+		g.cmdIn <- "mp_teamname_2 " + g.teamAssignedToTerrorist
 		return true
 	}
 
