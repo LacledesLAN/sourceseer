@@ -23,10 +23,9 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 
 	return func(g *CSGO) *CSGO {
 		g.AddCvarWatch("mp_maxrounds", "mp_match_restart_delay", "mp_overtime_maxrounds", "sv_pausable")
-		g.AddLaunchArg("+map " + mapCycle[0])
+		g.AddLaunchArg("+map " + mapCycle[0] + "")
 
 		matchHistory := make([]string, len(mapCycle)+1)
-		var mpTeam1MatchWins, mpTeam2MatchWins int
 
 		gameSay := func(g *CSGO, msg string) {
 			g.cmdIn <- "say " + msg
@@ -52,14 +51,12 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 
 				if g.currentMap.roundsCompleted >= matchWinThreshold {
 					if g.currentMap.mpTeam1.roundsWon >= matchWinThreshold {
-						mpTeam1MatchWins = mpTeam1MatchWins + 1
 						msg := g.currentMap.mpTeam1.name + ` won "` + g.currentMap.name + `" ` + strconv.Itoa(g.currentMap.mpTeam1.roundsWon) + "-" + strconv.Itoa(g.currentMap.mpTeam2.roundsWon)
 						matchHistory = append(matchHistory, msg)
 						gameSay(g, "|--------------------------|")
 						gameSay(g, msg)
 						gameSay(g, "|--------------------------|")
 					} else if g.currentMap.mpTeam2.roundsWon >= matchWinThreshold {
-						mpTeam2MatchWins = mpTeam2MatchWins + 1
 						msg := g.currentMap.mpTeam2.name + ` won "` + g.currentMap.name + `" ` + strconv.Itoa(g.currentMap.mpTeam2.roundsWon) + "-" + strconv.Itoa(g.currentMap.mpTeam1.roundsWon)
 						matchHistory = append(matchHistory, msg)
 						gameSay(g, "|--------------------------|")
@@ -70,7 +67,18 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 					}
 
 					if setWinThreshold := (len(mapCycle) / 2) + 1; len(g.maps) >= setWinThreshold {
-						var winningTeamName string
+						var mpTeam1MatchWins, mpTeam2MatchWins int
+
+						for _, m := range g.maps {
+							// TODO - need a better tracking mechanism
+							if m.mpTeam1.roundsWon > m.mpTeam2.roundsWon && m.mpTeam1.name == g.defaultMpTeamname1 {
+								mpTeam1MatchWins = mpTeam1MatchWins + 1
+							} else {
+								mpTeam2MatchWins = mpTeam2MatchWins + 1
+							}
+						}
+
+						winningTeamName := ""
 						if mpTeam1MatchWins >= setWinThreshold {
 							winningTeamName = g.currentMap.mpTeam1.name
 						} else if mpTeam2MatchWins >= setWinThreshold {
@@ -145,10 +153,16 @@ func UseTeamNames(mpTeamname1, mpTeamname2 string) Scenario {
 		args = append(args, "+mp_teamname_2", `"`+mpTeamname2+`"`)
 	}
 
+	if strings.ToLower(mpTeamname1) == strings.ToLower(mpTeamname2) {
+		panic("team names cannot be the same")
+	}
+
 	args = append(args, `+hostname "`+HostnameFromTeamNames(mpTeamname1, mpTeamname2)+`"`)
 
 	return func(g *CSGO) *CSGO {
 		g.AddLaunchArg(args...)
+		g.defaultMpTeamname1 = mpTeamname1
+		g.defaultMpTeamname2 = mpTeamname2
 
 		return g
 	}

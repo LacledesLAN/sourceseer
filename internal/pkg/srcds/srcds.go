@@ -62,7 +62,7 @@ func New(srcdsGame Game, osArgs []string) (SRCDS, error) {
 func (s *SRCDS) Start() error {
 	s.AddLaunchArg(s.game.LaunchArgs()...)
 
-	srcdsProcess := exec.Command(s.launchArgs[0], s.launchArgs[1:len(s.launchArgs)-1]...)
+	srcdsProcess := exec.Command(s.launchArgs[0], s.launchArgs[1:len(s.launchArgs)]...)
 
 	// link standard error
 	stdErr, err := srcdsProcess.StderrPipe()

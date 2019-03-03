@@ -37,14 +37,15 @@ const (
 
 // CSGO represents the state of a CSGO server
 type CSGO struct {
-	cmdIn             chan string
-	currentMap        *mapState
-	cvars             map[string]srcds.Cvar
-	gameMode          GameMode
-	launchArgs        []string
-	logProcessorStack LogEntryProcessor
-	maps              []mapState
-	Srcds             *srcds.SRCDS //todo; make private
+	cmdIn              chan string
+	currentMap         *mapState
+	cvars              map[string]srcds.Cvar
+	gameMode           GameMode
+	launchArgs         []string
+	logProcessorStack  LogEntryProcessor
+	maps               []mapState
+	defaultMpTeamname1 string // needed hack for warmod :/
+	defaultMpTeamname2 string // needed hack for warmod :/
 }
 
 // GameMode determines the rulesets used by a CSGO server.
@@ -154,7 +155,7 @@ func New(gameMode GameMode, scenarios ...Scenario) (srcds.Game, error) {
 	}
 
 	game.AddCvarWatch("hostname", "mp_halftime")
-	game.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart") //TODO: add "-nobots"
+	game.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart") //TODO: "-nobots"
 
 	for _, scenario := range scenarios {
 		game = *scenario(&game)
@@ -245,6 +246,14 @@ func (g *CSGO) mapChanged(mapName string) {
 	}
 
 	g.maps = append(g.maps, mapState{
+		mpTeam1: teamState{
+			name:    g.defaultMpTeamname1,
+			players: Players{},
+		},
+		mpTeam2: teamState{
+			name:    g.defaultMpTeamname2,
+			players: Players{},
+		},
 		name:    mapName,
 		started: time.Now()},
 	)
@@ -326,10 +335,26 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 		return true
 	}
 
+	// WarMod Hacks ¯\_ಠ_ಠ_/¯
+	if strings.HasPrefix(le.Message, "[WarMod_BFG]") {
+		// WarMod drops teamnames during the LO3 before knife fights
+		if strings.Contains(le.Message, `, "event": "knife_round_start",`) {
+			if len(g.defaultMpTeamname1) > 0 {
+				g.cmdIn <- "mp_teamname_1 " + g.defaultMpTeamname1
+			}
+
+			if len(g.defaultMpTeamname2) > 0 {
+				g.cmdIn <- "mp_teamname_2 " + g.defaultMpTeamname2
+			}
+		}
+	}
+
 	// Map changed
 	mapName, err := parseLoadingMap(le)
 	if err == nil {
 		g.mapChanged(mapName)
+		g.cmdIn <- "mp_teamname_1 " + g.defaultMpTeamname1
+		g.cmdIn <- "mp_teamname_2 " + g.defaultMpTeamname2
 		return true
 	}
 

@@ -51,7 +51,8 @@ func main() {
 			osArgs = append(osArgs, "powershell.exe", "-NonInteractive", "-Command")
 		}
 
-		osArgs = append(osArgs, "docker", "run", "-i", "--rm", "-p 27015:27015", "-p 27015:27015/udp", "lacledeslan/gamesvr-csgo-warmod:hasty", "./srcds_run")
+		osArgs = append(osArgs, "docker", "run", "-i", "--rm", "--net=host", "lacledeslan/gamesvr-csgo-warmod:hasty", "./srcds_run")
+		//osArgs = append(osArgs, "docker", "run", "-i", "--rm", "-p 27015:27015", "-p 27015:27015/udp", "lacledeslan/gamesvr-csgo-warmod:hasty", "./srcds_run")
 	}
 
 	//lltest/gamesvr-csgo-tourney

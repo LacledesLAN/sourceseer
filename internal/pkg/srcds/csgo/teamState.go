@@ -3,15 +3,13 @@ package csgo
 import (
 	"math"
 	"strings"
-	"time"
 )
 
 type teamState struct {
-	players        Players
-	name           string
-	pausedTimeUsed time.Duration
-	roundsLost     int
-	roundsWon      int
+	players    Players
+	name       string
+	roundsLost int
+	roundsWon  int
 }
 
 func (m *teamState) HasPlayer(player Player) bool {
