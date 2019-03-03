@@ -26,7 +26,7 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 		panic(err)
 	}
 
-	fmt.Printf("Using clinchable map cycle: %v\n", mapCycle)
+	fmt.Printf("Will be using clinchable map cycle: %v\n", mapCycle)
 
 	return func(g *CSGO) *CSGO {
 		g.addCvarWatch("mp_maxrounds", "mp_match_restart_delay", "mp_overtime_maxrounds", "sv_pausable")
@@ -34,19 +34,13 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 
 		matchHistory := []string{}
 
-		gameSay := func(g *CSGO, msg string) {
-			g.cmdIn <- "say " + msg
-			g.cmdIn <- "sm_csay " + msg
-		}
-
 		setOver := func(g *CSGO, matchHistory []string) {
 			for g.cmdIn != nil {
-				for _, m := range matchHistory {
-					gameSay(g, m)
-				}
-
-				gameSay(g, "GAME OVER - TEAM CAPTAINS REPORT TO TOURNEY ADMIN")
+				g.say("GAME OVER - TEAM CAPTAINS REPORT TO TOURNEY ADMIN", false)
 				time.Sleep(12 * time.Second)
+				for _, m := range matchHistory {
+					g.say(m, false)
+				}
 			}
 		}
 
@@ -60,22 +54,23 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 					if g.currentMap.mpTeam1.roundsWon >= matchWinThreshold {
 						msg := buildMatchWonMessage(g.currentMap.mpTeam1, g.currentMap.name, len(matchHistory)+1)
 						matchHistory = append(matchHistory, msg)
-						gameSay(g, "|--------------------------|")
-						gameSay(g, msg)
-						gameSay(g, "|--------------------------|")
 					} else if g.currentMap.mpTeam2.roundsWon >= matchWinThreshold {
 						msg := buildMatchWonMessage(g.currentMap.mpTeam2, g.currentMap.name, len(matchHistory)+1)
 						matchHistory = append(matchHistory, msg)
-						gameSay(g, "|--------------------------|")
-						gameSay(g, msg)
-						gameSay(g, "|--------------------------|")
+
 					} else {
 						return true
 					}
 
+					g.say("|--------------------------|", false)
+					for i, m := range matchHistory {
+						g.say(m, i-1 == len(matchHistory))
+					}
+					g.say("|--------------------------|", false)
+
 					fmt.Printf("Match %v on map %q has ended.\n", len(matchHistory)+1, g.currentMap.name)
-					fmt.Printf("mpTeam1 %q - %v rounds won, %v rounds lost\n", g.currentMap.mpTeam1.name, g.currentMap.mpTeam1.roundsWon, g.currentMap.mpTeam1.roundsLost)
-					fmt.Printf("mpTeam2 %q - %v rounds won, %v rounds lost\n", g.currentMap.mpTeam2.name, g.currentMap.mpTeam2.roundsWon, g.currentMap.mpTeam2.roundsLost)
+					fmt.Printf("mp_team_1 %q - won %v rounds and lost %v rounds.\n", g.currentMap.mpTeam1.name, g.currentMap.mpTeam1.roundsWon, g.currentMap.mpTeam1.roundsLost)
+					fmt.Printf("mp_team_2 %q - won %v rounds and lost %v rounds.\n", g.currentMap.mpTeam2.name, g.currentMap.mpTeam2.roundsWon, g.currentMap.mpTeam2.roundsLost)
 
 					if setWinThreshold := (len(mapCycle) / 2) + 1; len(matchHistory) >= setWinThreshold {
 						var teamAssignedToCTwins, teamAssignedToTerroristWins int

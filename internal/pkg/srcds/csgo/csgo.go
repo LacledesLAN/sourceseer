@@ -2,6 +2,7 @@ package csgo
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
 	"time"
@@ -173,6 +174,15 @@ func (g *CSGO) RefreshCvars() {
 			g.cmdIn <- name
 		}
 	}(g)
+}
+
+func (g *CSGO) say(msg string, sendToLogging bool) {
+	g.cmdIn <- "say " + msg
+	g.cmdIn <- "sm_csay " + msg
+
+	if sendToLogging {
+		fmt.Println(msg)
+	}
 }
 
 //ClientConnected handles when a client connects to the CSGO server

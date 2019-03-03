@@ -34,6 +34,11 @@ func main() {
 		os.Exit(87)
 	}
 
+	if strings.ToLower(mpTeamname1) == strings.ToLower(mpTeamname2) {
+		fmt.Fprint(os.Stderr, "Both team names cannot be the same!\n\n")
+		os.Exit(87)
+	}
+
 	if l := len(maps); l == 0 || l%2 == 0 {
 		fmt.Fprint(os.Stderr, "A positive, odd-number of maps must be provided!\n\n")
 		fmt.Fprint(os.Stderr, "\tExample: -mp_teamname_1 red -mp_teamname_2 blu de_inferno de_biome de_inferno\n\n")
