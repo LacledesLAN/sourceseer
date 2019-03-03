@@ -1,5 +1,7 @@
 # Sourceseer
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/LacledesLAN/sourceseer)](https://goreportcard.com/report/github.com/LacledesLAN/sourceseer)
+
 [Sourceseer](https://github.com/LacledesLAN/sourceseer) is an ["wrapper"](https://en.wikipedia.org/wiki/Wrapper_library) around an executing [source dedicated server](https://developer.valvesoftware.com/wiki/Source_Dedicated_Server) instance allowing us to monitor and manipulating its state.
 
 **We consider this project an unproven experiment at this time.**
