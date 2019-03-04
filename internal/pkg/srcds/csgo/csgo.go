@@ -181,7 +181,7 @@ func (g *CSGO) say(msg string, sendToLogging bool) {
 	g.cmdIn <- "sm_csay " + msg
 
 	if sendToLogging {
-		fmt.Println(msg)
+		fmt.Println("[SOURCESEER]", msg)
 	}
 }
 
@@ -329,7 +329,16 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 
 		teamUpdateSides, err := parseTeamSetSide(le)
 		if err == nil {
+			pre1 := g.currentMap.mpTeam1.name
+			pre2 := g.currentMap.mpTeam2.name
 			g.teamSetSide(teamUpdateSides)
+			post1 := g.currentMap.mpTeam1.name
+			post2 := g.currentMap.mpTeam2.name
+
+			if pre1 != post1 || pre2 != post2 {
+				fmt.Println(le.Message)
+			}
+
 			return true
 		}
 
@@ -361,7 +370,7 @@ func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
 	// WarMod Hacks ¯\_ಠ_ಠ_/¯
 	if strings.HasPrefix(le.Message, "[WarMod_BFG]") {
 		// WarMod drops teamnames during the LO3 before knife fights
-		if strings.Contains(le.Message, `, "event": "knife_round_start",`) {
+		if strings.Contains(le.Message, `", "event": "knife_round_`) {
 			if len(g.teamAssignedToCT) > 0 {
 				g.cmdIn <- "mp_teamname_1 " + g.teamAssignedToCT
 			}
@@ -397,20 +406,19 @@ func (g *CSGO) teamScored(m TeamScored) {
 
 func (g *CSGO) teamSetSide(m TeamSideSet) {
 	mpSwapTeams := func() {
-		// swap teams
 		t := g.currentMap.mpTeam1
 		g.currentMap.mpTeam1 = g.currentMap.mpTeam2
 		g.currentMap.mpTeam2 = t
 	}
 
 	if m.teamAffiliation == "CT" {
-		if len(m.teamName) > 0 && m.teamName == g.terrorist().name {
+		if g.terrorist().name == m.teamName {
 			mpSwapTeams()
 		} else {
 			g.ct().SetName(m.teamName)
 		}
 	} else if m.teamAffiliation == "TERRORIST" {
-		if len(m.teamName) > 0 && m.teamName == g.ct().name {
+		if g.ct().name == m.teamName {
 			mpSwapTeams()
 		} else {
 			g.terrorist().SetName(m.teamName)

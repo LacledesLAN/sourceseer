@@ -12,23 +12,31 @@ import (
 )
 
 var (
-	ctName = flag.String("mp_teamname_1", "", "The name of the team starting on CT")
-	tName  = flag.String("mp_teamname_2", "", "The name of the team starting on Terrorist")
+	bracket = flag.String("bracket", "", "The tournament bracket this server is for")
+	ctName  = flag.String("mp_teamname_1", "", "The name of the team that will select CT on connection")
+	tName   = flag.String("mp_teamname_2", "", "The name of the team that will select Terrorist on connection")
 )
 
 func main() {
 	flag.Parse()
 	maps := flag.Args()
 
+	tourneyBracket := strings.TrimSpace(*bracket)
+	if len(tourneyBracket) == 0 {
+		fmt.Fprint(os.Stderr, "Argument bracket must be provided!\n\n")
+		fmt.Fprint(os.Stderr, "\tExample: -bracket 12B\n\n")
+		os.Exit(87)
+	}
+
 	mpTeamname1 := strings.TrimSpace(*ctName)
-	if len(strings.TrimSpace(mpTeamname1)) == 0 {
+	if len(mpTeamname1) == 0 {
 		fmt.Fprint(os.Stderr, "Argument mp_teamname_1 must be provided!\n\n")
 		fmt.Fprint(os.Stderr, "\tExample: -mp_teamname_1 red\n\n")
 		os.Exit(87)
 	}
 
 	mpTeamname2 := strings.TrimSpace(*tName)
-	if len(strings.TrimSpace(mpTeamname2)) == 0 {
+	if len(mpTeamname2) == 0 {
 		fmt.Fprint(os.Stderr, "Argument mp_teamname_2 must be provided!\n\n")
 		fmt.Fprint(os.Stderr, "\tExample: -mp_teamname_2 blu\n\n")
 		os.Exit(87)
@@ -63,9 +71,6 @@ func main() {
 		osArgs = append(osArgs, "docker", "run", "-i", "--rm", "--net=host", "lacledeslan/gamesvr-csgo-warmod:hasty", "./srcds_run")
 		//osArgs = append(osArgs, "docker", "run", "-i", "--rm", "-p 27015:27015", "-p 27015:27015/udp", "lacledeslan/gamesvr-csgo-warmod:hasty", "./srcds_run")
 	}
-
-	//lltest/gamesvr-csgo-tourney
-	//lacledeslan/gamesvr-csgo-warmod:hasty
 
 	server, err := srcds.New(csgoTourney, osArgs)
 

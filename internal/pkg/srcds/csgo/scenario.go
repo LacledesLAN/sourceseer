@@ -12,6 +12,10 @@ import (
 //Scenario represents a set of behaviors and rules to add to a CSGO server.
 type Scenario func(*CSGO) *CSGO
 
+func buildSetWonMessage(winningTeamName string, matchesWon, matchesLost int) string {
+	return winningTeamName + " won the set (" + strconv.Itoa(matchesWon) + "-" + strconv.Itoa(matchesLost) + ")!"
+}
+
 func buildMatchWonMessage(winningTeam teamState, mapName string, matchNumber int) string {
 	return winningTeam.name + " won match " + strconv.Itoa(matchNumber) + ` on "` + mapName + `" ` + strconv.Itoa(winningTeam.roundsWon) + "-" + strconv.Itoa(winningTeam.roundsLost)
 }
@@ -26,7 +30,7 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 		panic(err)
 	}
 
-	fmt.Printf("Will be using clinchable map cycle: %v\n", mapCycle)
+	fmt.Printf("[SOURCESEER] Will be using clinchable map cycle: %v\n", mapCycle)
 
 	return func(g *CSGO) *CSGO {
 		g.addCvarWatch("mp_maxrounds", "mp_match_restart_delay", "mp_overtime_maxrounds", "sv_pausable")
@@ -57,7 +61,6 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 					} else if g.currentMap.mpTeam2.roundsWon >= matchWinThreshold {
 						msg := buildMatchWonMessage(g.currentMap.mpTeam2, g.currentMap.name, len(matchHistory)+1)
 						matchHistory = append(matchHistory, msg)
-
 					} else {
 						return true
 					}
@@ -68,9 +71,9 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 					}
 					g.say("|--------------------------|", false)
 
-					fmt.Printf("Match %v on map %q has ended.\n", len(matchHistory)+1, g.currentMap.name)
-					fmt.Printf("mp_team_1 %q - won %v rounds and lost %v rounds.\n", g.currentMap.mpTeam1.name, g.currentMap.mpTeam1.roundsWon, g.currentMap.mpTeam1.roundsLost)
-					fmt.Printf("mp_team_2 %q - won %v rounds and lost %v rounds.\n", g.currentMap.mpTeam2.name, g.currentMap.mpTeam2.roundsWon, g.currentMap.mpTeam2.roundsLost)
+					fmt.Printf("[SOURCESEER] Match %v on map %q has ended.\n", len(matchHistory), g.currentMap.name)
+					fmt.Printf("[SOURCESEER] mp_team_1 %q - won %v rounds and lost %v rounds.\n", g.currentMap.mpTeam1.name, g.currentMap.mpTeam1.roundsWon, g.currentMap.mpTeam1.roundsLost)
+					fmt.Printf("[SOURCESEER] mp_team_2 %q - won %v rounds and lost %v rounds.\n", g.currentMap.mpTeam2.name, g.currentMap.mpTeam2.roundsWon, g.currentMap.mpTeam2.roundsLost)
 
 					if setWinThreshold := (len(mapCycle) / 2) + 1; len(matchHistory) >= setWinThreshold {
 						var teamAssignedToCTwins, teamAssignedToTerroristWins int
@@ -91,16 +94,15 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 							}
 						}
 
-						setWinningTeam := ""
+						setWonMsg := ""
 						if teamAssignedToCTwins >= setWinThreshold {
-							setWinningTeam = g.currentMap.mpTeam1.name
+							setWonMsg = buildSetWonMessage(g.teamAssignedToCT, teamAssignedToCTwins, teamAssignedToTerroristWins)
 						} else if teamAssignedToTerroristWins >= setWinThreshold {
-							setWinningTeam = g.currentMap.mpTeam2.name
+							setWonMsg = buildSetWonMessage(g.teamAssignedToTerrorist, teamAssignedToTerroristWins, teamAssignedToCTwins)
 						}
 
-						if len(setWinningTeam) > 0 {
-							msg := setWinningTeam + " wins the set!"
-							matchHistory = append(matchHistory, msg)
+						if len(setWonMsg) > 0 {
+							matchHistory = append(matchHistory, setWonMsg)
 
 							if svPausable, err := g.GetCvarAsInt("sv_pausable"); err == nil && svPausable == 1 {
 								go setOver(g, matchHistory)
@@ -129,8 +131,7 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 					}
 
 					go func(g *CSGO, nextMap string) {
-						g.cmdIn <- "say NEXT MAP: " + nextMap
-						g.cmdIn <- "sm_csay NEXT MAP: " + nextMap
+						g.say("NEXT MAP: "+nextMap, true)
 
 						mpMatchRestartDelay = mpMatchRestartDelay - 2
 						if mpMatchRestartDelay < 0 {
@@ -170,7 +171,9 @@ func UseTeamNames(mpTeamname1, mpTeamname2 string) Scenario {
 		panic("team names cannot be the same")
 	}
 
-	args = append(args, `+hostname "`+HostnameFromTeamNames(mpTeamname1, mpTeamname2)+`"`)
+	hostname := HostnameFromTeamNames(mpTeamname1, mpTeamname2)
+	args = append(args, `+hostname "`+hostname+`"`)
+	args = append(args, `+tv_name zCSGO-TV-"`+hostname+`"`)
 
 	return func(g *CSGO) *CSGO {
 		g.AddLaunchArg(args...)

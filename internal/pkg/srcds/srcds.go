@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"os/exec"
 	"strings"
@@ -14,8 +13,13 @@ import (
 
 const (
 	// MaxHostnameLength for all SRCDS servers
-	MaxHostnameLength int    = 28
-	srcdsTimeLayout   string = "1/2/2006 - 15:04:05"
+	MaxHostnameLength int = 28
+
+	optionEchoSRCDSCvar  bool   = false
+	optionEchoSRCDSError bool   = true
+	optionEchoSRCDSLog   bool   = true
+	optionEchoSRCDSOther bool   = true
+	srcdsTimeLayout      string = "1/2/2006 - 15:04:05"
 )
 
 // SRCDS represents a source dedicated server
@@ -75,8 +79,8 @@ func (s *SRCDS) Start() error {
 			errLine, _ := reader.ReadString('\n')
 			errLine = strings.Trim(strings.TrimSuffix(errLine, "\n"), "")
 
-			if len(errLine) > 0 && false {
-				log.Println("Standard Error:>", errLine)
+			if len(errLine) > 0 && optionEchoSRCDSError {
+				fmt.Println("[SRCDS ERR ]", errLine)
 			}
 		}
 	}(bufio.NewReader(stdErr))
@@ -97,10 +101,19 @@ func (s *SRCDS) Start() error {
 
 				if err == nil {
 					s.processLogEntry(le)
+					if optionEchoSRCDSLog {
+						fmt.Println("[SRCDS LOG ]", le.Message)
+					}
 				} else if cvarSet, err := ParseCvarValueSet(outLine); err == nil {
 					s.game.CvarSet(cvarSet.Name, cvarSet.Value)
+
+					if optionEchoSRCDSCvar {
+						fmt.Println("[SRCDS CVAR]", outLine)
+					}
 				} else {
-					//fmt.Println("(skipped: ", outLine, ")")
+					if optionEchoSRCDSOther {
+						fmt.Println("[SRCDS     ]", outLine)
+					}
 				}
 			}
 		}
@@ -145,7 +158,8 @@ func (s *SRCDS) Start() error {
 	}()
 
 	// Start SRCDS
-	fmt.Println("Starting srcds using", s.launchArgs)
+	fmt.Print("\n\n/======================================================================================\\\n")
+	fmt.Print("[SOURCESEER] Starting using", s.launchArgs, "\n\n")
 
 	s.started = time.Now()
 	err = srcdsProcess.Start()
