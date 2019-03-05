@@ -6,7 +6,7 @@
 
 **We consider this project an unproven experiment at this time.**
 
-## Why
+## Motivation
 
 We run all of our [game servers in Docker containers](https://github.com/LacledesLAN/README.1ST/blob/master/GameServers/DockerAndGameServers.md). By using golang we can compile sourceseer to a single binary (for either linux or windows) and include it inside of our Docker images.
 
