@@ -6,6 +6,7 @@ import (
 	"os"
 	"runtime"
 	"strings"
+	"time"
 
 	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 	"github.com/lacledeslan/sourceseer/internal/pkg/srcds/csgo"
@@ -92,13 +93,17 @@ func main() {
 	if _, err := os.Stat("/app/srcds_run"); err == nil {
 		osArgs = []string{"/app/srcds_run"} // we're inside docker
 	} else {
+		for i := 5; i >= 0; i-- {
+			time.Sleep(4 * time.Second)
+			fmt.Println("RUNNING LOCAL IN", i)
+		}
+
 		switch os := runtime.GOOS; os {
 		case "windows":
 			osArgs = append(osArgs, "powershell.exe", "-NonInteractive", "-Command")
 		}
 
-		osArgs = append(osArgs, "docker", "run", "-i", "--rm", "--net=host", "lacledeslan/gamesvr-csgo-warmod:hasty", "./srcds_run")
-		//osArgs = append(osArgs, "docker", "run", "-i", "--rm", "-p 27015:27015", "-p 27015:27015/udp", "lacledeslan/gamesvr-csgo-warmod:hasty", "./srcds_run")
+		osArgs = append(osArgs, "docker", "run", "-i", "--rm", "--net=host", `--entrypoint "/bin/bash"`, "lacledeslan/gamesvr-csgo-tourney:hasty", "/app/srcds_run")
 	}
 
 	server, err := srcds.New(csgoTourney, osArgs)

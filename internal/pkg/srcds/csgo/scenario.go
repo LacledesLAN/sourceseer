@@ -173,7 +173,7 @@ func UseTeamNames(mpTeamname1, mpTeamname2 string) Scenario {
 
 	hostname := HostnameFromTeamNames(mpTeamname1, mpTeamname2)
 	args = append(args, `+hostname "`+hostname+`"`)
-	args = append(args, `+tv_name zCSGO-TV-"`+hostname+`"`)
+	args = append(args, `+tv_name zGO-TV-"`+hostname+`"`)
 
 	return func(g *CSGO) *CSGO {
 		g.AddLaunchArg(args...)
