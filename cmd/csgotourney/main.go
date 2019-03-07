@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -10,6 +11,11 @@ import (
 
 	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 	"github.com/lacledeslan/sourceseer/internal/pkg/srcds/csgo"
+)
+
+const (
+	lacledesMaps = "/de_lltest/de_tinyorange/poolday/"
+	stockMaps    = "/ar_baggage/ar_dizzy/ar_monastery/ar_shoots/cs_agency/cs_assault/cs_italy/cs_militia/cs_office/de_austria/de_bank/de_biome/de_cache/de_canals/de_cbble/de_dust2/de_inferno/de_lake/de_mirage/de_nuke/de_overpass/de_safehouse/de_shortnuke/de_stmarc/de_subzero/de_sugarcane/de_train/"
 )
 
 var (
@@ -23,7 +29,6 @@ var (
 
 func main() {
 	flag.Parse()
-	maps := flag.Args()
 
 	tourneyBracket := strings.TrimSpace(*bracket)
 	if len(tourneyBracket) == 0 {
@@ -75,6 +80,7 @@ func main() {
 	}
 	tvPassword = `+tv_password "` + tvPassword + ` " +tv_relaypassword "` + tvPassword + `"`
 
+	maps := flag.Args()
 	if l := len(maps); l == 0 || l%2 == 0 {
 		fmt.Fprint(os.Stderr, "A positive, odd-number of maps must be provided!\n\n")
 		fmt.Fprint(os.Stderr, "\tExample: -mp_teamname_1 red -mp_teamname_2 blu de_inferno de_biome de_inferno\n\n")
@@ -91,11 +97,29 @@ func main() {
 
 	var osArgs []string
 	if _, err := os.Stat("/app/srcds_run"); err == nil {
+		for _, bspFile := range maps {
+			if _, err := os.Stat("/app/csgo/maps/" + bspFile + ".bsp"); os.IsNotExist(err) || err != nil {
+				fmt.Fprint(os.Stderr, "Could not find file for map `", bspFile, "`!\n\n")
+				os.Exit(87)
+			}
+		}
+
 		osArgs = []string{"/app/srcds_run"} // we're inside docker
 	} else {
 		for i := 5; i >= 0; i-- {
 			time.Sleep(4 * time.Second)
 			fmt.Println("RUNNING LOCAL IN", i)
+		}
+
+		for i, m := range maps {
+			if m != strings.ToLower(m) {
+				maps[i] = strings.ToLower(m)
+			}
+
+			if err := validateStockMapNames(maps[i]); err != nil {
+				fmt.Fprint(os.Stderr, err, "\n\n")
+				os.Exit(87)
+			}
 		}
 
 		switch os := runtime.GOOS; os {
@@ -125,4 +149,13 @@ func main() {
 	fmt.Print("\n\nfin.\n\n")
 
 	os.Exit(0)
+}
+
+// validateStockMapNames tests if the provide map names are all valid stock maps
+func validateStockMapNames(mapName string) error {
+	if strings.Index(stockMaps, "/"+mapName+"/") == -1 && strings.Index(lacledesMaps, "/"+mapName+"/") == -1 {
+		return errors.New("\"" + mapName + "\" is not a valid map")
+	}
+
+	return nil
 }

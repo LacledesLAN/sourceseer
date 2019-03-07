@@ -26,10 +26,6 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 		panic("A positive, odd-number of maps must be provided!")
 	}
 
-	if err := validateStockMapNames(mapCycle); err != nil {
-		panic(err)
-	}
-
 	fmt.Printf("[SOURCESEER] Will be using clinchable map cycle: %v\n", mapCycle)
 
 	return func(g *CSGO) *CSGO {

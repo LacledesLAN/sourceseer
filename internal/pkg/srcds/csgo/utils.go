@@ -1,7 +1,6 @@
 package csgo
 
 import (
-	"errors"
 	"math"
 	"regexp"
 	"strings"
@@ -19,8 +18,6 @@ const (
 
 const (
 	maxTeamNameLength = 31
-	// List of valid stock map names
-	validMaps = "/ar_baggage/ar_dizzy/ar_monastery/ar_shoots/cs_agency/cs_assault/cs_italy/cs_militia/cs_office/de_austria/de_bank/de_biome/de_cache/de_canals/de_cbble/de_dust2/de_inferno/de_tinyorange/de_lake/de_lltest/de_mirage/de_nuke/de_overpass/de_tinyorange/de_safehouse/de_shortnuke/de_stmarc/de_subzero/de_sugarcane/de_train/"
 )
 
 var (
@@ -139,36 +136,4 @@ func SanitizeTeamName(s string) string {
 	}
 
 	return s
-}
-
-// validateStockMapName test if the provide map name is a valid stock map
-func validateStockMapName(mapName string) error {
-	if len(strings.Trim(mapName, "")) < 1 {
-		return errors.New("invalid csgo map; cannot be empty or whitespace string")
-	}
-
-	if mapName != strings.ToLower(mapName) {
-		return errors.New("invalid csgo map; must be all lowercase")
-	}
-
-	if strings.Index(validMaps, "/"+mapName+"/") == -1 {
-		return errors.New("\"" + mapName + "\" is not a valid stock map")
-	}
-
-	return nil
-}
-
-// validateStockMapNames tests if the provide map names are all valid stock maps
-func validateStockMapNames(maps []string) error {
-	if len(maps) < 1 {
-		return errors.New("invalid csgo map list, list was empty")
-	}
-
-	for _, m := range maps {
-		if err := validateStockMapName(m); err != nil {
-			return err
-		}
-	}
-
-	return nil
 }

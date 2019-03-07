@@ -94,50 +94,6 @@ func Test_calculateWinThreshold(t *testing.T) {
 	}
 }
 
-func Test_ValidateStockMapName(t *testing.T) {
-	testDatum := []struct {
-		mapName     string
-		expectError bool
-	}{
-		{"ar_baggage", false}, {"ar_dizzy", false}, {"ar_monastery", false}, {"ar_shoots", false}, {"cs_agency", false}, {"cs_assault", false}, {"cs_militia", false}, {"cs_italy", false}, {"cs_office", false}, {"de_austria", false},
-		{"de_bank", false}, {"de_biome", false}, {"de_cache", false}, {"de_canals", false}, {"de_cbble", false}, {"de_dust2", false}, {"de_inferno", false}, {"de_lake", false}, {"de_mirage", false}, {"de_nuke", false},
-		{"de_overpass", false}, {"de_safehouse", false}, {"de_shortnuke", false}, {"de_stmarc", false}, {"de_subzero", false}, {"de_train", false}, {"", true}, {"   ", true}, {"\t", true}, {"\n", true}, {"garbage", true},
-	}
-
-	for _, testData := range testDatum {
-		errResult := validateStockMapName(testData.mapName)
-
-		if testData.expectError && errResult == nil {
-			t.Errorf("Map '%q' should have resulted in an error", testData.mapName)
-		} else if !testData.expectError && errResult != nil {
-			t.Errorf("Map '%q' should have not have resulted in an error; but got error %q.", testData.mapName, errResult)
-		}
-	}
-}
-
-func Test_ValidateStockMapNames(t *testing.T) {
-	testDatum := []struct {
-		maps        []string
-		expectError bool
-	}{
-		{[]string{}, true},
-		{[]string{"ar_baggage", "de_safehouse"}, false},
-		{[]string{"ar_baggage", "de_nope"}, true},
-		{[]string{"ar_baggage", "", "de_train"}, true},
-		{[]string{"\n", "ar_baggage", "de_train"}, true},
-	}
-
-	for _, testData := range testDatum {
-		errResult := validateStockMapNames(testData.maps)
-
-		if testData.expectError && errResult == nil {
-			t.Errorf("Maplist '%q' should have resulted in an error", testData.maps)
-		} else if !testData.expectError && errResult != nil {
-			t.Errorf("Maplist '%q' should have not have resulted in an error; but got error %q.", testData.maps, errResult)
-		}
-	}
-}
-
 func Test_HostnameFromTeamNames(t *testing.T) {
 	testDatum := []struct {
 		mpTeamname1    string
