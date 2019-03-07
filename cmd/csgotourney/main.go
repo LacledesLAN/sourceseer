@@ -65,7 +65,7 @@ func main() {
 		fmt.Fprint(os.Stderr, "\tExample: -rcon_pass BulldogsFancy957Cupcakes\n\n")
 		os.Exit(87)
 	}
-	rconPassword = `-usercon, +rcon_password  "` + rconPassword + `"`
+	rconPassword = `-usercon +rcon_password  "` + rconPassword + `"`
 
 	tvPassword := strings.TrimSpace(*tvPass)
 	if len(tvPassword) == 0 {
