@@ -33,6 +33,7 @@ type SRCDS struct {
 
 // Game represents a SRCDS game
 type Game interface {
+	AddLaunchArg(args ...string)
 	ClientConnected(Client)
 	ClientDisconnected(ClientDisconnected)
 	CmdSender() chan string
