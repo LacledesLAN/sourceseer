@@ -25,6 +25,7 @@ var (
 	pass    = flag.String("pass", "", "The server's password")
 	rcon    = flag.String("rcon_pass", "", "The server's rcon password")
 	tvPass  = flag.String("tv_pass", "", "The server's tv password")
+	bots    = flag.Bool("bots", false, "Allow bots in the server (optional).")
 )
 
 func main() {
@@ -95,6 +96,14 @@ func main() {
 
 	csgoTourney.AddLaunchArg(svPassword, rconPassword, tvPassword)
 
+	if *bots {
+		fmt.Println("Allowing bots!")
+		fmt.Println("Allowing bots!")
+		fmt.Println("Allowing bots!")
+	} else {
+		csgoTourney.AddLaunchArg("-nobots")
+	}
+
 	var osArgs []string
 	if _, err := os.Stat("/app/srcds_run"); err == nil {
 		for _, bspFile := range maps {
@@ -106,7 +115,7 @@ func main() {
 
 		osArgs = []string{"/app/srcds_run"} // we're inside docker
 	} else {
-		for i := 5; i >= 0; i-- {
+		for i := 3; i >= 0; i-- {
 			time.Sleep(4 * time.Second)
 			fmt.Println("RUNNING LOCAL IN", i)
 		}

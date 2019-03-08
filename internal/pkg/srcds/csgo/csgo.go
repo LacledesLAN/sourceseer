@@ -158,7 +158,7 @@ func New(gameMode GameMode, scenarios ...Scenario) (srcds.Game, error) {
 	}
 
 	game.addCvarWatch("hostname", "mp_halftime")
-	game.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart", "-nobots")
+	game.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart")
 
 	for _, scenario := range scenarios {
 		game = *scenario(&game)

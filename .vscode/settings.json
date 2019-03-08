@@ -1,14 +1,18 @@
 {
     "cSpell.words": [
+        "cbble",
         "csay",
         "csgo",
         "cvar",
         "cvars",
         "lacledes",
+        "lltest",
+        "nobots",
         "pausable",
         "rcon",
         "sourceseer",
-        "srcds"
+        "srcds",
+        "stmarc"
     ],
     "go.enableCodeLens":{
         "references": false,
