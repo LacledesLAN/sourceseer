@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"os"
 	"os/exec"
 	"strings"
 	"time"
@@ -148,15 +147,6 @@ func (s *SRCDS) Start() error {
 			}
 		}
 	}(stdIn, s.game.CmdSender())
-
-	go func() {
-		for {
-			reader := bufio.NewReader(os.Stdin)
-			text, _ := reader.ReadString('\n')
-			stdIn.Write([]byte(text))
-			stdIn.Write([]byte("\n"))
-		}
-	}()
 
 	// Start SRCDS
 	fmt.Print("\n\n/======================================================================================\\\n")
