@@ -198,6 +198,10 @@ func (g *CSGO) ClientDisconnected(c srcds.ClientDisconnected) {
 	g.currentMap.PlayerDropped(p)
 }
 
+func (g *CSGO) ClientMessage(clientMsg srcds.ClientMessage) {
+	//TODO - populate
+}
+
 func (g *CSGO) clientJoinedCT(player srcds.Client) {
 	c := playerFromSrcdsClient(player)
 

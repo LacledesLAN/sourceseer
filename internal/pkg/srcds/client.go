@@ -16,10 +16,10 @@ var (
 
 // Client represents a client connected to (or simulated by) the srcds
 type Client struct {
-	Username   string
-	SteamID    string
-	ServerSlot string
-	ServerTeam string
+	Username    string
+	SteamID     string
+	ServerSlot  string
+	Affiliation string
 }
 
 //Clients is a collection of type Client
@@ -99,9 +99,9 @@ func ParseClient(s string) (Client, error) {
 	}
 
 	return Client{
-		Username:   c[1],
-		ServerSlot: c[2],
-		SteamID:    c[3],
-		ServerTeam: c[4],
+		Username:    c[1],
+		ServerSlot:  c[2],
+		SteamID:     c[3],
+		Affiliation: c[4],
 	}, nil
 }

@@ -5,9 +5,9 @@ import (
 )
 
 func Test_Clients(t *testing.T) {
-	c0 := Client{Username: "Lulubelle 7", SteamID: "7r355 m4cn31ll3", ServerSlot: "", ServerTeam: ""}
-	c1 := Client{Username: "Animatronio", SteamID: "d4v1d h3rm4n", ServerSlot: "3", ServerTeam: ""}
-	c2 := Client{Username: "Parts Hilton", SteamID: "7h3 7h13f 0f b46h34d", ServerSlot: "", ServerTeam: "b46h34d"}
+	c0 := Client{Username: "Lulubelle 7", SteamID: "7r355 m4cn31ll3", ServerSlot: "", Affiliation: ""}
+	c1 := Client{Username: "Animatronio", SteamID: "d4v1d h3rm4n", ServerSlot: "3", Affiliation: ""}
+	c2 := Client{Username: "Parts Hilton", SteamID: "7h3 7h13f 0f b46h34d", ServerSlot: "", Affiliation: "b46h34d"}
 
 	var sut Clients
 
@@ -41,8 +41,8 @@ func Test_ParseClient(t *testing.T) {
 		actual   string
 		expected Client
 	}{
-		{`"Lulubelle 7<6><7r355:m4cn31ll3><CT>"`, Client{Username: "Lulubelle 7", SteamID: "7r355:m4cn31ll3", ServerSlot: "6", ServerTeam: "CT"}},
-		{`"Lulubelle 7<48><BOT><CT>"`, Client{Username: "Lulubelle 7", SteamID: "BOT", ServerSlot: "48", ServerTeam: "CT"}},
+		{`"Lulubelle 7<6><7r355:m4cn31ll3><CT>"`, Client{Username: "Lulubelle 7", SteamID: "7r355:m4cn31ll3", ServerSlot: "6", Affiliation: "CT"}},
+		{`"Lulubelle 7<48><BOT><CT>"`, Client{Username: "Lulubelle 7", SteamID: "BOT", ServerSlot: "48", Affiliation: "CT"}},
 	}
 
 	for _, testData := range datum {
@@ -65,8 +65,8 @@ func Test_ParseClient(t *testing.T) {
 				t.Errorf("Expected ServerSlot '%q' but got '%q' instead.", testData.expected.ServerSlot, c.ServerSlot)
 			}
 
-			if c.ServerTeam != testData.expected.ServerTeam {
-				t.Errorf("Expected ServerTeam '%q' but got '%q' instead.", testData.expected.ServerTeam, c.ServerTeam)
+			if c.Affiliation != testData.expected.Affiliation {
+				t.Errorf("Expected ServerTeam '%q' but got '%q' instead.", testData.expected.Affiliation, c.Affiliation)
 			}
 		})
 	}

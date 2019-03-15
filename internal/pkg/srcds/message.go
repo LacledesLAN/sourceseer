@@ -8,8 +8,9 @@ import (
 )
 
 const (
-	clientConnectedPattern    = `^(".*") (?:entered the game|connected, address "")$`
-	clientDisconnectedPattern = `^(".*") disconnected(?: \(reason \"([\w ]{1,})\"\))?$`
+	clientConnectedPattern    = `^(?:entered the game|connected, address "[\S]*?")$`
+	clientDisconnectedPattern = `^disconnected(?: \(reason \"([\w ]{1,})\"\))?$`
+	clientMessagePattern      = `^"(.{1,32})<(\d{0,2})><\[?([\w:]*)\]?>(?:<([\w]*?)>)?" (.+)$`
 	serverCvarEchoPattern     = `^"([^\s]{3,})" = "([^\s"]{0,})"`
 	serverCvarSetPattern      = `^server_cvar: "([^\s]{3,})" "(.*)"$`
 )
@@ -17,6 +18,7 @@ const (
 var (
 	clientConnectedRegex    = regexp.MustCompile(clientConnectedPattern)
 	clientDisconnectedRegex = regexp.MustCompile(clientDisconnectedPattern)
+	clientMessageRegex      = regexp.MustCompile(clientMessagePattern)
 	serverCvarEchoRegex     = regexp.MustCompile(serverCvarEchoPattern)
 	serverCvarSetRegex      = regexp.MustCompile(serverCvarSetPattern)
 )
@@ -25,6 +27,11 @@ var (
 type ClientDisconnected struct {
 	Client Client
 	Reason string
+}
+
+type ClientMessage struct {
+	Client  Client
+	Message string
 }
 
 //Cvar represents a SRCDS cvar
@@ -46,38 +53,42 @@ type LogEntry struct {
 	Timestamp time.Time
 }
 
-func parseClientConnected(le LogEntry) (Client, error) {
-	result := clientConnectedRegex.FindStringSubmatch(le.Message)
-
-	if len(result) != 2 {
-		return Client{}, errors.New("Could not client " + le.Message)
+func parseClientConnected(clientMsg ClientMessage) (Client, error) {
+	if clientConnectedRegex.MatchString(clientMsg.Message) {
+		return clientMsg.Client, nil
 	}
 
-	cl, err := ParseClient(result[1])
-
-	if err != nil {
-		return Client{}, errors.New("Could not parse client in " + le.Message)
-	}
-
-	return cl, nil
+	return Client{}, errors.New("Could not parse client connect string from " + clientMsg.Message)
 }
 
-func parseClientDisconnected(le LogEntry) (ClientDisconnected, error) {
-	r := clientDisconnectedRegex.FindStringSubmatch(le.Message)
+func parseClientDisconnected(clientMsg ClientMessage) (ClientDisconnected, error) {
+	r := clientDisconnectedRegex.FindStringSubmatch(clientMsg.Message)
 
 	if len(r) < 1 {
-		return ClientDisconnected{}, errors.New("Could not parse " + le.Message)
-	}
-
-	cl, err := ParseClient(r[1])
-
-	if err != nil {
-		return ClientDisconnected{}, errors.New("Could not parse player in " + le.Message)
+		return ClientDisconnected{}, errors.New("Could not parse client disconnected string from " + clientMsg.Message)
 	}
 
 	return ClientDisconnected{
-		Client: cl,
-		Reason: r[2],
+		Client: clientMsg.Client,
+		Reason: r[1],
+	}, nil
+}
+
+func parseClientMessage(le LogEntry) (ClientMessage, error) {
+	r := clientMessageRegex.FindStringSubmatch(le.Message)
+
+	if len(r) < 1 {
+		return ClientMessage{}, errors.New("Could not parse client message from string: " + le.Message)
+	}
+
+	return ClientMessage{
+		Client: Client{
+			Username:    r[1],
+			ServerSlot:  r[2],
+			SteamID:     r[3],
+			Affiliation: r[4],
+		},
+		Message: r[5],
 	}, nil
 }
 

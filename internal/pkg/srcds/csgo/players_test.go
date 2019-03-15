@@ -7,9 +7,9 @@ import (
 )
 
 func Test_Clients(t *testing.T) {
-	p0 := Player{Client: srcds.Client{Username: "Lulubelle 7", SteamID: "7r355 m4cn31ll3", ServerSlot: "", ServerTeam: ""}}
-	p1 := Player{Client: srcds.Client{Username: "Animatronio", SteamID: "d4v1d h3rm4n", ServerSlot: "3", ServerTeam: ""}}
-	p2 := Player{Client: srcds.Client{Username: "Parts Hilton", SteamID: "7h3 7h13f 0f b46h34d", ServerSlot: "", ServerTeam: "b46h34d"}}
+	p0 := Player{Client: srcds.Client{Username: "Lulubelle 7", SteamID: "7r355 m4cn31ll3", ServerSlot: "", Affiliation: ""}}
+	p1 := Player{Client: srcds.Client{Username: "Animatronio", SteamID: "d4v1d h3rm4n", ServerSlot: "3", Affiliation: ""}}
+	p2 := Player{Client: srcds.Client{Username: "Parts Hilton", SteamID: "7h3 7h13f 0f b46h34d", ServerSlot: "", Affiliation: "b46h34d"}}
 
 	var sut Players
 
@@ -44,8 +44,8 @@ func Test_playerFromSrcdsClient(t *testing.T) {
 		input    srcds.Client
 		expected Player
 	}{
-		{input: srcds.Client{Username: "Robo-Puppy", SteamID: "b1lly w357", ServerSlot: "12", ServerTeam: "blu"},
-			expected: Player{Client: srcds.Client{Username: "Robo-Puppy", SteamID: "b1lly w357", ServerSlot: "12", ServerTeam: "blu"}}},
+		{input: srcds.Client{Username: "Robo-Puppy", SteamID: "b1lly w357", ServerSlot: "12", Affiliation: "blu"},
+			expected: Player{Client: srcds.Client{Username: "Robo-Puppy", SteamID: "b1lly w357", ServerSlot: "12", Affiliation: "blu"}}},
 	}
 
 	for _, testData := range testDatum {
@@ -64,8 +64,8 @@ func Test_playerFromSrcdsClient(t *testing.T) {
 				t.Errorf("ServerSlot %q did not carry over.", testData.input.ServerSlot)
 			}
 
-			if result.ServerTeam != testData.input.ServerTeam {
-				t.Errorf("ServerTeam %q did not carry over.", testData.input.ServerTeam)
+			if result.Affiliation != testData.input.Affiliation {
+				t.Errorf("ServerTeam %q did not carry over.", testData.input.Affiliation)
 			}
 
 			if len(result.flags) > 0 {

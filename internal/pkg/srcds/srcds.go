@@ -35,6 +35,7 @@ type Game interface {
 	AddLaunchArg(args ...string)
 	ClientConnected(Client)
 	ClientDisconnected(ClientDisconnected)
+	ClientMessage(ClientMessage)
 	CmdSender() chan string
 	CvarSet(name, value string)
 	LaunchArgs() []string
@@ -172,15 +173,18 @@ func (s *SRCDS) Start() error {
 
 func (s *SRCDS) processLogEntry(le LogEntry) {
 	if strings.HasPrefix(le.Message, `"`) {
-		client, err := parseClientConnected(le)
-		if err == nil {
-			s.game.ClientConnected(client)
-			return
-		}
+		if clientMsg, err := parseClientMessage(le); err == nil {
+			if client, err := parseClientConnected(clientMsg); err == nil {
+				s.game.ClientConnected(client)
+				return
+			}
 
-		clientDisconnected, err := parseClientDisconnected(le)
-		if err == nil {
-			s.game.ClientDisconnected(clientDisconnected)
+			if clientDisconnected, err := parseClientDisconnected(clientMsg); err == nil {
+				s.game.ClientDisconnected(clientDisconnected)
+				return
+			}
+
+			s.game.ClientMessage(clientMsg)
 			return
 		}
 	}
