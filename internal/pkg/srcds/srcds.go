@@ -23,16 +23,14 @@ const (
 
 // SRCDS represents a source dedicated server
 type SRCDS struct {
-	cmdIn      chan string
-	game       Game
-	launchArgs []string
-	started    time.Time
-	finished   time.Time
+	CmdIn    chan string
+	game     Game
+	started  time.Time
+	finished time.Time
 }
 
 // Game represents a SRCDS game
 type Game interface {
-	AddLaunchArg(args ...string)
 	ClientConnected(Client)
 	ClientDisconnected(ClientDisconnected)
 	ClientMessage(ClientMessage)
@@ -42,32 +40,20 @@ type Game interface {
 	LogReceiver(LogEntry)
 }
 
-// AddLaunchArg to be used when initializing the SRCDS instance.
-func (s *SRCDS) AddLaunchArg(args ...string) {
-	for _, arg := range args {
-		arg = strings.Trim(arg, "")
-		if len(arg) > 0 {
-			s.launchArgs = append(s.launchArgs, arg)
-		}
-	}
-}
-
 // New creates and wraps around srcds instance.
-func New(srcdsGame Game, osArgs []string) (SRCDS, error) {
+func New(srcdsGame Game) (SRCDS, error) {
 	s := SRCDS{
-		cmdIn:      make(chan string, 12),
-		game:       srcdsGame,
-		launchArgs: osArgs,
+		CmdIn: make(chan string, 12),
+		game:  srcdsGame,
 	}
 
 	return s, nil
 }
 
 // Start the instance of the SRCDS; connecting a channel to its standard input stream.
-func (s *SRCDS) Start() error {
-	s.AddLaunchArg(s.game.LaunchArgs()...)
+func (s *SRCDS) Start(osArgs []string) error {
 
-	srcdsProcess := exec.Command(s.launchArgs[0], s.launchArgs[1:len(s.launchArgs)]...)
+	srcdsProcess := exec.Command(osArgs[0], append(osArgs[1:len(osArgs)], s.game.LaunchArgs()...)...)
 
 	// link standard error
 	stdErr, err := srcdsProcess.StderrPipe()
@@ -151,7 +137,7 @@ func (s *SRCDS) Start() error {
 
 	// Start SRCDS
 	fmt.Print("\n\n/======================================================================================\\\n")
-	fmt.Print("[SOURCESEER] Starting using", s.launchArgs, "\n\n")
+	fmt.Print("[SOURCESEER] Starting using", srcdsProcess.Args, "\n\n")
 
 	s.started = time.Now()
 	err = srcdsProcess.Start()

@@ -5,6 +5,7 @@
         "csgo",
         "cvar",
         "cvars",
+        "gotv",
         "lacledes",
         "lltest",
         "nobots",
@@ -12,7 +13,8 @@
         "rcon",
         "sourceseer",
         "srcds",
-        "stmarc"
+        "stmarc",
+        "userrcon"
     ],
     "go.enableCodeLens":{
         "references": false,

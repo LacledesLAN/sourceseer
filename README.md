@@ -24,6 +24,10 @@ Unfortunately when a game receives a large update its compatibility with MetaMod
 
 Our reservations for using eBot stem from its orchestration requirements. While not overly technical or challenging they add points of failure and potentials for discrepancies. Under normal circumstances these risks are more minimal, but given the nature of our events we want our servers to be 100% independent of as many external dependencies. We want our servers to continue operating under as many infrastructure issues as possible; it's one thing to push logs to a remote node as a value-add but entirely different for the integrity of all game server's to depend on streaming/receiving real-time data to/from a single, remote node.
 
+### Why Go?
+
+Wanted to use a language the could be used across all platforms, compiled to a native binaries that didn't require run-times, and supported the [CSP model](https://en.wikipedia.org/wiki/Communicating_sequential_processes).
+
 ## How
 
 ## Definition

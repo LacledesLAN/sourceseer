@@ -42,7 +42,7 @@ type CSGO struct {
 	currentMap              *mapState
 	cvars                   map[string]srcds.Cvar
 	gameMode                GameMode
-	launchArgs              []string
+	launchArgs              Args
 	logProcessorStack       LogEntryProcessor
 	maps                    []mapState
 	teamAssignedToCT        string
@@ -75,16 +75,6 @@ func (g *CSGO) addCvarWatch(names ...string) {
 			if cvarNameIsUnique {
 				g.cvars[name] = srcds.Cvar{}
 			}
-		}
-	}
-}
-
-// AddLaunchArg to be used when initializing the SRCDS instance.
-func (g *CSGO) AddLaunchArg(args ...string) {
-	for _, arg := range args {
-		arg = strings.Trim(arg, "")
-		if len(arg) > 0 {
-			g.launchArgs = append(g.launchArgs, arg)
 		}
 	}
 }
@@ -142,29 +132,17 @@ func New(gameMode GameMode, scenarios ...Scenario) (srcds.Game, error) {
 		teamAssignedToTerrorist: SanitizeTeamName("Average Joe's"),
 	}
 
-	switch gameMode {
-	case ClassicCasual:
-		game.AddLaunchArg("-game csgo", "+game_type 0", "+game_mode 0")
-	case ArmsRace:
-		game.AddLaunchArg("-game csgo", "+game_type 1", "+game_mode 0")
-	case Demolition:
-		game.AddLaunchArg("-game csgo", "+game_type 1", "+game_mode 1")
-	case Deathmatch:
-		game.AddLaunchArg("-game csgo", "+game_type 1", "+game_mode 2")
-	default:
-		fallthrough
-	case ClassicCompetitive:
-		game.AddLaunchArg("-game csgo", "+game_type 0", "+game_mode 1")
-	}
-
 	game.addCvarWatch("hostname", "mp_halftime")
-	game.AddLaunchArg("-tickrate 128", "+sv_lan 1", "-norestart")
 
 	for _, scenario := range scenarios {
 		game = *scenario(&game)
 	}
 
 	return &game, nil
+}
+
+func (g CSGO) LaunchArgs() []string {
+	return g.launchArgs.AsSlice()
 }
 
 // RefreshCvars triggers SRCDS to echo all watched cvars to the log stream.
@@ -230,11 +208,6 @@ func (g *CSGO) CvarSet(name, value string) {
 	if _, found := g.cvars[name]; found {
 		g.cvars[name] = srcds.Cvar{LastUpdate: time.Now(), Value: value}
 	}
-}
-
-//LaunchArgs gets the CSGO instance's arguments
-func (g *CSGO) LaunchArgs() []string {
-	return g.launchArgs
 }
 
 //LogReceiver handles log messages sent to the CSGO server

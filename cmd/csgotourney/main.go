@@ -1,85 +1,80 @@
 package main
 
 import (
+	"bufio"
 	"errors"
 	"flag"
 	"fmt"
+	"math/rand"
 	"os"
 	"runtime"
 	"strings"
 	"time"
 
+	"github.com/jessevdk/go-flags"
 	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 	"github.com/lacledeslan/sourceseer/internal/pkg/srcds/csgo"
 )
 
 const (
 	lacledesMaps = "/de_lltest/de_tinyorange/poolday/"
+	letterBytes  = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	stockMaps    = "/ar_baggage/ar_dizzy/ar_monastery/ar_shoots/cs_agency/cs_assault/cs_italy/cs_militia/cs_office/de_austria/de_bank/de_biome/de_cache/de_canals/de_cbble/de_dust2/de_inferno/de_lake/de_mirage/de_nuke/de_overpass/de_safehouse/de_shortnuke/de_stmarc/de_subzero/de_sugarcane/de_train/"
 )
 
-var (
-	bracket = flag.String("bracket", "", "The tournament bracket this server is for")
-	ctName  = flag.String("mp_teamname_1", "", "The name of the team that will select CT on connection")
-	tName   = flag.String("mp_teamname_2", "", "The name of the team that will select Terrorist on connection")
-	pass    = flag.String("pass", "", "The server's password")
-	rcon    = flag.String("rcon_pass", "", "The server's rcon password")
-	tvPass  = flag.String("tv_pass", "", "The server's tv password")
-	bots    = flag.Bool("bots", false, "Allow bots in the server (optional).")
-)
-
 func main() {
-	flag.Parse()
+	for i, arg := range os.Args {
+		if strings.HasPrefix(arg, "+") {
+			os.Args[i] = "--" + arg[1:]
+		}
+	}
 
-	tourneyBracket := strings.TrimSpace(*bracket)
-	if len(tourneyBracket) == 0 {
-		fmt.Fprint(os.Stderr, "Argument bracket must be provided!\n\n")
-		fmt.Fprint(os.Stderr, "\tExample: -bracket 12B\n\n")
+	var csgoArgs csgo.Args
+	_, err := flags.ParseArgs(&csgoArgs, os.Args)
+
+	if err != nil {
+		fmt.Fprint(os.Stderr, err)
 		os.Exit(87)
 	}
 
-	mpTeamname1 := strings.TrimSpace(*ctName)
-	if len(mpTeamname1) == 0 {
+	if len(csgoArgs.TeamName1) < 1 {
 		fmt.Fprint(os.Stderr, "Argument mp_teamname_1 must be provided!\n\n")
-		fmt.Fprint(os.Stderr, "\tExample: -mp_teamname_1 red\n\n")
+		fmt.Fprint(os.Stderr, "\tExample: --mp_teamname_1 red\n\n")
 		os.Exit(87)
 	}
 
-	mpTeamname2 := strings.TrimSpace(*tName)
-	if len(mpTeamname2) == 0 {
+	if len(csgoArgs.TeamName2) < 1 {
 		fmt.Fprint(os.Stderr, "Argument mp_teamname_2 must be provided!\n\n")
-		fmt.Fprint(os.Stderr, "\tExample: -mp_teamname_2 blu\n\n")
+		fmt.Fprint(os.Stderr, "\tExample: --mp_teamname_2 blu\n\n")
 		os.Exit(87)
 	}
 
-	if strings.ToLower(mpTeamname1) == strings.ToLower(mpTeamname2) {
-		fmt.Fprint(os.Stderr, "Both team names cannot be the same!\n\n")
+	if strings.ToLower(csgoArgs.TeamName1) == strings.ToLower(csgoArgs.TeamName2) {
+		fmt.Fprint(os.Stderr, "The values for `--mp_teamname_1` and `--mp_teamname_2` cannot match!\n\n")
 		os.Exit(87)
 	}
 
-	svPassword := strings.TrimSpace(*pass)
-	if len(svPassword) == 0 {
-		fmt.Fprint(os.Stderr, "Argument pass must be provided!\n\n")
-		fmt.Fprint(os.Stderr, "\tExample: -pass 72rivers\n\n")
-		os.Exit(87)
-	}
-	svPassword = `+sv_password "` + svPassword + `"`
-
-	rconPassword := strings.TrimSpace(*rcon)
-	if len(svPassword) == 0 {
+	if csgoArgs.UseRemoteConsole && len(csgoArgs.RConPassword) < 1 {
 		fmt.Fprint(os.Stderr, "Argument rcon_pass must be provided!\n\n")
-		fmt.Fprint(os.Stderr, "\tExample: -rcon_pass BulldogsFancy957Cupcakes\n\n")
+		fmt.Fprint(os.Stderr, "\tExample: --rcon_password BulldogsFancy957Cupcakes\n\n")
 		os.Exit(87)
 	}
-	rconPassword = `-usercon +rcon_password  "` + rconPassword + `"`
 
-	tvPassword := strings.TrimSpace(*tvPass)
-	if len(tvPassword) == 0 {
-		fmt.Fprint(os.Stderr, "Argument tv_pass must be provided!\n\n")
-		fmt.Fprint(os.Stderr, "\tExample: -tv_pass CowsH4teTennis\n\n")
-		os.Exit(87)
+	if len(csgoArgs.TVPassword) < 1 {
+		b := make([]byte, 16)
+		for i := range b {
+			b[i] = letterBytes[rand.Intn(len(letterBytes))]
+		}
+		csgoArgs.TVPassword = string(b)
 	}
-	tvPassword = `+tv_password "` + tvPassword + ` " +tv_relaypassword "` + tvPassword + `"`
+
+	if len(csgoArgs.TVRelayPassword) < 1 {
+		b := make([]byte, 16)
+		for i := range b {
+			b[i] = letterBytes[rand.Intn(len(letterBytes))]
+		}
+		csgoArgs.TVRelayPassword = string(b)
+	}
 
 	maps := flag.Args()
 	if l := len(maps); l == 0 || l%2 == 0 {
@@ -88,20 +83,16 @@ func main() {
 		os.Exit(87)
 	}
 
-	csgoTourney, err := csgo.New(csgo.ClassicCompetitive, csgo.UseTeamNames(mpTeamname1, mpTeamname2), csgo.ClinchableMapCycle(maps))
+	csgoTourney, err := csgo.New(csgo.ClassicCompetitive, csgo.UseTeamNames(csgoArgs.TeamName1, csgoArgs.TeamName2), csgo.ClinchableMapCycle(maps))
 	if err != nil {
 		fmt.Fprint(os.Stderr, "Was unable to create a CSGO instance!\n\n")
 		os.Exit(87)
 	}
 
-	csgoTourney.AddLaunchArg(svPassword, rconPassword, tvPassword)
-
-	if *bots {
+	if !csgoArgs.NoBots {
 		fmt.Println("Allowing bots!")
 		fmt.Println("Allowing bots!")
 		fmt.Println("Allowing bots!")
-	} else {
-		csgoTourney.AddLaunchArg("-nobots")
 	}
 
 	var osArgs []string
@@ -139,7 +130,7 @@ func main() {
 		osArgs = append(osArgs, "docker", "run", "-i", "--rm", "--net=host", `--entrypoint "/bin/bash"`, "lacledeslan/gamesvr-csgo-tourney:hasty", "/app/srcds_run")
 	}
 
-	server, err := srcds.New(csgoTourney, osArgs)
+	server, err := srcds.New(csgoTourney)
 
 	if err != nil {
 		fmt.Fprint(os.Stderr, "Unable to create a Source Dedicated Server!\n\n")
@@ -153,11 +144,29 @@ func main() {
 		os.Exit(-1)
 	}
 
-	server.Start()
+	linkStandardIn(server.CmdIn)
+
+	server.Start(osArgs)
 
 	fmt.Print("\n\nfin.\n\n")
 
 	os.Exit(0)
+}
+
+func linkStandardIn(cmdIn chan string) {
+	time.Sleep(4 * time.Second)
+
+	if _, err := os.Stdin.Stat(); err == nil {
+		s := bufio.NewScanner(os.Stdin)
+		defer os.Stdin.Close()
+
+		go func() {
+			for s.Scan() {
+				text := s.Text()
+				cmdIn <- text
+			}
+		}()
+	}
 }
 
 // validateStockMapNames tests if the provide map names are all valid stock maps

@@ -1,4 +1,27 @@
 
+
+To add back in at some point - csgo should know the mode it's in
+
+switch gameMode {
+case ClassicCasual:
+	game.AddLaunchArg("+game_type 0", "+game_mode 0")
+case ArmsRace:
+	game.AddLaunchArg("+game_type 1", "+game_mode 0")
+case Demolition:
+	game.AddLaunchArg("+game_type 1", "+game_mode 1")
+case Deathmatch:
+	game.AddLaunchArg("+game_type 1", "+game_mode 2")
+default:
+	fallthrough
+case ClassicCompetitive:
+	game.AddLaunchArg("+game_type 0", "+game_mode 1")
+}
+
+
+
+`MustGetCvar()`, `DefaultGetCvar()`
+
+
 MasterRequestRestart
 Your server needs to be restarted in order to receive the latest update.
 

@@ -30,7 +30,7 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 
 	return func(g *CSGO) *CSGO {
 		g.addCvarWatch("mp_maxrounds", "mp_match_restart_delay", "mp_overtime_maxrounds", "sv_pausable")
-		g.AddLaunchArg("+map " + mapCycle[0] + "")
+		g.launchArgs.Map = mapCycle[0]
 
 		matchHistory := []string{}
 
@@ -149,30 +149,16 @@ func ClinchableMapCycle(mapCycle []string) Scenario {
 
 //UseTeamNames sets up CSGO to use specified team names
 func UseTeamNames(mpTeamname1, mpTeamname2 string) Scenario {
-	var args []string
-
-	// Process mpTeamname1
-	mpTeamname1 = SanitizeTeamName(mpTeamname1)
-	if len(mpTeamname1) > 0 {
-		args = append(args, "+mp_teamname_1", `"`+mpTeamname1+`"`)
-	}
-
-	// Process mpTeamname2
-	mpTeamname2 = SanitizeTeamName(mpTeamname2)
-	if len(mpTeamname2) > 0 {
-		args = append(args, "+mp_teamname_2", `"`+mpTeamname2+`"`)
-	}
-
 	if strings.ToLower(mpTeamname1) == strings.ToLower(mpTeamname2) {
 		panic("team names cannot be the same")
 	}
 
-	hostname := HostnameFromTeamNames(mpTeamname1, mpTeamname2)
-	args = append(args, `+hostname "`+hostname+`"`)
-	args = append(args, `+tv_name zGO-TV-"`+hostname+`"`)
-
 	return func(g *CSGO) *CSGO {
-		g.AddLaunchArg(args...)
+		g.launchArgs.TeamName1 = SanitizeTeamName(mpTeamname1)
+		g.launchArgs.TeamName2 = SanitizeTeamName(mpTeamname2)
+		g.launchArgs.Hostname = HostnameFromTeamNames(mpTeamname1, mpTeamname2)
+		g.launchArgs.TVName = "zGO-TV-" + g.launchArgs.Hostname
+
 		g.teamAssignedToCT = mpTeamname1
 		g.teamAssignedToTerrorist = mpTeamname2
 
