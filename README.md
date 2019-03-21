@@ -2,35 +2,44 @@
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/LacledesLAN/sourceseer)](https://goreportcard.com/report/github.com/LacledesLAN/sourceseer)
 
-[Sourceseer](https://github.com/LacledesLAN/sourceseer) is an ["wrapper"](https://en.wikipedia.org/wiki/Wrapper_library) around an executing [source dedicated server](https://developer.valvesoftware.com/wiki/Source_Dedicated_Server) instance allowing us to monitor and manipulating its state.
+**This project is still an alpha-version and not yet recommended for production scenarios**
 
-**We consider this project an unproven experiment at this time.**
+[Sourceseer](https://github.com/LacledesLAN/sourceseer) is a process ["wrapper"](https://en.wikipedia.org/wiki/Wrapper_library) for [source dedicated servers](https://developer.valvesoftware.com/wiki/Source_Dedicated_Server). By listening to `SRCDS`'s output in real-time we can monitor its game state, selectively push log messages to external systems (such as Slack and Discord), and automate game flow by sending commands in response to server events.
 
 ## Motivation
 
-We run all of our [game servers in Docker containers](https://github.com/LacledesLAN/README.1ST/blob/master/GameServers/DockerAndGameServers.md). By using golang we can compile sourceseer to a single binary (for either linux or windows) and include it inside of our Docker images.
+At [Laclede's LAN](https://lacledeslan.com/) we want fault-tolerant and easily distributable mechanisms to monitor our game servers. We also want to automate as much as possible, particularly in high-demand tournaments with tight time schedules such as Counter-Strike: Global Offensive.
 
-To understand the reason for the efforts behind this new project let's review the two most-popular tools in widespread usage for managing csgo tournament servers:
+When feasible we run [our game servers](https://github.com/LacledesLAN/README.1ST/tree/master/GameServers) in [Docker containers](https://github.com/LacledesLAN/README.1ST/blob/master/GameServers/DockerAndGameServers.md). By writing sourceseer in golang we can compile it to a single binary and include it inside of our Docker images.
 
-### WarMod [BFG]
+After experimenting and using several existing mechanisms we came to the conclusion it was time for us to develop our own from the ground up. To understand why we came to this conclusion let's review the two most-popular tools in widespread usage for managing CSGO tournament servers:
 
-[WarMod [BFG]](https://forums.alliedmods.net/showthread.php?t=225474) is "*designed to be used for competitive matches, and provides the flexibility to suit any form of competition, including large tournaments down to clan matches.*"  It is an addon for [sourcemod](https://www.sourcemod.net/), which is itself an addon for [Metamod:Source](https://wiki.alliedmods.net/Metamod:Source), which is an interceptor that sits between the Source engine and a subsequent game providing APIs.
+### Why not `eBot`?
 
-Unfortunately when a game receives a large update its compatibility with MetaMod:Source and/or Sourcemod can be broken. While the community is quick to roll out new builds (often within 2 weeks) a poorly timed CSGO update prior to one of our charity LANs could risk our CSGO tournament's viability. While the probability of this kind of unfortunate timing may may be low the consequences are great enough to pursue this effort.  Additionally the internal state of SourceMod addons reset when the engine reloads for events such as `changelevel` limiting our ability to automate a tournament across multiple maps (such as a best-of-three).
+[eBot](https://github.com/deStrO/eBot-CSGO) depends upon the CSGO servers streaming data to and receiving commands from a remote node on the network. While we strive for 100% uptime at our events the dynamic and transient nature of LAN parties greatly increases the risk of unexpected outages. To lose a few log messages would be annoying. But to have automated events get triggered from outdated information or to not happen due to a dropped connection would be unacceptable.
 
-### eBot
+### Why not `WarMod [BFG]`?
 
-[eBot](https://github.com/deStrO/eBot-CSGO) is a is a full managed server-bot written in PHP and nodeJS. eBot features easy match creation and tons of player and match statistics.
+[WarMod [BFG]](https://forums.alliedmods.net/showthread.php?t=225474) is a plugin for [sourcemod](https://www.sourcemod.net/) which is itself an addon for [Metamod:Source](https://wiki.alliedmods.net/Metamod:Source). Whenever a source game receives a large-enough update this dependency chain can break rendering WarMod non-functional. While these updates are infrequent and while the community is great to quickly to roll out fixed builds (usually within two weeks) a single, poorly timed CSGO update prior to one of our events could risk our tournament's viability.
 
-Our reservations for using eBot stem from its orchestration requirements. While not overly technical or challenging they add points of failure and potentials for discrepancies. Under normal circumstances these risks are more minimal, but given the nature of our events we want our servers to be 100% independent of as many external dependencies. We want our servers to continue operating under as many infrastructure issues as possible; it's one thing to push logs to a remote node as a value-add but entirely different for the integrity of all game server's to depend on streaming/receiving real-time data to/from a single, remote node.
+Additional concerns are that WarMod is no longer actively maintained, it overwrites/drops some cvar values set from the command line (notably `mp_teamname_1` and `mp_teamname_2`), un-reproducible bugs exist (most alarmingly a bug that causes messages to spam and crash clients), and multiple issues exist that cause unexpected issues after a `changelevel` command has been issued (forcing us to use a new server for each map in a best-of-*n* brackets).
 
-### Why Go?
+We discussed forking WarMod into our own project but this effort would require investing our time into a limited language ([SourcePawn](https://wiki.alliedmods.net/Introduction_to_SourcePawn_1.7)), wouldn't address the at-risk dependency chain, and ultimately wouldn't be the most effective technology to use for our longer-term automation goals.
 
-Wanted to use a language the could be used across all platforms, compiled to a native binaries that didn't require run-times, and supported the [CSP model](https://en.wikipedia.org/wiki/Communicating_sequential_processes).
+### Why Go(lang) was Chosen
 
-## How
+When choosing a language for `sourceseer` our critical requirement was to able to compile native-binaries to be added directly to our Docker image without needing to include additional required dependencies. Additionally features we wanted in the language were static types, garbage collection, and a low memory footprint.
 
-## Definition
+Not only did [Go](https://github.com/golang/go) meet all of these requirement but its easy to learn nature and native support for the [CSP model](https://en.wikipedia.org/wiki/Communicating_sequential_processes) made it stand out.
 
-Match = map
-Set = set of matches
+## Overview
+
+`Sourceseer` creates a child-process instance of `SRCDS` grabbing exclusive access to its `standard output`, `standard error`, and `standard in` streams. `Sourcseer` determines (and maintains) the state of the game server by observing all output from the `SRCDS` process and is automate changes by to sending `SRCDS` commands when certain conditions are met.
+
+## Common Definitions
+
+TODO
+
+* Affiliation
+* Match = map
+* Set = set of matches

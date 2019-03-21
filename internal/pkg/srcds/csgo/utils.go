@@ -29,11 +29,11 @@ func calcOvertimePeriodNumber(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRou
 		mpMaxRounds = defaultMpMaxrounds
 	}
 
-	if mpOvertimeMaxRounds < 1 {
-		mpOvertimeMaxRounds = defaultMpOvertimeMaxrounds
-	}
-
 	if lastCompletedRound-mpMaxRounds >= 0 {
+		if mpOvertimeMaxRounds < 1 {
+			mpOvertimeMaxRounds = defaultMpOvertimeMaxrounds
+		}
+
 		if otNotClinchable := mpOvertimeMaxRounds%2 == 0; otNotClinchable {
 			return ((lastCompletedRound - mpMaxRounds) / mpOvertimeMaxRounds) + 1
 		}
@@ -46,7 +46,6 @@ func calcOvertimePeriodNumber(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRou
 
 // calculateSidesAreSwitched determines if sides should currently be swapped (mp_team1 is affiliated Terrorist)
 func calculateSidesAreSwitched(mpHalftime, mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound int) bool {
-	// TODO - this function needs PROPER unit tests after in-game confirmation are done
 	if mpHalftime < 0 || mpHalftime > 1 {
 		mpHalftime = defaultMpHalftime
 	}
@@ -55,13 +54,13 @@ func calculateSidesAreSwitched(mpHalftime, mpMaxRounds, mpOvertimeMaxRounds, las
 		mpMaxRounds = defaultMpMaxrounds
 	}
 
-	if mpOvertimeMaxRounds < 1 {
-		mpOvertimeMaxRounds = defaultMpOvertimeMaxrounds
-	}
-
 	currentRound := lastCompletedRound + 1
 
-	if mpHalftime == 1 && currentRound > mpMaxRounds/2 {
+	if currentRound > mpMaxRounds/2 && mpHalftime == 1 {
+		if mpOvertimeMaxRounds < 1 {
+			mpOvertimeMaxRounds = defaultMpOvertimeMaxrounds
+		}
+
 		if otPeriod := calcOvertimePeriodNumber(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound) - 1; otPeriod > 0 {
 			if otNotClinchable := mpOvertimeMaxRounds%2 == 0; otNotClinchable {
 				otRoundsCompleted := currentRound - mpMaxRounds
@@ -86,12 +85,12 @@ func calculateWinThreshold(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound 
 		mpMaxRounds = defaultMpMaxrounds
 	}
 
-	if mpOvertimeMaxRounds < 1 {
-		mpOvertimeMaxRounds = defaultMpOvertimeMaxrounds
-	}
-
 	if notClinchable := mpMaxRounds%2 == 0; notClinchable {
 		if otRoundsCompleted := lastCompletedRound - mpMaxRounds; otRoundsCompleted > 0 {
+			if mpOvertimeMaxRounds < 1 {
+				mpOvertimeMaxRounds = defaultMpOvertimeMaxrounds
+			}
+
 			if otNotClinchable := mpOvertimeMaxRounds%2 == 0; otNotClinchable {
 				otPeriodsCompleted := calcOvertimePeriodNumber(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound) - 1
 

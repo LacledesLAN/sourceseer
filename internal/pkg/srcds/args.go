@@ -7,7 +7,7 @@ type Args struct {
 	NoRestart bool `long:"norestart" description:"Won't attempt to restart failed servers."`
 }
 
-//AsSlice returns the command line options stored in a slice with individual values propertly formatted for SRCDS
+//AsSlice returns the command line options stored in a slice with individual values properly formatted for SRCDS
 func (o Args) AsSlice() []string {
 	var r []string
 

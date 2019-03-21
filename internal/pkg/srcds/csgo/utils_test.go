@@ -54,6 +54,7 @@ func Test_calculateSidesAreSwitched(t *testing.T) {
 		{1, 4, 3, []int{2, 3, 4}, true},
 
 		// default server settings
+		// TODO - verify this is how switches actually happen in-game
 		{1, 30, 6, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}, false},          // first-half
 		{1, 30, 6, []int{15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29}, true}, // second-half
 		{1, 30, 6, []int{30, 31, 32}, true},                                                 // OT 1 first-half
