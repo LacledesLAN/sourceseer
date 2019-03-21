@@ -24,6 +24,26 @@ var (
 	srcdsSafeChars = regexp.MustCompile(`[^a-zA-Z0-9_-]+`)
 )
 
+func calcOvertimePeriodNumber(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound int) int {
+	if mpMaxRounds < 1 {
+		mpMaxRounds = defaultMpMaxrounds
+	}
+
+	if mpOvertimeMaxRounds < 1 {
+		mpOvertimeMaxRounds = defaultMpOvertimeMaxrounds
+	}
+
+	if lastCompletedRound-mpMaxRounds >= 0 {
+		if otNotClinchable := mpOvertimeMaxRounds%2 == 0; otNotClinchable {
+			return ((lastCompletedRound - mpMaxRounds) / mpOvertimeMaxRounds) + 1
+		}
+
+		return 1
+	}
+
+	return 0
+}
+
 // calculateSidesAreSwitched determines if sides should currently be swapped (mp_team1 is affiliated Terrorist)
 func calculateSidesAreSwitched(mpHalftime, mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound int) bool {
 	// TODO - this function needs PROPER unit tests after in-game confirmation are done
@@ -42,13 +62,19 @@ func calculateSidesAreSwitched(mpHalftime, mpMaxRounds, mpOvertimeMaxRounds, las
 	currentRound := lastCompletedRound + 1
 
 	if mpHalftime == 1 && currentRound > mpMaxRounds/2 {
-		if currentRound <= mpMaxRounds+(mpOvertimeMaxRounds/2) {
-			return true
+		if otPeriod := calcOvertimePeriodNumber(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound) - 1; otPeriod > 0 {
+			if otNotClinchable := mpOvertimeMaxRounds%2 == 0; otNotClinchable {
+				otRoundsCompleted := currentRound - mpMaxRounds
+
+				if isFirstHalf := otRoundsCompleted-(otPeriod*mpOvertimeMaxRounds) <= mpOvertimeMaxRounds/2; isFirstHalf {
+					return otPeriod%2 == 0
+				}
+
+				return otPeriod%2 != 0
+			}
 		}
 
-		if otNotClinchable := mpOvertimeMaxRounds%2 == 0; otNotClinchable {
-			//// TODO
-		}
+		return currentRound <= mpMaxRounds+(mpOvertimeMaxRounds/2)
 	}
 
 	return false
@@ -67,7 +93,7 @@ func calculateWinThreshold(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound 
 	if notClinchable := mpMaxRounds%2 == 0; notClinchable {
 		if otRoundsCompleted := lastCompletedRound - mpMaxRounds; otRoundsCompleted > 0 {
 			if otNotClinchable := mpOvertimeMaxRounds%2 == 0; otNotClinchable {
-				otPeriodsCompleted := otRoundsCompleted / mpOvertimeMaxRounds
+				otPeriodsCompleted := calcOvertimePeriodNumber(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound) - 1
 
 				if otRoundsCompleted%mpOvertimeMaxRounds == 0 {
 					otPeriodsCompleted = otPeriodsCompleted - 1

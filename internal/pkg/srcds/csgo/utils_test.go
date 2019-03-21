@@ -6,17 +6,62 @@ import (
 	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
 )
 
+func Test_calcOvertimePeriodNumber(t *testing.T) {
+	testDatum := []struct {
+		mpMaxRounds         int
+		mpOvertimeMaxRounds int
+		lastCompletedRounds []int
+		expected            int
+	}{
+		// "Hasty" server settings
+		{4, 3, []int{0, 1, 2, 3}, 0},
+		{4, 3, []int{4, 5, 6, 7, 8, 9, 10}, 1}, // OT rounds 7+ will never happen; should still report OT period 1
+
+		// default server settings
+		{30, 6, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29}, 0},
+		{30, 6, []int{30, 31, 32, 33, 34, 35}, 1},    // OT 1
+		{30, 6, []int{36, 37, 38, 39, 40, 41}, 2},    // OT 2
+		{30, 6, []int{42, 43, 44, 45, 46, 47}, 3},    // OT 3
+		{30, 6, []int{78, 79, 80, 81, 82, 83}, 9},    // OT 9
+		{30, 6, []int{96, 97, 98, 99, 100, 101}, 12}, // OT 12
+
+		// prevailing community tourney settings
+		{30, 7, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29}, 0},
+		{30, 7, []int{30, 31, 32, 33, 34, 35, 36, 37, 999}, 1}, // OT rounds 37+ will never happen; should still report OT period 1
+	}
+
+	for _, d := range testDatum {
+		for _, n := range d.lastCompletedRounds {
+			actual := calcOvertimePeriodNumber(d.mpMaxRounds, d.mpOvertimeMaxRounds, n)
+
+			if actual != d.expected {
+				t.Errorf("With `mp_maxrounds` = `%d`, `mp_overtime_maxrounds` = `%d`, and `last completed round = %d` the overtime period number should be %v not %v", d.mpMaxRounds, d.mpOvertimeMaxRounds, n, d.expected, actual)
+			}
+		}
+	}
+}
+
 func Test_calculateSidesAreSwitched(t *testing.T) {
 	testDatum := []struct {
 		mpHalftime          int
 		mpMaxRounds         int
 		mpOvertimeMaxRounds int
 		completedRounds     []int
-		expectedResult      bool
+		expected            bool
 	}{
 		// "Hasty" server settings
 		{1, 4, 3, []int{0, 1, 5, 6}, false},
 		{1, 4, 3, []int{2, 3, 4}, true},
+
+		// default server settings
+		{1, 30, 6, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}, false},          // first-half
+		{1, 30, 6, []int{15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29}, true}, // second-half
+		{1, 30, 6, []int{30, 31, 32}, true},                                                 // OT 1 first-half
+		{1, 30, 6, []int{33, 34, 35}, false},                                                // OT 1 second-half
+		{1, 30, 6, []int{36, 37, 38}, false},                                                // OT 2 first-half
+		{1, 30, 6, []int{39, 40, 41}, true},                                                 // OT 2 second-half
+		{1, 30, 6, []int{42, 43, 44}, true},                                                 // OT 3 first-half
+		{1, 30, 6, []int{45, 46, 47}, false},                                                // OT 3 second-half
 
 		// prevailing community tourney settings
 		{1, 30, 7, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 33, 34, 35, 36}, false},
@@ -27,8 +72,8 @@ func Test_calculateSidesAreSwitched(t *testing.T) {
 		for _, n := range d.completedRounds {
 			actual := calculateSidesAreSwitched(d.mpHalftime, d.mpMaxRounds, d.mpOvertimeMaxRounds, n)
 
-			if actual != d.expectedResult {
-				t.Errorf("With `mp_halftime = %d`, `mp_maxrounds` = `%d`, `mp_overtime_maxrounds` = `%d`, and `last completed round = %d` the team sides swapped should be: %v", d.mpHalftime, d.mpMaxRounds, d.mpOvertimeMaxRounds, n, d.expectedResult)
+			if actual != d.expected {
+				t.Errorf("With `mp_halftime = %d`, `mp_maxrounds` = `%d`, `mp_overtime_maxrounds` = `%d`, and `last completed round = %d` the team sides swapped should be: %v", d.mpHalftime, d.mpMaxRounds, d.mpOvertimeMaxRounds, n, d.expected)
 			}
 		}
 	}
@@ -39,7 +84,7 @@ func Test_calculateWinThreshold(t *testing.T) {
 		mpMaxRounds         int
 		mpOvertimeMaxRounds int
 		lastCompletedRound  int
-		expectedResult      int
+		expected            int
 	}{
 		// normal rounds clinchable
 		{1, 2, -1, 1}, // impossible condition
@@ -88,17 +133,17 @@ func Test_calculateWinThreshold(t *testing.T) {
 	for _, d := range testDatum {
 		actual := calculateWinThreshold(d.mpMaxRounds, d.mpOvertimeMaxRounds, d.lastCompletedRound)
 
-		if actual != d.expectedResult {
-			t.Errorf("With `mp_maxrounds` = `%d` and `mp_overtime_maxrounds` = `%d` and the last completed round being `%d` a calculated win threshold should be %d not %d!", d.mpMaxRounds, d.mpOvertimeMaxRounds, d.lastCompletedRound, d.expectedResult, actual)
+		if actual != d.expected {
+			t.Errorf("With `mp_maxrounds` = `%d` and `mp_overtime_maxrounds` = `%d` and the last completed round being `%d` a calculated win threshold should be %d not %d!", d.mpMaxRounds, d.mpOvertimeMaxRounds, d.lastCompletedRound, d.expected, actual)
 		}
 	}
 }
 
 func Test_HostnameFromTeamNames(t *testing.T) {
 	testDatum := []struct {
-		mpTeamname1    string
-		mpTeamname2    string
-		expectedResult string
+		mpTeamname1 string
+		mpTeamname2 string
+		expected    string
 	}{
 		// both team names in range
 		{"a", "b", "a-vs-b"},
@@ -125,9 +170,9 @@ func Test_HostnameFromTeamNames(t *testing.T) {
 		result := HostnameFromTeamNames(testData.mpTeamname1, testData.mpTeamname2)
 
 		if len(result) > srcds.MaxHostnameLength {
-			t.Errorf("TOO LONG! - Teams %q and %q should expected to be %q but got %q", testData.mpTeamname1, testData.mpTeamname2, testData.expectedResult, result)
-		} else if testData.expectedResult != result {
-			t.Errorf("Teams %q and %q should expected to be %q but got %q", testData.mpTeamname1, testData.mpTeamname2, testData.expectedResult, result)
+			t.Errorf("TOO LONG! - Teams %q and %q should expected to be %q but got %q", testData.mpTeamname1, testData.mpTeamname2, testData.expected, result)
+		} else if testData.expected != result {
+			t.Errorf("Teams %q and %q should expected to be %q but got %q", testData.mpTeamname1, testData.mpTeamname2, testData.expected, result)
 		}
 	}
 }
