@@ -84,23 +84,28 @@ func (s *SRCDS) Start(osArgs []string) error {
 			outLine = strings.Trim(strings.TrimSuffix(outLine, "\n"), "")
 
 			if len(outLine) > 0 {
-				le, err := parseLogEntry(outLine)
+				if le, err := parseLogEntry(outLine); err == nil {
+					if cvarSet, err := parseCvarEcho(outLine); err == nil {
+						s.game.CvarSet(cvarSet.Name, cvarSet.Value)
 
-				if err == nil {
-					s.processLogEntry(le)
-					if optionEchoSRCDSLog {
-						fmt.Println("[SRCDS LOG ]", le.Message)
+						if optionEchoSRCDSCvar {
+							fmt.Println("[SRCDS CVAR]", outLine)
+						}
+					} else {
+						s.processLogEntry(le)
+
+						if optionEchoSRCDSLog {
+							fmt.Println("[SRCDS LOG ]", le.Message)
+						}
 					}
-				} else if cvarSet, err := ParseCvarValueSet(outLine); err == nil {
+				} else if cvarSet, err := parseServerCvarEcho(outLine); err == nil {
 					s.game.CvarSet(cvarSet.Name, cvarSet.Value)
 
 					if optionEchoSRCDSCvar {
 						fmt.Println("[SRCDS CVAR]", outLine)
 					}
-				} else {
-					if optionEchoSRCDSOther {
-						fmt.Println("[SRCDS     ]", outLine)
-					}
+				} else if optionEchoSRCDSOther {
+					fmt.Println("[SRCDS     ]", outLine)
 				}
 			}
 		}

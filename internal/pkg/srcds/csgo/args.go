@@ -25,7 +25,7 @@ type Args struct {
 	UseRemoteConsole bool   `long:"userrcon" description:"Enables Remove Console" default:"true"`
 }
 
-//AsSlice returns the command line options stored in a slice with individual values propertly formatted for SRCDS
+//AsSlice returns the command line options stored in a slice with individual values properly formatted for SRCDS
 func (o Args) AsSlice() []string {
 	r := append(o.Args.AsSlice(), "-game csgo", "+game_mode "+strconv.Itoa(o.GameMode), "+game_type "+strconv.Itoa(o.GameType), "+map "+o.Map)
 

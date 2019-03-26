@@ -262,13 +262,6 @@ func (g *CSGO) mapChanged(mapName string) {
 }
 
 func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
-	// see if a cvar was set
-	cvarSet, err := srcds.ParseCvarValueSet(le.Message)
-	if err == nil {
-		g.CvarSet(cvarSet.Name, cvarSet.Value)
-		return
-	}
-
 	// client did something
 	if strings.HasPrefix(le.Message, `"`) {
 		_, err := parsePlayerSay(le)

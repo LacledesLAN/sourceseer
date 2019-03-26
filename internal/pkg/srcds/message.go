@@ -92,26 +92,27 @@ func parseClientMessage(le LogEntry) (ClientMessage, error) {
 	}, nil
 }
 
-//ParseCvarValueSet parse when srcds outputs a cvar
-func ParseCvarValueSet(s string) (CvarValueSet, error) {
-	if strings.HasPrefix(s, `"`) {
-		r := serverCvarEchoRegex.FindStringSubmatch(s)
+func parseServerCvarEcho(s string) (CvarValueSet, error) {
+	r := serverCvarSetRegex.FindStringSubmatch(s)
 
-		if len(r) == 3 {
-			return CvarValueSet{
-				Name:  r[1],
-				Value: r[2],
-			}, nil
-		}
-	} else if strings.HasPrefix(s, `server_cvar: "`) {
-		r := serverCvarSetRegex.FindStringSubmatch(s)
+	if len(r) == 3 {
+		return CvarValueSet{
+			Name:  r[1],
+			Value: r[2],
+		}, nil
+	}
 
-		if len(r) == 3 {
-			return CvarValueSet{
-				Name:  r[1],
-				Value: r[2],
-			}, nil
-		}
+	return CvarValueSet{}, errors.New("Could not parse cvar out of string '" + s + "'")
+}
+
+func parseCvarEcho(s string) (CvarValueSet, error) {
+	r := serverCvarEchoRegex.FindStringSubmatch(s)
+
+	if len(r) == 3 {
+		return CvarValueSet{
+			Name:  r[1],
+			Value: r[2],
+		}, nil
 	}
 
 	return CvarValueSet{}, errors.New("Could not parse cvar out of string '" + s + "'")
