@@ -3,7 +3,7 @@ package srcds
 //Args are the command line options for the Source Dedicated Server executable
 type Args struct {
 	Insecure  bool `long:"insecure" description:"Will start the server without Valve Anti-Cheat." hidden:"true"`
-	NoBots    bool `long:"nobots" description:"Used to disable bots" default:"true" hidden:"true"`
+	Bots      bool `long:"bots" description:"Used to enable bots" hidden:"true"`
 	NoRestart bool `long:"norestart" description:"Won't attempt to restart failed servers."`
 }
 
@@ -15,7 +15,7 @@ func (o Args) AsSlice() []string {
 		r = append(r, "-insecure")
 	}
 
-	if o.NoBots {
+	if !o.Bots {
 		r = append(r, "-nobots")
 	}
 

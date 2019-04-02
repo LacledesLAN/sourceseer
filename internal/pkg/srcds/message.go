@@ -29,6 +29,7 @@ type ClientDisconnected struct {
 	Reason string
 }
 
+//ClientMessage represents a log entry caused by a client action
 type ClientMessage struct {
 	Client  Client
 	Message string

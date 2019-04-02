@@ -18,8 +18,8 @@ var (
 		"|--------L-IVE-------|", "|---------LIVE-------|"}
 )
 
-// LiveOnThree is used to ensure players are given time to be ready before life play
-func LiveOnThree(stdin chan string) {
+// liveOnThree is used to ensure players are given time to be ready before life play
+func liveOnThree(stdin chan string) {
 	for i := 3; i > 0; i-- {
 		stdin <- "say [LIVE ON 3 in..." + strconv.Itoa(i) + "!]"
 		time.Sleep(1250 * time.Millisecond)
@@ -39,7 +39,7 @@ func LiveOnThree(stdin chan string) {
 	stdin <- "say GLHF!"
 }
 
-func Reset(stdin chan string) {
+func reset(stdin chan string) {
 	stdin <- "exec gamemode_competitive"
 	stdin <- "exec gamemode_competitive_server"
 	stdin <- "mp_restartgame 1"

@@ -22,7 +22,7 @@ type Args struct {
 	TVName           string `long:"tv_name" description:"GOTV host name"`
 	TVPassword       string `long:"tv_password" description:"GOTV password for all clients."`
 	TVRelayPassword  string `long:"tv_relaypassword" description:"GOTV password for relay proxies" hidden:"true"`
-	UseRemoteConsole bool   `long:"userrcon" description:"Enables Remove Console" default:"true"`
+	UseRemoteConsole bool   `long:"userrcon" description:"Enables Remove Console"`
 }
 
 //AsSlice returns the command line options stored in a slice with individual values properly formatted for SRCDS

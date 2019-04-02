@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"errors"
-	"flag"
 	"fmt"
 	"math/rand"
 	"os"
@@ -29,12 +28,12 @@ func main() {
 		}
 	}
 
+	var args []string
 	var csgoArgs csgo.Args
-	_, err := flags.ParseArgs(&csgoArgs, os.Args)
 
+	args, err := flags.ParseArgs(&csgoArgs, os.Args)
 	if err != nil {
-		fmt.Fprint(os.Stderr, err)
-		os.Exit(87)
+		panic(err)
 	}
 
 	if len(csgoArgs.TeamName1) < 1 {
@@ -55,7 +54,7 @@ func main() {
 	}
 
 	if csgoArgs.UseRemoteConsole && len(csgoArgs.RConPassword) < 1 {
-		fmt.Fprint(os.Stderr, "Argument rcon_pass must be provided!\n\n")
+		fmt.Fprint(os.Stderr, "When remote console is enabled argument rcon_pass must be provided!\n\n")
 		fmt.Fprint(os.Stderr, "\tExample: --rcon_password BulldogsFancy957Cupcakes\n\n")
 		os.Exit(87)
 	}
@@ -76,10 +75,10 @@ func main() {
 		csgoArgs.TVRelayPassword = string(b)
 	}
 
-	maps := flag.Args()
+	maps := args[1:]
 	if l := len(maps); l == 0 || l%2 == 0 {
 		fmt.Fprint(os.Stderr, "A positive, odd-number of maps must be provided!\n\n")
-		fmt.Fprint(os.Stderr, "\tExample: -mp_teamname_1 red -mp_teamname_2 blu de_inferno de_biome de_inferno\n\n")
+		fmt.Fprint(os.Stderr, "\tExample: --mp_teamname_1 red --mp_teamname_2 blu de_inferno de_biome de_inferno\n\n")
 		os.Exit(87)
 	}
 
@@ -89,8 +88,7 @@ func main() {
 		os.Exit(87)
 	}
 
-	if !csgoArgs.NoBots {
-		fmt.Println("Allowing bots!")
+	if csgoArgs.Bots {
 		fmt.Println("Allowing bots!")
 		fmt.Println("Allowing bots!")
 	}
@@ -113,7 +111,7 @@ func main() {
 
 		for i, m := range maps {
 			if m != strings.ToLower(m) {
-				maps[i] = strings.ToLower(m)
+				args[i] = strings.ToLower(m)
 			}
 
 			if err := validateStockMapNames(maps[i]); err != nil {
@@ -127,7 +125,7 @@ func main() {
 			osArgs = append(osArgs, "powershell.exe", "-NonInteractive", "-Command")
 		}
 
-		osArgs = append(osArgs, "docker", "run", "-i", "--rm", "--net=host", `--entrypoint "/bin/bash"`, "lacledeslan/gamesvr-csgo-tourney:hasty", "/app/srcds_run")
+		osArgs = append(osArgs, "docker", "run", "-i", "--rm", "--net=host", `--entrypoint "/bin/bash"`, "lacledeslan/gamesvr-csgo", "/app/srcds_run")
 	}
 
 	server, err := srcds.New(csgoTourney)
