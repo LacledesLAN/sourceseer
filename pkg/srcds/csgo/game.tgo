@@ -1,0 +1,21 @@
+
+func (g *CSGO) processLogEntry(le srcds.LogEntry) (keepProcessing bool) {
+	// WarMod Hacks ¯\_ಠ_ಠ_/¯
+	if strings.HasPrefix(le.Message, "[WarMod_BFG]") {
+		// WarMod drops teamnames during the LO3 before knife fights
+		if strings.Contains(le.Message, `", "event": "knife_round_`) {
+			if len(g.teamAssignedToCT) > 0 {
+				g.cmdIn <- "mp_teamname_1 " + g.teamAssignedToCT
+			}
+
+			if len(g.teamAssignedToTerrorist) > 0 {
+				g.cmdIn <- "mp_teamname_2 " + g.teamAssignedToTerrorist
+			}
+		}
+
+		return false
+	}
+
+	g.gameMessageLoop <- le
+	return true
+}

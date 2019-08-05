@@ -1,0 +1,4 @@
+github.com/jessevdk/go-flags v1.4.0 h1:4IU2WS7AumrZ/40jfhf4QVDMsQwqA7VEHozFRrGARJA=
+github.com/jessevdk/go-flags v1.4.0/go.mod h1:4FA24M0QyGHXBuZZK/XkWh8h0e1EYbRYJSGM75WSRxI=
+github.com/lacledeslan/sourceseer v0.0.0-20190402023534-b38ee7c276b0 h1:XLButZArHiXQ0lhanIc49tLWztwt7TscNwPcdTXUtKs=
+github.com/lacledeslan/sourceseer v0.0.0-20190402023534-b38ee7c276b0/go.mod h1:IkHZfQ4UWQRbktYpbfsjX/Wlx2tJb+/Ag/bX07+H8MY=

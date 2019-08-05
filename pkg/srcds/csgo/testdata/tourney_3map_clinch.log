@@ -1,0 +1,1238 @@
+## This log contains three matches (https://github.com/LacledesLAN/sourceseer/issues/5)
+##      1 - mp_team1 won 16:0
+##      2 - mp_team2 won 0:16
+##      3 - mp_team1 won 16:3
+##
+## Settings
+##      - mp_halftime=1
+##      - mp_maxrounds=30
+##      - mp_overtime_maxrounds=7
+##
+L 08/05/2019 - 00:02:31: Log file started (file "logs/L172_030_014_010_27015_201908050002_000.log") (game "/app/csgo") (version "7508")
+L 08/05/2019 - 00:02:31: Loading map "de_lltest"
+L 08/05/2019 - 00:02:31: server cvars start
+L 08/05/2019 - 00:02:31: "cash_player_killed_teammate" = "-300"
+L 08/05/2019 - 00:02:31: "cash_player_respawn_amount" = "0"
+L 08/05/2019 - 00:02:31: "sv_maxspeed" = "320"
+L 08/05/2019 - 00:02:31: "cash_team_winner_bonus_consecutive_rounds" = "0"
+L 08/05/2019 - 00:02:31: "cash_team_rescued_hostage" = "0"
+L 08/05/2019 - 00:02:31: "cash_team_win_by_defusing_bomb" = "3250"
+L 08/05/2019 - 00:02:31: "sv_rollangle" = "0"
+L 08/05/2019 - 00:02:31: "r_AirboatViewZHeight" = "0.0"
+L 08/05/2019 - 00:02:31: "sv_cheats" = "0"
+L 08/05/2019 - 00:02:31: "r_VehicleViewDampen" = "1"
+L 08/05/2019 - 00:02:31: "mp_allowNPCs" = "1"
+L 08/05/2019 - 00:02:31: "mp_tournament" = "0"
+L 08/05/2019 - 00:02:31: "sv_vote_issue_pause_match_spec_only" = "0"
+L 08/05/2019 - 00:02:31: "sv_spec_hear" = "1"
+L 08/05/2019 - 00:02:31: "cash_player_interact_with_hostage" = "150"
+L 08/05/2019 - 00:02:31: "mp_maxrounds" = "0"
+L 08/05/2019 - 00:02:31: "mp_flashlight" = "0"
+L 08/05/2019 - 00:02:31: "sv_tags" = ""
+L 08/05/2019 - 00:02:31: "sv_stepsize" = "18"
+L 08/05/2019 - 00:02:31: "sv_alltalk" = "0"
+L 08/05/2019 - 00:02:31: "mp_teamlist" = "hgrunt;scientist"
+L 08/05/2019 - 00:02:31: "mp_footsteps" = "1"
+L 08/05/2019 - 00:02:31: "sv_noclipaccelerate" = "5"
+L 08/05/2019 - 00:02:31: "sv_accelerate_debug_speed" = "0"
+L 08/05/2019 - 00:02:31: "sv_wateraccelerate" = "10"
+L 08/05/2019 - 00:02:31: "mp_stalemate_enable" = "0"
+L 08/05/2019 - 00:02:31: "mp_autocrosshair" = "1"
+L 08/05/2019 - 00:02:31: "cash_team_elimination_bomb_map" = "3250"
+L 08/05/2019 - 00:02:31: "cash_player_get_killed" = "0"
+L 08/05/2019 - 00:02:31: "mp_roundtime_defuse" = "0"
+L 08/05/2019 - 00:02:31: "sv_autobuyammo" = "0"
+L 08/05/2019 - 00:02:31: "sv_rollspeed" = "200"
+L 08/05/2019 - 00:02:31: "sv_airaccelerate" = "12"
+L 08/05/2019 - 00:02:31: "sv_show_team_equipment_prohibit" = "0"
+L 08/05/2019 - 00:02:31: "mp_teams_unbalance_limit" = "1"
+L 08/05/2019 - 00:02:31: "mp_timelimit" = "5"
+L 08/05/2019 - 00:02:31: "cash_team_loser_bonus" = "1400"
+L 08/05/2019 - 00:02:31: "sv_deadtalk" = "0"
+L 08/05/2019 - 00:02:31: "cash_player_rescued_hostage" = "1000"
+L 08/05/2019 - 00:02:31: "sv_waterfriction" = "1"
+L 08/05/2019 - 00:02:31: "sv_competitive_official_5v5" = "0"
+L 08/05/2019 - 00:02:31: "sv_steamgroup" = ""
+L 08/05/2019 - 00:02:31: "cash_player_killed_enemy_default" = "300"
+L 08/05/2019 - 00:02:31: "coop" = "0"
+L 08/05/2019 - 00:02:31: "mp_respawnwavetime" = "10.0"
+L 08/05/2019 - 00:02:31: "sv_teamid_overhead" = "1"
+L 08/05/2019 - 00:02:31: "tv_enable1" = "0"
+L 08/05/2019 - 00:02:31: "nextlevel" = ""
+L 08/05/2019 - 00:02:31: "sv_stopspeed" = "80"
+L 08/05/2019 - 00:02:31: "sv_specaccelerate" = "5"
+L 08/05/2019 - 00:02:31: "deathmatch" = "1"
+L 08/05/2019 - 00:02:31: "tv_enable" = "0"
+L 08/05/2019 - 00:02:31: "mp_roundtime_hostage" = "0"
+L 08/05/2019 - 00:02:31: "mp_freezetime" = "6"
+L 08/05/2019 - 00:02:31: "mp_teammates_are_enemies" = "0"
+L 08/05/2019 - 00:02:31: "mp_falldamage" = "0"
+L 08/05/2019 - 00:02:31: "sv_accelerate_use_weapon_speed" = "1"
+L 08/05/2019 - 00:02:31: "sv_voiceenable" = "1"
+L 08/05/2019 - 00:02:31: "sv_teamid_overhead_always_prohibit" = "0"
+L 08/05/2019 - 00:02:31: "sv_bounce" = "0"
+L 08/05/2019 - 00:02:31: "mp_disable_respawn_times" = "0"
+L 08/05/2019 - 00:02:31: "r_AirboatViewDampenFreq" = "7.0"
+L 08/05/2019 - 00:02:31: "mp_weaponstay" = "0"
+L 08/05/2019 - 00:02:31: "mp_hostagepenalty" = "10"
+L 08/05/2019 - 00:02:31: "tv_advertise_watchable" = "0"
+L 08/05/2019 - 00:02:31: "mp_friendlyfire" = "0"
+L 08/05/2019 - 00:02:31: "cash_team_hostage_interaction" = "500"
+L 08/05/2019 - 00:02:31: "sv_noclipspeed" = "5"
+L 08/05/2019 - 00:02:31: "cash_team_win_by_time_running_out_bomb" = "3250"
+L 08/05/2019 - 00:02:31: "sv_allchat" = "1"
+L 08/05/2019 - 00:02:31: "mp_buy_during_immunity" = "0"
+L 08/05/2019 - 00:02:31: "cash_player_killed_enemy_factor" = "1"
+L 08/05/2019 - 00:02:31: "mp_c4timer" = "40"
+L 08/05/2019 - 00:02:31: "r_JeepViewDampenDamp" = "1.0"
+L 08/05/2019 - 00:02:31: "sv_competitive_minspec" = "1"
+L 08/05/2019 - 00:02:31: "r_AirboatViewDampenDamp" = "1.0"
+L 08/05/2019 - 00:02:31: "sv_max_allowed_net_graph" = "1"
+L 08/05/2019 - 00:02:31: "mp_stalemate_at_timelimit" = "0"
+L 08/05/2019 - 00:02:31: "mp_limitteams" = "2"
+L 08/05/2019 - 00:02:31: "sv_footsteps" = "1"
+L 08/05/2019 - 00:02:31: "sv_vote_issue_kick_allowed" = "1"
+L 08/05/2019 - 00:02:31: "cash_team_survive_guardian_wave" = "1000"
+L 08/05/2019 - 00:02:31: "tv_relaypassword" = ""
+L 08/05/2019 - 00:02:31: "mp_teamplay" = "0"
+L 08/05/2019 - 00:02:31: "cash_team_terrorist_win_bomb" = "3500"
+L 08/05/2019 - 00:02:31: "cash_team_elimination_hostage_map_t" = "1000"
+L 08/05/2019 - 00:02:31: "r_JeepViewDampenFreq" = "7.0"
+L 08/05/2019 - 00:02:31: "cash_team_win_by_time_running_out_hostage" = "3250"
+L 08/05/2019 - 00:02:31: "sv_specnoclip" = "1"
+L 08/05/2019 - 00:02:31: "sv_friction" = "5.2"
+L 08/05/2019 - 00:02:31: "cash_player_bomb_planted" = "300"
+L 08/05/2019 - 00:02:31: "mp_autoteambalance" = "1"
+L 08/05/2019 - 00:02:31: "sv_contact" = ""
+L 08/05/2019 - 00:02:31: "sv_vote_kick_ban_duration" = "15"
+L 08/05/2019 - 00:02:31: "cash_player_bomb_defused" = "300"
+L 08/05/2019 - 00:02:31: "mp_roundtime" = "5"
+L 08/05/2019 - 00:02:31: "sv_kick_ban_duration" = "15"
+L 08/05/2019 - 00:02:31: "cash_team_planted_bomb_but_defused" = "800"
+L 08/05/2019 - 00:02:31: "cash_player_killed_hostage" = "-1000"
+L 08/05/2019 - 00:02:31: "sv_vote_issue_loadbackup_allowed" = "1"
+L 08/05/2019 - 00:02:31: "nextmode" = ""
+L 08/05/2019 - 00:02:31: "mp_fraglimit" = "0"
+L 08/05/2019 - 00:02:31: "mp_forcerespawn" = "1"
+L 08/05/2019 - 00:02:31: "mp_winlimit" = "0"
+L 08/05/2019 - 00:02:31: "sv_accelerate" = "5.5"
+L 08/05/2019 - 00:02:31: "mp_buy_anywhere" = "0"
+L 08/05/2019 - 00:02:31: "sv_gravity" = "800"
+L 08/05/2019 - 00:02:31: "sv_password" = ""
+L 08/05/2019 - 00:02:31: "cash_team_elimination_hostage_map_ct" = "2000"
+L 08/05/2019 - 00:02:31: "cash_team_win_by_hostage_rescue" = "3500"
+L 08/05/2019 - 00:02:31: "sv_vote_issue_loadbackup_spec_only" = "0"
+L 08/05/2019 - 00:02:31: "cash_team_loser_bonus_consecutive_rounds" = "500"
+L 08/05/2019 - 00:02:31: "cash_player_damage_hostage" = "-30"
+L 08/05/2019 - 00:02:31: "r_JeepViewZHeight" = "10.0"
+L 08/05/2019 - 00:02:31: "cash_team_hostage_alive" = "0"
+L 08/05/2019 - 00:02:31: "tv_password" = ""
+L 08/05/2019 - 00:02:31: "sv_specspeed" = "3"
+L 08/05/2019 - 00:02:31: server cvars end
+L 08/05/2019 - 00:02:31: Started map "de_lltest" (CRC "-25072634")
+L 08/05/2019 - 00:02:31: "Console<0><Console><Console>" say ""Running server.cfg""
+L 08/05/2019 - 00:02:31: server_cvar: "sv_competitive_official_5v5" "1"
+L 08/05/2019 - 00:02:31: server_cvar: "sv_contact" "0"
+L 08/05/2019 - 00:02:31: server_cvar: "sv_teamid_overhead_always_prohibit" "1"
+L 08/05/2019 - 00:02:31: server_cvar: "sv_deadtalk" "1"
+L 08/05/2019 - 00:02:31: server_cvar: "sv_kick_ban_duration" "0"
+L 08/05/2019 - 00:02:31: server_cvar: "tv_enable" "1"
+L 08/05/2019 - 00:02:31: server_cvar: "cash_player_interact_with_hostage" "300"
+L 08/05/2019 - 00:02:31: server_cvar: "cash_team_elimination_hostage_map_t" "3000"
+L 08/05/2019 - 00:02:31: server_cvar: "cash_team_elimination_hostage_map_ct" "3000"
+L 08/05/2019 - 00:02:31: server_cvar: "cash_team_hostage_interaction" "600"
+L 08/05/2019 - 00:02:31: server_cvar: "cash_team_rescued_hostage" "600"
+L 08/05/2019 - 00:02:31: server_cvar: "cash_team_win_by_defusing_bomb" "3500"
+L 08/05/2019 - 00:02:31: server_cvar: "cash_team_win_by_hostage_rescue" "2900"
+L 08/05/2019 - 00:02:31: server_cvar: "mp_freezetime" "15"
+L 08/05/2019 - 00:02:31: server_cvar: "mp_friendlyfire" "1"
+L 08/05/2019 - 00:02:31: server_cvar: "mp_maxrounds" "30"
+L 08/05/2019 - 00:02:31: server_cvar: "mp_roundtime" "1.92"
+L 08/05/2019 - 00:02:31: server_cvar: "mp_roundtime_hostage" "1.92"
+L 08/05/2019 - 00:02:31: server_cvar: "mp_roundtime_defuse" "1.92"
+L 08/05/2019 - 00:02:31: server_cvar: "mp_timelimit" "0"
+L 08/05/2019 - 00:02:31: "Console<0><Console><Console>" say ""Running gamemode_competitive_server.cfg""
+L 08/05/2019 - 00:02:31: server_cvar: "mp_autoteambalance" "0"
+L 08/05/2019 - 00:02:31: server_cvar: "mp_limitteams" "0"
+L 08/05/2019 - 00:02:31: server_cvar: "mp_roundtime" "1.75"
+L 08/05/2019 - 00:02:31: server_cvar: "mp_roundtime_defuse" "1.75"
+L 08/05/2019 - 00:02:35: "GOTV<2><BOT><>" connected, address ""
+L 08/05/2019 - 00:02:35: "GOTV<2><BOT><>" entered the game
+L 08/05/2019 - 00:04:04: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><>" connected, address ""
+L 08/05/2019 - 00:04:04: World triggered "Round_Start"
+L 08/05/2019 - 00:04:04: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><>" STEAM USERID validated
+L 08/05/2019 - 00:04:10: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><>" entered the game
+L 08/05/2019 - 00:04:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719>" switched from team <Unassigned> to <CT>
+L 08/05/2019 - 00:04:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:04:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:04:13: World triggered "Game_Commencing"
+L 08/05/2019 - 00:04:13: Team playing "CT": ALPHA
+L 08/05/2019 - 00:04:13: Team playing "TERRORIST": BRAVO
+L 08/05/2019 - 00:04:14: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:04:14: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:04:14: Starting Freeze period
+L 08/05/2019 - 00:04:14: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:04:14: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:04:14: World triggered "Match_Start" on "de_lltest"
+L 08/05/2019 - 00:04:14: Team playing "CT": ALPHA
+L 08/05/2019 - 00:04:14: Team playing "TERRORIST": BRAVO
+L 08/05/2019 - 00:04:16: World triggered "Round_Start"
+L 08/05/2019 - 00:04:18: "[LL] Loddy<4><STEAM_1:0:4665189><>" connected, address ""
+L 08/05/2019 - 00:04:18: "[LL] Loddy<4><STEAM_1:0:4665189><>" STEAM USERID validated
+L 08/05/2019 - 00:04:20: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:04:24: "[LL] Loddy<4><STEAM_1:0:4665189><>" entered the game
+L 08/05/2019 - 00:04:26: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:04:28: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:04:30: "[LL] Loddy<4><STEAM_1:0:4665189>" switched from team <Unassigned> to <TERRORIST>
+L 08/05/2019 - 00:04:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:04:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:04:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:04:39: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock ]
+L 08/05/2019 - 00:04:42: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [630 56 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [649 166 -192] with "glock" (damage "21") (damage_armor "0") (health "79") (armor "0") (hitgroup "left leg")
+L 08/05/2019 - 00:04:43: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [630 56 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [649 166 -192] with "glock" (damage "21") (damage_armor "0") (health "58") (armor "0") (hitgroup "right leg")
+L 08/05/2019 - 00:04:45: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock ]
+L 08/05/2019 - 00:04:55: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [603 200 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [649 166 -192] with "glock" (damage "22") (damage_armor "0") (health "36") (armor "0") (hitgroup "left leg")
+L 08/05/2019 - 00:04:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [603 200 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [649 166 -192] with "glock" (damage "22") (damage_armor "0") (health "14") (armor "0") (hitgroup "right leg")
+L 08/05/2019 - 00:04:57: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [603 200 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [649 166 -192] with "glock" (damage "22") (damage_armor "0") (health "0") (armor "0") (hitgroup "left leg")
+L 08/05/2019 - 00:04:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:04:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:04:57: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [603 200 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [649 166 -128] with "glock"
+L 08/05/2019 - 00:04:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:04:57: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:04:57: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:04:57: Starting Freeze period
+L 08/05/2019 - 00:04:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:04:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:04:57: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:04:57: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:04:57: World triggered "Match_Start" on "de_lltest"
+L 08/05/2019 - 00:04:57: Team playing "CT": ALPHA
+L 08/05/2019 - 00:04:57: Team playing "TERRORIST": BRAVO
+L 08/05/2019 - 00:04:57: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:04:57: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:04:57: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_c4 C4 ]
+L 08/05/2019 - 00:05:12: World triggered "Round_Start"
+L 08/05/2019 - 00:05:12: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [833 172 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [27 502 -192] with "hkp2000" (damage "29") (damage_armor "0") (health "71") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:05:12: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [833 172 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [41 497 -192] with "hkp2000" (damage "119") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:05:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:05:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:05:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:05:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:05:12: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [833 172 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [41 497 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:05:12: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 800+300 = $1100 (tracked)
+L 08/05/2019 - 00:05:12: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "1") (T "0")
+L 08/05/2019 - 00:05:12: Team "CT" scored "1" with "1" players
+L 08/05/2019 - 00:05:12: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:05:12: World triggered "Round_End"
+L 08/05/2019 - 00:05:12: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 1100+3250 = $4350 (tracked)
+L 08/05/2019 - 00:05:12: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 800+1900 = $2700 (tracked)
+L 08/05/2019 - 00:05:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:05:17: Starting Freeze period
+L 08/05/2019 - 00:05:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:05:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:05:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:05:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:05:32: World triggered "Round_Start"
+L 08/05/2019 - 00:05:34: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [894 -115 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [258 650 -192] with "hkp2000" (damage "36") (damage_armor "0") (health "64") (armor "0") (hitgroup "stomach")
+L 08/05/2019 - 00:05:35: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [894 -115 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [264 551 -192] with "hkp2000" (damage "22") (damage_armor "0") (health "42") (armor "0") (hitgroup "left leg")
+L 08/05/2019 - 00:05:35: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [894 -115 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [262 507 -192] with "hkp2000" (damage "37") (damage_armor "0") (health "5") (armor "0") (hitgroup "stomach")
+L 08/05/2019 - 00:05:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [894 -115 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [260 455 -192] with "hkp2000" (damage "29") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:05:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:05:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:05:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:05:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:05:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [894 -115 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [260 455 -128] with "hkp2000"
+L 08/05/2019 - 00:05:36: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 4350+300 = $4650 (tracked)
+L 08/05/2019 - 00:05:36: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "2") (T "0")
+L 08/05/2019 - 00:05:36: Team "CT" scored "2" with "1" players
+L 08/05/2019 - 00:05:36: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:05:36: World triggered "Round_End"
+L 08/05/2019 - 00:05:36: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 4650+3250 = $7900 (tracked)
+L 08/05/2019 - 00:05:36: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 2700+2400 = $5100 (tracked)
+L 08/05/2019 - 00:05:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:05:41: Starting Freeze period
+L 08/05/2019 - 00:05:41: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:05:41: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:05:41: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:05:41: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:05:56: World triggered "Round_Start"
+L 08/05/2019 - 00:05:56: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [742 2 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [59 446 -192] with "hkp2000" (damage "120") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:05:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:05:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:05:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:05:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:05:56: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [742 2 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [59 446 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:05:56: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 7900+300 = $8200 (tracked)
+L 08/05/2019 - 00:05:56: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "3") (T "0")
+L 08/05/2019 - 00:05:56: Team "CT" scored "3" with "1" players
+L 08/05/2019 - 00:05:56: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:05:56: World triggered "Round_End"
+L 08/05/2019 - 00:05:56: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 8200+3250 = $11450 (tracked)
+L 08/05/2019 - 00:05:56: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 5100+2900 = $8000 (tracked)
+L 08/05/2019 - 00:05:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:06:01: Starting Freeze period
+L 08/05/2019 - 00:06:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:06:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:06:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:06:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:06:16: World triggered "Round_Start"
+L 08/05/2019 - 00:06:16: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [571 -249 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [25 573 -192] with "hkp2000" (damage "116") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:06:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:06:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:06:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:06:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:06:16: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [571 -249 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [25 573 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:06:16: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 11450+300 = $11750 (tracked)
+L 08/05/2019 - 00:06:16: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "4") (T "0")
+L 08/05/2019 - 00:06:16: Team "CT" scored "4" with "1" players
+L 08/05/2019 - 00:06:16: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:06:16: World triggered "Round_End"
+L 08/05/2019 - 00:06:16: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 11750+3250 = $15000 (tracked)
+L 08/05/2019 - 00:06:16: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 8000+3400 = $11400 (tracked)
+L 08/05/2019 - 00:06:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:06:21: Starting Freeze period
+L 08/05/2019 - 00:06:21: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:06:21: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:06:21: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:06:21: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:06:36: World triggered "Round_Start"
+L 08/05/2019 - 00:06:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -192] with "hkp2000" (damage "117") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:06:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:06:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:06:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:06:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:06:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:06:36: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 15000+300 = $15300 (tracked)
+L 08/05/2019 - 00:06:36: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "5") (T "0")
+L 08/05/2019 - 00:06:36: Team "CT" scored "5" with "1" players
+L 08/05/2019 - 00:06:36: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:06:36: World triggered "Round_End"
+L 08/05/2019 - 00:06:36: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 15300+3250 = $16000 (tracked)
+L 08/05/2019 - 00:06:36: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 11400+3400 = $14800 (tracked)
+L 08/05/2019 - 00:06:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:06:39: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:06:41: Starting Freeze period
+L 08/05/2019 - 00:06:41: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:06:41: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:06:41: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:06:41: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:06:41: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:06:56: World triggered "Round_Start"
+L 08/05/2019 - 00:06:56: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [636 -111 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [171 377 -192] with "hkp2000" (damage "123") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:06:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:06:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:06:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:06:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:06:56: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [636 -111 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [171 377 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:06:56: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "6") (T "0")
+L 08/05/2019 - 00:06:56: Team "CT" scored "6" with "1" players
+L 08/05/2019 - 00:06:56: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:06:56: World triggered "Round_End"
+L 08/05/2019 - 00:06:56: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 14800+3400 = $16000 (tracked)
+L 08/05/2019 - 00:06:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:06:58: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:07:00: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:07:01: Starting Freeze period
+L 08/05/2019 - 00:07:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:07:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:07:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:07:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:07:16: World triggered "Round_Start"
+L 08/05/2019 - 00:07:16: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [839 -67 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -192] with "hkp2000" (damage "116") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:07:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:07:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:07:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:07:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:07:16: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [839 -67 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:07:16: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "7") (T "0")
+L 08/05/2019 - 00:07:16: Team "CT" scored "7" with "1" players
+L 08/05/2019 - 00:07:16: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:07:16: World triggered "Round_End"
+L 08/05/2019 - 00:07:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:07:21: Starting Freeze period
+L 08/05/2019 - 00:07:21: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:07:21: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:07:21: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:07:21: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:07:36: World triggered "Round_Start"
+L 08/05/2019 - 00:07:42: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [748 -237 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [235 549 -192] with "hkp2000" (damage "117") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:07:42: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:07:42: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:07:42: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:07:42: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:07:42: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [748 -237 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [235 549 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:07:42: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "8") (T "0")
+L 08/05/2019 - 00:07:42: Team "CT" scored "8" with "1" players
+L 08/05/2019 - 00:07:42: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:07:42: World triggered "Round_End"
+L 08/05/2019 - 00:07:42: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:07:47: Starting Freeze period
+L 08/05/2019 - 00:07:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:07:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:07:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:07:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:08:02: World triggered "Round_Start"
+L 08/05/2019 - 00:08:02: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [742 2 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [25 573 -192] with "hkp2000" (damage "118") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:08:02: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:08:02: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:08:02: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:08:02: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:08:02: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [742 2 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [25 573 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:08:02: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "9") (T "0")
+L 08/05/2019 - 00:08:02: Team "CT" scored "9" with "1" players
+L 08/05/2019 - 00:08:02: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:08:02: World triggered "Round_End"
+L 08/05/2019 - 00:08:02: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:08:07: Starting Freeze period
+L 08/05/2019 - 00:08:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:08:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:08:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:08:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:08:22: World triggered "Round_Start"
+L 08/05/2019 - 00:08:23: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [823 -14 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [327 634 -192] with "hkp2000" (damage "120") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:08:23: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:08:23: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:08:23: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:08:23: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:08:23: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [823 -14 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [327 634 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:08:23: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "10") (T "0")
+L 08/05/2019 - 00:08:23: Team "CT" scored "10" with "1" players
+L 08/05/2019 - 00:08:23: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:08:23: World triggered "Round_End"
+L 08/05/2019 - 00:08:23: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:08:28: Starting Freeze period
+L 08/05/2019 - 00:08:28: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:08:28: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:08:28: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:08:28: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:08:43: World triggered "Round_Start"
+L 08/05/2019 - 00:08:43: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [888 124 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [24 240 -192] with "hkp2000" (damage "119") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:08:43: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:08:43: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:08:43: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:08:43: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:08:43: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [888 124 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [24 240 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:08:43: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "11") (T "0")
+L 08/05/2019 - 00:08:43: Team "CT" scored "11" with "1" players
+L 08/05/2019 - 00:08:43: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:08:43: World triggered "Round_End"
+L 08/05/2019 - 00:08:43: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:08:48: Starting Freeze period
+L 08/05/2019 - 00:08:48: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:08:48: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:08:48: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:08:48: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:09:03: World triggered "Round_Start"
+L 08/05/2019 - 00:09:04: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [452 -135 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [153 624 -192] with "hkp2000" (damage "30") (damage_armor "0") (health "70") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:09:04: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [434 -88 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [153 624 -192] with "hkp2000" (damage "30") (damage_armor "0") (health "40") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:09:04: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:09:04: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [401 -4 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [153 624 -192] with "hkp2000" (damage "123") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:09:04: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:09:04: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:09:04: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:09:04: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:09:04: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [401 -4 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [153 624 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:09:04: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "12") (T "0")
+L 08/05/2019 - 00:09:04: Team "CT" scored "12" with "1" players
+L 08/05/2019 - 00:09:04: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:09:04: World triggered "Round_End"
+L 08/05/2019 - 00:09:04: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:09:09: Starting Freeze period
+L 08/05/2019 - 00:09:09: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:09:09: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:09:09: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:09:09: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:09:09: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:09:24: World triggered "Round_Start"
+L 08/05/2019 - 00:09:25: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [754 149 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [153 624 -192] with "hkp2000" (damage "121") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:09:25: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:09:25: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:09:25: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:09:25: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:09:25: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [754 149 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [153 624 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:09:25: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "13") (T "0")
+L 08/05/2019 - 00:09:25: Team "CT" scored "13" with "1" players
+L 08/05/2019 - 00:09:25: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:09:25: World triggered "Round_End"
+L 08/05/2019 - 00:09:25: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:09:26: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:09:30: Starting Freeze period
+L 08/05/2019 - 00:09:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:09:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:09:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:09:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:09:30: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:09:45: World triggered "Round_Start"
+L 08/05/2019 - 00:09:45: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [893 -115 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [256 616 -192] with "hkp2000" (damage "116") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:09:45: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:09:45: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:09:45: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:09:45: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:09:45: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [893 -115 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [256 616 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:09:45: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "14") (T "0")
+L 08/05/2019 - 00:09:45: Team "CT" scored "14" with "1" players
+L 08/05/2019 - 00:09:45: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:09:45: World triggered "Round_End"
+L 08/05/2019 - 00:09:45: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:09:47: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:09:50: Starting Freeze period
+L 08/05/2019 - 00:09:50: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:09:50: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:09:50: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:09:50: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:09:50: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:10:05: World triggered "Round_Start"
+L 08/05/2019 - 00:10:05: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [636 -111 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [256 616 -192] with "hkp2000" (damage "120") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:10:05: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:10:05: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:10:05: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:10:05: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:10:05: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [636 -111 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [256 616 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:10:05: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "15") (T "0")
+L 08/05/2019 - 00:10:05: Team "CT" scored "15" with "1" players
+L 08/05/2019 - 00:10:05: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:10:05: World triggered "Round_End"
+L 08/05/2019 - 00:10:05: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:10:50: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719>" switched from team <CT> to <TERRORIST>
+L 08/05/2019 - 00:10:50: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:10:50: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "hkp2000"
+L 08/05/2019 - 00:10:50: "[LL] Loddy<4><STEAM_1:0:4665189>" switched from team <TERRORIST> to <CT>
+L 08/05/2019 - 00:10:50: Starting Freeze period
+L 08/05/2019 - 00:10:50: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:10:50: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:10:50: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" picked up "knife"
+L 08/05/2019 - 00:10:50: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:10:50: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:10:50: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:10:50: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_c4 C4 ]
+L 08/05/2019 - 00:11:05: World triggered "Round_Start"
+L 08/05/2019 - 00:11:07: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [27 502 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [902 -201 -192] with "glock" (damage "20") (damage_armor "0") (health "80") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:11:07: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [27 502 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [902 -201 -192] with "glock" (damage "26") (damage_armor "0") (health "54") (armor "0") (hitgroup "stomach")
+L 08/05/2019 - 00:11:07: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [27 502 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [902 -201 -192] with "glock" (damage "20") (damage_armor "0") (health "34") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:11:07: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [27 502 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [902 -201 -192] with "glock" (damage "20") (damage_armor "0") (health "14") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:11:08: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [27 502 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [902 -201 -192] with "glock" (damage "20") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:11:08: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:11:08: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" dropped "knife"
+L 08/05/2019 - 00:11:08: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [27 502 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [902 -201 -128] with "glock"
+L 08/05/2019 - 00:11:08: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><TERRORIST>" money change 800+300 = $1100 (tracked)
+L 08/05/2019 - 00:11:08: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "16")
+L 08/05/2019 - 00:11:08: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:11:08: Team "TERRORIST" scored "16" with "1" players
+L 08/05/2019 - 00:11:08: World triggered "Round_End"
+L 08/05/2019 - 00:11:08: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><TERRORIST>" money change 1100+3250 = $4350 (tracked)
+L 08/05/2019 - 00:11:08: "[LL] Loddy<3><STEAM_1:0:4665189><CT>" money change 800+1900 = $2700 (tracked)
+L 08/05/2019 - 00:11:08: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:11:08: Game Over: competitive  de_lltest score 0:16 after 7 min
+L 08/05/2019 - 00:11:08: World triggered "Round_Start"
+L 08/05/2019 - 00:11:14: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" say "3x game 1"
+L 08/05/2019 - 00:11:35: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:11:35: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:13:08: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:13:08: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719>" switched from team <TERRORIST> to <Unassigned>
+L 08/05/2019 - 00:13:08: "[LL] Loddy<4><STEAM_1:0:4665189>" switched from team <CT> to <Unassigned>
+L 08/05/2019 - 00:13:08: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><Unassigned>" dropped "knife"
+L 08/05/2019 - 00:13:08: Starting Freeze period
+L 08/05/2019 - 00:13:08: World triggered "Match_Start" on "de_lltest"
+L 08/05/2019 - 00:13:08: Team playing "CT": BRAVO
+L 08/05/2019 - 00:13:08: Team playing "TERRORIST": ALPHA
+L 08/05/2019 - 00:13:08: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><Unassigned>" left buyzone with [ ]
+L 08/05/2019 - 00:13:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719>" switched from team <Unassigned> to <CT>
+L 08/05/2019 - 00:13:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:13:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:13:13: World triggered "Game_Commencing"
+L 08/05/2019 - 00:13:13: Team playing "CT": ALPHA
+L 08/05/2019 - 00:13:13: Team playing "TERRORIST": BRAVO
+L 08/05/2019 - 00:13:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:13:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:13:13: Starting Freeze period
+L 08/05/2019 - 00:13:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:13:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:13:13: World triggered "Match_Start" on "de_lltest"
+L 08/05/2019 - 00:13:13: Team playing "CT": ALPHA
+L 08/05/2019 - 00:13:13: Team playing "TERRORIST": BRAVO
+L 08/05/2019 - 00:13:19: "[LL] Loddy<4><STEAM_1:0:4665189>" switched from team <Unassigned> to <TERRORIST>
+L 08/05/2019 - 00:13:19: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:13:19: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:13:19: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:13:19: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:13:27: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 800-600 = $200 (tracked) (purchase: weapon_revolver)
+L 08/05/2019 - 00:13:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:13:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "deagle"
+L 08/05/2019 - 00:13:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" purchased "revolver"
+L 08/05/2019 - 00:13:28: World triggered "Round_Start"
+L 08/05/2019 - 00:13:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [644 -197 -192] with "deagle" (damage "305") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:13:30: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:13:30: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:13:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [644 -197 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:13:30: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 200+300 = $500 (tracked)
+L 08/05/2019 - 00:13:30: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "1")
+L 08/05/2019 - 00:13:30: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:13:30: Team "TERRORIST" scored "1" with "1" players
+L 08/05/2019 - 00:13:30: World triggered "Round_End"
+L 08/05/2019 - 00:13:30: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 500+3250 = $3750 (tracked)
+L 08/05/2019 - 00:13:30: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 800+1900 = $2700 (tracked)
+L 08/05/2019 - 00:13:30: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:13:35: Starting Freeze period
+L 08/05/2019 - 00:13:35: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:13:35: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:13:35: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:13:35: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:13:50: World triggered "Round_Start"
+L 08/05/2019 - 00:13:50: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [393 622 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [581 -63 -192] with "deagle" (damage "78") (damage_armor "0") (health "22") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:13:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [393 622 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [581 -63 -192] with "deagle" (damage "78") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:13:51: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:13:51: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:13:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [393 622 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [581 -63 -128] with "revolver"
+L 08/05/2019 - 00:13:51: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 3750+300 = $4050 (tracked)
+L 08/05/2019 - 00:13:51: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "2")
+L 08/05/2019 - 00:13:51: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:13:51: Team "TERRORIST" scored "2" with "1" players
+L 08/05/2019 - 00:13:51: World triggered "Round_End"
+L 08/05/2019 - 00:13:51: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 4050+3250 = $7300 (tracked)
+L 08/05/2019 - 00:13:51: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 2700+2400 = $5100 (tracked)
+L 08/05/2019 - 00:13:51: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:13:56: Starting Freeze period
+L 08/05/2019 - 00:13:56: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:13:56: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:13:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:13:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:14:11: World triggered "Round_Start"
+L 08/05/2019 - 00:14:11: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [171 377 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [888 124 -192] with "deagle" (damage "313") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:14:11: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:14:11: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:14:11: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [171 377 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [888 124 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:14:11: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 7300+300 = $7600 (tracked)
+L 08/05/2019 - 00:14:11: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "3")
+L 08/05/2019 - 00:14:11: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:14:11: Team "TERRORIST" scored "3" with "1" players
+L 08/05/2019 - 00:14:11: World triggered "Round_End"
+L 08/05/2019 - 00:14:11: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 7600+3250 = $10850 (tracked)
+L 08/05/2019 - 00:14:11: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 5100+2900 = $8000 (tracked)
+L 08/05/2019 - 00:14:11: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:14:16: Starting Freeze period
+L 08/05/2019 - 00:14:16: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:14:16: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:14:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:14:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:14:31: World triggered "Round_Start"
+L 08/05/2019 - 00:14:31: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [105 389 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [833 172 -192] with "deagle" (damage "313") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:14:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:14:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:14:31: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [105 389 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [833 172 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:14:31: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 10850+300 = $11150 (tracked)
+L 08/05/2019 - 00:14:31: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "4")
+L 08/05/2019 - 00:14:31: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:14:31: Team "TERRORIST" scored "4" with "1" players
+L 08/05/2019 - 00:14:31: World triggered "Round_End"
+L 08/05/2019 - 00:14:31: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 11150+3250 = $14400 (tracked)
+L 08/05/2019 - 00:14:31: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 8000+3400 = $11400 (tracked)
+L 08/05/2019 - 00:14:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:14:36: Starting Freeze period
+L 08/05/2019 - 00:14:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:14:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:14:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:14:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:14:51: World triggered "Round_Start"
+L 08/05/2019 - 00:14:57: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [327 634 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [748 -237 -192] with "deagle" (damage "305") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:14:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:14:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:14:57: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [327 634 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [748 -237 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:14:57: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 14400+300 = $14700 (tracked)
+L 08/05/2019 - 00:14:57: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "5")
+L 08/05/2019 - 00:14:57: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:14:57: Team "TERRORIST" scored "5" with "1" players
+L 08/05/2019 - 00:14:57: World triggered "Round_End"
+L 08/05/2019 - 00:14:57: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 14700+3250 = $16000 (tracked)
+L 08/05/2019 - 00:14:57: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 11400+3400 = $14800 (tracked)
+L 08/05/2019 - 00:14:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:15:02: Starting Freeze period
+L 08/05/2019 - 00:15:02: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:15:02: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:15:02: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:15:02: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:15:17: World triggered "Round_Start"
+L 08/05/2019 - 00:15:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [393 622 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [748 -237 -192] with "deagle" (damage "307") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:15:17: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:15:17: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:15:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [393 622 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [748 -237 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:15:17: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "6")
+L 08/05/2019 - 00:15:17: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:15:17: Team "TERRORIST" scored "6" with "1" players
+L 08/05/2019 - 00:15:17: World triggered "Round_End"
+L 08/05/2019 - 00:15:17: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 14800+3400 = $16000 (tracked)
+L 08/05/2019 - 00:15:17: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:15:22: Starting Freeze period
+L 08/05/2019 - 00:15:22: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:15:22: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:15:22: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:15:22: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:15:22: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ weapon_knife_t weapon_revolver weapon_c4 C4 ]
+L 08/05/2019 - 00:15:37: World triggered "Round_Start"
+L 08/05/2019 - 00:15:40: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [571 -249 -192] with "deagle" (damage "305") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:15:40: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:15:40: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:15:40: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [571 -249 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:15:40: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "7")
+L 08/05/2019 - 00:15:40: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:15:40: Team "TERRORIST" scored "7" with "1" players
+L 08/05/2019 - 00:15:40: World triggered "Round_End"
+L 08/05/2019 - 00:15:40: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:15:45: Starting Freeze period
+L 08/05/2019 - 00:15:45: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:15:45: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:15:45: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:15:45: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:16:00: World triggered "Round_Start"
+L 08/05/2019 - 00:16:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [839 -67 -192] with "deagle" (damage "303") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:16:01: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:16:01: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:16:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [839 -67 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:16:01: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "8")
+L 08/05/2019 - 00:16:01: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:16:01: Team "TERRORIST" scored "8" with "1" players
+L 08/05/2019 - 00:16:01: World triggered "Round_End"
+L 08/05/2019 - 00:16:01: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:16:06: Starting Freeze period
+L 08/05/2019 - 00:16:06: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:16:06: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:16:06: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:16:06: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:16:21: World triggered "Round_Start"
+L 08/05/2019 - 00:16:22: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [105 389 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -192] with "deagle" (damage "314") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:16:22: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:16:22: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:16:22: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [105 389 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:16:22: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "9")
+L 08/05/2019 - 00:16:22: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:16:22: Team "TERRORIST" scored "9" with "1" players
+L 08/05/2019 - 00:16:22: World triggered "Round_End"
+L 08/05/2019 - 00:16:22: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:16:27: Starting Freeze period
+L 08/05/2019 - 00:16:27: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:16:27: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:16:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:16:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:16:42: World triggered "Round_Start"
+L 08/05/2019 - 00:16:44: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [24 240 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [829 -253 -192] with "deagle" (damage "306") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:16:44: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:16:44: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:16:44: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [24 240 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [829 -253 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:16:44: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "10")
+L 08/05/2019 - 00:16:44: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:16:44: Team "TERRORIST" scored "10" with "1" players
+L 08/05/2019 - 00:16:44: World triggered "Round_End"
+L 08/05/2019 - 00:16:44: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:16:49: Starting Freeze period
+L 08/05/2019 - 00:16:49: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:16:49: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:16:49: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:16:49: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:16:49: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ weapon_knife_t weapon_revolver weapon_c4 C4 ]
+L 08/05/2019 - 00:17:04: World triggered "Round_Start"
+L 08/05/2019 - 00:17:05: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [24 240 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [902 -201 -192] with "deagle" (damage "305") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:17:05: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:17:05: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:17:05: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [24 240 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [902 -201 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:17:05: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "11")
+L 08/05/2019 - 00:17:05: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:17:05: Team "TERRORIST" scored "11" with "1" players
+L 08/05/2019 - 00:17:05: World triggered "Round_End"
+L 08/05/2019 - 00:17:05: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:17:10: Starting Freeze period
+L 08/05/2019 - 00:17:10: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:17:10: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:17:10: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:17:10: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:17:25: World triggered "Round_Start"
+L 08/05/2019 - 00:17:25: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [27 502 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [896 38 -192] with "deagle" (damage "304") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:17:25: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:17:25: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:17:25: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [27 502 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [896 38 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:17:25: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "12")
+L 08/05/2019 - 00:17:25: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:17:25: Team "TERRORIST" scored "12" with "1" players
+L 08/05/2019 - 00:17:25: World triggered "Round_End"
+L 08/05/2019 - 00:17:25: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:17:30: Starting Freeze period
+L 08/05/2019 - 00:17:30: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:17:30: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:17:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:17:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:17:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ weapon_knife_t weapon_revolver weapon_c4 C4 ]
+L 08/05/2019 - 00:17:45: World triggered "Round_Start"
+L 08/05/2019 - 00:17:46: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [34 371 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [829 -253 -192] with "deagle" (damage "303") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:17:46: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:17:46: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:17:46: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [34 371 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [829 -253 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:17:46: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "13")
+L 08/05/2019 - 00:17:46: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:17:46: Team "TERRORIST" scored "13" with "1" players
+L 08/05/2019 - 00:17:46: World triggered "Round_End"
+L 08/05/2019 - 00:17:46: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:17:51: Starting Freeze period
+L 08/05/2019 - 00:17:51: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:17:51: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:17:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:17:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:17:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ weapon_knife_t weapon_revolver weapon_c4 C4 ]
+L 08/05/2019 - 00:18:06: World triggered "Round_Start"
+L 08/05/2019 - 00:18:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [34 371 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [902 -201 -192] with "deagle" (damage "75") (damage_armor "0") (health "25") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:18:08: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [34 371 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [902 -201 -192] with "deagle" (damage "302") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:18:08: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:18:08: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:18:08: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [34 371 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [902 -201 -128] with "revolver" (headshot)
+L 08/05/2019 - 00:18:08: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "14")
+L 08/05/2019 - 00:18:08: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:18:08: Team "TERRORIST" scored "14" with "1" players
+L 08/05/2019 - 00:18:08: World triggered "Round_End"
+L 08/05/2019 - 00:18:08: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:18:13: Starting Freeze period
+L 08/05/2019 - 00:18:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:18:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:18:13: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:18:13: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:18:13: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ weapon_knife_t weapon_revolver weapon_c4 C4 ]
+L 08/05/2019 - 00:18:28: World triggered "Round_Start"
+L 08/05/2019 - 00:18:30: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [27 502 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [644 -197 -192] with "deagle" (damage "76") (damage_armor "0") (health "24") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:18:31: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [27 502 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [644 -197 -192] with "deagle" (damage "76") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:18:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:18:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:18:31: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [27 502 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [644 -197 -128] with "revolver"
+L 08/05/2019 - 00:18:31: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "15")
+L 08/05/2019 - 00:18:31: Team "CT" scored "0" with "1" players
+L 08/05/2019 - 00:18:31: Team "TERRORIST" scored "15" with "1" players
+L 08/05/2019 - 00:18:31: World triggered "Round_End"
+L 08/05/2019 - 00:18:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:18:58: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:18:58: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:19:16: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719>" switched from team <CT> to <TERRORIST>
+L 08/05/2019 - 00:19:16: "[LL] Loddy<4><STEAM_1:0:4665189>" switched from team <TERRORIST> to <CT>
+L 08/05/2019 - 00:19:16: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" dropped "knife"
+L 08/05/2019 - 00:19:16: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" dropped "deagle"
+L 08/05/2019 - 00:19:16: Starting Freeze period
+L 08/05/2019 - 00:19:16: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" picked up "knife"
+L 08/05/2019 - 00:19:16: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:19:16: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:19:16: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:19:16: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:19:16: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:19:16: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:19:31: World triggered "Round_Start"
+L 08/05/2019 - 00:19:31: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [742 2 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [393 622 -192] with "hkp2000" (damage "122") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:19:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:19:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:19:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:19:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:19:31: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [742 2 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [393 622 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:19:31: "[LL] Loddy<3><STEAM_1:0:4665189><CT>" money change 800+300 = $1100 (tracked)
+L 08/05/2019 - 00:19:31: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "16") (T "0")
+L 08/05/2019 - 00:19:31: Team "CT" scored "16" with "1" players
+L 08/05/2019 - 00:19:31: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:19:31: World triggered "Round_End"
+L 08/05/2019 - 00:19:31: "[LL] Loddy<3><STEAM_1:0:4665189><CT>" money change 1100+3250 = $4350 (tracked)
+L 08/05/2019 - 00:19:31: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><TERRORIST>" money change 800+1900 = $2700 (tracked)
+L 08/05/2019 - 00:19:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:19:31: Game Over: competitive  de_lltest score 16:0 after 7 min
+L 08/05/2019 - 00:19:31: World triggered "Round_Start"
+L 08/05/2019 - 00:19:39: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" say "3x game 2"
+L 08/05/2019 - 00:21:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719>" switched from team <TERRORIST> to <Unassigned>
+L 08/05/2019 - 00:21:31: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:21:31: "[LL] Loddy<4><STEAM_1:0:4665189>" switched from team <CT> to <Unassigned>
+L 08/05/2019 - 00:21:31: "[LL] Loddy<4><STEAM_1:0:4665189><Unassigned>" dropped "knife"
+L 08/05/2019 - 00:21:31: Starting Freeze period
+L 08/05/2019 - 00:21:31: World triggered "Match_Start" on "de_lltest"
+L 08/05/2019 - 00:21:31: Team playing "CT": BRAVO
+L 08/05/2019 - 00:21:31: Team playing "TERRORIST": ALPHA
+L 08/05/2019 - 00:21:31: "[LL] Loddy<4><STEAM_1:0:4665189><Unassigned>" left buyzone with [ ]
+L 08/05/2019 - 00:21:34: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719>" switched from team <Unassigned> to <CT>
+L 08/05/2019 - 00:21:34: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:21:34: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:21:34: World triggered "Game_Commencing"
+L 08/05/2019 - 00:21:34: Team playing "CT": ALPHA
+L 08/05/2019 - 00:21:34: Team playing "TERRORIST": BRAVO
+L 08/05/2019 - 00:21:34: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "knife"
+L 08/05/2019 - 00:21:34: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:21:34: Starting Freeze period
+L 08/05/2019 - 00:21:34: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "knife"
+L 08/05/2019 - 00:21:34: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:21:34: World triggered "Match_Start" on "de_lltest"
+L 08/05/2019 - 00:21:34: Team playing "CT": ALPHA
+L 08/05/2019 - 00:21:34: Team playing "TERRORIST": BRAVO
+L 08/05/2019 - 00:21:40: "[LL] Loddy<4><STEAM_1:0:4665189>" switched from team <Unassigned> to <TERRORIST>
+L 08/05/2019 - 00:21:40: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:21:40: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:21:40: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:21:40: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:21:48: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 800-700 = $100 (tracked) (purchase: weapon_deagle)
+L 08/05/2019 - 00:21:48: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:21:48: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" picked up "deagle"
+L 08/05/2019 - 00:21:48: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" purchased "deagle"
+L 08/05/2019 - 00:21:49: World triggered "Round_Start"
+L 08/05/2019 - 00:21:50: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [742 2 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [171 377 -192] with "deagle" (damage "189") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:21:50: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:21:50: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:21:50: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:21:50: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:21:50: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [742 2 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [171 377 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:21:50: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 100+300 = $400 (tracked)
+L 08/05/2019 - 00:21:50: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "1") (T "0")
+L 08/05/2019 - 00:21:50: Team "CT" scored "1" with "1" players
+L 08/05/2019 - 00:21:50: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:21:50: World triggered "Round_End"
+L 08/05/2019 - 00:21:50: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 400+3250 = $3650 (tracked)
+L 08/05/2019 - 00:21:50: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 800+1900 = $2700 (tracked)
+L 08/05/2019 - 00:21:50: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:21:55: Starting Freeze period
+L 08/05/2019 - 00:21:55: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:21:55: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:21:55: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:21:55: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:22:10: World triggered "Round_Start"
+L 08/05/2019 - 00:22:12: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [902 -201 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [13 304 -192] with "deagle" (damage "164") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:22:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:22:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:22:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:22:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:22:12: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [902 -201 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [13 304 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:22:12: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 3650+300 = $3950 (tracked)
+L 08/05/2019 - 00:22:12: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "2") (T "0")
+L 08/05/2019 - 00:22:12: Team "CT" scored "2" with "1" players
+L 08/05/2019 - 00:22:12: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:22:12: World triggered "Round_End"
+L 08/05/2019 - 00:22:12: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 3950+3250 = $7200 (tracked)
+L 08/05/2019 - 00:22:12: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 2700+2400 = $5100 (tracked)
+L 08/05/2019 - 00:22:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:22:17: Starting Freeze period
+L 08/05/2019 - 00:22:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:22:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:22:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:22:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:22:32: World triggered "Round_Start"
+L 08/05/2019 - 00:22:33: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [235 549 -192] with "deagle" (damage "178") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:22:33: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:22:33: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:22:33: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:22:33: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:22:33: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [235 549 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:22:33: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 7200+300 = $7500 (tracked)
+L 08/05/2019 - 00:22:33: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "3") (T "0")
+L 08/05/2019 - 00:22:33: Team "CT" scored "3" with "1" players
+L 08/05/2019 - 00:22:33: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:22:33: World triggered "Round_End"
+L 08/05/2019 - 00:22:33: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 7500+3250 = $10750 (tracked)
+L 08/05/2019 - 00:22:33: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 5100+2900 = $8000 (tracked)
+L 08/05/2019 - 00:22:33: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:22:37: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_deagle ]
+L 08/05/2019 - 00:22:38: Starting Freeze period
+L 08/05/2019 - 00:22:38: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:22:38: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:22:38: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:22:38: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:22:53: World triggered "Round_Start"
+L 08/05/2019 - 00:22:56: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [571 -249 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [246 485 -192] with "deagle" (damage "179") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:22:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:22:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:22:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:22:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:22:56: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [571 -249 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [246 485 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:22:56: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 10750+300 = $11050 (tracked)
+L 08/05/2019 - 00:22:56: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "4") (T "0")
+L 08/05/2019 - 00:22:56: Team "CT" scored "4" with "1" players
+L 08/05/2019 - 00:22:56: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:22:56: World triggered "Round_End"
+L 08/05/2019 - 00:22:56: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 11050+3250 = $14300 (tracked)
+L 08/05/2019 - 00:22:56: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 8000+3400 = $11400 (tracked)
+L 08/05/2019 - 00:22:56: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:23:01: Starting Freeze period
+L 08/05/2019 - 00:23:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:23:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:23:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:23:01: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:23:16: World triggered "Round_Start"
+L 08/05/2019 - 00:23:17: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [742 2 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [153 624 -192] with "deagle" (damage "176") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:23:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:23:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:23:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:23:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:23:17: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [742 2 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [153 624 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:23:17: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 14300+300 = $14600 (tracked)
+L 08/05/2019 - 00:23:17: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "5") (T "0")
+L 08/05/2019 - 00:23:17: Team "CT" scored "5" with "1" players
+L 08/05/2019 - 00:23:17: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:23:17: World triggered "Round_End"
+L 08/05/2019 - 00:23:17: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><CT>" money change 14600+3250 = $16000 (tracked)
+L 08/05/2019 - 00:23:17: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 11400+3400 = $14800 (tracked)
+L 08/05/2019 - 00:23:17: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:23:22: Starting Freeze period
+L 08/05/2019 - 00:23:22: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:23:22: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:23:22: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:23:22: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:23:37: World triggered "Round_Start"
+L 08/05/2019 - 00:23:38: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [894 -115 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [327 634 -192] with "deagle" (damage "42") (damage_armor "0") (health "58") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:23:39: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [894 -115 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [327 634 -192] with "deagle" (damage "42") (damage_armor "0") (health "16") (armor "0") (hitgroup "right arm")
+L 08/05/2019 - 00:23:44: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_deagle ]
+L 08/05/2019 - 00:23:46: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [359 584 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [327 634 -192] with "deagle" (damage "246") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:23:46: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:23:46: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:23:46: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:23:46: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:23:46: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [359 584 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [327 634 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:23:46: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "6") (T "0")
+L 08/05/2019 - 00:23:46: Team "CT" scored "6" with "1" players
+L 08/05/2019 - 00:23:46: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:23:46: World triggered "Round_End"
+L 08/05/2019 - 00:23:46: "[LL] Loddy<3><STEAM_1:0:4665189><TERRORIST>" money change 14800+3400 = $16000 (tracked)
+L 08/05/2019 - 00:23:46: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:23:51: Starting Freeze period
+L 08/05/2019 - 00:23:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:23:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:23:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:23:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:23:51: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" left buyzone with [ weapon_knife weapon_deagle ]
+L 08/05/2019 - 00:24:06: World triggered "Round_Start"
+L 08/05/2019 - 00:24:07: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [833 172 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [34 371 -192] with "deagle" (damage "179") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:24:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:24:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:24:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:24:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:24:07: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [833 172 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [34 371 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:24:07: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "7") (T "0")
+L 08/05/2019 - 00:24:07: Team "CT" scored "7" with "1" players
+L 08/05/2019 - 00:24:07: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:24:07: World triggered "Round_End"
+L 08/05/2019 - 00:24:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:24:12: Starting Freeze period
+L 08/05/2019 - 00:24:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:24:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:24:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:24:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:24:27: World triggered "Round_Start"
+L 08/05/2019 - 00:24:27: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [246 485 -192] with "deagle" (damage "183") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:24:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:24:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:24:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:24:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:24:27: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [246 485 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:24:27: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "8") (T "0")
+L 08/05/2019 - 00:24:27: Team "CT" scored "8" with "1" players
+L 08/05/2019 - 00:24:27: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:24:27: World triggered "Round_End"
+L 08/05/2019 - 00:24:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:24:32: Starting Freeze period
+L 08/05/2019 - 00:24:32: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:24:32: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:24:32: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:24:32: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:24:47: World triggered "Round_Start"
+L 08/05/2019 - 00:24:47: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [393 622 -192] with "deagle" (damage "176") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:24:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:24:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:24:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:24:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:24:47: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [393 622 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:24:47: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "9") (T "0")
+L 08/05/2019 - 00:24:47: Team "CT" scored "9" with "1" players
+L 08/05/2019 - 00:24:47: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:24:47: World triggered "Round_End"
+L 08/05/2019 - 00:24:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:24:52: Starting Freeze period
+L 08/05/2019 - 00:24:52: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:24:52: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:24:52: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:24:52: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:25:07: World triggered "Round_Start"
+L 08/05/2019 - 00:25:07: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [581 -63 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [105 389 -192] with "deagle" (damage "192") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:25:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:25:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:25:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:25:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:25:07: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [581 -63 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [105 389 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:25:07: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "10") (T "0")
+L 08/05/2019 - 00:25:07: Team "CT" scored "10" with "1" players
+L 08/05/2019 - 00:25:07: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:25:07: World triggered "Round_End"
+L 08/05/2019 - 00:25:07: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:25:12: Starting Freeze period
+L 08/05/2019 - 00:25:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:25:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:25:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:25:12: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:25:27: World triggered "Round_Start"
+L 08/05/2019 - 00:25:27: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [829 -253 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [13 304 -192] with "deagle" (damage "167") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:25:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:25:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:25:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:25:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:25:27: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [829 -253 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [13 304 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:25:27: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "11") (T "0")
+L 08/05/2019 - 00:25:27: Team "CT" scored "11" with "1" players
+L 08/05/2019 - 00:25:27: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:25:27: World triggered "Round_End"
+L 08/05/2019 - 00:25:27: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:25:32: Starting Freeze period
+L 08/05/2019 - 00:25:32: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:25:32: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:25:32: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:25:32: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:25:47: World triggered "Round_Start"
+L 08/05/2019 - 00:25:47: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [839 -67 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -192] with "deagle" (damage "164") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:25:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:25:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:25:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:25:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:25:47: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [839 -67 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [87 614 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:25:47: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "12") (T "0")
+L 08/05/2019 - 00:25:47: Team "CT" scored "12" with "1" players
+L 08/05/2019 - 00:25:47: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:25:47: World triggered "Round_End"
+L 08/05/2019 - 00:25:47: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:25:52: Starting Freeze period
+L 08/05/2019 - 00:25:52: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:25:52: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:25:52: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:25:52: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:26:07: World triggered "Round_Start"
+L 08/05/2019 - 00:26:10: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [644 -197 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [34 371 -192] with "deagle" (damage "44") (damage_armor "0") (health "56") (armor "0") (hitgroup "chest")
+L 08/05/2019 - 00:26:11: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [644 -197 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [34 371 -192] with "deagle" (damage "44") (damage_armor "0") (health "12") (armor "0") (hitgroup "right arm")
+L 08/05/2019 - 00:26:11: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [644 -197 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [34 371 -192] with "deagle" (damage "33") (damage_armor "0") (health "0") (armor "0") (hitgroup "right leg")
+L 08/05/2019 - 00:26:11: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:26:11: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:26:11: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:26:11: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:26:11: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [644 -197 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [34 371 -128] with "deagle"
+L 08/05/2019 - 00:26:11: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "13") (T "0")
+L 08/05/2019 - 00:26:11: Team "CT" scored "13" with "1" players
+L 08/05/2019 - 00:26:11: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:26:11: World triggered "Round_End"
+L 08/05/2019 - 00:26:11: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:26:16: Starting Freeze period
+L 08/05/2019 - 00:26:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:26:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:26:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:26:16: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:26:31: World triggered "Round_Start"
+L 08/05/2019 - 00:26:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [742 2 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [13 304 -192] with "deagle" (damage "181") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:26:31: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:26:31: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:26:31: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:26:31: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:26:31: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [742 2 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [13 304 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:26:31: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "14") (T "0")
+L 08/05/2019 - 00:26:31: Team "CT" scored "14" with "1" players
+L 08/05/2019 - 00:26:31: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:26:31: World triggered "Round_End"
+L 08/05/2019 - 00:26:31: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:26:36: Starting Freeze period
+L 08/05/2019 - 00:26:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:26:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:26:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:26:36: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:26:51: World triggered "Round_Start"
+L 08/05/2019 - 00:26:51: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [27 502 -192] with "deagle" (damage "174") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:26:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:26:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:26:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:26:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:26:51: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><CT>" [490 -233 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" [27 502 -128] with "deagle" (headshot)
+L 08/05/2019 - 00:26:51: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "15") (T "0")
+L 08/05/2019 - 00:26:51: Team "CT" scored "15" with "1" players
+L 08/05/2019 - 00:26:51: Team "TERRORIST" scored "0" with "1" players
+L 08/05/2019 - 00:26:51: World triggered "Round_End"
+L 08/05/2019 - 00:26:51: "[LL] Loddy<4><STEAM_1:0:4665189><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:27:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719>" switched from team <CT> to <TERRORIST>
+L 08/05/2019 - 00:27:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:27:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "deagle"
+L 08/05/2019 - 00:27:36: "[LL] Loddy<4><STEAM_1:0:4665189>" switched from team <TERRORIST> to <CT>
+L 08/05/2019 - 00:27:36: Starting Freeze period
+L 08/05/2019 - 00:27:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:27:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:27:36: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" picked up "knife"
+L 08/05/2019 - 00:27:36: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" picked up "hkp2000"
+L 08/05/2019 - 00:27:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:27:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:27:36: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_c4 C4 ]
+L 08/05/2019 - 00:27:51: World triggered "Round_Start"
+L 08/05/2019 - 00:27:52: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [829 -253 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [87 614 -192] with "hkp2000" (damage "112") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:27:52: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:27:52: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:27:52: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:27:52: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:27:52: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [829 -253 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [87 614 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:27:52: "[LL] Loddy<3><STEAM_1:0:4665189><CT>" money change 800+300 = $1100 (tracked)
+L 08/05/2019 - 00:27:52: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "1") (T "15")
+L 08/05/2019 - 00:27:52: Team "CT" scored "1" with "1" players
+L 08/05/2019 - 00:27:52: Team "TERRORIST" scored "15" with "1" players
+L 08/05/2019 - 00:27:52: World triggered "Round_End"
+L 08/05/2019 - 00:27:52: "[LL] Loddy<3><STEAM_1:0:4665189><CT>" money change 1100+3250 = $4350 (tracked)
+L 08/05/2019 - 00:27:52: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><TERRORIST>" money change 800+1900 = $2700 (tracked)
+L 08/05/2019 - 00:27:52: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:27:57: Starting Freeze period
+L 08/05/2019 - 00:27:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:27:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:27:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:27:57: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:28:12: World triggered "Round_Start"
+L 08/05/2019 - 00:28:12: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [644 -197 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [256 616 -192] with "hkp2000" (damage "118") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:28:12: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:28:12: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:28:12: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:28:12: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:28:12: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [644 -197 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [256 616 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:28:12: "[LL] Loddy<3><STEAM_1:0:4665189><CT>" money change 4350+300 = $4650 (tracked)
+L 08/05/2019 - 00:28:12: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "2") (T "15")
+L 08/05/2019 - 00:28:12: Team "CT" scored "2" with "1" players
+L 08/05/2019 - 00:28:12: Team "TERRORIST" scored "15" with "1" players
+L 08/05/2019 - 00:28:12: World triggered "Round_End"
+L 08/05/2019 - 00:28:12: "[LL] Loddy<3><STEAM_1:0:4665189><CT>" money change 4650+3250 = $7900 (tracked)
+L 08/05/2019 - 00:28:12: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><TERRORIST>" money change 2700+2400 = $5100 (tracked)
+L 08/05/2019 - 00:28:12: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:28:15: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 08/05/2019 - 00:28:17: Starting Freeze period
+L 08/05/2019 - 00:28:17: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:28:17: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:28:17: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:28:17: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:28:32: World triggered "Round_Start"
+L 08/05/2019 - 00:28:32: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [742 2 -192] attacked "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [327 634 -192] with "hkp2000" (damage "121") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:28:32: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" triggered "Dropped_The_Bomb"
+L 08/05/2019 - 00:28:32: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "c4"
+L 08/05/2019 - 00:28:32: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "glock"
+L 08/05/2019 - 00:28:32: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" dropped "knife"
+L 08/05/2019 - 00:28:32: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [742 2 -192] killed "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [327 634 -128] with "hkp2000" (headshot)
+L 08/05/2019 - 00:28:32: "[LL] Loddy<3><STEAM_1:0:4665189><CT>" money change 7900+300 = $8200 (tracked)
+L 08/05/2019 - 00:28:32: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "3") (T "15")
+L 08/05/2019 - 00:28:32: Team "CT" scored "3" with "1" players
+L 08/05/2019 - 00:28:32: Team "TERRORIST" scored "15" with "1" players
+L 08/05/2019 - 00:28:32: World triggered "Round_End"
+L 08/05/2019 - 00:28:32: "[LL] Loddy<3><STEAM_1:0:4665189><CT>" money change 8200+3250 = $11450 (tracked)
+L 08/05/2019 - 00:28:32: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><TERRORIST>" money change 5100+2900 = $8000 (tracked)
+L 08/05/2019 - 00:28:32: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" left buyzone with [ ]
+L 08/05/2019 - 00:28:37: Starting Freeze period
+L 08/05/2019 - 00:28:37: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "knife"
+L 08/05/2019 - 00:28:37: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "glock"
+L 08/05/2019 - 00:28:37: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" picked up "c4"
+L 08/05/2019 - 00:28:37: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" triggered "Got_The_Bomb"
+L 08/05/2019 - 00:28:52: World triggered "Round_Start"
+L 08/05/2019 - 00:28:52: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [59 446 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [636 -111 -192] with "glock" (damage "92") (damage_armor "0") (health "8") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:28:52: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [59 446 -192] attacked "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [636 -111 -192] with "glock" (damage "92") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 08/05/2019 - 00:28:52: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" dropped "hkp2000"
+L 08/05/2019 - 00:28:52: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" dropped "knife"
+L 08/05/2019 - 00:28:52: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" [59 446 -192] killed "[LL] Loddy<4><STEAM_1:0:4665189><CT>" [636 -111 -128] with "glock" (headshot)
+L 08/05/2019 - 00:28:52: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><TERRORIST>" money change 8000+300 = $8300 (tracked)
+L 08/05/2019 - 00:28:52: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "3") (T "16")
+L 08/05/2019 - 00:28:52: Team "CT" scored "3" with "1" players
+L 08/05/2019 - 00:28:52: Team "TERRORIST" scored "16" with "1" players
+L 08/05/2019 - 00:28:52: World triggered "Round_End"
+L 08/05/2019 - 00:28:52: "BEan | Lacledeslan.com<2><STEAM_1:0:3804719><TERRORIST>" money change 8300+3250 = $11550 (tracked)
+L 08/05/2019 - 00:28:52: "[LL] Loddy<3><STEAM_1:0:4665189><CT>" money change 11450+1400 = $12850 (tracked)
+L 08/05/2019 - 00:28:52: "[LL] Loddy<4><STEAM_1:0:4665189><CT>" left buyzone with [ ]
+L 08/05/2019 - 00:28:52: Game Over: competitive  de_lltest score 3:16 after 8 min
+L 08/05/2019 - 00:28:52: World triggered "Round_Start"
+L 08/05/2019 - 00:29:01: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" say "3x game 3"
+L 08/05/2019 - 00:29:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" disconnected (reason "Disconnect")
+L 08/05/2019 - 00:29:13: "BEan | Lacledeslan.com<3><STEAM_1:0:3804719><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_c4 C4 ]
+L 08/05/2019 - 00:29:25: "[LL] Loddy<4><STEAM_1:0:4665189><>" disconnected (reason "Server shutting down")
+L 08/05/2019 - 00:29:25: "GOTV<2><BOT><>" disconnected (reason "Server shutting down")
+L 08/05/2019 - 00:29:26: server_message: "quit"
+L 08/05/2019 - 00:29:26: Log file closed

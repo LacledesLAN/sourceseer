@@ -11,3 +11,6 @@ trim_trailing_whitespace = true
 [*.go]
 indent_size = 8
 indent_style = tab
+
+[*.log]
+insert_final_newline = false

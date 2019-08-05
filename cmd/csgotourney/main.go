@@ -16,8 +16,8 @@ import (
 )
 
 const (
+	alphaNumericChars  = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	lacledesMaps = "/de_lltest/de_tinyorange/poolday/"
-	letterBytes  = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	stockMaps    = "/ar_baggage/ar_dizzy/ar_monastery/ar_shoots/cs_agency/cs_assault/cs_italy/cs_militia/cs_office/de_austria/de_bank/de_biome/de_cache/de_canals/de_cbble/de_dust2/de_inferno/de_lake/de_mirage/de_nuke/de_overpass/de_safehouse/de_shortnuke/de_stmarc/de_subzero/de_sugarcane/de_train/"
 )
 
@@ -90,7 +90,6 @@ func main() {
 
 	if csgoArgs.Bots {
 		fmt.Println("Allowing bots!")
-		fmt.Println("Allowing bots!")
 	}
 
 	var osArgs []string
@@ -152,13 +151,15 @@ func main() {
 }
 
 func linkStandardIn(cmdIn chan string) {
-	time.Sleep(4 * time.Second)
-
 	if _, err := os.Stdin.Stat(); err == nil {
-		s := bufio.NewScanner(os.Stdin)
-		defer os.Stdin.Close()
-
 		go func() {
+			time.Sleep(5 * time.Second)
+
+			s := bufio.NewScanner(os.Stdin)
+			defer os.Stdin.Close()
+
+			fmt.Println("<<<< Now accepting input from command line >>>>")
+
 			for s.Scan() {
 				text := s.Text()
 				cmdIn <- text

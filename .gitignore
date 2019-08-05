@@ -22,6 +22,7 @@
 .Trash-*
 
 ### macOS Cruft ###
+__MACOSX
 ._*
 .apdisk
 .AppleDB
@@ -39,7 +40,6 @@
 Icon
 Network Trash Folder
 Temporary Items
-
 
 ### Windows Cruft ###
 [Dd]esktop.ini

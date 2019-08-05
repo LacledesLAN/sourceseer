@@ -1,0 +1,51 @@
+
+
+
+
+func Wrapper(osArgs []string) Reactor {
+	if len() < 2 {
+		return ReadWriter{}, errors.New("Not enough arguments")
+	}
+
+	// Prepare process
+	process := exec.Command(osArgs[0], osArgs[1:len(osArgs)]...)
+
+	// Link Standard Error
+	if stdErr, err := process.StderrPipe(); err != nil {
+		return ReadWriter{}, errors.New("Unable to link standard error")
+	} else {
+		defer stdErr.Close()
+
+		go func(r *bufio.Reader) {
+			for {
+				errLine, _ := r.ReadString('\n')
+				errLine = strings.TrimSpace(strings.TrimSuffix(errLine, "\n"), "")
+
+				Log(SRCDSError, errLine)
+			}
+		}(bufio.NewReader(stdErr))
+	}
+
+	out := make(chan LogEntry, 12)
+	//Link Standard Out
+	if stdOut, err := process.StdoutPipe(); err!= nil {
+		return ReadWriter{}, errors.New("Unable to link standard out")
+	} else {
+
+	}
+
+	cmd := make(chan string, 6)
+	//Link Standard In
+
+	s.started = time.Now()
+	if err := process.Start(); err != nil {
+		return err
+	}
+	defer s.process.Process.Kill()
+
+	if err := process.Wait(); err != nil {
+		return err
+	}
+
+	return nil
+}
