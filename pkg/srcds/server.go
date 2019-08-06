@@ -12,7 +12,7 @@ type Server interface {
 // RefreshCvars attempts to trigger SRCDS into echoing all watched cvars to the log stream.
 func (s *server) RefreshCvars() {
 	go func(s *server) {
-		for name := range s.cvars {
+		for _, name := range s.cvars.getNames() {
 			s.SendCommand(name)
 			time.Sleep(10 * time.Millisecond)
 		}

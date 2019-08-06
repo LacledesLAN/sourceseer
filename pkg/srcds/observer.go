@@ -3,16 +3,9 @@ package srcds
 import (
 	"bufio"
 	"runtime"
-	"strconv"
 	"strings"
 	"time"
 )
-
-// Cvar represents a watched SRCDS console variable
-type Cvar struct {
-	LastUpdated time.Time
-	Value       string
-}
 
 // Observer for watching SRCDS log streams
 type Observer interface {
@@ -25,34 +18,12 @@ type Observer interface {
 
 // AddCvarWatcher instructs the system to keep track of the specified cvar name
 func (o *observer) AddCvarWatcher(names ...string) {
-	for _, name := range names {
-		name = strings.TrimSpace(name)
-
-		if len(name) == 0 {
-			continue
-		}
-
-		if _, found := o.cvars[name]; !found {
-			o.cvars[name] = Cvar{}
-		}
-	}
+	o.cvars.addWatcher(names...)
 }
 
 // AddCvarWatcherDefault instructs the system to keep track of the specified cvar,  providing a default value
 func (o *observer) AddCvarWatcherDefault(name string, defaultValue string) {
-	name = strings.TrimSpace(name)
-
-	if len(name) == 0 {
-		return
-	}
-
-	defaultValue = strings.TrimSpace(defaultValue)
-
-	if cvar, found := o.cvars[name]; !found {
-		o.cvars[name] = Cvar{Value: defaultValue}
-	} else if cvar.LastUpdated.IsZero() {
-		o.cvars[name] = Cvar{Value: defaultValue}
-	}
+	o.cvars.seedWatcher(name, defaultValue)
 }
 
 // NewScanner for observing streaming SRCDS data
@@ -83,45 +54,25 @@ func (o *observer) Start() <-chan LogEntry {
 
 // TryCvarAsInt attempts to return a cvar as an integer, returning a bool indicating if the provided fallback value was returned
 func (o *observer) TryCvarAsInt(name string, fallback int) (value int, nonFallback bool) {
-	cvar, found := o.cvars[name]
-
-	if !found {
-		return fallback, false
-	}
-
-	i, err := strconv.Atoi(cvar.Value)
-
-	if err != nil {
-		return fallback, false
-	}
-
-	return i, true
+	return o.cvars.tryInt(name, fallback)
 }
 
 // TryCvarAsString attempts to return a cvar as an integer, returning a bool indicating if the provided fallback value was returned
 func (o *observer) TryCvarAsString(name, fallback string) (value string, nonFallback bool) {
-	cvar, found := o.cvars[name]
-
-	if !found {
-		return fallback, false
-	}
-
-	return cvar.Value, true
+	return o.cvars.tryString(name, fallback)
 }
 
 type observer struct {
-	cvars        map[string]Cvar
+	cvars        Cvars
 	endOfLine    string
 	start        func() <-chan LogEntry
 	started      time.Time
 	testingFlags struct {
-		watchAllCvars bool
 	}
 }
 
 func newObserver() *observer {
 	r := &observer{
-		cvars:     make(map[string]Cvar),
 		endOfLine: "\n",
 		start: func() <-chan LogEntry {
 			panic("srcds > observer > start function was not instantiated.")
@@ -144,14 +95,12 @@ func (o *observer) processMessage(line string, outEntries chan<- LogEntry) {
 
 	if le, ok := parseLogEntry(line); ok {
 		if cvarSet, ok := parsEchoCvar(le.Message); ok {
-			o.setCvarValue(cvarSet.Name, cvarSet.Value)
-			Log(SRCDSCvar, le.Message)
+			o.cvars.setIfWatched(cvarSet.Name, cvarSet.Value, le.Timestamp)
 			return
 		}
 
 		if cvarSet, ok := paresEchoServerCvar(le.Message); ok {
-			o.setCvarValue(cvarSet.Name, cvarSet.Value)
-			Log(SRCDSCvar, le.Message)
+			o.cvars.setIfWatched(cvarSet.Name, cvarSet.Value, le.Timestamp)
 			return
 		}
 
@@ -164,19 +113,10 @@ func (o *observer) processMessage(line string, outEntries chan<- LogEntry) {
 	}
 
 	if cvarSet, ok := parsEchoCvar(line); ok {
-		o.setCvarValue(cvarSet.Name, cvarSet.Value)
+		o.cvars.setIfWatched(cvarSet.Name, cvarSet.Value, time.Now())
 		Log(SRCDSCvar, line)
 		return
 	}
 
 	Log(SRCDSOther, line)
-}
-
-func (o *observer) setCvarValue(name, value string) {
-	if _, found := o.cvars[name]; found || o.testingFlags.watchAllCvars {
-		o.cvars[name] = Cvar{
-			LastUpdated: time.Now(),
-			Value:       strings.TrimSpace(value),
-		}
-	}
 }
