@@ -105,7 +105,7 @@ func Test_ParseClientLogEntry(t *testing.T) {
 				{`"♥♥©♥♥௸atswood<42><13><[U:1:28500804]><>" entered the game`, "♥♥©♥♥௸atswood<42>", "13", "U:1:28500804", "", `entered the game`},
 				{`"xXx360noscopesxXx<7><[U:1:122465451]><Unassigned>" joined team "Blue"`, "xXx360noscopesxXx", "7", "U:1:122465451", "Unassigned", `joined team "Blue"`},
 				{`"r***yDestroyer9<14><[U:1:122465451]><Blue>" changed role to "sniper"`, "r***yDestroyer9", "14", "U:1:122465451", "Blue", `changed role to "sniper"`},
-				{`"<LL>arcticfox012<5><[U:1:5015550]><Red>" killed "[LL]Buddah<6><[U:1:13251124]><Blue>" with "minigun" (attacker_position "608 -871 -234") (victim_position "596 -532 -261")`, "<LL>arcticfox012", "5", "U:1:5015550", "Red", `killed "[LL]Buddah<6><[U:1:13251124]><Blue>" with "minigun" (attacker_position "608 -871 -234") (victim_position "596 -532 -261")`},
+				{`"<LL>arcticfox012<5><[U:1:5015550]><Red>" killed "[LL]Buddha<6><[U:1:13251124]><Blue>" with "minigun" (attacker_position "608 -871 -234") (victim_position "596 -532 -261")`, "<LL>arcticfox012", "5", "U:1:5015550", "Red", `killed "[LL]Buddha<6><[U:1:13251124]><Blue>" with "minigun" (attacker_position "608 -871 -234") (victim_position "596 -532 -261")`},
 			},
 		}
 
@@ -386,7 +386,7 @@ func Test_parsEchoCvar(t *testing.T) {
 			{`mp_ct_default_secondary - weapon_hkp2000`, "mp_ct_default_secondary", "weapon_hkp2000"},
 			{`sv_buy_status_override - -1`, "sv_buy_status_override", "-1"},
 			{`sv_i_can_has_negative_float - -1.55`, "sv_i_can_has_negative_float", "-1.55"},
-			{`sv_i_can_has_colon_seperated_values - red;blue;green`, "sv_i_can_has_colon_seperated_values", "red;blue;green"},
+			{`sv_i_can_has_colon_separated_values - red;blue;green`, "sv_i_can_has_colon_separated_values", "red;blue;green"},
 			{`mp_i_can_has_ip_address - 192.168.1.1`, "mp_i_can_has_ip_address", "192.168.1.1"},
 			{`mp_can_has_empty_string -`, "mp_can_has_empty_string", ""},
 			{`"cash_player_killed_teammate" = "-300"`, "cash_player_killed_teammate", "-300"},
@@ -465,7 +465,7 @@ func Test_paresEchoServerCvar(t *testing.T) {
 			{`server_cvar: "mp_empty_string" ""`, "mp_empty_string", ""},
 			{`server_cvar: "cash_team_elimination_hostage_map_ct" "3000"`, "cash_team_elimination_hostage_map_ct", "3000"},
 			{`server_cvar: "sm_nextmap" "de_dust2"`, "sm_nextmap", "de_dust2"},
-			{`server_cvar: "tv_colon_seperated_values" "red;green;blue"`, "tv_colon_seperated_values", "red;green;blue"},
+			{`server_cvar: "tv_colon_separated_values" "red;green;blue"`, "tv_colon_separated_values", "red;green;blue"},
 		}
 
 		for _, test := range validCases {

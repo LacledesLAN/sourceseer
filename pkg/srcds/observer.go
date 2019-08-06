@@ -79,7 +79,7 @@ func newObserver() *observer {
 		},
 	}
 
-	//TODO: VERIFY EOL IN CASE RUNING LINUX DOCKER IMAGE ON WINDOWS
+	//TODO: VERIFY EOL IN CASE RUNNING LINUX DOCKER IMAGE ON WINDOWS
 	//if runtime.GOOS == "windows" {
 	//	r.endOfLine = "\r\n"
 	//}
