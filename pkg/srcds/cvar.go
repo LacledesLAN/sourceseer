@@ -11,6 +11,7 @@ import (
 type Cvar struct {
 	LastUpdated time.Time
 	Value       string
+	seededValue bool
 }
 
 // Cvars represents a collection of watched console variables
@@ -64,10 +65,10 @@ func (c *Cvars) seedWatcher(name, value string) {
 
 	c.mux.Lock()
 	if cvar, found := c.v[name]; !found {
-		c.v[name] = Cvar{Value: strings.TrimSpace(value)}
+		c.v[name] = Cvar{Value: strings.TrimSpace(value), seededValue: true}
 	} else if cvar.LastUpdated.IsZero() {
 		// seed the value only if it hasn't been naturally found
-		c.v[name] = Cvar{Value: strings.TrimSpace(value)}
+		c.v[name] = Cvar{Value: strings.TrimSpace(value), seededValue: true}
 	}
 	c.mux.Unlock()
 }
@@ -90,21 +91,20 @@ func (c *Cvars) setIfWatched(name, value string, asOf time.Time) {
 		c.v[name] = Cvar{
 			LastUpdated: asOf,
 			Value:       strings.TrimSpace(value),
+			seededValue: false,
 		}
 	}
 	c.mux.Unlock()
 }
 
 func (c *Cvars) tryFloat(name string, fallback float32) (value float32, nonFallback bool) {
-	c.mux.Lock()
-	cvar, found := c.v[name]
-	c.mux.Unlock()
+	str, nonFallback := c.tryString(name, "")
 
-	if !found {
-		return fallback, false
+	if !nonFallback {
+		return fallback, nonFallback
 	}
 
-	f, err := strconv.ParseFloat(cvar.Value, 32)
+	f, err := strconv.ParseFloat(str, 32)
 	if err != nil {
 		return fallback, false
 	}
@@ -113,16 +113,13 @@ func (c *Cvars) tryFloat(name string, fallback float32) (value float32, nonFallb
 }
 
 func (c *Cvars) tryInt(name string, fallback int) (value int, nonFallback bool) {
-	c.mux.Lock()
-	cvar, found := c.v[name]
-	c.mux.Unlock()
+	str, nonFallback := c.tryString(name, "")
 
-	if !found {
-		return fallback, false
+	if !nonFallback {
+		return fallback, nonFallback
 	}
 
-	i, err := strconv.Atoi(cvar.Value)
-
+	i, err := strconv.Atoi(str)
 	if err != nil {
 		return fallback, false
 	}
@@ -135,9 +132,9 @@ func (c *Cvars) tryString(name, fallback string) (value string, nonFallback bool
 	cvar, found := c.v[name]
 	c.mux.Unlock()
 
-	if !found {
-		return fallback, false
+	if found && (cvar.seededValue || !cvar.LastUpdated.IsZero()) {
+		return cvar.Value, true
 	}
 
-	return cvar.Value, true
+	return fallback, false
 }

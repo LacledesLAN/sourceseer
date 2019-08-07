@@ -31,7 +31,6 @@ func Test_Cvars(t *testing.T) {
 			for _, k := range c.getNames() {
 				if k == name {
 					return fmt.Errorf("Cvar %q should NOT have been found in GetNames", name)
-
 				}
 			}
 			return nil
@@ -168,5 +167,36 @@ func Test_Cvars(t *testing.T) {
 		}
 	})
 
-	// verify watch cvar isn't added twice
+	t.Run("Seeding, Setting, and Retrieval", func(t *testing.T) {
+		sut := &Cvars{}
+		sut.addWatcher("alpha")
+
+		if _, nonFallback := sut.tryString("alpha", "fallback value"); nonFallback {
+			t.Error("A cvar added for watching, that never had a value set, should return the fallback value on retrieval.")
+		}
+
+		sut.seedWatcher("alpha", "beta")
+		if cvar, _ := sut.tryString("alpha", "fallback"); cvar != "beta" {
+			t.Error("A cvar added for watching, that never had a value set but was seeded, should return the seeded value on retrieval.")
+		}
+
+		sut.seedWatcher("alpha", "charlie")
+		if cvar, _ := sut.tryString("alpha", "fallback"); cvar != "charlie" {
+			t.Error("Seeding should overwrite any previously-seeded values.")
+		}
+
+		if len(sut.getNames()) > 1 {
+			t.Error("Should not have duplicate cvars with the same name.")
+		}
+
+		sut.setIfWatched("alpha", "delta", time.Now())
+		if cvar, _ := sut.tryString("alpha", "fallback"); cvar != "delta" {
+			t.Error("Setting a value on a watched cvar should overwrite any seeded value.")
+		}
+
+		sut.seedWatcher("alpha", "echo")
+		if cvar, _ := sut.tryString("alpha", "fallback"); cvar != "delta" {
+			t.Errorf("Seeding a set cvar should not overwrite any set value.")
+		}
+	})
 }
