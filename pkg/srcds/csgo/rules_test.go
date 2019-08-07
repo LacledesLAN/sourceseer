@@ -66,6 +66,14 @@ func Test_calculateLastRoundWinThreshold(t *testing.T) {
 				19: []lastInt{31, 32, 33, 34, 35, 36, 37, 9999},
 			},
 		},
+		"Invalid cvar values": {
+			mpMaxRounds:         -99,
+			mpOvertimeMaxRounds: -99,
+			scenarios: map[lastInt][]lastInt{
+				16: []lastInt{15},
+				19: []lastInt{33},
+			},
+		},
 	}
 
 	for name, test := range testCases {
@@ -116,6 +124,14 @@ func Test_calcOvertimePeriodNumber(t *testing.T) {
 			overtimePeriodRounds: map[int][]lastInt{
 				0: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29},
 				1: {30, 31, 32, 33, 34, 35, 36, 37, 39, 39, 40, 9999}, // OT rounds 37+ will never happen; should still report OT period 1
+			},
+		},
+		"Invalid cvar values": {
+			mpMaxRounds:         -99,
+			mpOvertimeMaxRounds: -99,
+			overtimePeriodRounds: map[int][]lastInt{
+				0: {15},
+				1: {33},
 			},
 		},
 	}
@@ -181,6 +197,16 @@ func Test_calculateSidesAreCurrentlySwitched(t *testing.T) {
 				"Second-Half":            {true, []lastInt{15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29}},
 				"Overtime - First-Half":  {true, []lastInt{30, 31, 32}},
 				"Overtime - Second-Half": {false, []lastInt{33, 34, 35, 36}},
+			},
+		},
+		"Invalid cvar values": {
+			mpHalftime:          -99,
+			mpMaxRounds:         -99,
+			mpOvertimeMaxRounds: -99,
+			scenarios: map[string]scenario{
+				"First-Half":      {false, []lastInt{7}},
+				"Second-Half":     {true, []lastInt{21}},
+				"OT 1 First-Half": {true, []lastInt{31}},
 			},
 		},
 	}

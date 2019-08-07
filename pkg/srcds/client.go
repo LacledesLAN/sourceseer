@@ -17,8 +17,8 @@ type Client struct {
 type Clients []Client
 
 // ClientsAreEquivalent determines if two srcds clients are effectively the same client
-func ClientsAreEquivalent(c0, c1 *Client) bool {
-	if c0 == nil || c1 == nil {
+func ClientsAreEquivalent(c0, c1 Client) bool {
+	if len(c0.Username) == 0 || len(c1.Username) == 0 {
 		return false
 	}
 
@@ -28,10 +28,6 @@ func ClientsAreEquivalent(c0, c1 *Client) bool {
 
 	if len(c0.SteamID) > 0 && len(c1.SteamID) > 0 {
 		return c0.SteamID == c1.SteamID
-	}
-
-	if len(c0.Username) == 0 || len(c1.Username) == 0 {
-		return false
 	}
 
 	// TODO: does server slot ever change?
@@ -74,9 +70,10 @@ func (m *Client) IsBot() bool {
 	return false
 }
 
+// clientIndex gets the index of the provided client in the slice of clients
 func (m Clients) clientIndex(client Client) int {
 	for i := range m {
-		if ClientsAreEquivalent(&m[i], &client) {
+		if ClientsAreEquivalent(m[i], client) {
 			return i
 		}
 	}
