@@ -1,8 +1,8 @@
 package csgo
 
 import (
-	"bufio"
 	"fmt"
+	"io"
 	"strings"
 
 	"github.com/LacledesLAN/sourceseer/pkg/srcds"
@@ -15,9 +15,9 @@ type Observer interface {
 }
 
 // NewScanner for observing streaming CSGO data
-func NewScanner(scanner bufio.Scanner, mpHalftime, mpMaxRounds, mpMaxOvertimeRounds int) Observer {
+func NewReader(r io.Reader, mpHalftime, mpMaxRounds, mpMaxOvertimeRounds int) Observer {
 	o := &observer{
-		srcdsObserver: srcds.NewScanner(scanner),
+		srcdsObserver: srcds.NewReader(r),
 	}
 
 	o.srcdsObserver.AddCvarWatcherDefault("mp_halftime", string(mpHalftime))

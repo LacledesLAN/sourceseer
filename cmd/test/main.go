@@ -22,9 +22,9 @@ func main() {
 
 	scanner := bufio.NewScanner(r)
 
-	c := csgo.NewScanner(*scanner, 1, 30, 7)
+	c := csgo.NewReader(*scanner, 1, 30, 7)
 
-	//c := srcds.NewScanner(*scanner)
+	//c := srcds.NewReader(*scanner)
 
 	c.Start()
 

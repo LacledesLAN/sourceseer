@@ -1,0 +1,13 @@
+##  Parsing this log file should result in the following
+##
+##      - EOL as Unix ("\n") Line endings
+##      - 13x total lines read
+##      - 3x log lines read
+##      - 3x blank lines read
+##
+L 01/01/2000 - 10:11:12: Start the ship, Leela! Let's just steal the dish and get back to our own time.
+
+L 01/01/2000 - 10:11:12: But won't that change history?
+
+L 01/01/2000 - 10:11:12: Oooh, a lesson in not changing history from "Mr. I'm-my-own-grandpa". Let's get the hell out of here already! Screw history!
+

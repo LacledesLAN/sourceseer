@@ -2,9 +2,15 @@ package srcds
 
 import (
 	"bufio"
+	"io"
 	"runtime"
 	"strings"
 	"time"
+)
+
+const (
+	eolUnix    = "\n"
+	eolWindows = "\r\n"
 )
 
 // Observer for watching SRCDS log streams
@@ -26,16 +32,42 @@ func (o *observer) AddCvarWatcherDefault(name string, defaultValue string) {
 	o.cvars.seedWatcher(name, defaultValue)
 }
 
-// NewScanner for observing streaming SRCDS data
-func NewScanner(scanner bufio.Scanner) Observer {
+func newReader(byteStream io.Reader) *observer {
 	o := newObserver()
 
 	o.start = func() <-chan LogEntry {
-		runtime.GC()
 		logStream := make(chan LogEntry, 6)
+		br := bufio.NewReader(byteStream)
+		runtime.GC()
 
 		go func(c chan<- LogEntry) {
 			defer close(c)
+			line, err := br.ReadString(0x0A)
+
+			if err == io.EOF || len(line) == 0 {
+				return
+			}
+
+			// Determine EOL delimiter as it may not match operating system's EOL
+			if strings.HasSuffix(line, eolWindows) {
+				o.endOfLine = eolWindows
+				line = line[:len(line)-2]
+				Log(SourceSeer, "Windows EOL delimiter detected.")
+			} else {
+				o.endOfLine = eolUnix
+
+				if strings.HasSuffix(line, eolUnix) {
+					Log(SourceSeer, "Unix EOL delimiter detected.")
+					line = line[:len(line)-1]
+				} else {
+					Log(SourceSeer, "Defaulting to Unix EOL delimiter.")
+					line = strings.TrimSpace(line)
+				}
+			}
+
+			o.processMessage(line, c)
+
+			scanner := bufio.NewScanner(br)
 			for scanner.Scan() {
 				o.processMessage(scanner.Text(), c)
 			}
@@ -45,6 +77,11 @@ func NewScanner(scanner bufio.Scanner) Observer {
 	}
 
 	return o
+}
+
+// NewReader for processing streaming SRCDS log data
+func NewReader(byteStream io.Reader) Observer {
+	return newReader(byteStream)
 }
 
 // Start the SRCDS process
@@ -63,37 +100,47 @@ func (o *observer) TryCvarAsString(name, fallback string) (value string, nonFall
 }
 
 type observer struct {
-	cvars        Cvars
-	endOfLine    string
-	start        func() <-chan LogEntry
-	started      time.Time
-	testingFlags struct {
-	}
+	cvars      Cvars
+	endOfLine  string
+	start      func() <-chan LogEntry
+	started    time.Time
+	statistics observerStatistics
+}
+
+type observerStatistics struct {
+	totalLines uint32
+	blankLines uint32
+	logLines   uint32
 }
 
 func newObserver() *observer {
 	r := &observer{
-		endOfLine: "\n",
 		start: func() <-chan LogEntry {
 			panic("srcds > observer > start function was not instantiated.")
 		},
 	}
 
-	//TODO: VERIFY EOL IN CASE RUNNING LINUX DOCKER IMAGE ON WINDOWS
-	//if runtime.GOOS == "windows" {
-	//	r.endOfLine = "\r\n"
-	//}
+	if strings.ToLower(runtime.GOOS) == "windows" {
+		r.endOfLine = eolWindows
+	} else {
+		r.endOfLine = eolUnix
+	}
 
 	return r
 }
 
 func (o *observer) processMessage(line string, outEntries chan<- LogEntry) {
+	o.statistics.totalLines++
+
 	line = strings.TrimSpace(line)
 	if len(line) == 0 {
+		o.statistics.blankLines++
 		return
 	}
 
 	if le, ok := parseLogEntry(line); ok {
+		o.statistics.logLines++
+
 		if cvarSet, ok := parsEchoCvar(le.Message); ok {
 			o.cvars.setIfWatched(cvarSet.Name, cvarSet.Value, le.Timestamp)
 			return

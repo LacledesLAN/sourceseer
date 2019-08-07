@@ -14,3 +14,7 @@ indent_style = tab
 
 [*.log]
 insert_final_newline = false
+trim_trailing_whitespace = false
+
+[*.win.log]
+end_of_line = crlf

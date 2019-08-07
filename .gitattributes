@@ -1,1 +1,7 @@
-* text=auto eol=lf
+* text=auto eol=lf encoding=utf-8
+
+testdata/*.win.log eolf=crlf
+
+*.ico binary
+*.jpg binary
+*.png binary
