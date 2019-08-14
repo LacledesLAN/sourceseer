@@ -49,7 +49,7 @@ func Test_parseClientSay(t *testing.T) {
 	mockClient := srcds.Client{
 		Username:    "AA",
 		SteamID:     "BB",
-		ServerSlot:  "CC",
+		ServerSlot:  42,
 		Affiliation: "DD",
 	}
 
@@ -107,7 +107,7 @@ func Test_parseClientSetAffiliation(t *testing.T) {
 	mockClient := srcds.Client{
 		Username:    "AA",
 		SteamID:     "BB",
-		ServerSlot:  "CC",
+		ServerSlot:  42,
 		Affiliation: "DD",
 	}
 

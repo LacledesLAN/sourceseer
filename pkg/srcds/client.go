@@ -10,7 +10,7 @@ import (
 type Client struct {
 	Username    string
 	SteamID     string
-	ServerSlot  string
+	ServerSlot  int16
 	Affiliation string
 	flags       ClientFlag
 }
@@ -32,9 +32,6 @@ func ClientsAreEquivalent(c0, c1 Client) bool {
 		return c1.IsConsole()
 	}
 
-	//TODO: Condition possibly needed, likely based on SteamID field, if the server/clients are unable
-	//to connect to steam to get their SteamID
-
 	return c0.SteamID == c1.SteamID
 }
 
@@ -45,10 +42,6 @@ func ClientUnidentifiable(c Client) bool {
 	}
 
 	return len(c.SteamID) == 0
-}
-
-func RefreshClient(c Client, cs ...[]Clients) {
-	// TODO
 }
 
 // EnableFlag enables the specified flag for the client
@@ -120,15 +113,54 @@ func (cs *Clients) ClientDropped(client Client) {
 }
 
 // ClientJoined handles when a client connects to srcds
-func (cs *Clients) ClientJoined(client Client) {
-	if !cs.HasClient(client) {
-		*cs = append(*cs, client)
+func (cs *Clients) ClientJoined(c Client) {
+	if !cs.HasClient(c) {
+		*cs = append(*cs, c)
+	}
+}
+
+// EnableFlag enables the specified flag for the equivalent client (if found)
+func (cs *Clients) EnableFlag(c Client, f ClientFlag) {
+	i := cs.clientIndex(c)
+
+	if i > -1 {
+		(*cs)[i].EnableFlag(f)
 	}
 }
 
 // HasClient determines when a client exists
 func (cs Clients) HasClient(client Client) bool {
 	return cs.clientIndex(client) > -1
+}
+
+// RefreshEquivalentClient Updates the equivalent client's information (server slot, affiliation, name)
+func (cs *Clients) RefreshEquivalentClient(c Client) {
+	i := cs.clientIndex(c)
+
+	if i < 0 {
+		return
+	}
+
+	if (*cs)[i].Affiliation != c.Affiliation {
+		(*cs)[i].Affiliation = c.Affiliation
+	}
+
+	if (*cs)[i].ServerSlot != c.ServerSlot {
+		(*cs)[i].ServerSlot = c.ServerSlot
+	}
+
+	if (*cs)[i].Username != c.Username {
+		(*cs)[i].Username = c.Username
+	}
+}
+
+// RemoveFlag removes the specified flag for the equivalent client (if found)
+func (cs *Clients) RemoveFlag(c Client, f ClientFlag) {
+	i := cs.clientIndex(c)
+
+	if i > -1 {
+		(*cs)[i].RemoveFlag(f)
+	}
 }
 
 // RemoveFlags removes the specified flags from all Clients

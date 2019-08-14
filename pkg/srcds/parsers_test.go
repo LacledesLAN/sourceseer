@@ -10,23 +10,24 @@ func Test_ParseClient(t *testing.T) {
 		validCases := map[string][]struct {
 			msg                 string
 			expectedUsername    string
-			expectedServerSlot  string
+			expectedServerSlot  int16
 			expectedSteamID     string
 			expectedAffiliation string
 		}{
 			"CSGO": {
-				{`"Console<0><Console><Console>"`, "Console", "0", "Console", "Console"},
-				{`"&#0000106&#0000097<31><STEAM_1:0:59942879>"`, "&#0000106&#0000097", "31", "STEAM_1:0:59942879", ""},
-				{`"onfocus=JaVaSCript:alert(123)<4><STEAM_1:1:8643911><CT>"`, "onfocus=JaVaSCript:alert(123)", "4", "STEAM_1:1:8643911", "CT"},
-				{`"💘 | LacledesLAN.com<8><STEAM_1:0:99144862><CT>"`, "💘 | LacledesLAN.com", "8", "STEAM_1:0:99144862", "CT"},
+				{`"Console<0><Console><Console>"`, "Console", 0, "Console", "Console"},
+				{`"&#0000106&#0000097<31><STEAM_1:0:59942879>"`, "&#0000106&#0000097", 31, "STEAM_1:0:59942879", ""},
+				{`"onfocus=JaVaSCript:alert(123)<4><STEAM_1:1:8643911><CT>"`, "onfocus=JaVaSCript:alert(123)", 4, "STEAM_1:1:8643911", "CT"},
+				{`"💘 | LacledesLAN.com<8><STEAM_1:0:99144862><CT>"`, "💘 | LacledesLAN.com", 8, "STEAM_1:0:99144862", "CT"},
 			},
 			"TF2": {
-				{`"Ω≈ç√∫˜µ≤≥÷(｡◕‿◕｡)<2><[U:1:6107481]><>"`, "Ω≈ç√∫˜µ≤≥÷(｡◕‿◕｡)", "2", "U:1:6107481", ""},
-				{`"panzershrek<11><[U:1:122465451]><>"`, "panzershrek", "11", "U:1:122465451", ""},
-				{`"♥♥©♥♥௸atswood<42><13><[U:1:28500804]><>"`, "♥♥©♥♥௸atswood<42>", "13", "U:1:28500804", ""},
-				{`"xXx360noscopesxXx<7><[U:1:122465451]><Unassigned>"`, "xXx360noscopesxXx", "7", "U:1:122465451", "Unassigned"},
-				{`"r***yDestroyer9<14><[U:1:122465451]><Blue>"`, "r***yDestroyer9", "14", "U:1:122465451", "Blue"},
-				{`"<LL>arcticfox012<5><[U:1:5015550]><Red>"`, "<LL>arcticfox012", "5", "U:1:5015550", "Red"},
+				{`"Ω≈ç√∫˜µ≤≥÷(｡◕‿◕｡)<2><[U:1:6107481]><>"`, "Ω≈ç√∫˜µ≤≥÷(｡◕‿◕｡)", 2, "U:1:6107481", ""},
+				{`"panzershrek<11><[U:1:122465451]><>"`, "panzershrek", 11, "U:1:122465451", ""},
+				{`"♥♥©♥♥௸atswood<42><13><[U:1:28500804]><>"`, "♥♥©♥♥௸atswood<42>", 13, "U:1:28500804", ""},
+				{`"xXx360noscopesxXx<7><[U:1:122465451]><Unassigned>"`, "xXx360noscopesxXx", 7, "U:1:122465451", "Unassigned"},
+				{`"r***yDestroyer9<14><[U:1:122465451]><Blue>"`, "r***yDestroyer9", 14, "U:1:122465451", "Blue"},
+				{`"<LL>arcticfox012<5><[U:1:5015550]><Red>"`, "<LL>arcticfox012", 5, "U:1:5015550", "Red"},
+				{`"GutsAndGlory!<16><BOT><Red>"`, "GutsAndGlory!", 16, "BOT", "Red"},
 			},
 		}
 
@@ -64,6 +65,16 @@ func Test_ParseClient(t *testing.T) {
 				`server cvars start`,
 				`World triggered "Round_Start"`,
 			},
+			"TF2": {
+				`server_cvar: "sv_alltalk" "1"`,
+				`Connection to Steam servers successful.`,
+				`Assigned anonymous gameserver Steam ID [A:1:2271993858:11261].`,
+				`Team "Red" triggered "pointcaptured" (cp "0") (cpname "#koth_viaduct_cap") (numcappers "1") (player1 "BEan | LacledesLAN.com<2><[U:1:7609438]><Red>") (position1 "440 319 -172") `,
+				`Team "Red" current score "0" with "3" players`,
+				`World triggered "Round_Overtime"`,
+				`World triggered "Round_Win" (winner "Blue")`,
+				`[META] Loaded 0 plugins (1 already loaded)`,
+			},
 			"OTHER": {
 				``,
 				`       `,
@@ -88,24 +99,25 @@ func Test_ParseClientLogEntry(t *testing.T) {
 		validCases := map[string][]struct {
 			rawMsg              string
 			expectedUsername    string
-			expectedServerSlot  string
+			expectedServerSlot  int16
 			expectedSteamID     string
 			expectedAffiliation string
 			expectedMsg         string
 		}{
 			"CSGO": {
-				{`"Console<0><Console><Console>" say "WarMod [BFG] WarmUp Config Loaded"`, "Console", "0", "Console", "Console", `say "WarMod [BFG] WarmUp Config Loaded"`},
-				{`"&#0000106&#0000097<31><STEAM_1:0:59942879>" switched from team <Unassigned> to <TERRORIST>`, "&#0000106&#0000097", "31", "STEAM_1:0:59942879", "", `switched from team <Unassigned> to <TERRORIST>`},
-				{`"onfocus=JaVaSCript:alert(123)<4><STEAM_1:1:8643911><CT>" purchased "p90"`, "onfocus=JaVaSCript:alert(123)", "4", "STEAM_1:1:8643911", "CT", `purchased "p90"`},
-				{`"💘 | LacledesLAN.com<8><STEAM_1:0:99144862><CT>" money change 16000-1000 = $15000 (tracked) (purchase: item_assaultsuit)`, "💘 | LacledesLAN.com", "8", "STEAM_1:0:99144862", "CT", `money change 16000-1000 = $15000 (tracked) (purchase: item_assaultsuit)`},
+				{`"Console<0><Console><Console>" say "WarMod [BFG] WarmUp Config Loaded"`, "Console", 0, "Console", "Console", `say "WarMod [BFG] WarmUp Config Loaded"`},
+				{`"&#0000106&#0000097<31><STEAM_1:0:59942879>" switched from team <Unassigned> to <TERRORIST>`, "&#0000106&#0000097", 31, "STEAM_1:0:59942879", "", `switched from team <Unassigned> to <TERRORIST>`},
+				{`"onfocus=JaVaSCript:alert(123)<4><STEAM_1:1:8643911><CT>" purchased "p90"`, "onfocus=JaVaSCript:alert(123)", 4, "STEAM_1:1:8643911", "CT", `purchased "p90"`},
+				{`"💘 | LacledesLAN.com<8><STEAM_1:0:99144862><CT>" money change 16000-1000 = $15000 (tracked) (purchase: item_assaultsuit)`, "💘 | LacledesLAN.com", 8, "STEAM_1:0:99144862", "CT", `money change 16000-1000 = $15000 (tracked) (purchase: item_assaultsuit)`},
 			},
 			"TF2": {
-				{`"Ω≈ç√∫˜µ≤≥÷(｡◕‿◕｡)<2><[U:1:6107481]><>" connected, address "192.168.1.210:27005"`, "Ω≈ç√∫˜µ≤≥÷(｡◕‿◕｡)", "2", "U:1:6107481", "", `connected, address "192.168.1.210:27005"`},
-				{`"panzershrek<11><[U:1:122465451]><>" connected, address "192.168.1.37:27005"`, "panzershrek", "11", "U:1:122465451", "", `connected, address "192.168.1.37:27005"`},
-				{`"♥♥©♥♥௸atswood<42><13><[U:1:28500804]><>" entered the game`, "♥♥©♥♥௸atswood<42>", "13", "U:1:28500804", "", `entered the game`},
-				{`"xXx360noscopesxXx<7><[U:1:122465451]><Unassigned>" joined team "Blue"`, "xXx360noscopesxXx", "7", "U:1:122465451", "Unassigned", `joined team "Blue"`},
-				{`"r***yDestroyer9<14><[U:1:122465451]><Blue>" changed role to "sniper"`, "r***yDestroyer9", "14", "U:1:122465451", "Blue", `changed role to "sniper"`},
-				{`"<LL>arcticfox012<5><[U:1:5015550]><Red>" killed "[LL]Buddha<6><[U:1:13251124]><Blue>" with "minigun" (attacker_position "608 -871 -234") (victim_position "596 -532 -261")`, "<LL>arcticfox012", "5", "U:1:5015550", "Red", `killed "[LL]Buddha<6><[U:1:13251124]><Blue>" with "minigun" (attacker_position "608 -871 -234") (victim_position "596 -532 -261")`},
+				{`"Ω≈ç√∫˜µ≤≥÷(｡◕‿◕｡)<2><[U:1:6107481]><>" connected, address "192.168.1.210:27005"`, "Ω≈ç√∫˜µ≤≥÷(｡◕‿◕｡)", 2, "U:1:6107481", "", `connected, address "192.168.1.210:27005"`},
+				{`"panzershrek<11><[U:1:122465451]><>" connected, address "192.168.1.37:27005"`, "panzershrek", 11, "U:1:122465451", "", `connected, address "192.168.1.37:27005"`},
+				{`"♥♥©♥♥௸atswood<42><13><[U:1:28500804]><>" entered the game`, "♥♥©♥♥௸atswood<42>", 13, "U:1:28500804", "", `entered the game`},
+				{`"xXx360noscopesxXx<7><[U:1:122465451]><Unassigned>" joined team "Blue"`, "xXx360noscopesxXx", 7, "U:1:122465451", "Unassigned", `joined team "Blue"`},
+				{`"r***yDestroyer9<14><[U:1:122465451]><Blue>" changed role to "sniper"`, "r***yDestroyer9", 14, "U:1:122465451", "Blue", `changed role to "sniper"`},
+				{`"<LL>arcticfox012<5><[U:1:5015550]><Red>" killed "[LL]Buddha<6><[U:1:13251124]><Blue>" with "minigun" (attacker_position "608 -871 -234") (victim_position "596 -532 -261")`, "<LL>arcticfox012", 5, "U:1:5015550", "Red", `killed "[LL]Buddha<6><[U:1:13251124]><Blue>" with "minigun" (attacker_position "608 -871 -234") (victim_position "596 -532 -261")`},
+				{`"GutsAndGlory!<16><BOT><Red>" changed role to "demoman"`, "GutsAndGlory!", 16, "BOT", "Red", `changed role to "demoman"`},
 			},
 		}
 
@@ -167,13 +179,18 @@ func Test_ParseClientLogEntry(t *testing.T) {
 }
 
 func Test_ParseClientConnected(t *testing.T) {
-	mockClient := Client{Username: "Nannybot 1.0", ServerSlot: "1", SteamID: "[U:1:28500804", Affiliation: "Red"}
+	mockClient := Client{Username: "Nannybot 1.0", ServerSlot: 1, SteamID: "[U:1:28500804", Affiliation: "Red"}
 
 	t.Run("Valid Cases", func(t *testing.T) {
 		validCases := map[string][]string{
 			"CSGO": {
 				`connected, address ""`,
 				`connected, address "192.168.1.52"`,
+				`connected, address "2001:0DB8:AC10:FE01:0000:EE91:0000:0000"`,
+			},
+			"TF2": {
+				`connected, address "none"`,
+				`connected, address "192.168.1.106:27005"`,
 				`connected, address "2001:0DB8:AC10:FE01:0000:EE91:0000:0000"`,
 			},
 		}
@@ -224,7 +241,7 @@ func Test_ParseClientConnected(t *testing.T) {
 }
 
 func Test_ParseClientDisconnected(t *testing.T) {
-	mockClient := Client{Username: "Sinclair 2K", ServerSlot: "1", SteamID: "[U:1:28500804", Affiliation: ""}
+	mockClient := Client{Username: "Sinclair 2K", ServerSlot: 1, SteamID: "[U:1:28500804", Affiliation: ""}
 
 	t.Run("Valid Cases", func(t *testing.T) {
 		validCases := map[string][]struct {
@@ -234,6 +251,10 @@ func Test_ParseClientDisconnected(t *testing.T) {
 			"CSGO": {
 				{msg: `disconnected (reason "Kicked by Console")`, expectedReason: "Kicked by Console"},
 				{msg: `disconnected`, expectedReason: ""},
+			},
+			"TF2": {
+				{msg: `disconnected (reason "Kicked from server")`, expectedReason: "Kicked from server"},
+				{msg: `disconnected (reason "Server shutting down")`, expectedReason: "Server shutting down"},
 			},
 		}
 
@@ -325,6 +346,26 @@ func Test_parseLogEntry(t *testing.T) {
 				{`L 04/22/2018 - 15:29:18: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "16") (T "9")`, "04/22/2018 - 15:29:18", `Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "16") (T "9")`},
 				{`L 04/22/2018 - 15:29:18: Team "CT" scored "16" with "5" players`, "04/22/2018 - 15:29:18", `Team "CT" scored "16" with "5" players`},
 				{`L 04/22/2018 - 15:29:18: Team "TERRORIST" scored "9" with "5" players`, "04/22/2018 - 15:29:18", `Team "TERRORIST" scored "9" with "5" players`},
+			},
+			"TF2": {
+				{`L 08/11/2019 - 19:52:33: Log file started (file "logs/L0811004.log") (game "/app/TF2/tf") (version "5257084")`, "08/11/2019 - 19:52:33", `Log file started (file "logs/L0811004.log") (game "/app/TF2/tf") (version "5257084")`},
+				{`L 08/11/2019 - 19:52:33: server_cvar: "sv_alltalk" "1"`, "08/11/2019 - 19:52:33", `server_cvar: "sv_alltalk" "1"`},
+				{`L 08/11/2019 - 19:52:33: "NotMe<2><BOT><>" connected, address "none"`, "08/11/2019 - 19:52:33", `"NotMe<2><BOT><>" connected, address "none"`},
+				{`L 10/21/2018 - 14:08:11: rcon from "172.30.40.7:53493": command "echo HLSW: Test"`, "10/21/2018 - 14:08:11", `rcon from "172.30.40.7:53493": command "echo HLSW: Test"`},
+				{`L 10/21/2018 - 14:09:54: "BEan | LacledesLAN.com<2><[U:1:7609438]><>" connected, address "172.30.40.210:27005"`, "10/21/2018 - 14:09:54", `"BEan | LacledesLAN.com<2><[U:1:7609438]><>" connected, address "172.30.40.210:27005"`},
+				{`L 08/11/2019 - 19:52:34: "CreditToTeam<3><BOT><Red>" disconnected (reason "Kicked from server")`, "08/11/2019 - 19:52:34", `"CreditToTeam<3><BOT><Red>" disconnected (reason "Kicked from server")`},
+				{`L 10/21/2018 - 14:28:54: Team "Red" triggered "pointcaptured" (cp "0") (cpname "#koth_viaduct_cap") (numcappers "2") (player1 "BEan | LacledesLAN.com<2><[U:1:7609438]><Red>") (position1 "661 3 -172") (player2 "[LL]arcticfox012<5><[U:1:5015550]><Red>") (position2 "670 92 -165")`, "10/21/2018 - 14:28:54", `Team "Red" triggered "pointcaptured" (cp "0") (cpname "#koth_viaduct_cap") (numcappers "2") (player1 "BEan | LacledesLAN.com<2><[U:1:7609438]><Red>") (position1 "661 3 -172") (player2 "[LL]arcticfox012<5><[U:1:5015550]><Red>") (position2 "670 92 -165")`},
+				{`L 10/21/2018 - 14:30:13: Team "Blue" triggered "pointcaptured" (cp "0") (cpname "#koth_viaduct_cap") (numcappers "2") (player1 "Snek<4><[U:1:122465451]><Blue>") (position1 "718 81 -172") (player2 "[LL]rnjmur<6><[U:1:13251124]><Blue>") (position2 "634 153 -165")`, "10/21/2018 - 14:30:13", `Team "Blue" triggered "pointcaptured" (cp "0") (cpname "#koth_viaduct_cap") (numcappers "2") (player1 "Snek<4><[U:1:122465451]><Blue>") (position1 "718 81 -172") (player2 "[LL]rnjmur<6><[U:1:13251124]><Blue>") (position2 "634 153 -165")`},
+				{`L 10/21/2018 - 14:35:17: World triggered "Round_Win" (winner "Red")`, "10/21/2018 - 14:35:17", `World triggered "Round_Win" (winner "Red")`},
+				{`L 10/21/2018 - 14:35:17: World triggered "Round_Length" (seconds "592.12")`, "10/21/2018 - 14:35:17", `World triggered "Round_Length" (seconds "592.12")`},
+				{`L 10/21/2018 - 14:35:17: Team "Red" current score "1" with "3" players`, "10/21/2018 - 14:35:17", `Team "Red" current score "1" with "3" players`},
+				{`L 10/21/2018 - 14:35:17: Team "Blue" current score "1" with "3" players`, "10/21/2018 - 14:35:17", `Team "Blue" current score "1" with "3" players`},
+				{`L 10/21/2018 - 14:35:24: "[LL]red<6><[U:1:13251124]><Blue>" changed role to "scout"`, "10/21/2018 - 14:35:24", `"[LL]red<6><[U:1:13251124]><Blue>" changed role to "scout"`},
+				{`L 10/21/2018 - 14:39:56: Vote succeeded "NextLevel pl_millstone_event"`, "10/21/2018 - 14:39:56", `Vote succeeded "NextLevel pl_millstone_event"`},
+				{`L 10/21/2018 - 14:47:03: World triggered "Game_Over" reason "Reached Time Limit"`, "10/21/2018 - 14:47:03", `World triggered "Game_Over" reason "Reached Time Limit"`},
+				{`L 10/21/2018 - 14:47:03: Team "Red" final score "2" with "3" players`, "10/21/2018 - 14:47:03", `Team "Red" final score "2" with "3" players`},
+				{`L 10/21/2018 - 14:47:03: Team "Blue" final score "1" with "4" players`, "10/21/2018 - 14:47:03", `Team "Blue" final score "1" with "4" players`},
+				{`L 10/21/2018 - 14:47:14: Log file closed.`, "10/21/2018 - 14:47:14", `Log file closed.`},
 			},
 		}
 
@@ -466,6 +507,8 @@ func Test_paresEchoServerCvar(t *testing.T) {
 			{`server_cvar: "cash_team_elimination_hostage_map_ct" "3000"`, "cash_team_elimination_hostage_map_ct", "3000"},
 			{`server_cvar: "sm_nextmap" "de_dust2"`, "sm_nextmap", "de_dust2"},
 			{`server_cvar: "tv_colon_separated_values" "red;green;blue"`, "tv_colon_separated_values", "red;green;blue"},
+			{`server_cvar: "tf_server_identity_disable_quickplay" "1"`, "tf_server_identity_disable_quickplay", "1"},
+			{`server_cvar: "sv_tags" "alltalk,cp,noquickplay"`, "sv_tags", "alltalk,cp,noquickplay"},
 		}
 
 		for _, test := range validCases {

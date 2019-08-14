@@ -2,6 +2,7 @@ package srcds
 
 import (
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -17,12 +18,19 @@ func ParseClient(s string) (Client, bool) {
 		return Client{}, false
 	}
 
-	return Client{
+	r := Client{
 		Affiliation: tokens[4],
 		SteamID:     tokens[3],
-		ServerSlot:  tokens[2],
 		Username:    tokens[1],
-	}, true
+	}
+
+	if i, err := strconv.ParseInt(tokens[2], 10, 16); err != nil {
+		r.ServerSlot = -1
+	} else {
+		r.ServerSlot = int16(i)
+	}
+
+	return r, true
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,15 +50,22 @@ func ParseClientLogEntry(le LogEntry) (cle ClientLogEntry, ok bool) {
 		return ClientLogEntry{}, false
 	}
 
-	return ClientLogEntry{
+	r := ClientLogEntry{
 		Message: strings.TrimSpace(tokens[5]),
 		Client: Client{
 			Affiliation: tokens[4],
 			SteamID:     tokens[3],
-			ServerSlot:  tokens[2],
 			Username:    tokens[1],
 		},
-	}, true
+	}
+
+	if i, err := strconv.ParseInt(tokens[2], 10, 16); err != nil {
+		r.Client.ServerSlot = -1
+	} else {
+		r.Client.ServerSlot = int16(i)
+	}
+
+	return r, true
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

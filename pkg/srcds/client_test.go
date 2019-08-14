@@ -47,17 +47,18 @@ func Test_ClientsAreEquivalent(t *testing.T) {
 				{c0: `"The Masked Unit<2><[STEAM_1:0:53045815]><CT>"`, c1: `"The Renamed Unit<2><[STEAM_1:0:53045815]><TERRORIST>"`},
 				{c0: `"The Masked Unit<2><[STEAM_1:0:53045815]><CT>"`, c1: `"The Renamed Unit<2><[STEAM_1:0:53045815]><Unassigned>"`},
 				{c0: `"The Masked Unit<2><[STEAM_1:0:53045815]><TERRORIST>"`, c1: `"The Renamed Unit<2><[STEAM_1:0:53045815]><Unassigned>"`},
-				//TODO: NEED SERVER OFFLINE / CLIENT OFFLINE EXAMPLES
 			},
 			"TF2": {
 				{c0: `"Betabot<2><[U:1:7609438]><>"`, c1: `"Betabot<26><[U:1:7609438]><Unassigned>"`},
 				{c0: `"Betabot<2><[U:1:7609438]><Unassigned>"`, c1: `"Betabot<26><[U:1:7609438]><Unassigned>"`},
 				{c0: `"Betabot<2><[U:1:7609438]><Unassigned>"`, c1: `"Betabot<26><[U:1:7609438]><Red>"`},
 				{c0: `"Betabot<2><[U:1:7609438]><Unassigned>"`, c1: `"Betabot<26><[U:1:7609438]><Blue>"`},
-				//TODO: NEED BOT EXAMPLES
-				//TODO: NEED CONSOLE EXAMPLES
-				//TODO: NEED TV EXAMPLES
-				//TODO: NEED SERVER OFFLINE / CLIENT OFFLINE EXAMPLES
+				{c0: `"Betabot<2><[BOT]><>"`, c1: `"Betabot<26><[BOT]><Unassigned>"`},
+				{c0: `"Betabot<2><[BOT]><Unassigned>"`, c1: `"Betabot<26><[BOT]><Unassigned>"`},
+				{c0: `"Betabot<2><[BOT]><Unassigned>"`, c1: `"Betabot<26><[BOT]><Red>"`},
+				{c0: `"Betabot<2><[BOT]><Unassigned>"`, c1: `"Betabot<26><[BOT]><Blue>"`},
+				//TODO: NEED TF2 TV EXAMPLE
+				//TODO: NEED TF2 CONSOLE EXAMPLE
 			},
 		}
 
@@ -121,17 +122,18 @@ func Test_ClientUnidentifiable(t *testing.T) {
 				`"Boxy Robot<13><STEAM_1:0:53045815><>"`,
 				`"Countess de la Roca<6><STEAM_1:0:53045815><CT>"`,
 				`"doku pay attention to the call<0><STEAM_1:0:53045815><TERRORIST>"`,
-				//TODO: NEED SERVER OFFLINE / CLIENT OFFLINE EXAMPLES
 			},
 			"TF2": []string{
 				`"The Masked Unit<2><[U:1:7609438]><>"`,
 				`"Betabot<2><[U:1:7609438]><Unassigned>"`,
 				`"Nurse Ratchet<2><[U:1:7609438]><Red>"`,
 				`"Whalers on the Moon<3><[U:1:7609438]><Blue>"`,
+				`"CreditToTeam<3><BOT><>"`,
+				`"CreditToTeam<3><BOT><Unassigned>"`,
+				`"CreditToTeam<3><BOT><Red>"`,
+				`"CreditToTeam<3><BOT><Blue>"`,
 				//TODO: NEED TF2 TV EXAMPLE
-				//TODO: NEED TF2 BOT EXAMPLES
 				//TODO: NEED TF2 CONSOLE EXAMPLE
-				//TODO: NEED SERVER OFFLINE / CLIENT OFFLINE EXAMPLES
 			},
 		}
 
@@ -186,8 +188,12 @@ func Test_Client_IsBot(t *testing.T) {
 				`"Jim<2><BOT><CT>"`,
 				`"Joe<9><BOT><TERRORIST>"`,
 			},
-			"TF2": {},
-			//TODO: NEED TF2 BOT EXAMPLES
+			"TF2": {
+				`"Betabot<2><[BOT]><>"`,
+				`"Betabot<2><[BOT]><Unassigned>"`,
+				`"Betabot<26><[BOT]><Red>"`,
+				`"Betabot<26><[BOT]><Blue>"`,
+			},
 		}
 
 		for name, test := range validCases {
@@ -211,14 +217,12 @@ func Test_Client_IsBot(t *testing.T) {
 				`"Boxy Robot<13><STEAM_1:0:53045815><CT>"`,
 				`"Boxy Robot<13><STEAM_1:0:53045815><TERRORIST>"`,
 				`"Boxy Robot<13><STEAM_1:0:53045815><UNASSIGNED>"`,
-				//TODO: NEED SERVER OFFLINE / CLIENT OFFLINE EXAMPLES
 			},
 			"TF2": {
 				`"The Masked Unit<2><[U:1:7609438]><>"`,
 				`"Betabot<2><[U:1:7609438]><Unassigned>"`,
 				`"Nurse Ratchet<2><[U:1:7609438]><Red>"`,
 				`"Whalers on the Moon<3><[U:1:7609438]><Blue>"`,
-				//TODO: NEED SERVER OFFLINE / CLIENT OFFLINE EXAMPLES
 				//TODO: NEED TF2 CONSOLE EXAMPLE
 			},
 		}
@@ -266,13 +270,14 @@ func Test_Client_IsConsole(t *testing.T) {
 				`"GOTV<3><BOT><>"`,
 				`"The Masked Unit<2><[STEAM_1:0:53045815]><>"`,
 				`"Tony<11><BOT><>"`,
-				//TODO: NEED SERVER OFFLINE / CLIENT OFFLINE EXAMPLES
 			},
 			"TF2": {
 				`"Betabot<2><[U:1:7609438]><>"`,
+				`"Betabot<2><[BOT]><>"`,
+				`"Betabot<2><[BOT]><Unassigned>"`,
+				`"Betabot<26><[BOT]><Red>"`,
+				`"Betabot<26><[BOT]><Blue>"`,
 				//TODO: NEED TF2 TV EXAMPLE
-				//TODO: NEED TF2 BOT EXAMPLES
-				//TODO: NEED SERVER OFFLINE / CLIENT OFFLINE EXAMPLES
 			},
 		}
 
@@ -288,6 +293,33 @@ func Test_Client_IsConsole(t *testing.T) {
 			})
 		}
 	})
+}
+
+func Test_Client_RefreshEquivalentClient(t *testing.T) {
+	sut := Clients{
+		{Affiliation: "Blue", ServerSlot: 22, SteamID: "STEAM_1:0:1699142", Username: "Countess de la Roca"},
+		{Affiliation: "ORIGINAL", ServerSlot: 1614, SteamID: "STEAM_1:0:9876543", Username: "Original Username"},
+		{Affiliation: "Red", ServerSlot: 24, SteamID: "STEAM_1:0:1699143", Username: "Hedonism Bot"},
+		{Affiliation: "CT", ServerSlot: 23, SteamID: "STEAM_1:0:1699144", Username: "Malfunctioning Eddie"},
+	}
+
+	mock := Client{Affiliation: "TERRORIST", ServerSlot: 123, SteamID: "STEAM_1:0:9876543", Username: "New Username"}
+
+	sut.RefreshEquivalentClient(mock)
+
+	i := sut.clientIndex(mock)
+
+	if (sut)[i].Affiliation != mock.Affiliation {
+		t.Errorf("Expected Affiliation %q but got %q.", mock.Affiliation, (sut)[i].Affiliation)
+	}
+
+	if (sut)[i].ServerSlot != mock.ServerSlot {
+		t.Errorf("Expected ServerSlot %d but got %d.", mock.ServerSlot, (sut)[i].ServerSlot)
+	}
+
+	if (sut)[i].Username != mock.Username {
+		t.Errorf("Expected Username %q but got %q.", mock.Username, (sut)[i].Username)
+	}
 }
 
 func Test_Client_RemoveAllFlags(t *testing.T) {
@@ -342,14 +374,39 @@ func Test_Clients(t *testing.T) {
 	//has client
 }
 
-func Test_Client_RemoveFlags(t *testing.T) {
-	//TODO!
-}
+func Test_Clients_Flags(t *testing.T) {
+	c0 := Client{Affiliation: "GROUP 1", ServerSlot: 1, SteamID: "STEAM_1:0:1699142", Username: "Countess de la Roca"}
+	c1 := Client{Affiliation: "GROUP 2", ServerSlot: 2, SteamID: "STEAM_1:0:1699143", Username: "Hedonism Bot"}
+	c2 := Client{Affiliation: "GROUP 1", ServerSlot: 3, SteamID: "STEAM_1:0:1699144", Username: "Malfunctioning Eddie"}
+	c3 := Client{Affiliation: "GROUP 2", ServerSlot: 4, SteamID: "STEAM_1:0:1699145", Username: "Hair Robot"}
+	sut := Clients{c0, c1, c2, c3}
 
-func Test_Clients_WithFlags(t *testing.T) {
-	//TODO!
-}
+	for i := 0; i < len(sut); i++ {
+		// TODO!
+	}
 
-func Test_Clients_WithoutFlags(t *testing.T) {
-	//TODO!
+	//enable flag
+	//remove flag
+	//remove flags
+	//with flags
+	//without flags
+
+	/*
+		clientFlagAlpha ClientFlag = 1 << iota
+		clientFlagBravo
+		clientFlagCharlie
+		clientFlagDelta
+		clientFlagEcho
+		clientFlagGolf
+		clientFlagHotel
+		clientFlagIndia
+		clientFlagJuliett
+		clientFlagKilo
+		clientFlagLima
+		clientFlagMike
+		clientFlagNovember
+		clientFlagOscar
+		clientFlagPapa
+		clientFlagQuedec
+	*/
 }
