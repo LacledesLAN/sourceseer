@@ -71,11 +71,7 @@ func (c *Client) ToggleFlag(f ClientFlag) {
 
 // IsBot determines if the client is a bot
 func (c Client) IsBot() bool {
-	if strings.ToUpper(c.SteamID) == "BOT" {
-		return true
-	}
-
-	return false
+	return strings.ToUpper(c.SteamID) == "BOT"
 }
 
 // IsConsole determines if the client is just the server console
