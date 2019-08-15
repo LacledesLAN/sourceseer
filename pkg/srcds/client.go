@@ -97,14 +97,14 @@ func (cs Clients) clientIndex(client Client) int {
 func (cs *Clients) ClientDropped(client Client) {
 	i := cs.clientIndex(client)
 
-	if i >= 0 {
-		l := len(*cs)
+	if i < 0 {
+		return
+	}
 
-		if l > 1 {
-			*cs = append((*cs)[:i], (*cs)[i+1:]...)
-		} else if l == 1 {
-			*cs = Clients{}
-		}
+	if len(*cs) > 1 {
+		*cs = append((*cs)[:i], (*cs)[i+1:]...)
+	} else {
+		*cs = Clients{}
 	}
 }
 
@@ -115,11 +115,16 @@ func (cs *Clients) ClientJoined(c Client) {
 	}
 }
 
-// EnableFlag enables the specified flag for the equivalent client (if found)
-func (cs *Clients) EnableFlag(c Client, f ClientFlag) {
+// EnableFlag enables the specified flags for the equivalent client (if found)
+func (cs *Clients) EnableFlag(c Client, f ClientFlag, fs ...ClientFlag) {
 	i := cs.clientIndex(c)
 
-	if i > -1 {
+	if i < 0 {
+		return
+	}
+
+	(*cs)[i].EnableFlag(f)
+	for _, f := range fs {
 		(*cs)[i].EnableFlag(f)
 	}
 }
@@ -145,16 +150,22 @@ func (cs *Clients) RefreshEquivalentClient(c Client) {
 		(*cs)[i].ServerSlot = c.ServerSlot
 	}
 
-	if (*cs)[i].Username != c.Username {
+	if (*cs)[i].Username != c.Username && len(strings.TrimSpace(c.Username)) != 0 {
+		// Check for empty Username is needed for TF2's "entered the game" log messages
 		(*cs)[i].Username = c.Username
 	}
 }
 
-// RemoveFlag removes the specified flag for the equivalent client (if found)
-func (cs *Clients) RemoveFlag(c Client, f ClientFlag) {
+// RemoveFlag removes the specified flags for the equivalent client (if found)
+func (cs *Clients) RemoveFlag(c Client, f ClientFlag, fs ...ClientFlag) {
 	i := cs.clientIndex(c)
 
-	if i > -1 {
+	if i < 0 {
+		return
+	}
+
+	(*cs)[i].RemoveFlag(f)
+	for _, f := range fs {
 		(*cs)[i].RemoveFlag(f)
 	}
 }

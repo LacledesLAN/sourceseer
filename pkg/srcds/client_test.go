@@ -24,7 +24,7 @@ const (
 	clientFlagQuedec
 )
 
-var allFlags = []ClientFlag{
+var allFlags = [16]ClientFlag{
 	clientFlagAlpha, clientFlagBravo, clientFlagCharlie, clientFlagDelta, clientFlagEcho, clientFlagGolf, clientFlagHotel, clientFlagIndia,
 	clientFlagJuliett, clientFlagKilo, clientFlagLima, clientFlagMike, clientFlagNovember, clientFlagOscar, clientFlagPapa, clientFlagQuedec,
 }
@@ -156,24 +156,24 @@ func Test_ClientUnidentifiable(t *testing.T) {
 func Test_Client_EnableFlag(t *testing.T) {
 	sut := Client{}
 	for _, f := range allFlags {
-		t.Run(fmt.Sprintf("%016b", f), func(t *testing.T) {
+		t.Run(fmt.Sprintf("%018b", f), func(t *testing.T) {
 			// set & verify
 			sut.EnableFlag(f)
 			if !sut.HasFlag(f) {
-				t.Errorf("Flag %016b should be set (client flags value was %016b).", f, sut.flags)
+				t.Errorf("Flag %018b should be set (client flags value was %018b).", f, sut.flags)
 			}
 
 			// verify no other flags got set
 			for _, f2 := range allFlags {
 				if f2 != f && sut.HasFlag(f2) {
-					t.Errorf("Flag %016b should not be set (client flags value was %016b).", f2, sut.flags)
+					t.Errorf("Flag %018b should not be set (client flags value was %018b).", f2, sut.flags)
 				}
 			}
 
 			// unset & verify
 			sut.RemoveFlag(f)
 			if sut.HasFlag(f) {
-				t.Errorf("Flag %016b should NOT be set (client flags value was %016b).", f, sut.flags)
+				t.Errorf("Flag %018b should NOT be set (client flags value was %018b).", f, sut.flags)
 			}
 		})
 	}
@@ -329,14 +329,14 @@ func Test_Client_RemoveAllFlags(t *testing.T) {
 	for _, f := range allFlags {
 		sut.EnableFlag(f)
 		if !sut.HasFlag(f) {
-			t.Errorf("Was unable to enable flag %016b (client flags value was %016b).", f, sut.flags)
+			t.Errorf("Was unable to enable flag %018b (client flags value was %018b).", f, sut.flags)
 		}
 	}
 
 	sut.RemoveAllFlags()
 	for _, f := range allFlags {
 		if sut.HasFlag(f) {
-			t.Errorf("Flag %016b should have been reset (client flags value was %016b).", f, sut.flags)
+			t.Errorf("Flag %018b should have been reset (client flags value was %018b).", f, sut.flags)
 		}
 	}
 }
@@ -344,69 +344,96 @@ func Test_Client_RemoveAllFlags(t *testing.T) {
 func Test_Client_ToggleFlags(t *testing.T) {
 	sut := Client{}
 	for _, f := range allFlags {
-		t.Run(fmt.Sprintf("%016b", f), func(t *testing.T) {
+		t.Run(fmt.Sprintf("%018b", f), func(t *testing.T) {
 			// toggle on
 			sut.ToggleFlag(f)
 			if !sut.HasFlag(f) {
-				t.Errorf("Flag %016b should be set (client flags value was %016b).", f, sut.flags)
+				t.Errorf("Flag %018b should be set (client flags value was %018b).", f, sut.flags)
 			}
 
 			// verify no other flags got toggled on
 			for _, f2 := range allFlags {
 				if f2 != f && sut.HasFlag(f2) {
-					t.Errorf("Flag %016b should not be set (client flags value was %016b).", f2, sut.flags)
+					t.Errorf("Flag %018b should not be set (client flags value was %018b).", f2, sut.flags)
 				}
 			}
 
 			// toggle off
 			sut.ToggleFlag(f)
 			if sut.HasFlag(f) {
-				t.Errorf("Flag %016b should NOT be set (client flags value was %016b).", f, sut.flags)
+				t.Errorf("Flag %018b should NOT be set (client flags value was %018b).", f, sut.flags)
 			}
 		})
 	}
 }
 
 func Test_Clients(t *testing.T) {
-	//client joined
-	//has client
-	//client dropped
-	//has client
+	clients := [4]Client{
+		Client{Affiliation: "GROUP 1", ServerSlot: 1, SteamID: "STEAM_1:0:1699142", Username: "Countess de la Roca"},
+		Client{Affiliation: "GROUP 2", ServerSlot: 2, SteamID: "STEAM_1:0:1699143", Username: "Hedonism Bot"},
+		Client{Affiliation: "GROUP 1", ServerSlot: 3, SteamID: "STEAM_1:0:1699144", Username: "Malfunctioning Eddie"},
+		Client{Affiliation: "GROUP 2", ServerSlot: 4, SteamID: "STEAM_1:0:1699145", Username: "Hair Robot"},
+	}
+	sut := Clients{}
+
+	for i, c := range clients {
+		if len(sut) != i {
+			t.Errorf("Before client %q joined expected sut to have %d clients NOT %d.", c.Username, i, len(sut))
+		}
+
+		sut.ClientJoined(c)
+		sut.ClientJoined(c) // Verify client doesn't get added twice
+		if len(sut) != i+1 {
+			t.Errorf("After client %q joined expected sut to have %d clients NOT %d.", c.Username, i, len(sut))
+		}
+
+		if !sut.HasClient(c) {
+			t.Errorf("Client %q not found after being added.", c.Username)
+		}
+	}
+
+	for i := len(sut) - 1; i >= 0; i-- {
+		c := clients[i]
+		sut.ClientDropped(c)
+		if sut.HasClient(c) {
+			t.Errorf("Client %q found after being dropped.", c.Username)
+		}
+
+		sut.ClientDropped(c) // Verify a second client doesn't get dropped
+		if len(sut) != i {
+			t.Errorf("After client %q dropped expected sut to have %d clients NOT %d.", c.Username, i, len(sut))
+		}
+	}
 }
 
 func Test_Clients_Flags(t *testing.T) {
-	c0 := Client{Affiliation: "GROUP 1", ServerSlot: 1, SteamID: "STEAM_1:0:1699142", Username: "Countess de la Roca"}
-	c1 := Client{Affiliation: "GROUP 2", ServerSlot: 2, SteamID: "STEAM_1:0:1699143", Username: "Hedonism Bot"}
-	c2 := Client{Affiliation: "GROUP 1", ServerSlot: 3, SteamID: "STEAM_1:0:1699144", Username: "Malfunctioning Eddie"}
-	c3 := Client{Affiliation: "GROUP 2", ServerSlot: 4, SteamID: "STEAM_1:0:1699145", Username: "Hair Robot"}
-	sut := Clients{c0, c1, c2, c3}
-
-	for i := 0; i < len(sut); i++ {
-		// TODO!
+	sut := Clients{
+		Client{Affiliation: "EVEN", ServerSlot: 1, SteamID: "STEAM_1:0:1699142", Username: "Countess de la Roca"},
+		Client{Affiliation: "ODD", ServerSlot: 2, SteamID: "STEAM_1:0:1699143", Username: "Hedonism Bot"},
+		Client{Affiliation: "EVEN", ServerSlot: 3, SteamID: "STEAM_1:0:1699144", Username: "Malfunctioning Eddie"},
+		Client{Affiliation: "ODD", ServerSlot: 4, SteamID: "STEAM_1:0:1699145", Username: "Hair Robot"},
 	}
 
-	//enable flag
-	//remove flag
-	//remove flags
-	//with flags
-	//without flags
+	for i := range sut {
+		sut.EnableFlag(sut[i], clientFlagAlpha)
 
-	/*
-		clientFlagAlpha ClientFlag = 1 << iota
-		clientFlagBravo
-		clientFlagCharlie
-		clientFlagDelta
-		clientFlagEcho
-		clientFlagGolf
-		clientFlagHotel
-		clientFlagIndia
-		clientFlagJuliett
-		clientFlagKilo
-		clientFlagLima
-		clientFlagMike
-		clientFlagNovember
-		clientFlagOscar
-		clientFlagPapa
-		clientFlagQuedec
-	*/
+		if !sut[i].HasFlag(clientFlagAlpha) {
+			t.Errorf("After enabling flag %018b for %q it should have returned true for HasFlag()", clientFlagAlpha, sut[i].Username)
+		}
+
+		l := len(sut.WithFlags(clientFlagAlpha))
+		if l != i+1 {
+			t.Errorf("Expected %d clients to show with the flag %018b but got %d", i+1, clientFlagAlpha, l)
+		}
+	}
+
+	l := len(sut.WithFlags(clientFlagAlpha, clientFlagBravo))
+	if l != 0 {
+		t.Errorf("Expected 0 clients to show with the flags %018b and %018b but got %d", clientFlagAlpha, clientFlagBravo, l)
+	}
+
+	//TODO remove flag
+	//TODO remove all flags
+	//TODO with flags
+	//TODO without flags
 }
