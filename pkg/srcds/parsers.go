@@ -81,7 +81,7 @@ func ParseClientConnected(clientMsg ClientLogEntry) (ok bool) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var clientDisconnectedRegex = regexp.MustCompile(`^disconnected(?: \(reason \"([\w ]{1,})\"\))?$`)
+var clientDisconnectedRegex = regexp.MustCompile(`^disconnected(?: \(reason \"([\S ]{1,})\"\))?$`)
 
 // ClientDisconnectedReason is sent when a client disconnects from srcds
 type ClientDisconnectedReason string
@@ -92,6 +92,12 @@ func ParseClientDisconnected(clientMsg ClientLogEntry) (ClientDisconnectedReason
 
 	if len(tokens) != 2 {
 		return ClientDisconnectedReason(""), false
+	}
+
+	reason := tokens[1]
+
+	if strings.HasSuffix(reason, "timed out") {
+		return ClientDisconnectedReason("timed out"), true
 	}
 
 	return ClientDisconnectedReason(tokens[1]), true

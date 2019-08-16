@@ -109,7 +109,6 @@ func Test_ClientsAreEquivalent(t *testing.T) {
 			})
 		}
 	})
-
 }
 
 func Test_ClientUnidentifiable(t *testing.T) {
@@ -121,7 +120,7 @@ func Test_ClientUnidentifiable(t *testing.T) {
 				`"GOTV<2><BOT><Unassigned>"`,
 				`"Boxy Robot<13><STEAM_1:0:53045815><>"`,
 				`"Countess de la Roca<6><STEAM_1:0:53045815><CT>"`,
-				`"doku pay attention to the call<0><STEAM_1:0:53045815><TERRORIST>"`,
+				`"george pay attention to the call<0><STEAM_1:0:53845815><TERRORIST>"`,
 			},
 			"TF2": []string{
 				`"The Masked Unit<2><[U:1:7609438]><>"`,
@@ -414,26 +413,83 @@ func Test_Clients_Flags(t *testing.T) {
 		Client{Affiliation: "ODD", ServerSlot: 4, SteamID: "STEAM_1:0:1699145", Username: "Hair Robot"},
 	}
 
-	for i := range sut {
-		sut.EnableFlag(sut[i], clientFlagAlpha)
+	t.Run("Before Enabling", func(t *testing.T) {
+		l := len(sut.WithFlags(clientFlagAlpha, clientFlagBravo))
+		if l != 0 {
+			t.Errorf("Expected NO clients to show with the flags %018b and %018b but got %d.", clientFlagAlpha, clientFlagBravo, l)
+		}
 
-		if !sut[i].HasFlag(clientFlagAlpha) {
-			t.Errorf("After enabling flag %018b for %q it should have returned true for HasFlag()", clientFlagAlpha, sut[i].Username)
+		l = len(sut.WithoutFlags(clientFlagAlpha, clientFlagNovember))
+		if l != len(sut) {
+			t.Errorf("Expected ALL clients to show without the flags %018b and %018b but got %d.", clientFlagAlpha, clientFlagNovember, l)
+		}
+	})
+
+	t.Run("EnableFlag", func(t *testing.T) {
+		for i := range sut {
+			sut.EnableFlag(sut[i], clientFlagAlpha, clientFlagCharlie, clientFlagEcho, clientFlagHotel, clientFlagJuliett)
+
+			if !sut[i].HasFlag(clientFlagCharlie) {
+				t.Errorf("1) After enabling flag %018b for %q it should have returned true for HasFlag()", clientFlagAlpha, sut[i].Username)
+			}
+		}
+
+		l := len(sut.WithFlags(clientFlagAlpha, clientFlagBravo))
+		if l != 0 {
+			t.Errorf("4) Expected NO clients to show with the flags %018b and %018b but got %d.", clientFlagAlpha, clientFlagBravo, l)
+		}
+
+		l = len(sut.WithoutFlags(clientFlagBravo, clientFlagDelta))
+		if l != len(sut) {
+			t.Errorf("6) Expected ALL clients to show without the flags %018b and %018b but got %d", clientFlagBravo, clientFlagDelta, l)
+		}
+	})
+
+	t.Run("RemoveFlag", func(t *testing.T) {
+		for i := range sut {
+			sut.RemoveFlag(sut[i], clientFlagAlpha, clientFlagBravo)
+
+			if sut[i].HasFlag(clientFlagAlpha) {
+				t.Errorf("Expected client %q to NOT have flag %018b enabled.", sut[i].Username, clientFlagAlpha)
+			}
 		}
 
 		l := len(sut.WithFlags(clientFlagAlpha))
-		if l != i+1 {
-			t.Errorf("Expected %d clients to show with the flag %018b but got %d", i+1, clientFlagAlpha, l)
+		if l != 0 {
+			t.Errorf("Expected NO clients to show WITH the flag %018b but got %d.", clientFlagAlpha, l)
 		}
-	}
 
-	l := len(sut.WithFlags(clientFlagAlpha, clientFlagBravo))
-	if l != 0 {
-		t.Errorf("Expected 0 clients to show with the flags %018b and %018b but got %d", clientFlagAlpha, clientFlagBravo, l)
-	}
+		l = len(sut.WithoutFlags(clientFlagAlpha))
+		if l != len(sut) {
+			t.Errorf("Expected ALL clients to show WITHOUT the flag %018b but got %d.", clientFlagAlpha, l)
+		}
+	})
 
-	//TODO remove flag
-	//TODO remove all flags
-	//TODO with flags
-	//TODO without flags
+	t.Run("RemoveFlags", func(t *testing.T) {
+		sut.RemoveFlags(clientFlagCharlie, clientFlagHotel)
+
+		l := len(sut.WithFlags(clientFlagCharlie, clientFlagHotel))
+		if l != 0 {
+			t.Errorf("Expected NO clients to show WITH the flags %018b and %018b but got %d.", clientFlagCharlie, clientFlagHotel, l)
+		}
+
+		l = len(sut.WithoutFlags(clientFlagCharlie, clientFlagHotel))
+		if l != len(sut) {
+			t.Errorf("Expected ALL clients to show WITHOUT the flags %018b and %018b but got %d.", clientFlagCharlie, clientFlagHotel, l)
+		}
+	})
+
+	t.Run("RemoveAllFlags", func(t *testing.T) {
+		sut.RemoveAllFlags()
+
+		l := len(sut.WithFlags(clientFlagEcho, clientFlagJuliett))
+		if l != 0 {
+			t.Errorf("Expected NO clients to show WITH the flags %018b and %018b but got %d.", clientFlagEcho, clientFlagJuliett, l)
+		}
+
+		l = len(sut.WithoutFlags(clientFlagEcho, clientFlagJuliett))
+		if l != len(sut) {
+			t.Errorf("Expected ALL clients to show WITHOUT the flags %018b and %018b but got %d.", clientFlagEcho, clientFlagJuliett, l)
+		}
+	})
 }

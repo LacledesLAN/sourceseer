@@ -14,7 +14,7 @@ type Observer interface {
 	Start()
 }
 
-// NewScanner for observing streaming CSGO data
+// NewReader for observing streaming CSGO data
 func NewReader(r io.Reader, mpHalftime, mpMaxRounds, mpMaxOvertimeRounds int) Observer {
 	o := &observer{
 		srcdsObserver: srcds.NewReader(r),

@@ -105,10 +105,17 @@ func Test_ParseClientLogEntry(t *testing.T) {
 			expectedMsg         string
 		}{
 			"CSGO": {
-				{`"Console<0><Console><Console>" say "WarMod [BFG] WarmUp Config Loaded"`, "Console", 0, "Console", "Console", `say "WarMod [BFG] WarmUp Config Loaded"`},
-				{`"&#0000106&#0000097<31><STEAM_1:0:59942879>" switched from team <Unassigned> to <TERRORIST>`, "&#0000106&#0000097", 31, "STEAM_1:0:59942879", "", `switched from team <Unassigned> to <TERRORIST>`},
-				{`"onfocus=JaVaSCript:alert(123)<4><STEAM_1:1:8643911><CT>" purchased "p90"`, "onfocus=JaVaSCript:alert(123)", 4, "STEAM_1:1:8643911", "CT", `purchased "p90"`},
-				{`"💘 | LacledesLAN.com<8><STEAM_1:0:99144862><CT>" money change 16000-1000 = $15000 (tracked) (purchase: item_assaultsuit)`, "💘 | LacledesLAN.com", 8, "STEAM_1:0:99144862", "CT", `money change 16000-1000 = $15000 (tracked) (purchase: item_assaultsuit)`},
+				{`"Charles Nicole<1><STEAM_1:0:13377331><>" connected, address ""`, `Charles Nicole`, 1, "STEAM_1:0:13377331", "", `connected, address ""`},
+				{`"Bill Nye<2><STEAM_1:0:13377331><>" STEAM USERID validated`, `Bill Nye`, 2, "STEAM_1:0:13377331", "", `STEAM USERID validated`},
+				{`"Thomas Gold<3><STEAM_1:0:13377331><>" entered the game`, "Thomas Gold", 3, "STEAM_1:0:13377331", ``, `entered the game`},
+				{`"Jane Goodall<4><STEAM_1:0:13377331><CT>" purchased "m4a1"`, "Jane Goodall", 4, "STEAM_1:0:13377331", `CT`, `purchased "m4a1"`},
+				{`"Charles Babbage<5><STEAM_1:0:13377331><TERRORIST>" say "Where's sunny"`, `Charles Babbage`, 5, "STEAM_1:0:13377331", "TERRORIST", `say "Where's sunny"`},
+				{`"B. Pascal<6><STEAM_1:0:13377331><CT>" left buyzone with [ ]`, `B. Pascal`, 6, "STEAM_1:0:13377331", "CT", `left buyzone with [ ]`},
+				{`"Joseph Henry<7><STEAM_1:0:13377331><CT>" left buyzone with [ weapon_knife_m9_bayonet weapon_usp_silencer weapon_m4a1 kevlar(100) helmet ]`, `Joseph Henry`, 7, "STEAM_1:0:13377331", "CT", `left buyzone with [ weapon_knife_m9_bayonet weapon_usp_silencer weapon_m4a1 kevlar(100) helmet ]`},
+				{`"David B.<8><STEAM_1:0:13377331><Unassigned>" disconnected (reason "David B. timed out")`, `David B.`, 8, "STEAM_1:0:13377331", "Unassigned", `disconnected (reason "David B. timed out")`},
+				{`"Sally Ride<9><BOT><CT>" disconnected (reason "Kicked by Console")`, `Sally Ride`, 9, "BOT", "CT", `disconnected (reason "Kicked by Console")`},
+				{`"Ronald Ross<10><STEAM_1:0:13377331>" switched from team <Unassigned> to <TERRORIST>`, `Ronald Ross`, 10, "STEAM_1:0:13377331", "", `switched from team <Unassigned> to <TERRORIST>`},
+				{`"B. F. Skinner<11><BOT><TERRORIST>" say_team ".r"`, `B. F. Skinner`, 11, "BOT", "TERRORIST", `say_team ".r"`},
 			},
 			"TF2": {
 				{`"Ω≈ç√∫˜µ≤≥÷(｡◕‿◕｡)<2><[U:1:6107481]><>" connected, address "192.168.1.210:27005"`, "Ω≈ç√∫˜µ≤≥÷(｡◕‿◕｡)", 2, "U:1:6107481", "", `connected, address "192.168.1.210:27005"`},
@@ -118,6 +125,12 @@ func Test_ParseClientLogEntry(t *testing.T) {
 				{`"r***yDestroyer9<14><[U:1:122465451]><Blue>" changed role to "sniper"`, "r***yDestroyer9", 14, "U:1:122465451", "Blue", `changed role to "sniper"`},
 				{`"<LL>arcticfox012<5><[U:1:5015550]><Red>" killed "[LL]Buddha<6><[U:1:13251124]><Blue>" with "minigun" (attacker_position "608 -871 -234") (victim_position "596 -532 -261")`, "<LL>arcticfox012", 5, "U:1:5015550", "Red", `killed "[LL]Buddha<6><[U:1:13251124]><Blue>" with "minigun" (attacker_position "608 -871 -234") (victim_position "596 -532 -261")`},
 				{`"GutsAndGlory!<16><BOT><Red>" changed role to "demoman"`, "GutsAndGlory!", 16, "BOT", "Red", `changed role to "demoman"`},
+			},
+			"OTHER": {
+				{`"Console<0><Console><Console>" say "WarMod [BFG] WarmUp Config Loaded"`, "Console", 0, "Console", "Console", `say "WarMod [BFG] WarmUp Config Loaded"`},
+				{`"&#0000106&#0000097<31><STEAM_1:0:59942879>" switched from team <Unassigned> to <Hello There>`, "&#0000106&#0000097", 31, "STEAM_1:0:59942879", "", `switched from team <Unassigned> to <Hello There>`},
+				{`"onfocus=JaVaSCript:alert(123)<4><STEAM_1:1:8643911><CT>" purchased "p90"`, "onfocus=JaVaSCript:alert(123)", 4, "STEAM_1:1:8643911", "CT", `purchased "p90"`},
+				{`"💘 | LacledesLAN.com<8><STEAM_1:0:99144862><CT>" money change 16000-1000 = $15000 (tracked) (purchase: item_assaultsuit)`, "💘 | LacledesLAN.com", 8, "STEAM_1:0:99144862", "CT", `money change 16000-1000 = $15000 (tracked) (purchase: item_assaultsuit)`},
 			},
 		}
 
@@ -249,8 +262,9 @@ func Test_ParseClientDisconnected(t *testing.T) {
 			expectedReason string
 		}{
 			"CSGO": {
-				{msg: `disconnected (reason "Kicked by Console")`, expectedReason: "Kicked by Console"},
 				{msg: `disconnected`, expectedReason: ""},
+				{msg: `disconnected (reason "David B. Robertson timed out")`, expectedReason: "timed out"},
+				{msg: `disconnected (reason "Kicked by Console")`, expectedReason: "Kicked by Console"},
 			},
 			"TF2": {
 				{msg: `disconnected (reason "Kicked from server")`, expectedReason: "Kicked from server"},

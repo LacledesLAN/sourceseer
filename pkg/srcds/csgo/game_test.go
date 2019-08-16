@@ -10,8 +10,6 @@ func Test_lastCompletedRound(t *testing.T) {
 }
 
 func Test_setRoundWinner(t *testing.T) {
-	// TODO - needs more flushing out
-
 	m := &gameInfo{}
 
 	m.setRoundWinner(counterterrorist, mpTeam1, "SFUI_Notice_CTs_Win")
@@ -82,10 +80,11 @@ func Test_matchInfo_resetMatch(t *testing.T) {
 }
 
 func Test_gameInfo_restartMatch(t *testing.T) {
-
+	//TODO!
 }
 
 func Test_gameInfo_nextMatch(t *testing.T) {
+	//TODO!
 	//create new entry doesn't crash
 	//doesn't advance when zero rounds
 }

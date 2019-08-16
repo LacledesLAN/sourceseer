@@ -4,9 +4,8 @@ import (
 	"strings"
 )
 
-// Dev notes: ServerSlot and Affiliation can change at any given moment!
-
 // Client represents a client connected to (or simulated by) the srcds
+//	- The values for Username, ServerSlot, and Affiliation are all mutable
 type Client struct {
 	Username    string
 	SteamID     string
@@ -156,6 +155,13 @@ func (cs *Clients) RefreshEquivalentClient(c Client) {
 	}
 }
 
+// RemoveAllFlags resets all flags for the client
+func (cs *Clients) RemoveAllFlags() {
+	for i := 0; i < len(*cs); i++ {
+		(*cs)[i].RemoveAllFlags()
+	}
+}
+
 // RemoveFlag removes the specified flags for the equivalent client (if found)
 func (cs *Clients) RemoveFlag(c Client, f ClientFlag, fs ...ClientFlag) {
 	i := cs.clientIndex(c)
@@ -172,10 +178,10 @@ func (cs *Clients) RemoveFlag(c Client, f ClientFlag, fs ...ClientFlag) {
 
 // RemoveFlags removes the specified flags from all Clients
 func (cs *Clients) RemoveFlags(f ClientFlag, fs ...ClientFlag) {
-	for _, c := range *cs {
-		c.RemoveFlag(f)
+	for i := 0; i < len(*cs); i++ {
+		(*cs)[i].RemoveFlag(f)
 		for _, ff := range fs {
-			c.RemoveFlag(ff)
+			(*cs)[i].RemoveFlag(ff)
 		}
 	}
 }
