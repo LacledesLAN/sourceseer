@@ -112,14 +112,16 @@ type CvarValueSet struct {
 }
 
 var (
-	echoCvarFmt0 = regexp.MustCompile(`^"([^\s]{3,})" = "([^\s"]{0,})"`)
-	echoCvarFmt1 = regexp.MustCompile(`^([\w]{3,}) -(?:| (-?[\w.;]{0,}))$`)
+	cvarDescription  = regexp.MustCompile(`^([\w]{3,}) -(?:| (-?[\w.;]{0,}))$`)
+	cvarQuotedValue  = regexp.MustCompile(`^"([^\s]{3,})" = "([^\s"]{0,})"`)
+	cvarServerFormat = regexp.MustCompile(`^server_cvar: "([\w]{3,})" "(.*)"$`)
 )
 
-func parsEchoCvar(s string) (CvarValueSet, bool) {
-	tokens := echoCvarFmt0.FindStringSubmatch(s)
+// parseCvar from logging output
+func parseCvar(le LogEntry) (cvar CvarValueSet, ok bool) {
+	tokens := cvarServerFormat.FindStringSubmatch(le.Message)
 	if len(tokens) != 3 {
-		tokens = echoCvarFmt1.FindStringSubmatch(s)
+		tokens = cvarQuotedValue.FindStringSubmatch(le.Message)
 	}
 
 	if len(tokens) == 3 {
@@ -132,12 +134,12 @@ func parsEchoCvar(s string) (CvarValueSet, bool) {
 	return CvarValueSet{}, false
 }
 
-var (
-	echoServerCvar = regexp.MustCompile(`^server_cvar: "([\w]{3,})" "(.*)"$`)
-)
-
-func paresEchoServerCvar(s string) (CvarValueSet, bool) {
-	tokens := echoServerCvar.FindStringSubmatch(s)
+// parseCvarResponse is sent via standard out when a cvar name is passed to SRCDS without an associated value
+func parseCvarResponse(s string) (cvar CvarValueSet, ok bool) {
+	tokens := cvarDescription.FindStringSubmatch(s)
+	if len(tokens) != 3 {
+		tokens = cvarQuotedValue.FindStringSubmatch(s)
+	}
 
 	if len(tokens) != 3 {
 		return CvarValueSet{}, false

@@ -7,6 +7,7 @@ import (
 
 func Test_ParseClient(t *testing.T) {
 	t.Run("Valid Cases", func(t *testing.T) {
+		t.Parallel()
 		validCases := map[string][]struct {
 			msg                 string
 			expectedUsername    string
@@ -33,6 +34,7 @@ func Test_ParseClient(t *testing.T) {
 
 		for name, tests := range validCases {
 			t.Run(name, func(t *testing.T) {
+				t.Parallel()
 				for _, test := range tests {
 					if actual, ok := ParseClient(test.msg); !ok {
 						t.Errorf("Message %q should have successfully parsed.", test.msg)
@@ -59,6 +61,7 @@ func Test_ParseClient(t *testing.T) {
 	})
 
 	t.Run("Invalid Cases", func(t *testing.T) {
+		t.Parallel()
 		invalidCases := map[string][]string{
 			"CSGO": {
 				`Loading map "de_cache"`,
@@ -84,6 +87,7 @@ func Test_ParseClient(t *testing.T) {
 
 		for name, tests := range invalidCases {
 			t.Run(name, func(t *testing.T) {
+				t.Parallel()
 				for _, msg := range tests {
 					if _, ok := ParseClient(msg); ok {
 						t.Errorf("Message %q should NOT have successfully parsed.", msg)
@@ -96,6 +100,7 @@ func Test_ParseClient(t *testing.T) {
 
 func Test_ParseClientLogEntry(t *testing.T) {
 	t.Run("Valid Cases", func(t *testing.T) {
+		t.Parallel()
 		validCases := map[string][]struct {
 			rawMsg              string
 			expectedUsername    string
@@ -166,6 +171,7 @@ func Test_ParseClientLogEntry(t *testing.T) {
 	})
 
 	t.Run("Invalid Cases", func(t *testing.T) {
+		t.Parallel()
 		invalidCases := map[string][]string{
 			"CSGO": {
 				`Loading map "de_cache"`,
@@ -195,6 +201,7 @@ func Test_ParseClientConnected(t *testing.T) {
 	mockClient := Client{Username: "Nannybot 1.0", ServerSlot: 1, SteamID: "[U:1:28500804", Affiliation: "Red"}
 
 	t.Run("Valid Cases", func(t *testing.T) {
+		t.Parallel()
 		validCases := map[string][]string{
 			"CSGO": {
 				`connected, address ""`,
@@ -220,6 +227,7 @@ func Test_ParseClientConnected(t *testing.T) {
 	})
 
 	t.Run("Invalid Cases", func(t *testing.T) {
+		t.Parallel()
 		invalidCases := map[string][]string{
 			"CSGO": []string{
 				`say ""running server.cfg""`,
@@ -257,6 +265,7 @@ func Test_ParseClientDisconnected(t *testing.T) {
 	mockClient := Client{Username: "Sinclair 2K", ServerSlot: 1, SteamID: "[U:1:28500804", Affiliation: ""}
 
 	t.Run("Valid Cases", func(t *testing.T) {
+		t.Parallel()
 		validCases := map[string][]struct {
 			msg            string
 			expectedReason string
@@ -286,6 +295,7 @@ func Test_ParseClientDisconnected(t *testing.T) {
 	})
 
 	t.Run("Invalid Cases", func(t *testing.T) {
+		t.Parallel()
 		invalidCases := map[string][]string{
 			"CSGO": []string{
 				`say ""running server.cfg""`,
@@ -308,6 +318,7 @@ func Test_ParseClientDisconnected(t *testing.T) {
 
 		for name, tests := range invalidCases {
 			t.Run(name, func(t *testing.T) {
+				t.Parallel()
 				for _, test := range tests {
 					if _, ok := ParseClientDisconnected(ClientLogEntry{Client: mockClient, Message: test}); ok {
 						t.Errorf("Message %q should NOT have successfully parsed.", test)
@@ -320,6 +331,7 @@ func Test_ParseClientDisconnected(t *testing.T) {
 
 func Test_parseLogEntry(t *testing.T) {
 	t.Run("Valid Cases", func(t *testing.T) {
+		t.Parallel()
 		validCases := map[string][]struct {
 			rawLog       string
 			expectedTime string
@@ -385,6 +397,7 @@ func Test_parseLogEntry(t *testing.T) {
 
 		for name, tests := range validCases {
 			t.Run(name, func(t *testing.T) {
+				t.Parallel()
 				for _, test := range tests {
 					if actual, ok := parseLogEntry(test.rawLog); !ok {
 						t.Errorf("Log %q should have successfully parsed.", test.rawLog)
@@ -417,6 +430,7 @@ func Test_parseLogEntry(t *testing.T) {
 	}
 
 	t.Run("Invalid Cases", func(t *testing.T) {
+		t.Parallel()
 		for _, test := range invalidCases {
 			if _, ok := parseLogEntry(test); ok {
 				t.Errorf("Raw string %q should NOT have successfully parsed.", test)
@@ -425,8 +439,88 @@ func Test_parseLogEntry(t *testing.T) {
 	})
 }
 
-func Test_parsEchoCvar(t *testing.T) {
+func Test_parseCvar(t *testing.T) {
 	t.Run("Valid Cases", func(t *testing.T) {
+		t.Parallel()
+		validCases := []struct {
+			msg           string
+			expectedName  string
+			expectedValue string
+		}{
+			{`server_cvar: "mp_whatever2" "-300"`, "mp_whatever2", "-300"},
+			{`server_cvar: "cash_player_interact_with_hostage" "150"`, "cash_player_interact_with_hostage", "150"},
+			{`server_cvar: "cash_team_rescued_hostage" "0"`, "cash_team_rescued_hostage", "0"},
+			{`server_cvar: "mp_roundtime_hostage" "1.92"`, "mp_roundtime_hostage", "1.92"},
+			{`server_cvar: "sv_negative_float" "-3.14"`, "sv_negative_float", "-3.14"},
+			{`server_cvar: "sv_negative_integer" "-7"`, "sv_negative_integer", "-7"},
+			{`server_cvar: "mp_empty_string" ""`, "mp_empty_string", ""},
+			{`server_cvar: "cash_team_elimination_hostage_map_ct" "3000"`, "cash_team_elimination_hostage_map_ct", "3000"},
+			{`server_cvar: "sm_nextmap" "de_dust2"`, "sm_nextmap", "de_dust2"},
+			{`server_cvar: "tv_colon_separated_values" "red;green;blue"`, "tv_colon_separated_values", "red;green;blue"},
+			{`server_cvar: "tf_server_identity_disable_quickplay" "1"`, "tf_server_identity_disable_quickplay", "1"},
+			{`server_cvar: "sv_tags" "alltalk,cp,noquickplay"`, "sv_tags", "alltalk,cp,noquickplay"},
+			{`"cash_player_killed_teammate" = "-300"`, "cash_player_killed_teammate", "-300"},
+			{`"cash_player_respawn_amount" = "0"`, "cash_player_respawn_amount", "0"},
+			{`"sv_maxspeed" = "320"`, "sv_maxspeed", "320"},
+			{`"mp_teamlist" = "hgrunt;scientist"`, "mp_teamlist", "hgrunt;scientist"},
+			{`"sourcemod_version" = "1.9.0.6148"`, "sourcemod_version", "1.9.0.6148"},
+			{`"sv_tags" = ""`, "sv_tags", ""},
+			{`"mp_respawnwavetime" = "10.0"`, "mp_respawnwavetime", "10.0"},
+			{`"metamod_version" = "1.11.0-dev+1097V"`, "metamod_version", "1.11.0-dev+1097V"},
+		}
+
+		for _, test := range validCases {
+			t.Run(test.msg, func(t *testing.T) {
+				t.Parallel()
+				if actual, ok := parseCvar(LogEntry{Message: test.msg}); !ok {
+					t.Errorf("Message %q should have been parsed as a echo of a server cvar", test.msg)
+				} else {
+					if actual.Name != test.expectedName {
+						t.Errorf("Expected var name %q but got %q", test.expectedName, actual.Name)
+					}
+
+					if actual.Value != test.expectedValue {
+						t.Errorf("Expected var name %q but got %q", test.expectedValue, actual.Value)
+					}
+				}
+			})
+		}
+	})
+
+	t.Run("Invalid Cases", func(t *testing.T) {
+		t.Parallel()
+		invalidCases := map[string][]string{
+			"CSGO": []string{
+				`Loading map "de_nuke"`,
+				`server cvars start`,
+				`"Console<0><Console><Console>" say ""running gamemode_competitive_server.cfg""`,
+				`World triggered "Round_Start"`,
+				`"BlondeQuack<5><STEAM_1:1:07523420><CT>" money change 10900-200 = $10700 (tracked) (purchase: weapon_flashbang)`,
+				`Molotov projectile spawned at -111.981644 -1925.359863 -347.735901, velocity 668.248840 -685.101196 179.108994`,
+				`World triggered "Match_Start" on "de_nuke"`,
+			},
+			"OTHER": []string{
+				``,
+				`My first clue came at 4:15, when the clock stopped.`,
+			},
+		}
+
+		for name, tests := range invalidCases {
+			t.Run(name, func(t *testing.T) {
+				t.Parallel()
+				for _, test := range tests {
+					if _, ok := parseCvar(LogEntry{Message: test}); ok {
+						t.Errorf("Message %q should NOT have successfully parsed.", test)
+					}
+				}
+			})
+		}
+	})
+}
+
+func Test_parseCvarResponse(t *testing.T) {
+	t.Run("Valid Cases", func(t *testing.T) {
+		t.Parallel()
 		validCases := []struct {
 			msg           string
 			expectedName  string
@@ -460,7 +554,8 @@ func Test_parsEchoCvar(t *testing.T) {
 
 		for _, test := range validCases {
 			t.Run(test.msg, func(t *testing.T) {
-				if actual, ok := parsEchoCvar(test.msg); !ok {
+				t.Parallel()
+				if actual, ok := parseCvarResponse(test.msg); !ok {
 					t.Errorf("Message %q should have parsed successfully.", test.msg)
 				} else {
 					if actual.Name != test.expectedName {
@@ -476,6 +571,7 @@ func Test_parsEchoCvar(t *testing.T) {
 	})
 
 	t.Run("Invalid Cases", func(t *testing.T) {
+		t.Parallel()
 		invalidCases := map[string][]string{
 			"CSGO": []string{
 				`Loading map "de_nuke"`,
@@ -495,74 +591,7 @@ func Test_parsEchoCvar(t *testing.T) {
 		for name, tests := range invalidCases {
 			t.Run(name, func(t *testing.T) {
 				for _, test := range tests {
-					if _, ok := parsEchoCvar(test); ok {
-						t.Errorf("Message %q should NOT have successfully parsed.", test)
-					}
-				}
-			})
-		}
-	})
-}
-
-func Test_paresEchoServerCvar(t *testing.T) {
-	t.Run("Valid Cases", func(t *testing.T) {
-		validCases := []struct {
-			msg              string
-			expectedVarName  string
-			expectedVarValue string
-		}{
-			{`server_cvar: "mp_whatever2" "-300"`, "mp_whatever2", "-300"},
-			{`server_cvar: "cash_player_interact_with_hostage" "150"`, "cash_player_interact_with_hostage", "150"},
-			{`server_cvar: "cash_team_rescued_hostage" "0"`, "cash_team_rescued_hostage", "0"},
-			{`server_cvar: "mp_roundtime_hostage" "1.92"`, "mp_roundtime_hostage", "1.92"},
-			{`server_cvar: "sv_negative_float" "-3.14"`, "sv_negative_float", "-3.14"},
-			{`server_cvar: "sv_negative_integer" "-7"`, "sv_negative_integer", "-7"},
-			{`server_cvar: "mp_empty_string" ""`, "mp_empty_string", ""},
-			{`server_cvar: "cash_team_elimination_hostage_map_ct" "3000"`, "cash_team_elimination_hostage_map_ct", "3000"},
-			{`server_cvar: "sm_nextmap" "de_dust2"`, "sm_nextmap", "de_dust2"},
-			{`server_cvar: "tv_colon_separated_values" "red;green;blue"`, "tv_colon_separated_values", "red;green;blue"},
-			{`server_cvar: "tf_server_identity_disable_quickplay" "1"`, "tf_server_identity_disable_quickplay", "1"},
-			{`server_cvar: "sv_tags" "alltalk,cp,noquickplay"`, "sv_tags", "alltalk,cp,noquickplay"},
-		}
-
-		for _, test := range validCases {
-			t.Run(test.msg, func(t *testing.T) {
-				if actual, ok := paresEchoServerCvar(test.msg); !ok {
-					t.Errorf("Message %q should have been parsed as a echo of a server cvar", test.msg)
-				} else {
-					if actual.Name != test.expectedVarName {
-						t.Errorf("Expected var name %q but got %q", test.expectedVarName, actual.Name)
-					}
-
-					if actual.Value != test.expectedVarValue {
-						t.Errorf("Expected var name %q but got %q", test.expectedVarValue, actual.Value)
-					}
-				}
-			})
-		}
-	})
-
-	t.Run("Invalid Cases", func(t *testing.T) {
-		invalidCases := map[string][]string{
-			"CSGO": []string{
-				`Loading map "de_nuke"`,
-				`server cvars start`,
-				`"Console<0><Console><Console>" say ""running gamemode_competitive_server.cfg""`,
-				`World triggered "Round_Start"`,
-				`"BlondeQuack<5><STEAM_1:1:07523420><CT>" money change 10900-200 = $10700 (tracked) (purchase: weapon_flashbang)`,
-				`Molotov projectile spawned at -111.981644 -1925.359863 -347.735901, velocity 668.248840 -685.101196 179.108994`,
-				`World triggered "Match_Start" on "de_nuke"`,
-			},
-			"OTHER": []string{
-				``,
-				`My first clue came at 4:15, when the clock stopped.`,
-			},
-		}
-
-		for name, tests := range invalidCases {
-			t.Run(name, func(t *testing.T) {
-				for _, test := range tests {
-					if _, ok := paresEchoServerCvar(test); ok {
+					if _, ok := parseCvarResponse(test); ok {
 						t.Errorf("Message %q should NOT have successfully parsed.", test)
 					}
 				}

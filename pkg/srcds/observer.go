@@ -141,12 +141,7 @@ func (o *observer) processMessage(line string, outEntries chan<- LogEntry) {
 	if le, ok := parseLogEntry(line); ok {
 		o.statistics.logLines++
 
-		if cvarSet, ok := parsEchoCvar(le.Message); ok {
-			o.cvars.setIfWatched(cvarSet.Name, cvarSet.Value, le.Timestamp)
-			return
-		}
-
-		if cvarSet, ok := paresEchoServerCvar(le.Message); ok {
+		if cvarSet, ok := parseCvar(le); ok {
 			o.cvars.setIfWatched(cvarSet.Name, cvarSet.Value, le.Timestamp)
 			return
 		}
@@ -159,7 +154,7 @@ func (o *observer) processMessage(line string, outEntries chan<- LogEntry) {
 		return
 	}
 
-	if cvarSet, ok := parsEchoCvar(line); ok {
+	if cvarSet, ok := parseCvarResponse(line); ok {
 		o.cvars.setIfWatched(cvarSet.Name, cvarSet.Value, time.Now())
 		Log(SRCDSCvar, line)
 		return
