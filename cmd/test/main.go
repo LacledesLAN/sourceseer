@@ -20,11 +20,7 @@ func main() {
 
 	r := bufio.NewReader(file)
 
-	scanner := bufio.NewScanner(r)
-
-	c := csgo.NewReader(*scanner, 1, 30, 7)
-
-	//c := srcds.NewReader(*scanner)
+	c := csgo.NewReader(r, 1, 30, 7)
 
 	c.Start()
 

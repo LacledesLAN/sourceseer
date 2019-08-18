@@ -1,17 +1,16 @@
 package srcds
 
-import "time"
-
-// Server represents an interactive SRCDS instance
-type Server interface {
-	Observer
-	RefreshCvars()
-	SendCmd(cmd string)
-}
+import (
+	"bufio"
+	"context"
+	"os/exec"
+	"strings"
+	"time"
+)
 
 // RefreshCvars attempts to trigger SRCDS into echoing all watched cvars to the log stream.
-func (s *server) RefreshCvars() {
-	go func(s *server) {
+func (s *Server) RefreshCvars() {
+	go func(s *Server) {
 		for _, name := range s.cvars.getNames() {
 			s.SendCommand(name)
 			time.Sleep(10 * time.Millisecond)
@@ -20,23 +19,51 @@ func (s *server) RefreshCvars() {
 }
 
 // SendCommand to the interactive SRCDS instance
-func (s *server) SendCommand(cmd string) {
-	return
+func (s *Server) SendCommand(cmd string) {
+
 }
 
-// Wrapper for observing and interacting with a SRCDS instance
-func Wrapper(osArgs ...string) Server {
-	return nil
+// Command for observing and interacting with a SRCDS instance
+func Command(name string, osArgs ...string) (*Server, error) {
+	ctx, _ := context.WithCancel(context.Background())
+
+	cmd := exec.CommandContext(ctx, name, osArgs...)
+
+	return wrapProcess(cmd)
 }
 
-type server struct {
-	bufCmdIn chan string
+// Server represents an interactive SRCDS instance
+type Server struct {
+	cmdIn chan string
 	observer
 }
 
-func newServer() *server {
-	return &server{
-		bufCmdIn: make(chan string, 9),
-		observer: *newObserver(),
+func wrapProcess(cmd *exec.Cmd) (*Server, error) {
+	stdOut, err := cmd.StdoutPipe()
+	if err != nil {
+		return nil, err
 	}
+
+	//if stdErr, err := cmd.StderrPipe(); err == nil {
+	//// TODO read and process standard error
+	//}
+
+	return &Server{
+		cmdIn:    make(chan string, 9),
+		observer: *newReader(stdOut),
+	}, nil
+}
+
+func (s *Server) linkStdOut(r *bufio.Reader) {
+	go func(r *bufio.Reader) {
+		for {
+			outLine, _ := r.ReadString('\n')
+			outLine = strings.Trim(strings.TrimSuffix(outLine, "\n"), "")
+
+			if len(outLine) > 0 {
+
+				Log(SRCDSOther, outLine)
+			}
+		}
+	}(r)
 }

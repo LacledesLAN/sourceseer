@@ -35,7 +35,6 @@ func (o observer) DebugDump() {
 		fmt.Printf("\tTotal rounds played: %d.\n\n", len(m.rounds))
 
 		for j, r := range m.rounds {
-
 			fmt.Printf("\t%02d - Won by %q as %q via trigger %q.\n", j+1, r.winningTeam, r.winningAffiliation, r.winningTrigger)
 		}
 	}
@@ -56,7 +55,6 @@ func (o observer) DebugDump() {
 	}
 
 	fmt.Println("\n=======================================================================")
-
 }
 
 // Starts the observer

@@ -126,6 +126,7 @@ func Test_Cvars(t *testing.T) {
 	}
 
 	t.Run("Add Watcher", func(t *testing.T) {
+		t.Parallel()
 		i := 0
 		if rand.Float32() < 0.5 {
 			i++
@@ -153,6 +154,7 @@ func Test_Cvars(t *testing.T) {
 	})
 
 	t.Run("Seed Watcher", func(t *testing.T) {
+		t.Parallel()
 		for name, test := range tests {
 			t.Run(name, func(t *testing.T) {
 				sut := &Cvars{}
@@ -168,6 +170,7 @@ func Test_Cvars(t *testing.T) {
 	})
 
 	t.Run("Seeding, Setting, and Retrieval", func(t *testing.T) {
+		t.Parallel()
 		sut := &Cvars{}
 		sut.addWatcher("alpha")
 

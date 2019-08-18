@@ -78,6 +78,7 @@ func Test_calculateLastRoundWinThreshold(t *testing.T) {
 
 	for name, test := range testCases {
 		t.Run(name, func(t *testing.T) {
+			t.Parallel()
 			for expected, lastCompletedRounds := range test.scenarios {
 				for _, lastCompletedRound := range lastCompletedRounds {
 					actual := calculateLastRoundWinThreshold(test.mpMaxRounds, test.mpOvertimeMaxRounds, lastCompletedRound)
@@ -138,6 +139,7 @@ func Test_calcOvertimePeriodNumber(t *testing.T) {
 
 	for name, test := range testCases {
 		t.Run(name, func(t *testing.T) {
+			t.Parallel()
 			for expectedOTNumber, lastCompletedRounds := range test.overtimePeriodRounds {
 				for _, lastCompletedRound := range lastCompletedRounds {
 					actual := calcOvertimePeriodNumber(test.mpMaxRounds, test.mpOvertimeMaxRounds, lastCompletedRound)
