@@ -5,30 +5,6 @@ import (
 	"testing"
 )
 
-const (
-	clientFlagAlpha ClientFlag = 1 << iota
-	clientFlagBravo
-	clientFlagCharlie
-	clientFlagDelta
-	clientFlagEcho
-	clientFlagGolf
-	clientFlagHotel
-	clientFlagIndia
-	clientFlagJuliett
-	clientFlagKilo
-	clientFlagLima
-	clientFlagMike
-	clientFlagNovember
-	clientFlagOscar
-	clientFlagPapa
-	clientFlagQuedec
-)
-
-var allFlags = [16]ClientFlag{
-	clientFlagAlpha, clientFlagBravo, clientFlagCharlie, clientFlagDelta, clientFlagEcho, clientFlagGolf, clientFlagHotel, clientFlagIndia,
-	clientFlagJuliett, clientFlagKilo, clientFlagLima, clientFlagMike, clientFlagNovember, clientFlagOscar, clientFlagPapa, clientFlagQuedec,
-}
-
 func Test_ClientsAreEquivalent(t *testing.T) {
 	t.Run("Should Be Equivalent", func(t *testing.T) {
 		equivalentTests := map[string][]struct {

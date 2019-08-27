@@ -14,9 +14,6 @@ type Client struct {
 	flags       ClientFlag
 }
 
-// ClientFlag represents a flag set for a client
-type ClientFlag uint16
-
 // ClientsAreEquivalent determines if two srcds clients are effectively the same client
 func ClientsAreEquivalent(c0, c1 Client) bool {
 	if ClientUnidentifiable(c0) || ClientUnidentifiable(c1) {
