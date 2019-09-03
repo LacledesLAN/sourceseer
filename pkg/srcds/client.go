@@ -9,8 +9,8 @@ import (
 type Client struct {
 	Username    string
 	SteamID     string
-	ServerSlot  int16
 	Affiliation string
+	ServerSlot  int16
 	flags       ClientFlag
 }
 
