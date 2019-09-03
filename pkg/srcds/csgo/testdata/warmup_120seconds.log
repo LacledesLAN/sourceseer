@@ -1,0 +1,931 @@
+## This log contains one match with 120 second warm up
+##
+## Settings
+##      - mp_halftime=1
+##      - mp_maxrounds=4
+##      - mp_overtime_maxrounds=3
+##
+L 09/03/2019 - 01:56:30: Log file started (file "logs/L192_168_065_003_27015_201909030156_000.log") (game "/app/csgo") (version "7599")
+L 09/03/2019 - 01:56:30: Loading map "de_lltest"
+L 09/03/2019 - 01:56:30: server cvars start
+L 09/03/2019 - 01:56:30: "cash_player_killed_teammate" = "-300"
+L 09/03/2019 - 01:56:30: "cash_player_respawn_amount" = "0"
+L 09/03/2019 - 01:56:30: "sv_maxspeed" = "320"
+L 09/03/2019 - 01:56:30: "cash_team_winner_bonus_consecutive_rounds" = "0"
+L 09/03/2019 - 01:56:30: "cash_team_rescued_hostage" = "0"
+L 09/03/2019 - 01:56:30: "cash_team_win_by_defusing_bomb" = "3250"
+L 09/03/2019 - 01:56:30: "sv_rollangle" = "0"
+L 09/03/2019 - 01:56:30: "r_AirboatViewZHeight" = "0.0"
+L 09/03/2019 - 01:56:30: "sv_cheats" = "0"
+L 09/03/2019 - 01:56:30: "r_VehicleViewDampen" = "1"
+L 09/03/2019 - 01:56:30: "mp_allowNPCs" = "1"
+L 09/03/2019 - 01:56:30: "mp_tournament" = "0"
+L 09/03/2019 - 01:56:30: "sv_vote_issue_pause_match_spec_only" = "0"
+L 09/03/2019 - 01:56:30: "sv_spec_hear" = "1"
+L 09/03/2019 - 01:56:30: "cash_player_interact_with_hostage" = "150"
+L 09/03/2019 - 01:56:30: "mp_maxrounds" = "0"
+L 09/03/2019 - 01:56:30: "mp_flashlight" = "0"
+L 09/03/2019 - 01:56:30: "sv_tags" = ""
+L 09/03/2019 - 01:56:30: "sv_stepsize" = "18"
+L 09/03/2019 - 01:56:30: "sv_alltalk" = "0"
+L 09/03/2019 - 01:56:30: "mp_teamlist" = "hgrunt;scientist"
+L 09/03/2019 - 01:56:30: "mp_footsteps" = "1"
+L 09/03/2019 - 01:56:30: "sv_noclipaccelerate" = "5"
+L 09/03/2019 - 01:56:30: "sv_accelerate_debug_speed" = "0"
+L 09/03/2019 - 01:56:30: "sv_wateraccelerate" = "10"
+L 09/03/2019 - 01:56:30: "mp_stalemate_enable" = "0"
+L 09/03/2019 - 01:56:30: "mp_autocrosshair" = "1"
+L 09/03/2019 - 01:56:30: "cash_team_elimination_bomb_map" = "3250"
+L 09/03/2019 - 01:56:30: "cash_player_get_killed" = "0"
+L 09/03/2019 - 01:56:30: "mp_roundtime_defuse" = "0"
+L 09/03/2019 - 01:56:30: "sv_autobuyammo" = "0"
+L 09/03/2019 - 01:56:30: "sv_rollspeed" = "200"
+L 09/03/2019 - 01:56:30: "sv_airaccelerate" = "12"
+L 09/03/2019 - 01:56:30: "sv_show_team_equipment_prohibit" = "0"
+L 09/03/2019 - 01:56:30: "mp_teams_unbalance_limit" = "1"
+L 09/03/2019 - 01:56:30: "mp_timelimit" = "5"
+L 09/03/2019 - 01:56:30: "cash_team_loser_bonus" = "1400"
+L 09/03/2019 - 01:56:30: "sv_deadtalk" = "0"
+L 09/03/2019 - 01:56:30: "cash_player_rescued_hostage" = "1000"
+L 09/03/2019 - 01:56:30: "sv_waterfriction" = "1"
+L 09/03/2019 - 01:56:30: "sv_competitive_official_5v5" = "0"
+L 09/03/2019 - 01:56:30: "sv_steamgroup" = ""
+L 09/03/2019 - 01:56:30: "cash_player_killed_enemy_default" = "300"
+L 09/03/2019 - 01:56:30: "coop" = "0"
+L 09/03/2019 - 01:56:30: "mp_respawnwavetime" = "10.0"
+L 09/03/2019 - 01:56:30: "sv_teamid_overhead" = "1"
+L 09/03/2019 - 01:56:30: "tv_enable1" = "0"
+L 09/03/2019 - 01:56:30: "nextlevel" = ""
+L 09/03/2019 - 01:56:30: "sv_stopspeed" = "80"
+L 09/03/2019 - 01:56:30: "sv_specaccelerate" = "5"
+L 09/03/2019 - 01:56:30: "deathmatch" = "1"
+L 09/03/2019 - 01:56:30: "tv_enable" = "0"
+L 09/03/2019 - 01:56:30: "mp_roundtime_hostage" = "0"
+L 09/03/2019 - 01:56:30: "mp_freezetime" = "6"
+L 09/03/2019 - 01:56:30: "mp_teammates_are_enemies" = "0"
+L 09/03/2019 - 01:56:30: "mp_falldamage" = "0"
+L 09/03/2019 - 01:56:30: "sv_accelerate_use_weapon_speed" = "1"
+L 09/03/2019 - 01:56:30: "sv_voiceenable" = "1"
+L 09/03/2019 - 01:56:30: "sv_teamid_overhead_always_prohibit" = "0"
+L 09/03/2019 - 01:56:30: "sv_bounce" = "0"
+L 09/03/2019 - 01:56:30: "mp_disable_respawn_times" = "0"
+L 09/03/2019 - 01:56:30: "r_AirboatViewDampenFreq" = "7.0"
+L 09/03/2019 - 01:56:30: "mp_weaponstay" = "0"
+L 09/03/2019 - 01:56:30: "mp_hostagepenalty" = "10"
+L 09/03/2019 - 01:56:30: "tv_advertise_watchable" = "0"
+L 09/03/2019 - 01:56:30: "mp_friendlyfire" = "0"
+L 09/03/2019 - 01:56:30: "cash_team_hostage_interaction" = "500"
+L 09/03/2019 - 01:56:30: "sv_noclipspeed" = "5"
+L 09/03/2019 - 01:56:30: "cash_team_win_by_time_running_out_bomb" = "3250"
+L 09/03/2019 - 01:56:30: "sv_allchat" = "1"
+L 09/03/2019 - 01:56:30: "mp_buy_during_immunity" = "0"
+L 09/03/2019 - 01:56:30: "cash_player_killed_enemy_factor" = "1"
+L 09/03/2019 - 01:56:30: "mp_c4timer" = "40"
+L 09/03/2019 - 01:56:30: "r_JeepViewDampenDamp" = "1.0"
+L 09/03/2019 - 01:56:30: "sv_competitive_minspec" = "1"
+L 09/03/2019 - 01:56:30: "r_AirboatViewDampenDamp" = "1.0"
+L 09/03/2019 - 01:56:30: "sv_max_allowed_net_graph" = "1"
+L 09/03/2019 - 01:56:30: "mp_stalemate_at_timelimit" = "0"
+L 09/03/2019 - 01:56:30: "mp_limitteams" = "2"
+L 09/03/2019 - 01:56:30: "sv_footsteps" = "1"
+L 09/03/2019 - 01:56:30: "sv_vote_issue_kick_allowed" = "1"
+L 09/03/2019 - 01:56:30: "cash_team_survive_guardian_wave" = "1000"
+L 09/03/2019 - 01:56:30: "tv_relaypassword" = "test123"
+L 09/03/2019 - 01:56:30: "mp_teamplay" = "0"
+L 09/03/2019 - 01:56:30: "cash_team_terrorist_win_bomb" = "3500"
+L 09/03/2019 - 01:56:30: "cash_team_elimination_hostage_map_t" = "1000"
+L 09/03/2019 - 01:56:30: "r_JeepViewDampenFreq" = "7.0"
+L 09/03/2019 - 01:56:30: "cash_team_win_by_time_running_out_hostage" = "3250"
+L 09/03/2019 - 01:56:30: "sv_specnoclip" = "1"
+L 09/03/2019 - 01:56:30: "sv_friction" = "5.2"
+L 09/03/2019 - 01:56:30: "cash_player_bomb_planted" = "300"
+L 09/03/2019 - 01:56:30: "mp_autoteambalance" = "1"
+L 09/03/2019 - 01:56:30: "sv_contact" = ""
+L 09/03/2019 - 01:56:30: "sv_vote_kick_ban_duration" = "15"
+L 09/03/2019 - 01:56:30: "cash_player_bomb_defused" = "300"
+L 09/03/2019 - 01:56:30: "mp_roundtime" = "5"
+L 09/03/2019 - 01:56:30: "sv_kick_ban_duration" = "15"
+L 09/03/2019 - 01:56:30: "cash_team_planted_bomb_but_defused" = "800"
+L 09/03/2019 - 01:56:30: "cash_player_killed_hostage" = "-1000"
+L 09/03/2019 - 01:56:30: "sv_vote_issue_loadbackup_allowed" = "1"
+L 09/03/2019 - 01:56:30: "nextmode" = ""
+L 09/03/2019 - 01:56:30: "mp_fraglimit" = "0"
+L 09/03/2019 - 01:56:30: "mp_forcerespawn" = "1"
+L 09/03/2019 - 01:56:30: "mp_winlimit" = "0"
+L 09/03/2019 - 01:56:30: "sv_accelerate" = "5.5"
+L 09/03/2019 - 01:56:30: "mp_buy_anywhere" = "0"
+L 09/03/2019 - 01:56:30: "sv_gravity" = "800"
+L 09/03/2019 - 01:56:30: "sv_password" = ""
+L 09/03/2019 - 01:56:30: "cash_team_elimination_hostage_map_ct" = "2000"
+L 09/03/2019 - 01:56:30: "cash_team_win_by_hostage_rescue" = "3500"
+L 09/03/2019 - 01:56:30: "sv_vote_issue_loadbackup_spec_only" = "0"
+L 09/03/2019 - 01:56:30: "cash_team_loser_bonus_consecutive_rounds" = "500"
+L 09/03/2019 - 01:56:30: "cash_player_damage_hostage" = "-30"
+L 09/03/2019 - 01:56:30: "r_JeepViewZHeight" = "10.0"
+L 09/03/2019 - 01:56:30: "cash_team_hostage_alive" = "0"
+L 09/03/2019 - 01:56:30: "tv_password" = "test123"
+L 09/03/2019 - 01:56:30: "sv_specspeed" = "3"
+L 09/03/2019 - 01:56:30: server cvars end
+L 09/03/2019 - 01:56:30: Started map "de_lltest" (CRC "-25072634")
+L 09/03/2019 - 01:56:30: "Console<0><Console><Console>" say ""Running server.cfg""
+L 09/03/2019 - 01:56:30: server_cvar: "sv_competitive_official_5v5" "1"
+L 09/03/2019 - 01:56:30: server_cvar: "sv_contact" "0"
+L 09/03/2019 - 01:56:30: server_cvar: "sv_teamid_overhead_always_prohibit" "1"
+L 09/03/2019 - 01:56:30: server_cvar: "sv_deadtalk" "1"
+L 09/03/2019 - 01:56:30: server_cvar: "sv_kick_ban_duration" "0"
+L 09/03/2019 - 01:56:30: server_cvar: "tv_enable" "1"
+L 09/03/2019 - 01:56:30: server_cvar: "cash_player_interact_with_hostage" "300"
+L 09/03/2019 - 01:56:30: server_cvar: "cash_team_elimination_hostage_map_t" "3000"
+L 09/03/2019 - 01:56:30: server_cvar: "cash_team_elimination_hostage_map_ct" "3000"
+L 09/03/2019 - 01:56:30: server_cvar: "cash_team_hostage_interaction" "600"
+L 09/03/2019 - 01:56:30: server_cvar: "cash_team_rescued_hostage" "600"
+L 09/03/2019 - 01:56:30: server_cvar: "cash_team_win_by_defusing_bomb" "3500"
+L 09/03/2019 - 01:56:30: server_cvar: "cash_team_win_by_hostage_rescue" "2900"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_freezetime" "15"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_friendlyfire" "1"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_maxrounds" "30"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_roundtime" "1.92"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_roundtime_hostage" "1.92"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_roundtime_defuse" "1.92"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_timelimit" "0"
+L 09/03/2019 - 01:56:30: "Console<0><Console><Console>" say "Executing gamemode_competitive_server.cfg"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_autoteambalance" "0"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_limitteams" "0"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_maxrounds" "4"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_roundtime" "1.75"
+L 09/03/2019 - 01:56:30: server_cvar: "mp_roundtime_defuse" "1.75"
+L 09/03/2019 - 01:56:31: "GOTV<2><BOT><>" connected, address ""
+L 09/03/2019 - 01:56:31: "GOTV<2><BOT><>" entered the game
+L 09/03/2019 - 01:56:31: "GOTV<2><BOT><Unassigned>" changed name to "gamesvr-csgo-tourney"
+L 09/03/2019 - 01:56:37: "Humorbot 5.0<3><STEAM_1:1:8675309><>" connected, address ""
+L 09/03/2019 - 01:56:37: World triggered "Round_Start"
+L 09/03/2019 - 01:56:40: "Humorbot 5.0<3><STEAM_1:1:8675309><>" entered the game
+L 09/03/2019 - 01:57:05: "Humorbot 5.0<3><STEAM_1:1:8675309>" switched from team <Unassigned> to <CT>
+L 09/03/2019 - 01:57:05: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "knife"
+L 09/03/2019 - 01:57:05: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:57:05: World triggered "Game_Commencing"
+L 09/03/2019 - 01:57:05: Team playing "CT": team1
+L 09/03/2019 - 01:57:05: Team playing "TERRORIST": team2
+L 09/03/2019 - 01:57:05: "Reed<4><BOT><>" connected, address ""
+L 09/03/2019 - 01:57:05: "Reed<4><BOT>" switched from team <Unassigned> to <TERRORIST>
+L 09/03/2019 - 01:57:05: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:05: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:05: "Reed<4><BOT><>" entered the game
+L 09/03/2019 - 01:57:05: "Wayne<5><BOT><>" connected, address ""
+L 09/03/2019 - 01:57:05: "Wayne<5><BOT>" switched from team <Unassigned> to <TERRORIST>
+L 09/03/2019 - 01:57:05: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:05: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:05: "Wayne<5><BOT><>" entered the game
+L 09/03/2019 - 01:57:05: "Chet<6><BOT><>" connected, address ""
+L 09/03/2019 - 01:57:05: "Chet<6><BOT>" switched from team <Unassigned> to <CT>
+L 09/03/2019 - 01:57:05: "Chet<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:57:05: "Chet<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:57:05: "Chet<6><BOT><>" entered the game
+L 09/03/2019 - 01:57:06: "Reed<3><BOT><TERRORIST>" money change 16000-2700 = $13300 (tracked) (purchase: weapon_ak47)
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" purchased "ak47"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:57:06: "Reed<3><BOT><TERRORIST>" money change 13300-1000 = $12300 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:06: "Wayne<4><BOT><TERRORIST>" money change 16000-2700 = $13300 (tracked) (purchase: weapon_ak47)
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" purchased "ak47"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:57:06: "Wayne<4><BOT><TERRORIST>" money change 13300-1000 = $12300 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:06: "Wayne<4><BOT><TERRORIST>" money change 12300-200 = $12100 (tracked) (purchase: weapon_flashbang)
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" picked up "flashbang"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" purchased "flashbang"
+L 09/03/2019 - 01:57:06: "Chet<5><BOT><CT>" money change 16000-3100 = $12900 (tracked) (purchase: weapon_m4a1)
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" picked up "m4a1"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" purchased "m4a1"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:57:06: "Chet<5><BOT><CT>" money change 12900-1000 = $11900 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:06: "Chet<5><BOT><CT>" money change 11900-300 = $11600 (tracked) (purchase: weapon_hegrenade)
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" picked up "hegrenade"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" purchased "hegrenade"
+L 09/03/2019 - 01:57:06: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "knife"
+L 09/03/2019 - 01:57:06: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" dropped "flashbang"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" dropped "vesthelm"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" dropped "m4a1"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" dropped "hegrenade"
+L 09/03/2019 - 01:57:06: Starting Freeze period
+L 09/03/2019 - 01:57:06: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "knife"
+L 09/03/2019 - 01:57:06: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:06: World triggered "Match_Start" on "de_lltest"
+L 09/03/2019 - 01:57:06: Team playing "CT": team1
+L 09/03/2019 - 01:57:06: Team playing "TERRORIST": team2
+L 09/03/2019 - 01:57:06: "Wayne<4><BOT><TERRORIST>" money change 16000-2700 = $13300 (tracked) (purchase: weapon_ak47)
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" purchased "ak47"
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:57:06: "Wayne<4><BOT><TERRORIST>" money change 13300-1000 = $12300 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:06: "Wayne<5><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:06: "Reed<3><BOT><TERRORIST>" money change 16000-2700 = $13300 (tracked) (purchase: weapon_ak47)
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" purchased "ak47"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:57:06: "Reed<3><BOT><TERRORIST>" money change 13300-1000 = $12300 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:06: "Reed<3><BOT><TERRORIST>" money change 12300-300 = $12000 (tracked) (purchase: weapon_p250)
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" picked up "p250"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" purchased "p250"
+L 09/03/2019 - 01:57:06: "Reed<3><BOT><TERRORIST>" money change 12000-300 = $11700 (tracked) (purchase: weapon_smokegrenade)
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" picked up "smokegrenade"
+L 09/03/2019 - 01:57:06: "Reed<4><BOT><TERRORIST>" purchased "smokegrenade"
+L 09/03/2019 - 01:57:06: "Chet<5><BOT><CT>" money change 16000-3100 = $12900 (tracked) (purchase: weapon_m4a1)
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" picked up "m4a1"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" purchased "m4a1"
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:57:06: "Chet<5><BOT><CT>" money change 12900-1000 = $11900 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:06: "Chet<6><BOT><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:08: World triggered "Round_Start"
+L 09/03/2019 - 01:57:09: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Chet<6><BOT><CT>" [896 38 -192] with "ak47" (damage "33") (damage_armor "4") (health "67") (armor "95") (hitgroup "stomach")
+L 09/03/2019 - 01:57:10: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Chet<6><BOT><CT>" [918 97 -192] with "ak47" (damage "33") (damage_armor "4") (health "34") (armor "90") (hitgroup "stomach")
+L 09/03/2019 - 01:57:10: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [588 143 -192] attacked "Reed<4><BOT><TERRORIST>" [256 616 -192] with "hkp2000" (damage "63") (damage_armor "31") (health "37") (armor "68") (hitgroup "head")
+L 09/03/2019 - 01:57:10: "Wayne<5><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_ak47 kevlar(100) helmet ]
+L 09/03/2019 - 01:57:10: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 09/03/2019 - 01:57:11: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [474 349 -192] with "ak47" (damage "35") (damage_armor "0") (health "65") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:57:11: "Chet<6><BOT><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 kevlar(90) helmet ]
+L 09/03/2019 - 01:57:11: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [466 359 -192] with "ak47" (damage "35") (damage_armor "0") (health "30") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:57:11: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [461 365 -192] with "ak47" (damage "35") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:57:11: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:57:11: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "knife"
+L 09/03/2019 - 01:57:11: "Reed<4><BOT><TERRORIST>" [256 616 -192] killed "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [461 365 -128] with "ak47"
+L 09/03/2019 - 01:57:11: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:57:12: "Chet<6><BOT><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 kevlar(90) helmet ]
+L 09/03/2019 - 01:57:13: "Chet<6><BOT><CT>" [944 238 -192] attacked "Wayne<5><BOT><TERRORIST>" [486 -92 -192] with "m4a1" (damage "89") (damage_armor "19") (health "11") (armor "80") (hitgroup "head")
+L 09/03/2019 - 01:57:14: "Chet<6><BOT><CT>" [944 227 -192] attacked "Wayne<5><BOT><TERRORIST>" [488 -92 -192] with "m4a1" (damage "27") (damage_armor "5") (health "0") (armor "74") (hitgroup "stomach")
+L 09/03/2019 - 01:57:14: "Wayne<5><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:57:14: "Wayne<5><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:57:14: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:57:14: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:57:14: "Chet<6><BOT><CT>" [944 227 -192] killed "Wayne<5><BOT><TERRORIST>" [488 -92 -128] with "m4a1"
+L 09/03/2019 - 01:57:14: "Wayne<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:57:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "knife"
+L 09/03/2019 - 01:57:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:57:14: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Chet<6><BOT><CT>" [944 227 -192] with "ak47" (damage "33") (damage_armor "4") (health "1") (armor "85") (hitgroup "stomach")
+L 09/03/2019 - 01:57:14: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Chet<6><BOT><CT>" [944 227 -192] with "ak47" (damage "33") (damage_armor "4") (health "0") (armor "80") (hitgroup "stomach")
+L 09/03/2019 - 01:57:14: "Chet<6><BOT><CT>" dropped "m4a1"
+L 09/03/2019 - 01:57:14: "Chet<6><BOT><CT>" dropped "vesthelm"
+L 09/03/2019 - 01:57:14: "Chet<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:57:14: "Chet<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:57:14: "Reed<4><BOT><TERRORIST>" [256 616 -192] killed "Chet<6><BOT><CT>" [944 227 -128] with "ak47"
+L 09/03/2019 - 01:57:16: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [647 69 -192] with "ak47" (damage "35") (damage_armor "0") (health "65") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:57:17: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [641 86 -192] with "ak47" (damage "35") (damage_armor "0") (health "30") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:57:17: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [637 96 -192] with "ak47" (damage "35") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:57:17: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:57:17: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "knife"
+L 09/03/2019 - 01:57:17: "Reed<4><BOT><TERRORIST>" [256 616 -192] killed "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [637 96 -128] with "ak47"
+L 09/03/2019 - 01:57:17: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:57:18: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:18: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:18: "Chet<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:57:18: "Chet<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:57:18: "Wayne<4><BOT><TERRORIST>" money change 12300-2750 = $9550 (tracked) (purchase: weapon_sg556)
+L 09/03/2019 - 01:57:18: "Wayne<5><BOT><TERRORIST>" picked up "sg556"
+L 09/03/2019 - 01:57:18: "Wayne<5><BOT><TERRORIST>" purchased "sg556"
+L 09/03/2019 - 01:57:18: "Wayne<5><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:57:18: "Wayne<4><BOT><TERRORIST>" money change 9550-1000 = $8550 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:18: "Wayne<5><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:18: "Wayne<4><BOT><TERRORIST>" money change 8550-300 = $8250 (tracked) (purchase: weapon_hegrenade)
+L 09/03/2019 - 01:57:18: "Wayne<5><BOT><TERRORIST>" picked up "hegrenade"
+L 09/03/2019 - 01:57:18: "Wayne<5><BOT><TERRORIST>" purchased "hegrenade"
+L 09/03/2019 - 01:57:18: "Chet<5><BOT><CT>" money change 11900-2350 = $9550 (tracked) (purchase: weapon_p90)
+L 09/03/2019 - 01:57:18: "Chet<6><BOT><CT>" picked up "p90"
+L 09/03/2019 - 01:57:18: "Chet<6><BOT><CT>" purchased "p90"
+L 09/03/2019 - 01:57:18: "Chet<6><BOT><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:57:18: "Chet<5><BOT><CT>" money change 9550-1000 = $8550 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:18: "Chet<6><BOT><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:18: "Chet<5><BOT><CT>" money change 8550-300 = $8250 (tracked) (purchase: weapon_p250)
+L 09/03/2019 - 01:57:18: "Chet<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:57:18: "Chet<6><BOT><CT>" picked up "p250"
+L 09/03/2019 - 01:57:18: "Chet<6><BOT><CT>" purchased "p250"
+L 09/03/2019 - 01:57:18: "Chet<5><BOT><CT>" money change 8250-50 = $8200 (tracked) (purchase: weapon_decoy)
+L 09/03/2019 - 01:57:18: "Chet<6><BOT><CT>" picked up "decoy"
+L 09/03/2019 - 01:57:18: "Chet<6><BOT><CT>" purchased "decoy"
+L 09/03/2019 - 01:57:19: "Wayne<5><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_sg556 weapon_hegrenade kevlar(100) helmet ]
+L 09/03/2019 - 01:57:20: "Reed<4><BOT><TERRORIST>" [292 269 -192] attacked "Chet<6><BOT><CT>" [837 -241 -192] with "ak47" (damage "108") (damage_armor "15") (health "0") (armor "84") (hitgroup "head")
+L 09/03/2019 - 01:57:20: "Chet<6><BOT><CT>" dropped "p90"
+L 09/03/2019 - 01:57:20: "Chet<6><BOT><CT>" dropped "decoy"
+L 09/03/2019 - 01:57:20: "Chet<6><BOT><CT>" dropped "vesthelm"
+L 09/03/2019 - 01:57:20: "Chet<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:57:20: "Chet<6><BOT><CT>" dropped "p250"
+L 09/03/2019 - 01:57:20: "Reed<4><BOT><TERRORIST>" [292 269 -192] killed "Chet<6><BOT><CT>" [837 -241 -128] with "ak47" (headshot)
+L 09/03/2019 - 01:57:20: "Chet<6><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:57:20: "Reed<4><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_p250 weapon_ak47 weapon_smokegrenade kevlar(68) helmet ]
+L 09/03/2019 - 01:57:21: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "knife"
+L 09/03/2019 - 01:57:21: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:57:22: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:57:22: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 16000-1000 = $15000 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:22: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:22: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 15000-3100 = $11900 (tracked) (purchase: weapon_m4a1)
+L 09/03/2019 - 01:57:22: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "m4a1"
+L 09/03/2019 - 01:57:22: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" purchased "m4a1"
+L 09/03/2019 - 01:57:22: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "defuser"
+L 09/03/2019 - 01:57:22: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 11900-400 = $11500 (tracked) (purchase: item_defuser)
+L 09/03/2019 - 01:57:22: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" purchased "item_defuser"
+L 09/03/2019 - 01:57:22: "Wayne<5><BOT><TERRORIST>" dropped "hegrenade"
+L 09/03/2019 - 01:57:23: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [889 -198 -192] attacked "Wayne<5><BOT><TERRORIST>" [305 -64 -192] with "m4a1" (damage "27") (damage_armor "5") (health "73") (armor "94") (hitgroup "stomach")
+L 09/03/2019 - 01:57:23: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "decoy"
+L 09/03/2019 - 01:57:23: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [856 -190 -192] attacked "Wayne<5><BOT><TERRORIST>" [305 -64 -192] with "m4a1" (damage "22") (damage_armor "4") (health "51") (armor "89") (hitgroup "chest")
+L 09/03/2019 - 01:57:24: "Chet<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:57:24: "Chet<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:57:24: "Reed<4><BOT><TERRORIST>" [450 27 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [701 -153 -192] with "ak47" (damage "34") (damage_armor "4") (health "66") (armor "95") (hitgroup "stomach")
+L 09/03/2019 - 01:57:24: "Wayne<5><BOT><TERRORIST>" threw hegrenade [883 234 -189]
+L 09/03/2019 - 01:57:24: "Chet<5><BOT><CT>" money change 8200-3100 = $5100 (tracked) (purchase: weapon_m4a1)
+L 09/03/2019 - 01:57:24: "Chet<6><BOT><CT>" picked up "m4a1"
+L 09/03/2019 - 01:57:24: "Chet<6><BOT><CT>" purchased "m4a1"
+L 09/03/2019 - 01:57:24: "Chet<6><BOT><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:57:24: "Chet<5><BOT><CT>" money change 5100-1000 = $4100 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:24: "Chet<6><BOT><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:24: "Wayne<5><BOT><TERRORIST>" [305 -64 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [674 -144 -192] with "sg556" (damage "22") (damage_armor "0") (health "44") (armor "95") (hitgroup "left leg")
+L 09/03/2019 - 01:57:24: "Chet<6><BOT><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 kevlar(100) helmet ]
+L 09/03/2019 - 01:57:26: "Chet<6><BOT><CT>" [815 228 -192] attacked "Reed<4><BOT><TERRORIST>" [496 131 -192] with "m4a1" (damage "24") (damage_armor "0") (health "13") (armor "68") (hitgroup "left leg")
+L 09/03/2019 - 01:57:27: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 weapon_decoy defuser kevlar(95) helmet ]
+L 09/03/2019 - 01:57:27: "Chet<6><BOT><CT>" [815 228 -192] attacked "Reed<4><BOT><TERRORIST>" [483 127 -192] with "m4a1" (damage "24") (damage_armor "0") (health "0") (armor "68") (hitgroup "right leg")
+L 09/03/2019 - 01:57:27: "Reed<4><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:57:27: "Reed<4><BOT><TERRORIST>" dropped "smokegrenade"
+L 09/03/2019 - 01:57:27: "Reed<4><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:57:27: "Reed<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:57:27: "Reed<4><BOT><TERRORIST>" dropped "p250"
+L 09/03/2019 - 01:57:27: "Chet<6><BOT><CT>" [815 228 -192] killed "Reed<4><BOT><TERRORIST>" [483 127 -128] with "m4a1"
+L 09/03/2019 - 01:57:27: "Reed<4><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:57:28: "Chet<6><BOT><CT>" [815 228 -192] attacked "Wayne<5><BOT><TERRORIST>" [305 -64 -192] with "m4a1" (damage "22") (damage_armor "4") (health "29") (armor "84") (hitgroup "chest")
+L 09/03/2019 - 01:57:28: "Chet<6><BOT><CT>" [815 228 -192] attacked "Wayne<5><BOT><TERRORIST>" [305 -64 -192] with "m4a1" (damage "22") (damage_armor "4") (health "7") (armor "79") (hitgroup "chest")
+L 09/03/2019 - 01:57:28: "Chet<6><BOT><CT>" [815 228 -192] attacked "Wayne<5><BOT><TERRORIST>" [305 -64 -192] with "m4a1" (damage "22") (damage_armor "4") (health "0") (armor "74") (hitgroup "chest")
+L 09/03/2019 - 01:57:28: "Wayne<5><BOT><TERRORIST>" dropped "sg556"
+L 09/03/2019 - 01:57:28: "Wayne<5><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:57:28: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:57:28: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:57:28: "Chet<6><BOT><CT>" [815 228 -192] killed "Wayne<5><BOT><TERRORIST>" [305 -64 -128] with "m4a1"
+L 09/03/2019 - 01:57:28: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" assisted killing "Wayne<5><BOT><TERRORIST>"
+L 09/03/2019 - 01:57:31: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 weapon_decoy defuser kevlar(95) helmet ]
+L 09/03/2019 - 01:57:31: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:31: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:32: "Reed<3><BOT><TERRORIST>" money change 11700-2700 = $9000 (tracked) (purchase: weapon_ak47)
+L 09/03/2019 - 01:57:32: "Reed<4><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:57:32: "Reed<4><BOT><TERRORIST>" purchased "ak47"
+L 09/03/2019 - 01:57:32: "Reed<4><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:57:32: "Reed<3><BOT><TERRORIST>" money change 9000-1000 = $8000 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:32: "Reed<4><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:32: "Reed<3><BOT><TERRORIST>" money change 8000-200 = $7800 (tracked) (purchase: weapon_flashbang)
+L 09/03/2019 - 01:57:32: "Reed<4><BOT><TERRORIST>" picked up "flashbang"
+L 09/03/2019 - 01:57:32: "Reed<4><BOT><TERRORIST>" purchased "flashbang"
+L 09/03/2019 - 01:57:33: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:33: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:33: "Wayne<4><BOT><TERRORIST>" money change 8250-2700 = $5550 (tracked) (purchase: weapon_ak47)
+L 09/03/2019 - 01:57:33: "Wayne<5><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:57:33: "Wayne<5><BOT><TERRORIST>" purchased "ak47"
+L 09/03/2019 - 01:57:33: "Wayne<5><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:57:33: "Wayne<4><BOT><TERRORIST>" money change 5550-1000 = $4550 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:33: "Wayne<5><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:33: "Chet<6><BOT><CT>" [413 406 -192] attacked "Reed<4><BOT><TERRORIST>" [142 632 -192] with "m4a1" (damage "24") (damage_armor "0") (health "76") (armor "100") (hitgroup "left leg")
+L 09/03/2019 - 01:57:33: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [150 123 -192] attacked "Reed<4><BOT><TERRORIST>" [149 609 -192] with "m4a1" (damage "22") (damage_armor "4") (health "54") (armor "95") (hitgroup "chest")
+L 09/03/2019 - 01:57:34: "Reed<4><BOT><TERRORIST>" dropped "flashbang"
+L 09/03/2019 - 01:57:34: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [150 131 -192] attacked "Reed<4><BOT><TERRORIST>" [153 596 -192] with "m4a1" (damage "22") (damage_armor "4") (health "32") (armor "90") (hitgroup "chest")
+L 09/03/2019 - 01:57:34: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [150 130 -192] attacked "Reed<4><BOT><TERRORIST>" [154 595 -192] with "m4a1" (damage "22") (damage_armor "4") (health "10") (armor "85") (hitgroup "chest")
+L 09/03/2019 - 01:57:34: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [150 129 -192] attacked "Reed<4><BOT><TERRORIST>" [154 595 -192] with "m4a1" (damage "22") (damage_armor "4") (health "0") (armor "80") (hitgroup "chest")
+L 09/03/2019 - 01:57:34: "Reed<4><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:57:34: "Reed<4><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:57:34: "Reed<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:57:34: "Reed<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:57:34: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [150 129 -192] killed "Reed<4><BOT><TERRORIST>" [154 595 -128] with "m4a1"
+L 09/03/2019 - 01:57:34: "Reed<4><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:57:34: "Wayne<5><BOT><TERRORIST>" [101 329 -192] attacked "Chet<6><BOT><CT>" [413 406 -192] with "ak47" (damage "27") (damage_armor "4") (health "73") (armor "95") (hitgroup "left arm")
+L 09/03/2019 - 01:57:35: "Reed<4><BOT><TERRORIST>" threw flashbang [854 239 -187] flashbang entindex 128)
+L 09/03/2019 - 01:57:35: "gamesvr-csgo-tourney<2><BOT><Unassigned>" blinded for 4.17 by "Reed<4><BOT><TERRORIST>" from flashbang entindex 128 
+L 09/03/2019 - 01:57:35: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" blinded for 1.63 by "Reed<4><BOT><TERRORIST>" from flashbang entindex 128 
+L 09/03/2019 - 01:57:35: "Reed<4><BOT><TERRORIST>" blinded for 3.95 by "Reed<4><BOT><TERRORIST>" from flashbang entindex 128 
+L 09/03/2019 - 01:57:35: "Wayne<5><BOT><TERRORIST>" blinded for 4.00 by "Reed<4><BOT><TERRORIST>" from flashbang entindex 128 
+L 09/03/2019 - 01:57:35: "Chet<6><BOT><CT>" blinded for 0.90 by "Reed<4><BOT><TERRORIST>" from flashbang entindex 128 
+L 09/03/2019 - 01:57:35: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [153 85 -192] attacked "Wayne<5><BOT><TERRORIST>" [101 329 -192] with "m4a1" (damage "91") (damage_armor "19") (health "9") (armor "80") (hitgroup "head")
+L 09/03/2019 - 01:57:36: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [155 71 -192] attacked "Wayne<5><BOT><TERRORIST>" [101 329 -192] with "m4a1" (damage "90") (damage_armor "19") (health "0") (armor "60") (hitgroup "head")
+L 09/03/2019 - 01:57:36: "Wayne<5><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:57:36: "Wayne<5><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:57:36: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:57:36: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:57:36: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [155 71 -192] killed "Wayne<5><BOT><TERRORIST>" [101 329 -128] with "m4a1" (headshot)
+L 09/03/2019 - 01:57:36: "Wayne<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:57:38: "Chet<6><BOT><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 kevlar(95) helmet ]
+L 09/03/2019 - 01:57:38: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:38: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:38: "Reed<3><BOT><TERRORIST>" money change 7800-2700 = $5100 (tracked) (purchase: weapon_ak47)
+L 09/03/2019 - 01:57:38: "Reed<4><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:57:38: "Reed<4><BOT><TERRORIST>" purchased "ak47"
+L 09/03/2019 - 01:57:38: "Reed<4><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:57:38: "Reed<3><BOT><TERRORIST>" money change 5100-1000 = $4100 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:38: "Reed<4><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:40: "Reed<4><BOT><TERRORIST>" [335 619 -192] attacked "Chet<6><BOT><CT>" [504 394 -192] with "ak47" (damage "27") (damage_armor "4") (health "46") (armor "90") (hitgroup "chest")
+L 09/03/2019 - 01:57:40: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:40: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:40: "Wayne<5><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:57:40: "Reed<4><BOT><TERRORIST>" [343 625 -192] attacked "Chet<6><BOT><CT>" [504 394 -192] with "ak47" (damage "110") (damage_armor "16") (health "0") (armor "73") (hitgroup "head")
+L 09/03/2019 - 01:57:40: "Chet<6><BOT><CT>" dropped "m4a1"
+L 09/03/2019 - 01:57:40: "Chet<6><BOT><CT>" dropped "vesthelm"
+L 09/03/2019 - 01:57:40: "Chet<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:57:40: "Chet<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:57:40: "Reed<4><BOT><TERRORIST>" [343 625 -192] killed "Chet<6><BOT><CT>" [504 394 -128] with "ak47" (headshot)
+L 09/03/2019 - 01:57:40: "Wayne<5><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:57:40: "Wayne<4><BOT><TERRORIST>" money change 4550-1000 = $3550 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:40: "Wayne<5><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:40: "Wayne<4><BOT><TERRORIST>" money change 3550-300 = $3250 (tracked) (purchase: weapon_p250)
+L 09/03/2019 - 01:57:40: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:57:40: "Wayne<5><BOT><TERRORIST>" picked up "p250"
+L 09/03/2019 - 01:57:40: "Wayne<5><BOT><TERRORIST>" purchased "p250"
+L 09/03/2019 - 01:57:41: "Wayne<5><BOT><TERRORIST>" [95 375 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [290 536 -192] with "ak47" (damage "26") (damage_armor "0") (health "18") (armor "95") (hitgroup "right leg")
+L 09/03/2019 - 01:57:41: "Reed<4><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_ak47 kevlar(100) helmet ]
+L 09/03/2019 - 01:57:41: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [298 540 -192] attacked "Reed<4><BOT><TERRORIST>" [470 621 -192] with "m4a1" (damage "22") (damage_armor "4") (health "78") (armor "95") (hitgroup "chest")
+L 09/03/2019 - 01:57:42: "Chet<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:57:42: "Chet<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:57:42: "Chet<5><BOT><CT>" money change 4100-2250 = $1850 (tracked) (purchase: weapon_famas)
+L 09/03/2019 - 01:57:42: "Chet<6><BOT><CT>" picked up "famas"
+L 09/03/2019 - 01:57:42: "Chet<6><BOT><CT>" purchased "famas"
+L 09/03/2019 - 01:57:42: "Chet<6><BOT><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:57:42: "Chet<5><BOT><CT>" money change 1850-1000 = $850 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:42: "Chet<6><BOT><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:42: "Chet<5><BOT><CT>" money change 850-300 = $550 (tracked) (purchase: weapon_hegrenade)
+L 09/03/2019 - 01:57:42: "Chet<6><BOT><CT>" picked up "hegrenade"
+L 09/03/2019 - 01:57:42: "Chet<6><BOT><CT>" purchased "hegrenade"
+L 09/03/2019 - 01:57:43: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 weapon_decoy defuser kevlar(95) helmet ]
+L 09/03/2019 - 01:57:44: "Chet<6><BOT><CT>" [605 -301 -192] attacked "Reed<4><BOT><TERRORIST>" [592 520 -192] with "famas" (damage "78") (damage_armor "16") (health "0") (armor "78") (hitgroup "head")
+L 09/03/2019 - 01:57:44: "Reed<4><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:57:44: "Reed<4><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:57:44: "Reed<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:57:44: "Reed<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:57:44: "Chet<6><BOT><CT>" [605 -301 -192] killed "Reed<4><BOT><TERRORIST>" [592 520 -128] with "famas" (headshot)
+L 09/03/2019 - 01:57:45: "Chet<6><BOT><CT>" [605 -301 -192] attacked "Wayne<5><BOT><TERRORIST>" [95 375 -192] with "famas" (damage "24") (damage_armor "5") (health "76") (armor "94") (hitgroup "stomach")
+L 09/03/2019 - 01:57:45: "Chet<6><BOT><CT>" [605 -301 -192] attacked "Wayne<5><BOT><TERRORIST>" [95 375 -192] with "famas" (damage "24") (damage_armor "5") (health "52") (armor "88") (hitgroup "stomach")
+L 09/03/2019 - 01:57:45: "Chet<6><BOT><CT>" [605 -301 -192] attacked "Wayne<5><BOT><TERRORIST>" [95 375 -192] with "famas" (damage "21") (damage_armor "0") (health "31") (armor "88") (hitgroup "left leg")
+L 09/03/2019 - 01:57:47: "Wayne<5><BOT><TERRORIST>" [95 375 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [343 446 -192] with "ak47" (damage "27") (damage_armor "4") (health "0") (armor "90") (hitgroup "chest")
+L 09/03/2019 - 01:57:47: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "defuser"
+L 09/03/2019 - 01:57:47: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "m4a1"
+L 09/03/2019 - 01:57:47: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "decoy"
+L 09/03/2019 - 01:57:47: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "vesthelm"
+L 09/03/2019 - 01:57:47: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "knife"
+L 09/03/2019 - 01:57:47: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:57:47: "Wayne<5><BOT><TERRORIST>" [95 375 -192] killed "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [343 446 -128] with "ak47"
+L 09/03/2019 - 01:57:47: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:57:48: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:48: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:48: "Chet<6><BOT><CT>" [605 -301 -192] attacked "Wayne<5><BOT><TERRORIST>" [95 375 -192] with "famas" (damage "19") (damage_armor "4") (health "12") (armor "83") (hitgroup "chest")
+L 09/03/2019 - 01:57:48: "Reed<3><BOT><TERRORIST>" money change 4100-2000 = $2100 (tracked) (purchase: weapon_galilar)
+L 09/03/2019 - 01:57:48: "Reed<4><BOT><TERRORIST>" picked up "galilar"
+L 09/03/2019 - 01:57:48: "Reed<4><BOT><TERRORIST>" purchased "galilar"
+L 09/03/2019 - 01:57:48: "Reed<4><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:57:48: "Reed<3><BOT><TERRORIST>" money change 2100-1000 = $1100 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:48: "Reed<4><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:49: "Chet<6><BOT><CT>" [605 -301 -192] attacked "Wayne<5><BOT><TERRORIST>" [111 308 -192] with "famas" (damage "24") (damage_armor "5") (health "0") (armor "77") (hitgroup "stomach")
+L 09/03/2019 - 01:57:49: "Wayne<5><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:57:49: "Wayne<5><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:57:49: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:57:49: "Wayne<5><BOT><TERRORIST>" dropped "p250"
+L 09/03/2019 - 01:57:49: "Chet<6><BOT><CT>" [605 -301 -192] killed "Wayne<5><BOT><TERRORIST>" [111 308 -128] with "famas"
+L 09/03/2019 - 01:57:49: "Wayne<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:57:51: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:51: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:51: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "knife"
+L 09/03/2019 - 01:57:51: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:57:51: "Wayne<4><BOT><TERRORIST>" money change 3250-1700 = $1550 (tracked) (purchase: weapon_negev)
+L 09/03/2019 - 01:57:51: "Wayne<5><BOT><TERRORIST>" picked up "negev"
+L 09/03/2019 - 01:57:51: "Wayne<5><BOT><TERRORIST>" purchased "negev"
+L 09/03/2019 - 01:57:51: "Wayne<5><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:57:51: "Wayne<4><BOT><TERRORIST>" money change 1550-1000 = $550 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:51: "Wayne<5><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:51: "Reed<4><BOT><TERRORIST>" [208 473 -192] attacked "Chet<6><BOT><CT>" [605 -301 -192] with "galilar" (damage "22") (damage_armor "3") (health "78") (armor "96") (hitgroup "chest")
+L 09/03/2019 - 01:57:51: "Reed<4><BOT><TERRORIST>" [208 473 -192] attacked "Chet<6><BOT><CT>" [605 -301 -192] with "galilar" (damage "22") (damage_armor "3") (health "56") (armor "92") (hitgroup "right arm")
+L 09/03/2019 - 01:57:52: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:57:52: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 11500-1000 = $10500 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:57:52: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:57:52: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 10500-3100 = $7400 (tracked) (purchase: weapon_m4a1)
+L 09/03/2019 - 01:57:52: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "m4a1"
+L 09/03/2019 - 01:57:52: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" purchased "m4a1"
+L 09/03/2019 - 01:57:52: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "defuser"
+L 09/03/2019 - 01:57:52: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 7400-400 = $7000 (tracked) (purchase: item_defuser)
+L 09/03/2019 - 01:57:52: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" purchased "item_defuser"
+L 09/03/2019 - 01:57:52: "Reed<4><BOT><TERRORIST>" [208 473 -192] attacked "Chet<6><BOT><CT>" [605 -301 -192] with "galilar" (damage "22") (damage_armor "3") (health "34") (armor "88") (hitgroup "chest")
+L 09/03/2019 - 01:57:52: "Reed<4><BOT><TERRORIST>" [208 473 -192] attacked "Chet<6><BOT><CT>" [605 -301 -192] with "galilar" (damage "22") (damage_armor "3") (health "12") (armor "84") (hitgroup "right arm")
+L 09/03/2019 - 01:57:52: "Reed<4><BOT><TERRORIST>" [208 473 -192] attacked "Chet<6><BOT><CT>" [605 -301 -192] with "galilar" (damage "89") (damage_armor "13") (health "0") (armor "70") (hitgroup "head")
+L 09/03/2019 - 01:57:52: "Chet<6><BOT><CT>" dropped "famas"
+L 09/03/2019 - 01:57:52: "Chet<6><BOT><CT>" dropped "hegrenade"
+L 09/03/2019 - 01:57:52: "Chet<6><BOT><CT>" dropped "vesthelm"
+L 09/03/2019 - 01:57:52: "Chet<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:57:52: "Chet<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:57:52: "Reed<4><BOT><TERRORIST>" [208 473 -192] killed "Chet<6><BOT><CT>" [605 -301 -128] with "galilar" (headshot)
+L 09/03/2019 - 01:57:52: "Chet<6><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:57:54: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [799 -63 -192] attacked "Wayne<5><BOT><TERRORIST>" [307 600 -192] with "m4a1" (damage "21") (damage_armor "4") (health "79") (armor "95") (hitgroup "chest")
+L 09/03/2019 - 01:57:54: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [799 -63 -192] attacked "Wayne<5><BOT><TERRORIST>" [307 600 -192] with "m4a1" (damage "21") (damage_armor "4") (health "58") (armor "90") (hitgroup "right arm")
+L 09/03/2019 - 01:57:54: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [799 -63 -192] attacked "Wayne<5><BOT><TERRORIST>" [307 600 -192] with "m4a1" (damage "87") (damage_armor "18") (health "0") (armor "71") (hitgroup "head")
+L 09/03/2019 - 01:57:54: "Wayne<5><BOT><TERRORIST>" dropped "negev"
+L 09/03/2019 - 01:57:54: "Wayne<5><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:57:54: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:57:54: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:57:54: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [799 -63 -192] killed "Wayne<5><BOT><TERRORIST>" [307 600 -128] with "m4a1" (headshot)
+L 09/03/2019 - 01:57:54: "Wayne<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:57:55: "Reed<4><BOT><TERRORIST>" [208 473 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [799 -63 -192] with "galilar" (damage "21") (damage_armor "0") (health "79") (armor "100") (hitgroup "right leg")
+L 09/03/2019 - 01:57:56: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [799 -63 -192] attacked "Reed<4><BOT><TERRORIST>" [208 473 -192] with "m4a1" (damage "22") (damage_armor "4") (health "78") (armor "95") (hitgroup "right arm")
+L 09/03/2019 - 01:57:56: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [799 -63 -192] attacked "Reed<4><BOT><TERRORIST>" [208 473 -192] with "m4a1" (damage "22") (damage_armor "4") (health "56") (armor "90") (hitgroup "chest")
+L 09/03/2019 - 01:57:56: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [799 -63 -192] attacked "Reed<4><BOT><TERRORIST>" [208 473 -192] with "m4a1" (damage "88") (damage_armor "18") (health "0") (armor "71") (hitgroup "head")
+L 09/03/2019 - 01:57:56: "Reed<4><BOT><TERRORIST>" dropped "galilar"
+L 09/03/2019 - 01:57:56: "Reed<4><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:57:56: "Reed<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:57:56: "Reed<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:57:56: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [799 -63 -192] killed "Reed<4><BOT><TERRORIST>" [208 473 -128] with "m4a1" (headshot)
+L 09/03/2019 - 01:57:56: "Reed<4><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:57:56: "Chet<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:57:56: "Chet<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:57:57: "Chet<6><BOT><CT>" picked up "smokegrenade"
+L 09/03/2019 - 01:57:59: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:57:59: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:57:59: "Wayne<5><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:57:59: "Chet<6><BOT><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_smokegrenade ]
+L 09/03/2019 - 01:58:00: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:00: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:00: "Reed<4><BOT><TERRORIST>" picked up "galilar"
+L 09/03/2019 - 01:58:00: "Wayne<5><BOT><TERRORIST>" [39 540 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [621 28 -192] with "glock" (damage "17") (damage_armor "0") (health "62") (armor "100") (hitgroup "left leg")
+L 09/03/2019 - 01:58:00: "Reed<4><BOT><TERRORIST>" picked up "decoy"
+L 09/03/2019 - 01:58:01: "Wayne<5><BOT><TERRORIST>" [39 540 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [618 33 -192] with "glock" (damage "17") (damage_armor "0") (health "45") (armor "100") (hitgroup "left leg")
+L 09/03/2019 - 01:58:01: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [616 35 -192] attacked "Wayne<5><BOT><TERRORIST>" [39 540 -192] with "m4a1" (damage "126") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 09/03/2019 - 01:58:01: "Wayne<5><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:58:01: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:01: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:01: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [616 35 -192] killed "Wayne<5><BOT><TERRORIST>" [39 540 -128] with "m4a1" (headshot)
+L 09/03/2019 - 01:58:01: "Wayne<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:58:01: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [605 44 -192] attacked "Reed<4><BOT><TERRORIST>" [261 359 -192] with "m4a1" (damage "32") (damage_armor "0") (health "68") (armor "0") (hitgroup "right arm")
+L 09/03/2019 - 01:58:01: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [599 50 -192] attacked "Reed<4><BOT><TERRORIST>" [261 359 -192] with "m4a1" (damage "32") (damage_armor "0") (health "36") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:02: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [592 55 -192] attacked "Reed<4><BOT><TERRORIST>" [261 359 -192] with "m4a1" (damage "32") (damage_armor "0") (health "4") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:02: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [587 60 -192] attacked "Reed<4><BOT><TERRORIST>" [261 359 -192] with "m4a1" (damage "32") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:02: "Reed<4><BOT><TERRORIST>" dropped "galilar"
+L 09/03/2019 - 01:58:02: "Reed<4><BOT><TERRORIST>" dropped "decoy"
+L 09/03/2019 - 01:58:02: "Reed<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:02: "Reed<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:02: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [587 60 -192] killed "Reed<4><BOT><TERRORIST>" [261 359 -128] with "m4a1"
+L 09/03/2019 - 01:58:02: "Reed<4><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:58:05: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:05: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:06: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:06: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:06: "Reed<4><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:58:07: "Chet<6><BOT><CT>" [63 253 -192] attacked "Wayne<5><BOT><TERRORIST>" [171 357 -192] with "hkp2000" (damage "34") (damage_armor "0") (health "66") (armor "0") (hitgroup "right arm")
+L 09/03/2019 - 01:58:07: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 defuser kevlar(100) helmet ]
+L 09/03/2019 - 01:58:07: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [421 100 -192] attacked "Wayne<5><BOT><TERRORIST>" [171 357 -192] with "m4a1" (damage "40") (damage_armor "0") (health "26") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:58:07: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [421 100 -192] attacked "Wayne<5><BOT><TERRORIST>" [171 357 -192] with "m4a1" (damage "32") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:07: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:07: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:07: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [421 100 -192] killed "Wayne<5><BOT><TERRORIST>" [171 357 -128] with "m4a1"
+L 09/03/2019 - 01:58:07: "Wayne<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:58:07: STEAMAUTH: Client [LL] Dudsmack received failure code 1
+L 09/03/2019 - 01:58:07: "Reed<4><BOT><TERRORIST>" [-11 328 -192] attacked "Chet<6><BOT><CT>" [64 251 -192] with "glock" (damage "29") (damage_armor "0") (health "71") (armor "0") (hitgroup "left arm")
+L 09/03/2019 - 01:58:08: "Reed<4><BOT><TERRORIST>" [-11 328 -192] attacked "Chet<6><BOT><CT>" [64 251 -192] with "glock" (damage "28") (damage_armor "0") (health "43") (armor "0") (hitgroup "left arm")
+L 09/03/2019 - 01:58:08: "Reed<4><BOT><TERRORIST>" [-11 328 -192] attacked "Chet<6><BOT><CT>" [64 251 -192] with "glock" (damage "29") (damage_armor "0") (health "14") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:08: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [433 93 -192] attacked "Reed<4><BOT><TERRORIST>" [-11 328 -192] with "m4a1" (damage "40") (damage_armor "0") (health "60") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:58:08: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [440 89 -192] attacked "Reed<4><BOT><TERRORIST>" [-11 328 -192] with "m4a1" (damage "31") (damage_armor "0") (health "29") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:08: "Reed<4><BOT><TERRORIST>" [-11 328 -192] attacked "Chet<6><BOT><CT>" [64 251 -192] with "glock" (damage "28") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:08: "Chet<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:58:08: "Chet<6><BOT><CT>" dropped "smokegrenade"
+L 09/03/2019 - 01:58:08: "Chet<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:58:08: "Reed<4><BOT><TERRORIST>" [-11 328 -192] killed "Chet<6><BOT><CT>" [64 251 -128] with "glock"
+L 09/03/2019 - 01:58:08: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [444 87 -192] attacked "Reed<4><BOT><TERRORIST>" [-11 328 -192] with "m4a1" (damage "31") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:08: "Reed<4><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:58:08: "Reed<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:08: "Reed<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:08: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [444 87 -192] killed "Reed<4><BOT><TERRORIST>" [-11 328 -128] with "m4a1"
+L 09/03/2019 - 01:58:08: "Reed<4><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:58:08: "Chet<6><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:58:10: "Chet<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:58:10: "Chet<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:58:11: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:11: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:11: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 defuser kevlar(100) helmet ]
+L 09/03/2019 - 01:58:12: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:12: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:13: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [458 493 -192] attacked "Wayne<5><BOT><TERRORIST>" [23 559 -192] with "m4a1" (damage "32") (damage_armor "0") (health "68") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:13: "Chet<6><BOT><CT>" picked up "ak47"
+L 09/03/2019 - 01:58:13: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [451 494 -192] attacked "Wayne<5><BOT><TERRORIST>" [23 559 -192] with "m4a1" (damage "32") (damage_armor "0") (health "36") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:13: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [444 495 -192] attacked "Wayne<5><BOT><TERRORIST>" [23 559 -192] with "m4a1" (damage "32") (damage_armor "0") (health "4") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [437 497 -192] attacked "Wayne<5><BOT><TERRORIST>" [23 559 -192] with "m4a1" (damage "128") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 09/03/2019 - 01:58:14: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:14: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [437 497 -192] killed "Wayne<5><BOT><TERRORIST>" [23 559 -128] with "m4a1" (headshot)
+L 09/03/2019 - 01:58:14: "Wayne<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:58:15: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [342 485 -192] attacked "Reed<4><BOT><TERRORIST>" [49 272 -192] with "m4a1" (damage "32") (damage_armor "0") (health "68") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:15: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [324 473 -192] attacked "Reed<4><BOT><TERRORIST>" [49 272 -192] with "m4a1" (damage "32") (damage_armor "0") (health "36") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:15: "Chet<6><BOT><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_ak47 ]
+L 09/03/2019 - 01:58:15: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [320 470 -192] attacked "Reed<4><BOT><TERRORIST>" [49 272 -192] with "m4a1" (damage "129") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 09/03/2019 - 01:58:15: "Reed<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:15: "Reed<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:15: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [320 470 -192] killed "Reed<4><BOT><TERRORIST>" [49 272 -128] with "m4a1" (headshot)
+L 09/03/2019 - 01:58:15: "Reed<4><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:58:17: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 defuser kevlar(100) helmet ]
+L 09/03/2019 - 01:58:18: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:18: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:18: "Wayne<5><BOT><TERRORIST>" picked up "negev"
+L 09/03/2019 - 01:58:19: "Chet<6><BOT><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_ak47 ]
+L 09/03/2019 - 01:58:19: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:19: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:22: "Wayne<5><BOT><TERRORIST>" [272 437 -192] attacked "Chet<6><BOT><CT>" [649 257 -192] with "glock" (damage "26") (damage_armor "0") (health "74") (armor "0") (hitgroup "right arm")
+L 09/03/2019 - 01:58:22: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [231 463 -192] attacked "Wayne<5><BOT><TERRORIST>" [290 464 -192] with "knife" (damage "180") (damage_armor "0") (health "0") (armor "0") (hitgroup "generic")
+L 09/03/2019 - 01:58:22: "Wayne<5><BOT><TERRORIST>" dropped "negev"
+L 09/03/2019 - 01:58:22: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:22: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:22: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [231 463 -192] killed "Wayne<5><BOT><TERRORIST>" [290 464 -128] with "knife"
+L 09/03/2019 - 01:58:22: "Wayne<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:58:25: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [55 329 -192] attacked "Reed<4><BOT><TERRORIST>" [15 303 -192] with "knife" (damage "65") (damage_armor "0") (health "35") (armor "0") (hitgroup "generic")
+L 09/03/2019 - 01:58:26: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [38 302 -192] attacked "Reed<4><BOT><TERRORIST>" [-18 290 -192] with "knife" (damage "25") (damage_armor "0") (health "10") (armor "0") (hitgroup "generic")
+L 09/03/2019 - 01:58:26: "Reed<4><BOT><TERRORIST>" [-18 290 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [16 299 -192] with "glock" (damage "17") (damage_armor "9") (health "28") (armor "90") (hitgroup "stomach")
+L 09/03/2019 - 01:58:26: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [16 299 -192] attacked "Reed<4><BOT><TERRORIST>" [-18 290 -192] with "knife" (damage "25") (damage_armor "0") (health "0") (armor "0") (hitgroup "generic")
+L 09/03/2019 - 01:58:26: "Reed<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:26: "Reed<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:26: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [16 299 -192] killed "Reed<4><BOT><TERRORIST>" [-18 290 -128] with "knife"
+L 09/03/2019 - 01:58:26: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:26: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:26: "Reed<4><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:58:29: "Chet<6><BOT><CT>" [649 257 -192] attacked "Wayne<5><BOT><TERRORIST>" [186 622 -192] with "ak47" (damage "43") (damage_armor "0") (health "57") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:58:29: "Chet<6><BOT><CT>" [649 257 -192] attacked "Wayne<5><BOT><TERRORIST>" [182 625 -192] with "ak47" (damage "43") (damage_armor "0") (health "14") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:58:29: "Chet<6><BOT><CT>" [649 257 -192] attacked "Wayne<5><BOT><TERRORIST>" [181 625 -192] with "ak47" (damage "35") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:29: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:29: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:29: "Chet<6><BOT><CT>" [649 257 -192] killed "Wayne<5><BOT><TERRORIST>" [181 625 -128] with "ak47"
+L 09/03/2019 - 01:58:29: "Wayne<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:58:30: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:58:30: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "glock"
+L 09/03/2019 - 01:58:30: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:30: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:31: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_glock weapon_m4a1 defuser kevlar(90) helmet ]
+L 09/03/2019 - 01:58:32: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_glock weapon_m4a1 defuser kevlar(90) helmet ]
+L 09/03/2019 - 01:58:33: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:33: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:34: "Wayne<5><BOT><TERRORIST>" [393 622 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [215 94 -192] with "glock" (damage "11") (damage_armor "6") (health "17") (armor "83") (hitgroup "chest")
+L 09/03/2019 - 01:58:35: "Wayne<5><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock ]
+L 09/03/2019 - 01:58:36: "Wayne<5><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:58:37: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "defuser"
+L 09/03/2019 - 01:58:37: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "vesthelm"
+L 09/03/2019 - 01:58:37: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "knife"
+L 09/03/2019 - 01:58:37: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "glock"
+L 09/03/2019 - 01:58:37: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "m4a1"
+L 09/03/2019 - 01:58:37: "Reed<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:37: "Reed<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:37: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:37: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:37: "Wayne<5><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:58:37: "Chet<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:58:37: "Chet<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:58:37: "Chet<6><BOT><CT>" dropped "ak47"
+L 09/03/2019 - 01:58:37: Starting Freeze period
+L 09/03/2019 - 01:58:37: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:37: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:37: "Chet<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:58:37: "Chet<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:58:37: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:37: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:37: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "knife"
+L 09/03/2019 - 01:58:37: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:58:37: World triggered "Match_Start" on "de_lltest"
+L 09/03/2019 - 01:58:37: Team playing "CT": team1
+L 09/03/2019 - 01:58:37: Team playing "TERRORIST": team2
+L 09/03/2019 - 01:58:37: "Reed<4><BOT><TERRORIST>" picked up "c4"
+L 09/03/2019 - 01:58:37: "Reed<4><BOT><TERRORIST>" triggered "Got_The_Bomb"
+L 09/03/2019 - 01:58:40: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "vest"
+L 09/03/2019 - 01:58:40: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 800-650 = $150 (tracked) (purchase: item_kevlar)
+L 09/03/2019 - 01:58:40: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" purchased "item_kevlar"
+L 09/03/2019 - 01:58:52: World triggered "Round_Start"
+L 09/03/2019 - 01:58:52: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [894 -115 -192] attacked "Reed<4><BOT><TERRORIST>" [13 304 -192] with "hkp2000" (damage "29") (damage_armor "0") (health "71") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:58:52: "Wayne<5><BOT><TERRORIST>" [327 634 -192] attacked "Chet<6><BOT><CT>" [839 -67 -192] with "glock" (damage "28") (damage_armor "0") (health "72") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:58:52: "Reed<4><BOT><TERRORIST>" [13 304 -192] attacked "Chet<6><BOT><CT>" [839 -67 -192] with "glock" (damage "28") (damage_armor "0") (health "44") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:58:52: "Wayne<5><BOT><TERRORIST>" [327 634 -192] attacked "Chet<6><BOT><CT>" [839 -67 -192] with "glock" (damage "28") (damage_armor "0") (health "16") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:58:52: "Reed<4><BOT><TERRORIST>" [13 304 -192] attacked "Chet<6><BOT><CT>" [839 -67 -192] with "glock" (damage "28") (damage_armor "0") (health "0") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:58:52: "Chet<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:58:52: "Chet<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:58:52: "Reed<4><BOT><TERRORIST>" [13 304 -192] killed "Chet<6><BOT><CT>" [839 -67 -128] with "glock"
+L 09/03/2019 - 01:58:52: "Wayne<5><BOT><TERRORIST>" assisted killing "Chet<6><BOT><CT>"
+L 09/03/2019 - 01:58:52: "Reed<3><BOT><TERRORIST>" money change 800+300 = $1100 (tracked)
+L 09/03/2019 - 01:58:52: "Chet<6><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:58:52: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [894 -115 -192] attacked "Reed<4><BOT><TERRORIST>" [13 304 -192] with "hkp2000" (damage "116") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 09/03/2019 - 01:58:52: "Reed<4><BOT><TERRORIST>" triggered "Dropped_The_Bomb"
+L 09/03/2019 - 01:58:52: "Reed<4><BOT><TERRORIST>" dropped "c4"
+L 09/03/2019 - 01:58:52: "Reed<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:52: "Reed<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:52: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [894 -115 -192] killed "Reed<4><BOT><TERRORIST>" [13 304 -128] with "hkp2000" (headshot)
+L 09/03/2019 - 01:58:52: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 150+300 = $450 (tracked)
+L 09/03/2019 - 01:58:52: "Reed<4><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:58:53: "Wayne<5><BOT><TERRORIST>" [327 634 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [894 -115 -192] with "glock" (damage "13") (damage_armor "7") (health "87") (armor "92") (hitgroup "stomach")
+L 09/03/2019 - 01:58:53: "Wayne<5><BOT><TERRORIST>" [327 634 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [894 -115 -192] with "glock" (damage "13") (damage_armor "7") (health "74") (armor "84") (hitgroup "stomach")
+L 09/03/2019 - 01:58:54: "Wayne<5><BOT><TERRORIST>" [327 634 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [894 -115 -192] with "glock" (damage "13") (damage_armor "7") (health "61") (armor "76") (hitgroup "stomach")
+L 09/03/2019 - 01:58:54: "Wayne<5><BOT><TERRORIST>" [327 634 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [894 -115 -192] with "glock" (damage "12") (damage_armor "7") (health "49") (armor "68") (hitgroup "stomach")
+L 09/03/2019 - 01:58:54: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [894 -115 -192] attacked "Wayne<5><BOT><TERRORIST>" [327 634 -192] with "hkp2000" (damage "29") (damage_armor "0") (health "71") (armor "0") (hitgroup "right arm")
+L 09/03/2019 - 01:58:54: "Wayne<5><BOT><TERRORIST>" [327 634 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [894 -115 -192] with "glock" (damage "16") (damage_armor "0") (health "33") (armor "68") (hitgroup "left leg")
+L 09/03/2019 - 01:58:54: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [894 -115 -192] attacked "Wayne<5><BOT><TERRORIST>" [327 634 -192] with "hkp2000" (damage "117") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 09/03/2019 - 01:58:54: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:58:54: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:58:54: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [894 -115 -192] killed "Wayne<5><BOT><TERRORIST>" [327 634 -128] with "hkp2000" (headshot)
+L 09/03/2019 - 01:58:54: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 450+300 = $750 (tracked)
+L 09/03/2019 - 01:58:54: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "1") (T "0")
+L 09/03/2019 - 01:58:54: Team "CT" scored "1" with "2" players
+L 09/03/2019 - 01:58:54: Team "TERRORIST" scored "0" with "2" players
+L 09/03/2019 - 01:58:54: World triggered "Round_End"
+L 09/03/2019 - 01:58:54: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 750+3250 = $4000 (tracked)
+L 09/03/2019 - 01:58:54: "Chet<5><BOT><CT>" money change 800+3250 = $4050 (tracked)
+L 09/03/2019 - 01:58:54: "Reed<3><BOT><TERRORIST>" money change 1100+1900 = $3000 (tracked)
+L 09/03/2019 - 01:58:54: "Wayne<4><BOT><TERRORIST>" money change 800+1900 = $2700 (tracked)
+L 09/03/2019 - 01:58:54: "Wayne<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:58:59: Starting Freeze period
+L 09/03/2019 - 01:58:59: "Chet<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:58:59: "Chet<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:58:59: "Reed<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:59: "Reed<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:59: "Wayne<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:58:59: "Wayne<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:58:59: "Wayne<5><BOT><TERRORIST>" picked up "c4"
+L 09/03/2019 - 01:58:59: "Wayne<5><BOT><TERRORIST>" triggered "Got_The_Bomb"
+L 09/03/2019 - 01:58:59: "Reed<3><BOT><TERRORIST>" money change 3000-2000 = $1000 (tracked) (purchase: weapon_galilar)
+L 09/03/2019 - 01:58:59: "Reed<4><BOT><TERRORIST>" picked up "galilar"
+L 09/03/2019 - 01:58:59: "Reed<4><BOT><TERRORIST>" purchased "galilar"
+L 09/03/2019 - 01:58:59: "Reed<4><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:58:59: "Reed<3><BOT><TERRORIST>" money change 1000-1000 = $0 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:58:59: "Reed<4><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:58:59: "Chet<5><BOT><CT>" money change 4050-3300 = $750 (tracked) (purchase: weapon_aug)
+L 09/03/2019 - 01:58:59: "Chet<6><BOT><CT>" picked up "aug"
+L 09/03/2019 - 01:58:59: "Chet<6><BOT><CT>" purchased "aug"
+L 09/03/2019 - 01:58:59: "Chet<6><BOT><CT>" picked up "vest"
+L 09/03/2019 - 01:58:59: "Chet<5><BOT><CT>" money change 750-650 = $100 (tracked) (purchase: item_kevlar)
+L 09/03/2019 - 01:58:59: "Chet<6><BOT><CT>" purchased "item_kevlar"
+L 09/03/2019 - 01:59:14: World triggered "Round_Start"
+L 09/03/2019 - 01:59:14: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [636 -111 -192] with "galilar" (damage "28") (damage_armor "4") (health "72") (armor "63") (hitgroup "stomach")
+L 09/03/2019 - 01:59:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [636 -111 -192] attacked "Reed<4><BOT><TERRORIST>" [256 616 -192] with "hkp2000" (damage "60") (damage_armor "29") (health "40") (armor "70") (hitgroup "head")
+L 09/03/2019 - 01:59:14: "Chet<6><BOT><CT>" [490 -233 -192] attacked "Wayne<5><BOT><TERRORIST>" [393 622 -192] with "aug" (damage "33") (damage_armor "0") (health "67") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:59:14: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [636 -111 -192] with "galilar" (damage "28") (damage_armor "4") (health "44") (armor "58") (hitgroup "stomach")
+L 09/03/2019 - 01:59:14: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [636 -111 -192] with "galilar" (damage "28") (damage_armor "4") (health "16") (armor "53") (hitgroup "stomach")
+L 09/03/2019 - 01:59:14: "Wayne<5><BOT><TERRORIST>" [393 622 -192] attacked "Chet<6><BOT><CT>" [490 -233 -192] with "glock" (damage "17") (damage_armor "0") (health "83") (armor "100") (hitgroup "left leg")
+L 09/03/2019 - 01:59:14: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [636 -111 -192] with "galilar" (damage "22") (damage_armor "3") (health "0") (armor "49") (hitgroup "chest")
+L 09/03/2019 - 01:59:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:59:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "knife"
+L 09/03/2019 - 01:59:14: "Reed<4><BOT><TERRORIST>" [256 616 -192] killed "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [636 -111 -146] with "galilar"
+L 09/03/2019 - 01:59:14: "Reed<3><BOT><TERRORIST>" money change 0+300 = $300 (tracked)
+L 09/03/2019 - 01:59:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:59:14: "Chet<6><BOT><CT>" [490 -233 -192] attacked "Wayne<5><BOT><TERRORIST>" [393 622 -192] with "aug" (damage "27") (damage_armor "0") (health "40") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:59:15: "Wayne<5><BOT><TERRORIST>" [393 622 -192] attacked "Chet<6><BOT><CT>" [490 -233 -192] with "glock" (damage "17") (damage_armor "0") (health "66") (armor "100") (hitgroup "left leg")
+L 09/03/2019 - 01:59:15: "Chet<6><BOT><CT>" [490 -233 -192] attacked "Wayne<5><BOT><TERRORIST>" [393 622 -192] with "aug" (damage "20") (damage_armor "0") (health "20") (armor "0") (hitgroup "right leg")
+L 09/03/2019 - 01:59:15: "Wayne<5><BOT><TERRORIST>" [393 622 -192] attacked "Chet<6><BOT><CT>" [490 -233 -192] with "glock" (damage "13") (damage_armor "7") (health "53") (armor "92") (hitgroup "stomach")
+L 09/03/2019 - 01:59:15: "Chet<6><BOT><CT>" [490 -233 -192] attacked "Wayne<5><BOT><TERRORIST>" [393 622 -192] with "aug" (damage "33") (damage_armor "0") (health "0") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:59:15: "Wayne<5><BOT><TERRORIST>" triggered "Dropped_The_Bomb"
+L 09/03/2019 - 01:59:15: "Wayne<5><BOT><TERRORIST>" dropped "c4"
+L 09/03/2019 - 01:59:15: "Wayne<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:59:15: "Wayne<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:59:15: "Chet<6><BOT><CT>" [490 -233 -192] killed "Wayne<5><BOT><TERRORIST>" [393 622 -128] with "aug"
+L 09/03/2019 - 01:59:15: "Chet<5><BOT><CT>" money change 100+300 = $400 (tracked)
+L 09/03/2019 - 01:59:15: "Wayne<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:59:17: "Chet<6><BOT><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_aug kevlar(92) ]
+L 09/03/2019 - 01:59:18: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Chet<6><BOT><CT>" [424 -105 -192] with "galilar" (damage "28") (damage_armor "4") (health "25") (armor "87") (hitgroup "stomach")
+L 09/03/2019 - 01:59:18: "Reed<4><BOT><TERRORIST>" [256 616 -192] attacked "Chet<6><BOT><CT>" [424 -105 -192] with "galilar" (damage "28") (damage_armor "4") (health "0") (armor "82") (hitgroup "stomach")
+L 09/03/2019 - 01:59:18: "Chet<6><BOT><CT>" dropped "aug"
+L 09/03/2019 - 01:59:18: "Chet<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:59:18: "Chet<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:59:18: "Reed<4><BOT><TERRORIST>" [256 616 -192] killed "Chet<6><BOT><CT>" [424 -105 -128] with "galilar"
+L 09/03/2019 - 01:59:18: "Wayne<5><BOT><TERRORIST>" assisted killing "Chet<6><BOT><CT>"
+L 09/03/2019 - 01:59:18: "Reed<3><BOT><TERRORIST>" money change 300+300 = $600 (tracked)
+L 09/03/2019 - 01:59:18: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "1") (T "1")
+L 09/03/2019 - 01:59:18: Team "CT" scored "1" with "2" players
+L 09/03/2019 - 01:59:18: Team "TERRORIST" scored "1" with "2" players
+L 09/03/2019 - 01:59:18: World triggered "Round_End"
+L 09/03/2019 - 01:59:18: "Reed<3><BOT><TERRORIST>" money change 600+3250 = $3850 (tracked)
+L 09/03/2019 - 01:59:18: "Wayne<4><BOT><TERRORIST>" money change 2700+3250 = $5950 (tracked)
+L 09/03/2019 - 01:59:18: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 4000+1400 = $5400 (tracked)
+L 09/03/2019 - 01:59:18: "Chet<5><BOT><CT>" money change 400+1400 = $1800 (tracked)
+L 09/03/2019 - 02:00:03: "Humorbot 5.0<3><STEAM_1:1:8675309>" switched from team <CT> to <TERRORIST>
+L 09/03/2019 - 02:00:03: "Reed<4><BOT>" switched from team <TERRORIST> to <CT>
+L 09/03/2019 - 02:00:03: "Reed<4><BOT><CT>" dropped "vesthelm"
+L 09/03/2019 - 02:00:03: "Reed<4><BOT><CT>" dropped "knife"
+L 09/03/2019 - 02:00:03: "Reed<4><BOT><CT>" dropped "glock"
+L 09/03/2019 - 02:00:03: "Reed<4><BOT><CT>" dropped "galilar"
+L 09/03/2019 - 02:00:03: "Wayne<5><BOT>" switched from team <TERRORIST> to <CT>
+L 09/03/2019 - 02:00:03: "Chet<6><BOT>" switched from team <CT> to <TERRORIST>
+L 09/03/2019 - 02:00:03: Starting Freeze period
+L 09/03/2019 - 02:00:03: "Wayne<5><BOT><CT>" picked up "knife"
+L 09/03/2019 - 02:00:03: "Wayne<5><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 02:00:03: "Reed<4><BOT><CT>" picked up "knife"
+L 09/03/2019 - 02:00:03: "Reed<4><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 02:00:03: "Chet<6><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 02:00:03: "Chet<6><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 02:00:03: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "knife"
+L 09/03/2019 - 02:00:03: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "glock"
+L 09/03/2019 - 02:00:03: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "c4"
+L 09/03/2019 - 02:00:03: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" triggered "Got_The_Bomb"
+L 09/03/2019 - 02:00:03: "Reed<4><BOT><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 09/03/2019 - 02:00:06: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "vest"
+L 09/03/2019 - 02:00:06: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 800-650 = $150 (tracked) (purchase: item_kevlar)
+L 09/03/2019 - 02:00:06: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" purchased "item_kevlar"
+L 09/03/2019 - 02:00:18: World triggered "Round_Start"
+L 09/03/2019 - 02:00:18: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [394 621 -192] attacked "Wayne<5><BOT><CT>" [903 -198 -192] with "glock" (damage "88") (damage_armor "0") (health "12") (armor "0") (hitgroup "head")
+L 09/03/2019 - 02:00:19: "Wayne<5><BOT><CT>" [857 -98 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [409 597 -192] with "hkp2000" (damage "18") (damage_armor "9") (health "82") (armor "90") (hitgroup "stomach")
+L 09/03/2019 - 02:00:19: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [410 596 -192] attacked "Wayne<5><BOT><CT>" [854 -93 -192] with "glock" (damage "23") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 02:00:19: "Wayne<5><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 02:00:19: "Wayne<5><BOT><CT>" dropped "knife"
+L 09/03/2019 - 02:00:19: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [410 596 -192] killed "Wayne<5><BOT><CT>" [854 -93 -128] with "glock"
+L 09/03/2019 - 02:00:19: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 150+300 = $450 (tracked)
+L 09/03/2019 - 02:00:19: "Wayne<5><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 02:00:20: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [409 630 -192] attacked "Reed<4><BOT><CT>" [685 -130 -192] with "glock" (damage "23") (damage_armor "0") (health "77") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 02:00:20: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [416 638 -192] attacked "Reed<4><BOT><CT>" [685 -130 -192] with "glock" (damage "23") (damage_armor "0") (health "54") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 02:00:20: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [431 642 -192] attacked "Reed<4><BOT><CT>" [685 -130 -192] with "glock" (damage "23") (damage_armor "0") (health "31") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 02:00:21: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [452 632 -192] attacked "Reed<4><BOT><CT>" [685 -130 -192] with "glock" (damage "23") (damage_armor "0") (health "8") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 02:00:21: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_c4 kevlar(90) C4 ]
+L 09/03/2019 - 02:00:21: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [501 605 -192] attacked "Reed<4><BOT><CT>" [685 -130 -192] with "glock" (damage "23") (damage_armor "0") (health "0") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 02:00:21: "Reed<4><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 02:00:21: "Reed<4><BOT><CT>" dropped "knife"
+L 09/03/2019 - 02:00:21: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [501 605 -192] killed "Reed<4><BOT><CT>" [685 -130 -128] with "glock"
+L 09/03/2019 - 02:00:21: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 450+300 = $750 (tracked)
+L 09/03/2019 - 02:00:21: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "1") (T "2")
+L 09/03/2019 - 02:00:21: Team "CT" scored "1" with "2" players
+L 09/03/2019 - 02:00:21: Team "TERRORIST" scored "2" with "2" players
+L 09/03/2019 - 02:00:21: World triggered "Round_End"
+L 09/03/2019 - 02:00:21: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 750+3250 = $4000 (tracked)
+L 09/03/2019 - 02:00:21: "Chet<5><BOT><TERRORIST>" money change 800+3250 = $4050 (tracked)
+L 09/03/2019 - 02:00:21: "Reed<3><BOT><CT>" money change 800+1900 = $2700 (tracked)
+L 09/03/2019 - 02:00:21: "Wayne<4><BOT><CT>" money change 800+1900 = $2700 (tracked)
+L 09/03/2019 - 02:00:21: "Reed<4><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 02:00:23: "Chet<6><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock ]
+L 09/03/2019 - 02:00:26: Starting Freeze period
+L 09/03/2019 - 02:00:26: "Wayne<5><BOT><CT>" picked up "knife"
+L 09/03/2019 - 02:00:26: "Wayne<5><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 02:00:26: "Reed<4><BOT><CT>" picked up "knife"
+L 09/03/2019 - 02:00:26: "Reed<4><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 02:00:26: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "c4"
+L 09/03/2019 - 02:00:26: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" triggered "Got_The_Bomb"
+L 09/03/2019 - 02:00:26: "Chet<6><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock ]
+L 09/03/2019 - 02:00:27: "Reed<3><BOT><CT>" money change 2700-2250 = $450 (tracked) (purchase: weapon_famas)
+L 09/03/2019 - 02:00:27: "Reed<4><BOT><CT>" picked up "famas"
+L 09/03/2019 - 02:00:27: "Reed<4><BOT><CT>" purchased "famas"
+L 09/03/2019 - 02:00:27: "Chet<5><BOT><TERRORIST>" money change 4050-2750 = $1300 (tracked) (purchase: weapon_sg556)
+L 09/03/2019 - 02:00:27: "Chet<6><BOT><TERRORIST>" picked up "sg556"
+L 09/03/2019 - 02:00:27: "Chet<6><BOT><TERRORIST>" purchased "sg556"
+L 09/03/2019 - 02:00:27: "Chet<6><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 02:00:27: "Chet<5><BOT><TERRORIST>" money change 1300-1000 = $300 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 02:00:27: "Chet<6><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 02:00:27: "Wayne<4><BOT><CT>" money change 2700-2350 = $350 (tracked) (purchase: weapon_p90)
+L 09/03/2019 - 02:00:27: "Wayne<5><BOT><CT>" picked up "p90"
+L 09/03/2019 - 02:00:27: "Wayne<5><BOT><CT>" purchased "p90"
+L 09/03/2019 - 02:00:27: "Wayne<4><BOT><CT>" money change 350-300 = $50 (tracked) (purchase: weapon_hegrenade)
+L 09/03/2019 - 02:00:27: "Wayne<5><BOT><CT>" picked up "hegrenade"
+L 09/03/2019 - 02:00:27: "Wayne<5><BOT><CT>" purchased "hegrenade"
+L 09/03/2019 - 02:00:28: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 02:00:28: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 4000-1000 = $3000 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 02:00:28: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 02:00:28: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 3000-2700 = $300 (tracked) (purchase: weapon_ak47)
+L 09/03/2019 - 02:00:28: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 02:00:28: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" purchased "ak47"
+L 09/03/2019 - 02:00:41: World triggered "Round_Start"
+L 09/03/2019 - 02:00:41: "Reed<4><BOT><CT>" [742 2 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [393 622 -192] with "famas" (damage "24") (damage_armor "5") (health "76") (armor "94") (hitgroup "stomach")
+L 09/03/2019 - 02:00:41: "Chet<6><BOT><TERRORIST>" [87 614 -192] attacked "Reed<4><BOT><CT>" [742 2 -192] with "sg556" (damage "36") (damage_armor "0") (health "64") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 02:00:42: "Reed<4><BOT><CT>" [737 3 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [393 622 -192] with "famas" (damage "24") (damage_armor "5") (health "52") (armor "88") (hitgroup "stomach")
+L 09/03/2019 - 02:00:42: "Chet<6><BOT><TERRORIST>" [87 614 -192] attacked "Reed<4><BOT><CT>" [737 3 -192] with "sg556" (damage "36") (damage_armor "0") (health "28") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 02:00:42: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [393 622 -192] attacked "Reed<4><BOT><CT>" [737 3 -192] with "ak47" (damage "140") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 09/03/2019 - 02:00:42: "Reed<4><BOT><CT>" dropped "famas"
+L 09/03/2019 - 02:00:42: "Reed<4><BOT><CT>" dropped "knife"
+L 09/03/2019 - 02:00:42: "Reed<4><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 02:00:42: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [393 622 -192] killed "Reed<4><BOT><CT>" [737 3 -128] with "ak47" (headshot)
+L 09/03/2019 - 02:00:42: "Chet<6><BOT><TERRORIST>" assisted killing "Reed<4><BOT><CT>"
+L 09/03/2019 - 02:00:42: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 300+300 = $600 (tracked)
+L 09/03/2019 - 02:00:42: "Reed<4><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 02:00:43: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [393 622 -192] attacked "Wayne<5><BOT><CT>" [636 -111 -192] with "ak47" (damage "139") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 09/03/2019 - 02:00:43: "Wayne<5><BOT><CT>" dropped "p90"
+L 09/03/2019 - 02:00:43: "Wayne<5><BOT><CT>" dropped "hegrenade"
+L 09/03/2019 - 02:00:43: "Wayne<5><BOT><CT>" dropped "knife"
+L 09/03/2019 - 02:00:43: "Wayne<5><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 02:00:43: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [393 622 -192] killed "Wayne<5><BOT><CT>" [636 -111 -128] with "ak47" (headshot)
+L 09/03/2019 - 02:00:43: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 600+300 = $900 (tracked)
+L 09/03/2019 - 02:00:43: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "1") (T "3")
+L 09/03/2019 - 02:00:43: Team "CT" scored "1" with "2" players
+L 09/03/2019 - 02:00:43: Team "TERRORIST" scored "3" with "2" players
+L 09/03/2019 - 02:00:43: World triggered "Round_End"
+L 09/03/2019 - 02:00:43: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 900+3250 = $4150 (tracked)
+L 09/03/2019 - 02:00:43: "Chet<5><BOT><TERRORIST>" money change 300+3250 = $3550 (tracked)
+L 09/03/2019 - 02:00:43: "Reed<3><BOT><CT>" money change 450+2400 = $2850 (tracked)
+L 09/03/2019 - 02:00:43: "Wayne<4><BOT><CT>" money change 50+2400 = $2450 (tracked)
+L 09/03/2019 - 02:00:43: "Wayne<5><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 02:00:43: Game Over: competitive  de_lltest score 1:3 after 3 min
+L 09/03/2019 - 02:00:43: World triggered "Round_Start"
+L 09/03/2019 - 02:00:56: "Chet<6><BOT><>" disconnected (reason "Server shutting down")
+L 09/03/2019 - 02:00:56: "Wayne<5><BOT><>" disconnected (reason "Server shutting down")
+L 09/03/2019 - 02:00:56: "Reed<4><BOT><>" disconnected (reason "Server shutting down")
+L 09/03/2019 - 02:00:56: "Humorbot 5.0<3><STEAM_1:1:8675309><>" disconnected (reason "Server shutting down")
+L 09/03/2019 - 02:00:56: "gamesvr-csgo-tourney<2><BOT><>" disconnected (reason "Server shutting down")
+L 09/03/2019 - 02:00:58: server_message: "quit"
+L 09/03/2019 - 02:00:58: Log file closed

@@ -1,0 +1,671 @@
+## This log contains one match with warmup completely disabled
+##
+## Settings
+##      - mp_halftime=1
+##      - mp_maxrounds=4
+##      - mp_overtime_maxrounds=3
+##
+L 09/03/2019 - 01:45:49: Log file started (file "logs/L192_168_065_003_27015_201909030145_000.log") (game "/app/csgo") (version "7599")
+L 09/03/2019 - 01:45:49: Loading map "de_lltest"
+L 09/03/2019 - 01:45:49: server cvars start
+L 09/03/2019 - 01:45:49: "cash_player_killed_teammate" = "-300"
+L 09/03/2019 - 01:45:49: "cash_player_respawn_amount" = "0"
+L 09/03/2019 - 01:45:49: "sv_maxspeed" = "320"
+L 09/03/2019 - 01:45:49: "cash_team_winner_bonus_consecutive_rounds" = "0"
+L 09/03/2019 - 01:45:49: "cash_team_rescued_hostage" = "0"
+L 09/03/2019 - 01:45:49: "cash_team_win_by_defusing_bomb" = "3250"
+L 09/03/2019 - 01:45:49: "sv_rollangle" = "0"
+L 09/03/2019 - 01:45:49: "r_AirboatViewZHeight" = "0.0"
+L 09/03/2019 - 01:45:49: "sv_cheats" = "0"
+L 09/03/2019 - 01:45:49: "r_VehicleViewDampen" = "1"
+L 09/03/2019 - 01:45:49: "mp_allowNPCs" = "1"
+L 09/03/2019 - 01:45:49: "mp_tournament" = "0"
+L 09/03/2019 - 01:45:49: "sv_vote_issue_pause_match_spec_only" = "0"
+L 09/03/2019 - 01:45:49: "sv_spec_hear" = "1"
+L 09/03/2019 - 01:45:49: "cash_player_interact_with_hostage" = "150"
+L 09/03/2019 - 01:45:49: "mp_maxrounds" = "0"
+L 09/03/2019 - 01:45:49: "mp_flashlight" = "0"
+L 09/03/2019 - 01:45:49: "sv_tags" = ""
+L 09/03/2019 - 01:45:49: "sv_stepsize" = "18"
+L 09/03/2019 - 01:45:49: "sv_alltalk" = "0"
+L 09/03/2019 - 01:45:49: "mp_teamlist" = "hgrunt;scientist"
+L 09/03/2019 - 01:45:49: "mp_footsteps" = "1"
+L 09/03/2019 - 01:45:49: "sv_noclipaccelerate" = "5"
+L 09/03/2019 - 01:45:49: "sv_accelerate_debug_speed" = "0"
+L 09/03/2019 - 01:45:49: "sv_wateraccelerate" = "10"
+L 09/03/2019 - 01:45:49: "mp_stalemate_enable" = "0"
+L 09/03/2019 - 01:45:49: "mp_autocrosshair" = "1"
+L 09/03/2019 - 01:45:49: "cash_team_elimination_bomb_map" = "3250"
+L 09/03/2019 - 01:45:49: "cash_player_get_killed" = "0"
+L 09/03/2019 - 01:45:49: "mp_roundtime_defuse" = "0"
+L 09/03/2019 - 01:45:49: "sv_autobuyammo" = "0"
+L 09/03/2019 - 01:45:49: "sv_rollspeed" = "200"
+L 09/03/2019 - 01:45:49: "sv_airaccelerate" = "12"
+L 09/03/2019 - 01:45:49: "sv_show_team_equipment_prohibit" = "0"
+L 09/03/2019 - 01:45:49: "mp_teams_unbalance_limit" = "1"
+L 09/03/2019 - 01:45:49: "mp_timelimit" = "5"
+L 09/03/2019 - 01:45:49: "cash_team_loser_bonus" = "1400"
+L 09/03/2019 - 01:45:49: "sv_deadtalk" = "0"
+L 09/03/2019 - 01:45:49: "cash_player_rescued_hostage" = "1000"
+L 09/03/2019 - 01:45:49: "sv_waterfriction" = "1"
+L 09/03/2019 - 01:45:49: "sv_competitive_official_5v5" = "0"
+L 09/03/2019 - 01:45:49: "sv_steamgroup" = ""
+L 09/03/2019 - 01:45:49: "cash_player_killed_enemy_default" = "300"
+L 09/03/2019 - 01:45:49: "coop" = "0"
+L 09/03/2019 - 01:45:49: "mp_respawnwavetime" = "10.0"
+L 09/03/2019 - 01:45:49: "sv_teamid_overhead" = "1"
+L 09/03/2019 - 01:45:49: "tv_enable1" = "0"
+L 09/03/2019 - 01:45:49: "nextlevel" = ""
+L 09/03/2019 - 01:45:49: "sv_stopspeed" = "80"
+L 09/03/2019 - 01:45:49: "sv_specaccelerate" = "5"
+L 09/03/2019 - 01:45:49: "deathmatch" = "1"
+L 09/03/2019 - 01:45:49: "tv_enable" = "0"
+L 09/03/2019 - 01:45:49: "mp_roundtime_hostage" = "0"
+L 09/03/2019 - 01:45:49: "mp_freezetime" = "6"
+L 09/03/2019 - 01:45:49: "mp_teammates_are_enemies" = "0"
+L 09/03/2019 - 01:45:49: "mp_falldamage" = "0"
+L 09/03/2019 - 01:45:49: "sv_accelerate_use_weapon_speed" = "1"
+L 09/03/2019 - 01:45:49: "sv_voiceenable" = "1"
+L 09/03/2019 - 01:45:49: "sv_teamid_overhead_always_prohibit" = "0"
+L 09/03/2019 - 01:45:49: "sv_bounce" = "0"
+L 09/03/2019 - 01:45:49: "mp_disable_respawn_times" = "0"
+L 09/03/2019 - 01:45:49: "r_AirboatViewDampenFreq" = "7.0"
+L 09/03/2019 - 01:45:49: "mp_weaponstay" = "0"
+L 09/03/2019 - 01:45:49: "mp_hostagepenalty" = "10"
+L 09/03/2019 - 01:45:49: "tv_advertise_watchable" = "0"
+L 09/03/2019 - 01:45:49: "mp_friendlyfire" = "0"
+L 09/03/2019 - 01:45:49: "cash_team_hostage_interaction" = "500"
+L 09/03/2019 - 01:45:49: "sv_noclipspeed" = "5"
+L 09/03/2019 - 01:45:49: "cash_team_win_by_time_running_out_bomb" = "3250"
+L 09/03/2019 - 01:45:49: "sv_allchat" = "1"
+L 09/03/2019 - 01:45:49: "mp_buy_during_immunity" = "0"
+L 09/03/2019 - 01:45:49: "cash_player_killed_enemy_factor" = "1"
+L 09/03/2019 - 01:45:49: "mp_c4timer" = "40"
+L 09/03/2019 - 01:45:49: "r_JeepViewDampenDamp" = "1.0"
+L 09/03/2019 - 01:45:49: "sv_competitive_minspec" = "1"
+L 09/03/2019 - 01:45:49: "r_AirboatViewDampenDamp" = "1.0"
+L 09/03/2019 - 01:45:49: "sv_max_allowed_net_graph" = "1"
+L 09/03/2019 - 01:45:49: "mp_stalemate_at_timelimit" = "0"
+L 09/03/2019 - 01:45:49: "mp_limitteams" = "2"
+L 09/03/2019 - 01:45:49: "sv_footsteps" = "1"
+L 09/03/2019 - 01:45:49: "sv_vote_issue_kick_allowed" = "1"
+L 09/03/2019 - 01:45:49: "cash_team_survive_guardian_wave" = "1000"
+L 09/03/2019 - 01:45:49: "tv_relaypassword" = "test123"
+L 09/03/2019 - 01:45:49: "mp_teamplay" = "0"
+L 09/03/2019 - 01:45:49: "cash_team_terrorist_win_bomb" = "3500"
+L 09/03/2019 - 01:45:49: "cash_team_elimination_hostage_map_t" = "1000"
+L 09/03/2019 - 01:45:49: "r_JeepViewDampenFreq" = "7.0"
+L 09/03/2019 - 01:45:49: "cash_team_win_by_time_running_out_hostage" = "3250"
+L 09/03/2019 - 01:45:49: "sv_specnoclip" = "1"
+L 09/03/2019 - 01:45:49: "sv_friction" = "5.2"
+L 09/03/2019 - 01:45:49: "cash_player_bomb_planted" = "300"
+L 09/03/2019 - 01:45:49: "mp_autoteambalance" = "1"
+L 09/03/2019 - 01:45:49: "sv_contact" = ""
+L 09/03/2019 - 01:45:49: "sv_vote_kick_ban_duration" = "15"
+L 09/03/2019 - 01:45:49: "cash_player_bomb_defused" = "300"
+L 09/03/2019 - 01:45:49: "mp_roundtime" = "5"
+L 09/03/2019 - 01:45:49: "sv_kick_ban_duration" = "15"
+L 09/03/2019 - 01:45:49: "cash_team_planted_bomb_but_defused" = "800"
+L 09/03/2019 - 01:45:49: "cash_player_killed_hostage" = "-1000"
+L 09/03/2019 - 01:45:49: "sv_vote_issue_loadbackup_allowed" = "1"
+L 09/03/2019 - 01:45:49: "nextmode" = ""
+L 09/03/2019 - 01:45:49: "mp_fraglimit" = "0"
+L 09/03/2019 - 01:45:49: "mp_forcerespawn" = "1"
+L 09/03/2019 - 01:45:49: "mp_winlimit" = "0"
+L 09/03/2019 - 01:45:49: "sv_accelerate" = "5.5"
+L 09/03/2019 - 01:45:49: "mp_buy_anywhere" = "0"
+L 09/03/2019 - 01:45:49: "sv_gravity" = "800"
+L 09/03/2019 - 01:45:49: "sv_password" = ""
+L 09/03/2019 - 01:45:49: "cash_team_elimination_hostage_map_ct" = "2000"
+L 09/03/2019 - 01:45:49: "cash_team_win_by_hostage_rescue" = "3500"
+L 09/03/2019 - 01:45:49: "sv_vote_issue_loadbackup_spec_only" = "0"
+L 09/03/2019 - 01:45:49: "cash_team_loser_bonus_consecutive_rounds" = "500"
+L 09/03/2019 - 01:45:49: "cash_player_damage_hostage" = "-30"
+L 09/03/2019 - 01:45:49: "r_JeepViewZHeight" = "10.0"
+L 09/03/2019 - 01:45:49: "cash_team_hostage_alive" = "0"
+L 09/03/2019 - 01:45:49: "tv_password" = "test123"
+L 09/03/2019 - 01:45:49: "sv_specspeed" = "3"
+L 09/03/2019 - 01:45:49: server cvars end
+L 09/03/2019 - 01:45:49: Started map "de_lltest" (CRC "-25072634")
+L 09/03/2019 - 01:45:49: "Console<0><Console><Console>" say ""Running server.cfg""
+L 09/03/2019 - 01:45:49: server_cvar: "sv_competitive_official_5v5" "1"
+L 09/03/2019 - 01:45:49: server_cvar: "sv_contact" "0"
+L 09/03/2019 - 01:45:49: server_cvar: "sv_teamid_overhead_always_prohibit" "1"
+L 09/03/2019 - 01:45:49: server_cvar: "sv_deadtalk" "1"
+L 09/03/2019 - 01:45:49: server_cvar: "sv_kick_ban_duration" "0"
+L 09/03/2019 - 01:45:49: server_cvar: "tv_enable" "1"
+L 09/03/2019 - 01:45:49: server_cvar: "cash_player_interact_with_hostage" "300"
+L 09/03/2019 - 01:45:49: server_cvar: "cash_team_elimination_hostage_map_t" "3000"
+L 09/03/2019 - 01:45:49: server_cvar: "cash_team_elimination_hostage_map_ct" "3000"
+L 09/03/2019 - 01:45:49: server_cvar: "cash_team_hostage_interaction" "600"
+L 09/03/2019 - 01:45:49: server_cvar: "cash_team_rescued_hostage" "600"
+L 09/03/2019 - 01:45:49: server_cvar: "cash_team_win_by_defusing_bomb" "3500"
+L 09/03/2019 - 01:45:49: server_cvar: "cash_team_win_by_hostage_rescue" "2900"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_freezetime" "15"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_friendlyfire" "1"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_maxrounds" "30"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_roundtime" "1.92"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_roundtime_hostage" "1.92"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_roundtime_defuse" "1.92"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_timelimit" "0"
+L 09/03/2019 - 01:45:49: "Console<0><Console><Console>" say "Executing gamemode_competitive_server.cfg"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_autoteambalance" "0"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_limitteams" "0"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_maxrounds" "4"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_roundtime" "1.75"
+L 09/03/2019 - 01:45:49: server_cvar: "mp_roundtime_defuse" "1.75"
+L 09/03/2019 - 01:45:52: "GOTV<2><BOT><>" connected, address ""
+L 09/03/2019 - 01:45:52: "GOTV<2><BOT><>" entered the game
+L 09/03/2019 - 01:45:52: "GOTV<2><BOT><Unassigned>" changed name to "gamesvr-csgo-tourney"
+L 09/03/2019 - 01:45:54: "Humorbot 5.0<3><STEAM_1:1:8675309><>" connected, address ""
+L 09/03/2019 - 01:45:54: World triggered "Round_Start"
+L 09/03/2019 - 01:46:10: "Humorbot 5.0<3><STEAM_1:1:8675309><>" entered the game
+L 09/03/2019 - 01:46:14: "Humorbot 5.0<3><STEAM_1:1:8675309>" switched from team <Unassigned> to <CT>
+L 09/03/2019 - 01:46:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "knife"
+L 09/03/2019 - 01:46:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:46:14: World triggered "Game_Commencing"
+L 09/03/2019 - 01:46:14: Team playing "CT": team1
+L 09/03/2019 - 01:46:14: Team playing "TERRORIST": team2
+L 09/03/2019 - 01:46:14: "Quinn<4><BOT><>" connected, address ""
+L 09/03/2019 - 01:46:14: "Quinn<4><BOT>" switched from team <Unassigned> to <TERRORIST>
+L 09/03/2019 - 01:46:14: "Quinn<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:46:14: "Quinn<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:46:14: "Quinn<4><BOT><>" entered the game
+L 09/03/2019 - 01:46:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 09/03/2019 - 01:46:14: "Brad<5><BOT><>" connected, address ""
+L 09/03/2019 - 01:46:14: "Brad<5><BOT>" switched from team <Unassigned> to <TERRORIST>
+L 09/03/2019 - 01:46:14: "Brad<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:46:14: "Brad<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:46:14: "Brad<5><BOT><>" entered the game
+L 09/03/2019 - 01:46:14: "John<6><BOT><>" connected, address ""
+L 09/03/2019 - 01:46:14: "John<6><BOT>" switched from team <Unassigned> to <CT>
+L 09/03/2019 - 01:46:14: "John<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:46:14: "John<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:46:14: "John<6><BOT><>" entered the game
+L 09/03/2019 - 01:46:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "knife"
+L 09/03/2019 - 01:46:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:46:14: "Quinn<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:46:14: "Quinn<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:46:14: "Brad<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:46:14: "Brad<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:46:14: "John<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:46:14: "John<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:46:14: Starting Freeze period
+L 09/03/2019 - 01:46:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "knife"
+L 09/03/2019 - 01:46:14: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:46:14: "Quinn<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:46:14: "Quinn<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:46:14: "Brad<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:46:14: "Brad<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:46:14: "John<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:46:14: "John<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:46:14: World triggered "Match_Start" on "de_lltest"
+L 09/03/2019 - 01:46:14: Team playing "CT": team1
+L 09/03/2019 - 01:46:14: Team playing "TERRORIST": team2
+L 09/03/2019 - 01:46:14: "Quinn<4><BOT><TERRORIST>" picked up "c4"
+L 09/03/2019 - 01:46:14: "Quinn<4><BOT><TERRORIST>" triggered "Got_The_Bomb"
+L 09/03/2019 - 01:46:29: World triggered "Round_Start"
+L 09/03/2019 - 01:46:29: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [748 -237 -192] attacked "Brad<5><BOT><TERRORIST>" [24 240 -192] with "hkp2000" (damage "119") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 09/03/2019 - 01:46:29: "Brad<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:46:29: "Brad<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:46:29: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [748 -237 -192] killed "Brad<5><BOT><TERRORIST>" [24 240 -128] with "hkp2000" (headshot)
+L 09/03/2019 - 01:46:29: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 800+300 = $1100 (tracked)
+L 09/03/2019 - 01:46:29: "Brad<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:46:30: "Quinn<4><BOT><TERRORIST>" [153 624 -192] attacked "John<6><BOT><CT>" [832 172 -192] with "glock" (damage "28") (damage_armor "0") (health "72") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:46:30: "Quinn<4><BOT><TERRORIST>" [153 624 -192] attacked "John<6><BOT><CT>" [818 183 -192] with "glock" (damage "28") (damage_armor "0") (health "44") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:46:30: "Quinn<4><BOT><TERRORIST>" [153 624 -192] attacked "John<6><BOT><CT>" [807 192 -192] with "glock" (damage "29") (damage_armor "0") (health "15") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:46:30: "John<6><BOT><CT>" left buyzone with [ weapon_knife weapon_hkp2000 ]
+L 09/03/2019 - 01:46:31: "Quinn<4><BOT><TERRORIST>" [153 624 -192] attacked "John<6><BOT><CT>" [721 254 -192] with "glock" (damage "30") (damage_armor "0") (health "0") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:46:31: "John<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:46:31: "John<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:46:31: "Quinn<4><BOT><TERRORIST>" [153 624 -192] killed "John<6><BOT><CT>" [721 254 -128] with "glock"
+L 09/03/2019 - 01:46:31: "Quinn<3><BOT><TERRORIST>" money change 800+300 = $1100 (tracked)
+L 09/03/2019 - 01:46:33: "Quinn<4><BOT><TERRORIST>" [53 590 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [748 -237 -192] with "glock" (damage "26") (damage_armor "0") (health "74") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:46:36: "Quinn<4><BOT><TERRORIST>" [51 600 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [731 -248 -192] with "glock" (damage "26") (damage_armor "0") (health "48") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:46:36: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [727 -252 -192] attacked "Quinn<4><BOT><TERRORIST>" [51 600 -192] with "hkp2000" (damage "28") (damage_armor "0") (health "72") (armor "0") (hitgroup "right arm")
+L 09/03/2019 - 01:46:39: "Quinn<4><BOT><TERRORIST>" [-48 534 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [579 -304 -192] with "glock" (damage "26") (damage_armor "0") (health "22") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:46:40: "Quinn<4><BOT><TERRORIST>" [-48 530 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [559 -304 -192] with "glock" (damage "26") (damage_armor "0") (health "0") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:46:40: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:46:40: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" dropped "knife"
+L 09/03/2019 - 01:46:40: "Quinn<4><BOT><TERRORIST>" [-48 530 -192] killed "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [559 -304 -146] with "glock"
+L 09/03/2019 - 01:46:40: "Quinn<3><BOT><TERRORIST>" money change 1100+300 = $1400 (tracked)
+L 09/03/2019 - 01:46:40: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "0") (T "1")
+L 09/03/2019 - 01:46:40: Team "CT" scored "0" with "2" players
+L 09/03/2019 - 01:46:40: Team "TERRORIST" scored "1" with "2" players
+L 09/03/2019 - 01:46:40: World triggered "Round_End"
+L 09/03/2019 - 01:46:40: "Quinn<3><BOT><TERRORIST>" money change 1400+3250 = $4650 (tracked)
+L 09/03/2019 - 01:46:40: "Brad<4><BOT><TERRORIST>" money change 800+3250 = $4050 (tracked)
+L 09/03/2019 - 01:46:40: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 1100+1900 = $3000 (tracked)
+L 09/03/2019 - 01:46:40: "John<5><BOT><CT>" money change 800+1900 = $2700 (tracked)
+L 09/03/2019 - 01:46:40: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:46:42: "Quinn<4><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_c4 C4 ]
+L 09/03/2019 - 01:46:45: Starting Freeze period
+L 09/03/2019 - 01:46:45: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "knife"
+L 09/03/2019 - 01:46:45: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:46:45: "John<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:46:45: "John<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:46:45: "Brad<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:46:45: "Brad<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:46:45: "Quinn<4><BOT><TERRORIST>" picked up "c4"
+L 09/03/2019 - 01:46:45: "Quinn<4><BOT><TERRORIST>" triggered "Got_The_Bomb"
+L 09/03/2019 - 01:46:45: "Brad<4><BOT><TERRORIST>" money change 4050-2000 = $2050 (tracked) (purchase: weapon_galilar)
+L 09/03/2019 - 01:46:45: "Brad<5><BOT><TERRORIST>" picked up "galilar"
+L 09/03/2019 - 01:46:45: "Brad<5><BOT><TERRORIST>" purchased "galilar"
+L 09/03/2019 - 01:46:45: "Brad<5><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:46:45: "Brad<4><BOT><TERRORIST>" money change 2050-1000 = $1050 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:46:45: "Brad<5><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:46:45: "Quinn<3><BOT><TERRORIST>" money change 4650-2750 = $1900 (tracked) (purchase: weapon_sg556)
+L 09/03/2019 - 01:46:45: "Quinn<4><BOT><TERRORIST>" picked up "sg556"
+L 09/03/2019 - 01:46:45: "Quinn<4><BOT><TERRORIST>" purchased "sg556"
+L 09/03/2019 - 01:46:45: "Quinn<4><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:46:45: "Quinn<3><BOT><TERRORIST>" money change 1900-1000 = $900 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:46:45: "Quinn<4><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:46:45: "John<5><BOT><CT>" money change 2700-1700 = $1000 (tracked) (purchase: weapon_negev)
+L 09/03/2019 - 01:46:45: "John<6><BOT><CT>" picked up "negev"
+L 09/03/2019 - 01:46:45: "John<6><BOT><CT>" purchased "negev"
+L 09/03/2019 - 01:46:45: "John<6><BOT><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:46:45: "John<5><BOT><CT>" money change 1000-1000 = $0 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:46:45: "John<6><BOT><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:46:55: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:46:55: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 3000-1000 = $2000 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:46:55: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:47:00: World triggered "Round_Start"
+L 09/03/2019 - 01:47:00: "John<6><BOT><CT>" [896 38 -192] attacked "Quinn<4><BOT><TERRORIST>" [105 389 -192] with "negev" (damage "29") (damage_armor "6") (health "71") (armor "93") (hitgroup "stomach")
+L 09/03/2019 - 01:47:00: "Quinn<4><BOT><TERRORIST>" [105 389 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] with "sg556" (damage "36") (damage_armor "0") (health "64") (armor "100") (hitgroup "stomach")
+L 09/03/2019 - 01:47:00: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] attacked "Quinn<4><BOT><TERRORIST>" [105 389 -192] with "hkp2000" (damage "61") (damage_armor "29") (health "10") (armor "63") (hitgroup "head")
+L 09/03/2019 - 01:47:00: "Brad<5><BOT><TERRORIST>" [153 624 -192] attacked "John<6><BOT><CT>" [896 38 -192] with "galilar" (damage "27") (damage_armor "4") (health "73") (armor "95") (hitgroup "stomach")
+L 09/03/2019 - 01:47:00: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] attacked "Quinn<4><BOT><TERRORIST>" [105 389 -192] with "hkp2000" (damage "61") (damage_armor "29") (health "0") (armor "33") (hitgroup "head")
+L 09/03/2019 - 01:47:00: "Quinn<4><BOT><TERRORIST>" triggered "Dropped_The_Bomb"
+L 09/03/2019 - 01:47:00: "Quinn<4><BOT><TERRORIST>" dropped "c4"
+L 09/03/2019 - 01:47:00: "Quinn<4><BOT><TERRORIST>" dropped "sg556"
+L 09/03/2019 - 01:47:00: "Quinn<4><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:47:00: "Quinn<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:47:00: "Quinn<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:47:00: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] killed "Quinn<4><BOT><TERRORIST>" [105 389 -128] with "hkp2000" (headshot)
+L 09/03/2019 - 01:47:00: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 2000+300 = $2300 (tracked)
+L 09/03/2019 - 01:47:00: "Quinn<4><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:47:00: "Brad<5><BOT><TERRORIST>" [153 624 -192] attacked "John<6><BOT><CT>" [896 38 -192] with "galilar" (damage "27") (damage_armor "4") (health "46") (armor "90") (hitgroup "stomach")
+L 09/03/2019 - 01:47:01: "Brad<5><BOT><TERRORIST>" [153 624 -192] attacked "John<6><BOT><CT>" [896 38 -192] with "galilar" (damage "27") (damage_armor "4") (health "19") (armor "85") (hitgroup "stomach")
+L 09/03/2019 - 01:47:01: "Brad<5><BOT><TERRORIST>" [153 624 -192] attacked "John<6><BOT><CT>" [896 38 -192] with "galilar" (damage "27") (damage_armor "4") (health "0") (armor "80") (hitgroup "stomach")
+L 09/03/2019 - 01:47:01: "John<6><BOT><CT>" dropped "negev"
+L 09/03/2019 - 01:47:01: "John<6><BOT><CT>" dropped "vesthelm"
+L 09/03/2019 - 01:47:01: "John<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:47:01: "John<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:47:01: "Brad<5><BOT><TERRORIST>" [153 624 -192] killed "John<6><BOT><CT>" [896 38 -128] with "galilar"
+L 09/03/2019 - 01:47:01: "Brad<4><BOT><TERRORIST>" money change 1050+300 = $1350 (tracked)
+L 09/03/2019 - 01:47:01: "John<6><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:47:01: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] attacked "Brad<5><BOT><TERRORIST>" [153 624 -192] with "hkp2000" (damage "14") (damage_armor "7") (health "86") (armor "92") (hitgroup "chest")
+L 09/03/2019 - 01:47:02: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] attacked "Brad<5><BOT><TERRORIST>" [153 624 -192] with "hkp2000" (damage "14") (damage_armor "7") (health "72") (armor "84") (hitgroup "chest")
+L 09/03/2019 - 01:47:02: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] attacked "Brad<5><BOT><TERRORIST>" [153 624 -192] with "hkp2000" (damage "14") (damage_armor "7") (health "58") (armor "76") (hitgroup "right arm")
+L 09/03/2019 - 01:47:03: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] attacked "Brad<5><BOT><TERRORIST>" [153 624 -192] with "hkp2000" (damage "14") (damage_armor "7") (health "44") (armor "68") (hitgroup "right arm")
+L 09/03/2019 - 01:47:03: "Brad<5><BOT><TERRORIST>" [153 624 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] with "galilar" (damage "27") (damage_armor "4") (health "37") (armor "95") (hitgroup "stomach")
+L 09/03/2019 - 01:47:03: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] attacked "Brad<5><BOT><TERRORIST>" [153 624 -192] with "hkp2000" (damage "14") (damage_armor "7") (health "30") (armor "60") (hitgroup "chest")
+L 09/03/2019 - 01:47:03: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] attacked "Brad<5><BOT><TERRORIST>" [153 624 -192] with "hkp2000" (damage "58") (damage_armor "28") (health "0") (armor "31") (hitgroup "head")
+L 09/03/2019 - 01:47:03: "Brad<5><BOT><TERRORIST>" dropped "galilar"
+L 09/03/2019 - 01:47:03: "Brad<5><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:47:03: "Brad<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:47:03: "Brad<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:47:03: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [571 -249 -192] killed "Brad<5><BOT><TERRORIST>" [153 624 -128] with "hkp2000" (headshot)
+L 09/03/2019 - 01:47:03: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 2300+300 = $2600 (tracked)
+L 09/03/2019 - 01:47:03: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "1") (T "1")
+L 09/03/2019 - 01:47:03: Team "CT" scored "1" with "2" players
+L 09/03/2019 - 01:47:03: Team "TERRORIST" scored "1" with "2" players
+L 09/03/2019 - 01:47:03: World triggered "Round_End"
+L 09/03/2019 - 01:47:03: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 2600+3250 = $5850 (tracked)
+L 09/03/2019 - 01:47:03: "John<5><BOT><CT>" money change 0+3250 = $3250 (tracked)
+L 09/03/2019 - 01:47:03: "Quinn<3><BOT><TERRORIST>" money change 900+1400 = $2300 (tracked)
+L 09/03/2019 - 01:47:03: "Brad<4><BOT><TERRORIST>" money change 1350+1400 = $2750 (tracked)
+L 09/03/2019 - 01:47:03: "Brad<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:47:24: STEAMAUTH: Client [LL] Dudsmack received failure code 1
+L 09/03/2019 - 01:47:48: "Humorbot 5.0<3><STEAM_1:1:8675309>" switched from team <CT> to <TERRORIST>
+L 09/03/2019 - 01:47:48: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:47:48: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:47:48: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" dropped "hkp2000"
+L 09/03/2019 - 01:47:48: "Quinn<4><BOT>" switched from team <TERRORIST> to <CT>
+L 09/03/2019 - 01:47:48: "Brad<5><BOT>" switched from team <TERRORIST> to <CT>
+L 09/03/2019 - 01:47:48: "John<6><BOT>" switched from team <CT> to <TERRORIST>
+L 09/03/2019 - 01:47:48: Starting Freeze period
+L 09/03/2019 - 01:47:48: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:47:48: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:47:48: "Brad<5><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:47:48: "Brad<5><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:47:48: "Quinn<4><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:47:48: "Quinn<4><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:47:48: "John<6><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:47:48: "John<6><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:47:48: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "c4"
+L 09/03/2019 - 01:47:48: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" triggered "Got_The_Bomb"
+L 09/03/2019 - 01:47:48: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_c4 C4 ]
+L 09/03/2019 - 01:47:58: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "vest"
+L 09/03/2019 - 01:47:58: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 800-650 = $150 (tracked) (purchase: item_kevlar)
+L 09/03/2019 - 01:47:58: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" purchased "item_kevlar"
+L 09/03/2019 - 01:48:03: World triggered "Round_Start"
+L 09/03/2019 - 01:48:03: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [24 240 -192] attacked "Brad<5><BOT><CT>" [839 -67 -192] with "glock" (damage "22") (damage_armor "0") (health "78") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:48:04: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [24 240 -192] attacked "Brad<5><BOT><CT>" [837 -66 -192] with "glock" (damage "90") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 09/03/2019 - 01:48:04: "Brad<5><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:48:04: "Brad<5><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:48:04: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [24 240 -192] killed "Brad<5><BOT><CT>" [837 -66 -128] with "glock" (headshot)
+L 09/03/2019 - 01:48:04: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 150+300 = $450 (tracked)
+L 09/03/2019 - 01:48:04: "Brad<5><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:48:04: "Quinn<4><BOT><CT>" [902 -201 -192] attacked "John<6><BOT><TERRORIST>" [31 563 -192] with "hkp2000" (damage "35") (damage_armor "0") (health "65") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:48:04: "Quinn<4><BOT><CT>" [902 -201 -192] attacked "John<6><BOT><TERRORIST>" [48 527 -192] with "hkp2000" (damage "35") (damage_armor "0") (health "30") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:48:04: "Quinn<4><BOT><CT>" [902 -201 -192] attacked "John<6><BOT><TERRORIST>" [51 507 -192] with "hkp2000" (damage "28") (damage_armor "0") (health "2") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:48:05: "Quinn<4><BOT><CT>" [902 -201 -192] attacked "John<6><BOT><TERRORIST>" [54 490 -192] with "hkp2000" (damage "21") (damage_armor "0") (health "0") (armor "0") (hitgroup "right leg")
+L 09/03/2019 - 01:48:05: "John<6><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:48:05: "John<6><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:48:05: "Quinn<4><BOT><CT>" [902 -201 -192] killed "John<6><BOT><TERRORIST>" [54 490 -128] with "hkp2000"
+L 09/03/2019 - 01:48:05: "Quinn<3><BOT><CT>" money change 800+300 = $1100 (tracked)
+L 09/03/2019 - 01:48:05: "John<6><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:48:05: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [24 240 -192] attacked "Quinn<4><BOT><CT>" [902 -201 -192] with "glock" (damage "21") (damage_armor "0") (health "79") (armor "0") (hitgroup "chest")
+L 09/03/2019 - 01:48:05: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [24 240 -192] attacked "Quinn<4><BOT><CT>" [902 -201 -192] with "glock" (damage "87") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 09/03/2019 - 01:48:05: "Quinn<4><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:48:05: "Quinn<4><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:48:05: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [24 240 -192] killed "Quinn<4><BOT><CT>" [902 -201 -128] with "glock" (headshot)
+L 09/03/2019 - 01:48:05: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 450+300 = $750 (tracked)
+L 09/03/2019 - 01:48:05: Team "TERRORIST" triggered "SFUI_Notice_Terrorists_Win" (CT "1") (T "2")
+L 09/03/2019 - 01:48:05: Team "CT" scored "1" with "2" players
+L 09/03/2019 - 01:48:05: Team "TERRORIST" scored "2" with "2" players
+L 09/03/2019 - 01:48:05: World triggered "Round_End"
+L 09/03/2019 - 01:48:05: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 750+3250 = $4000 (tracked)
+L 09/03/2019 - 01:48:05: "John<5><BOT><TERRORIST>" money change 800+3250 = $4050 (tracked)
+L 09/03/2019 - 01:48:05: "Quinn<3><BOT><CT>" money change 1100+1900 = $3000 (tracked)
+L 09/03/2019 - 01:48:05: "Brad<4><BOT><CT>" money change 800+1900 = $2700 (tracked)
+L 09/03/2019 - 01:48:05: "Quinn<4><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:48:10: Starting Freeze period
+L 09/03/2019 - 01:48:10: "John<6><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:48:10: "John<6><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:48:10: "Quinn<4><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:48:10: "Quinn<4><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:48:10: "Brad<5><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:48:10: "Brad<5><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:48:10: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "c4"
+L 09/03/2019 - 01:48:10: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" triggered "Got_The_Bomb"
+L 09/03/2019 - 01:48:10: "John<5><BOT><TERRORIST>" money change 4050-2700 = $1350 (tracked) (purchase: weapon_ak47)
+L 09/03/2019 - 01:48:10: "John<6><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:48:10: "John<6><BOT><TERRORIST>" purchased "ak47"
+L 09/03/2019 - 01:48:10: "John<6><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:48:10: "John<5><BOT><TERRORIST>" money change 1350-1000 = $350 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:48:10: "John<6><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:48:10: "John<5><BOT><TERRORIST>" money change 350-300 = $50 (tracked) (purchase: weapon_hegrenade)
+L 09/03/2019 - 01:48:10: "John<6><BOT><TERRORIST>" picked up "hegrenade"
+L 09/03/2019 - 01:48:10: "John<6><BOT><TERRORIST>" purchased "hegrenade"
+L 09/03/2019 - 01:48:25: World triggered "Round_Start"
+L 09/03/2019 - 01:48:25: "Quinn<4><BOT><CT>" [902 -201 -192] attacked "John<6><BOT><TERRORIST>" [153 624 -192] with "hkp2000" (damage "17") (damage_armor "8") (health "83") (armor "91") (hitgroup "stomach")
+L 09/03/2019 - 01:48:25: "John<6><BOT><TERRORIST>" [156 624 -192] attacked "Brad<5><BOT><CT>" [896 38 -192] with "ak47" (damage "43") (damage_armor "0") (health "57") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:48:25: "Brad<5><BOT><CT>" [896 38 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [13 304 -192] with "hkp2000" (damage "22") (damage_armor "0") (health "78") (armor "100") (hitgroup "left leg")
+L 09/03/2019 - 01:48:26: "Brad<5><BOT><CT>" [896 38 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [13 304 -192] with "hkp2000" (damage "18") (damage_armor "9") (health "60") (armor "90") (hitgroup "stomach")
+L 09/03/2019 - 01:48:26: "John<6><BOT><TERRORIST>" [189 628 -192] attacked "Brad<5><BOT><CT>" [896 38 -192] with "ak47" (damage "26") (damage_armor "0") (health "31") (armor "0") (hitgroup "right leg")
+L 09/03/2019 - 01:48:26: "Brad<5><BOT><CT>" [896 38 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [22 300 -192] with "hkp2000" (damage "22") (damage_armor "0") (health "38") (armor "90") (hitgroup "left leg")
+L 09/03/2019 - 01:48:26: "Brad<5><BOT><CT>" [896 38 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [64 284 -192] with "hkp2000" (damage "18") (damage_armor "9") (health "20") (armor "80") (hitgroup "stomach")
+L 09/03/2019 - 01:48:27: "Brad<5><BOT><CT>" [896 38 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [66 283 -192] with "hkp2000" (damage "18") (damage_armor "9") (health "2") (armor "70") (hitgroup "stomach")
+L 09/03/2019 - 01:48:27: "Quinn<4><BOT><CT>" [944 -151 -192] attacked "John<6><BOT><TERRORIST>" [371 484 -192] with "hkp2000" (damage "18") (damage_armor "9") (health "65") (armor "81") (hitgroup "stomach")
+L 09/03/2019 - 01:48:27: "Brad<5><BOT><CT>" [896 38 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [66 283 -192] with "hkp2000" (damage "18") (damage_armor "9") (health "0") (armor "60") (hitgroup "stomach")
+L 09/03/2019 - 01:48:27: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" triggered "Dropped_The_Bomb"
+L 09/03/2019 - 01:48:27: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" dropped "c4"
+L 09/03/2019 - 01:48:27: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:48:27: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:48:27: "Brad<5><BOT><CT>" [896 38 -192] killed "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [66 283 -146] with "hkp2000"
+L 09/03/2019 - 01:48:27: "Brad<4><BOT><CT>" money change 2700+300 = $3000 (tracked)
+L 09/03/2019 - 01:48:27: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:48:28: "John<6><BOT><TERRORIST>" [391 449 -192] attacked "Brad<5><BOT><CT>" [896 38 -192] with "ak47" (damage "43") (damage_armor "0") (health "0") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:48:28: "Brad<5><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:48:28: "Brad<5><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:48:28: "John<6><BOT><TERRORIST>" [391 449 -192] killed "Brad<5><BOT><CT>" [896 38 -128] with "ak47"
+L 09/03/2019 - 01:48:28: "John<5><BOT><TERRORIST>" money change 50+300 = $350 (tracked)
+L 09/03/2019 - 01:48:28: "Brad<5><BOT><CT>" left buyzone with [ ]
+L 09/03/2019 - 01:48:29: "John<6><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_ak47 weapon_hegrenade kevlar(81) helmet ]
+L 09/03/2019 - 01:48:29: "John<6><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_ak47 weapon_hegrenade kevlar(81) helmet ]
+L 09/03/2019 - 01:48:30: "John<6><BOT><TERRORIST>" [573 182 -192] attacked "Quinn<4><BOT><CT>" [784 -289 -192] with "ak47" (damage "26") (damage_armor "0") (health "74") (armor "0") (hitgroup "left leg")
+L 09/03/2019 - 01:48:32: "John<6><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_ak47 weapon_hegrenade kevlar(81) helmet ]
+L 09/03/2019 - 01:48:32: "Quinn<4><BOT><CT>" [708 -304 -192] attacked "John<6><BOT><TERRORIST>" [631 208 -192] with "hkp2000" (damage "20") (damage_armor "9") (health "45") (armor "71") (hitgroup "stomach")
+L 09/03/2019 - 01:48:34: "Quinn<4><BOT><CT>" [601 -304 -192] attacked "John<6><BOT><TERRORIST>" [729 200 -192] with "hkp2000" (damage "16") (damage_armor "7") (health "29") (armor "63") (hitgroup "chest")
+L 09/03/2019 - 01:48:34: "Quinn<4><BOT><CT>" [678 -304 -192] attacked "John<6><BOT><TERRORIST>" [764 191 -192] with "hkp2000" (damage "20") (damage_armor "9") (health "9") (armor "53") (hitgroup "stomach")
+L 09/03/2019 - 01:48:36: "Quinn<4><BOT><CT>" [495 -256 -192] attacked "John<6><BOT><TERRORIST>" [814 178 -192] with "hkp2000" (damage "19") (damage_armor "9") (health "0") (armor "43") (hitgroup "stomach")
+L 09/03/2019 - 01:48:36: "John<6><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:48:36: "John<6><BOT><TERRORIST>" dropped "hegrenade"
+L 09/03/2019 - 01:48:36: "John<6><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:48:36: "John<6><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:48:36: "John<6><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:48:36: "Quinn<4><BOT><CT>" [495 -256 -192] killed "John<6><BOT><TERRORIST>" [814 178 -128] with "hkp2000"
+L 09/03/2019 - 01:48:36: "Quinn<3><BOT><CT>" money change 3000+300 = $3300 (tracked)
+L 09/03/2019 - 01:48:36: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "2") (T "2")
+L 09/03/2019 - 01:48:36: Team "CT" scored "2" with "2" players
+L 09/03/2019 - 01:48:36: Team "TERRORIST" scored "2" with "2" players
+L 09/03/2019 - 01:48:36: World triggered "Round_End"
+L 09/03/2019 - 01:48:36: "Quinn<3><BOT><CT>" money change 3300+3250 = $6550 (tracked)
+L 09/03/2019 - 01:48:36: "Brad<4><BOT><CT>" money change 3000+3250 = $6250 (tracked)
+L 09/03/2019 - 01:48:36: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 4000+1400 = $5400 (tracked)
+L 09/03/2019 - 01:48:36: "John<5><BOT><TERRORIST>" money change 350+1400 = $1750 (tracked)
+L 09/03/2019 - 01:48:36: "John<6><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:48:37: "Quinn<3><BOT><CT>" money change 6550-1700 = $4850 (tracked) (purchase: weapon_ssg08)
+L 09/03/2019 - 01:48:37: "Quinn<4><BOT><CT>" picked up "ssg08"
+L 09/03/2019 - 01:48:37: "Quinn<4><BOT><CT>" purchased "ssg08"
+L 09/03/2019 - 01:48:37: "Quinn<4><BOT><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:48:37: "Quinn<3><BOT><CT>" money change 4850-1000 = $3850 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:48:37: "Quinn<4><BOT><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:48:37: "Quinn<3><BOT><CT>" money change 3850-300 = $3550 (tracked) (purchase: weapon_hegrenade)
+L 09/03/2019 - 01:48:37: "Quinn<4><BOT><CT>" picked up "hegrenade"
+L 09/03/2019 - 01:48:37: "Quinn<4><BOT><CT>" purchased "hegrenade"
+L 09/03/2019 - 01:49:21: "Quinn<4><BOT><CT>" dropped "vesthelm"
+L 09/03/2019 - 01:49:21: "Quinn<4><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:49:21: "Quinn<4><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:49:21: "Quinn<4><BOT><CT>" dropped "ssg08"
+L 09/03/2019 - 01:49:21: "Quinn<4><BOT><CT>" dropped "hegrenade"
+L 09/03/2019 - 01:49:21: Starting Freeze period
+L 09/03/2019 - 01:49:21: "Quinn<4><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:49:21: "Quinn<4><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:49:21: "John<6><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:49:21: "John<6><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:49:21: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:49:21: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:49:21: "Brad<5><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:49:21: "Brad<5><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:49:21: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" picked up "c4"
+L 09/03/2019 - 01:49:21: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" triggered "Got_The_Bomb"
+L 09/03/2019 - 01:49:21: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 5400+4600 = $10000
+L 09/03/2019 - 01:49:21: "Quinn<3><BOT><CT>" money change 3550+6450 = $10000
+L 09/03/2019 - 01:49:21: "Brad<4><BOT><CT>" money change 6250+3750 = $10000
+L 09/03/2019 - 01:49:21: "John<5><BOT><TERRORIST>" money change 1750+8250 = $10000
+L 09/03/2019 - 01:49:21: "Brad<4><BOT><CT>" money change 10000-3100 = $6900 (tracked) (purchase: weapon_m4a1)
+L 09/03/2019 - 01:49:21: "Brad<5><BOT><CT>" picked up "m4a1"
+L 09/03/2019 - 01:49:21: "Brad<5><BOT><CT>" purchased "m4a1"
+L 09/03/2019 - 01:49:21: "Brad<5><BOT><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:49:21: "Brad<4><BOT><CT>" money change 6900-1000 = $5900 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:49:21: "Brad<5><BOT><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:49:21: "Brad<4><BOT><CT>" money change 5900-50 = $5850 (tracked) (purchase: weapon_decoy)
+L 09/03/2019 - 01:49:21: "Brad<5><BOT><CT>" picked up "decoy"
+L 09/03/2019 - 01:49:21: "Brad<5><BOT><CT>" purchased "decoy"
+L 09/03/2019 - 01:49:21: "Quinn<3><BOT><CT>" money change 10000-4750 = $5250 (tracked) (purchase: weapon_awp)
+L 09/03/2019 - 01:49:21: "Quinn<4><BOT><CT>" picked up "awp"
+L 09/03/2019 - 01:49:21: "Quinn<4><BOT><CT>" purchased "awp"
+L 09/03/2019 - 01:49:21: "Quinn<4><BOT><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:49:21: "Quinn<3><BOT><CT>" money change 5250-1000 = $4250 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:49:21: "Quinn<4><BOT><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:49:36: World triggered "Round_Start"
+L 09/03/2019 - 01:49:36: "John<6><BOT><TERRORIST>" [27 502 -192] attacked "Quinn<4><BOT><CT>" [644 -197 -192] with "glock" (damage "13") (damage_armor "7") (health "87") (armor "92") (hitgroup "stomach")
+L 09/03/2019 - 01:49:36: "Quinn<4><BOT><CT>" [644 -197 -192] attacked "John<6><BOT><TERRORIST>" [27 502 -192] with "awp" (damage "141") (damage_armor "0") (health "0") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:49:36: "John<6><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:49:36: "John<6><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:49:36: "Quinn<4><BOT><CT>" [644 -197 -192] killed "John<6><BOT><TERRORIST>" [27 502 -128] with "awp"
+L 09/03/2019 - 01:49:36: "Quinn<3><BOT><CT>" money change 4250+100 = $4350 (tracked)
+L 09/03/2019 - 01:49:36: "John<6><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:49:36: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [25 573 -192] attacked "Brad<5><BOT><CT>" [839 -67 -192] with "glock" (damage "40") (damage_armor "22") (health "60") (armor "77") (hitgroup "head")
+L 09/03/2019 - 01:49:36: "Brad<5><BOT><CT>" [839 -67 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [25 573 -192] with "m4a1" (damage "38") (damage_armor "0") (health "62") (armor "0") (hitgroup "stomach")
+L 09/03/2019 - 01:49:37: "Brad<5><BOT><CT>" [792 -124 -192] attacked "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [25 573 -192] with "m4a1" (damage "124") (damage_armor "0") (health "0") (armor "0") (hitgroup "head")
+L 09/03/2019 - 01:49:37: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" triggered "Dropped_The_Bomb"
+L 09/03/2019 - 01:49:37: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" dropped "c4"
+L 09/03/2019 - 01:49:37: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:49:37: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:49:37: "Brad<5><BOT><CT>" [792 -124 -192] killed "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" [25 573 -146] with "m4a1" (headshot)
+L 09/03/2019 - 01:49:37: "Brad<4><BOT><CT>" money change 5850+300 = $6150 (tracked)
+L 09/03/2019 - 01:49:37: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "3") (T "2")
+L 09/03/2019 - 01:49:37: Team "CT" scored "3" with "2" players
+L 09/03/2019 - 01:49:37: Team "TERRORIST" scored "2" with "2" players
+L 09/03/2019 - 01:49:37: World triggered "Round_End"
+L 09/03/2019 - 01:49:37: "Quinn<3><BOT><CT>" money change 4350+3250 = $7600 (tracked)
+L 09/03/2019 - 01:49:37: "Brad<4><BOT><CT>" money change 6150+3250 = $9400 (tracked)
+L 09/03/2019 - 01:49:37: "[LL] Dudsmack<2><STEAM_1:1:3648970><TERRORIST>" money change 10000+1900 = $11900 (tracked)
+L 09/03/2019 - 01:49:37: "John<5><BOT><TERRORIST>" money change 10000+1900 = $11900 (tracked)
+L 09/03/2019 - 01:49:37: "Humorbot 5.0<3><STEAM_1:1:8675309><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:50:22: "Humorbot 5.0<3><STEAM_1:1:8675309>" switched from team <TERRORIST> to <CT>
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT>" switched from team <CT> to <TERRORIST>
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT><TERRORIST>" dropped "hkp2000"
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT><TERRORIST>" dropped "awp"
+L 09/03/2019 - 01:50:22: "Brad<5><BOT>" switched from team <CT> to <TERRORIST>
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" dropped "hkp2000"
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" dropped "m4a1"
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" dropped "decoy"
+L 09/03/2019 - 01:50:22: "John<6><BOT>" switched from team <TERRORIST> to <CT>
+L 09/03/2019 - 01:50:22: Starting Freeze period
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:50:22: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "knife"
+L 09/03/2019 - 01:50:22: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:50:22: "John<6><BOT><CT>" picked up "knife"
+L 09/03/2019 - 01:50:22: "John<6><BOT><CT>" picked up "hkp2000"
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" picked up "c4"
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" triggered "Got_The_Bomb"
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock ]
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_c4 C4 ]
+L 09/03/2019 - 01:50:22: "Quinn<3><BOT><TERRORIST>" money change 10000-2000 = $8000 (tracked) (purchase: weapon_galilar)
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT><TERRORIST>" picked up "galilar"
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT><TERRORIST>" purchased "galilar"
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:50:22: "Quinn<3><BOT><TERRORIST>" money change 8000-1000 = $7000 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:50:22: "Quinn<4><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:50:22: "John<5><BOT><CT>" money change 10000-5000 = $5000 (tracked) (purchase: weapon_scar20)
+L 09/03/2019 - 01:50:22: "John<6><BOT><CT>" picked up "scar20"
+L 09/03/2019 - 01:50:22: "John<6><BOT><CT>" purchased "scar20"
+L 09/03/2019 - 01:50:22: "John<6><BOT><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:50:22: "John<5><BOT><CT>" money change 5000-1000 = $4000 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:50:22: "John<6><BOT><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:50:22: "Brad<4><BOT><TERRORIST>" money change 10000-4750 = $5250 (tracked) (purchase: weapon_awp)
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" picked up "awp"
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" purchased "awp"
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:50:22: "Brad<4><BOT><TERRORIST>" money change 5250-1000 = $4250 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:50:22: "Brad<4><BOT><TERRORIST>" money change 4250-300 = $3950 (tracked) (purchase: weapon_hegrenade)
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" picked up "hegrenade"
+L 09/03/2019 - 01:50:22: "Brad<5><BOT><TERRORIST>" purchased "hegrenade"
+L 09/03/2019 - 01:50:25: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "vesthelm"
+L 09/03/2019 - 01:50:25: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 10000-1000 = $9000 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:50:25: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:50:25: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 9000-3100 = $5900 (tracked) (purchase: weapon_m4a1)
+L 09/03/2019 - 01:50:25: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "m4a1"
+L 09/03/2019 - 01:50:25: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" purchased "m4a1"
+L 09/03/2019 - 01:50:25: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" picked up "defuser"
+L 09/03/2019 - 01:50:25: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 5900-400 = $5500 (tracked) (purchase: item_defuser)
+L 09/03/2019 - 01:50:25: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" purchased "item_defuser"
+L 09/03/2019 - 01:50:37: World triggered "Round_Start"
+L 09/03/2019 - 01:50:37: "John<6><BOT><CT>" [823 -14 -192] attacked "Quinn<4><BOT><TERRORIST>" [327 634 -192] with "scar20" (damage "79") (damage_armor "8") (health "21") (armor "91") (hitgroup "stomach")
+L 09/03/2019 - 01:50:37: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [833 172 -192] attacked "Quinn<4><BOT><TERRORIST>" [327 634 -192] with "m4a1" (damage "88") (damage_armor "19") (health "0") (armor "71") (hitgroup "head")
+L 09/03/2019 - 01:50:37: "Quinn<4><BOT><TERRORIST>" dropped "galilar"
+L 09/03/2019 - 01:50:37: "Quinn<4><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:50:37: "Quinn<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:50:37: "Quinn<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:50:37: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [833 172 -192] killed "Quinn<4><BOT><TERRORIST>" [327 634 -128] with "m4a1" (headshot)
+L 09/03/2019 - 01:50:37: "John<6><BOT><CT>" assisted killing "Quinn<4><BOT><TERRORIST>"
+L 09/03/2019 - 01:50:37: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 5500+300 = $5800 (tracked)
+L 09/03/2019 - 01:50:37: "Quinn<4><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:50:38: "Brad<5><BOT><TERRORIST>" left buyzone with [ weapon_knife_t weapon_glock weapon_c4 weapon_awp weapon_hegrenade kevlar(100) helmet C4 ]
+L 09/03/2019 - 01:50:38: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [833 172 -192] attacked "Brad<5><BOT><TERRORIST>" [156 118 -192] with "m4a1" (damage "22") (damage_armor "4") (health "78") (armor "95") (hitgroup "right arm")
+L 09/03/2019 - 01:50:39: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [833 172 -192] attacked "Brad<5><BOT><TERRORIST>" [138 99 -192] with "m4a1" (damage "22") (damage_armor "4") (health "56") (armor "90") (hitgroup "right arm")
+L 09/03/2019 - 01:50:39: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [833 172 -192] attacked "Brad<5><BOT><TERRORIST>" [139 95 -192] with "m4a1" (damage "22") (damage_armor "4") (health "34") (armor "85") (hitgroup "chest")
+L 09/03/2019 - 01:50:39: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [833 172 -192] attacked "Brad<5><BOT><TERRORIST>" [165 88 -192] with "m4a1" (damage "27") (damage_armor "5") (health "7") (armor "79") (hitgroup "stomach")
+L 09/03/2019 - 01:50:39: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [833 172 -192] attacked "Brad<5><BOT><TERRORIST>" [172 86 -192] with "m4a1" (damage "22") (damage_armor "4") (health "0") (armor "74") (hitgroup "chest")
+L 09/03/2019 - 01:50:39: "Brad<5><BOT><TERRORIST>" triggered "Dropped_The_Bomb"
+L 09/03/2019 - 01:50:39: "Brad<5><BOT><TERRORIST>" dropped "c4"
+L 09/03/2019 - 01:50:39: "Brad<5><BOT><TERRORIST>" dropped "awp"
+L 09/03/2019 - 01:50:39: "Brad<5><BOT><TERRORIST>" dropped "hegrenade"
+L 09/03/2019 - 01:50:39: "Brad<5><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:50:39: "Brad<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:50:39: "Brad<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:50:39: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [833 172 -192] killed "Brad<5><BOT><TERRORIST>" [172 86 -128] with "m4a1"
+L 09/03/2019 - 01:50:39: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 5800+300 = $6100 (tracked)
+L 09/03/2019 - 01:50:39: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "3") (T "3")
+L 09/03/2019 - 01:50:39: Team "CT" scored "3" with "2" players
+L 09/03/2019 - 01:50:39: Team "TERRORIST" scored "3" with "2" players
+L 09/03/2019 - 01:50:39: World triggered "Round_End"
+L 09/03/2019 - 01:50:39: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 6100+3250 = $9350 (tracked)
+L 09/03/2019 - 01:50:39: "John<5><BOT><CT>" money change 4000+3250 = $7250 (tracked)
+L 09/03/2019 - 01:50:39: "Quinn<3><BOT><TERRORIST>" money change 7000+1900 = $8900 (tracked)
+L 09/03/2019 - 01:50:39: "Brad<4><BOT><TERRORIST>" money change 3950+1900 = $5850 (tracked)
+L 09/03/2019 - 01:50:43: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 defuser kevlar(100) helmet ]
+L 09/03/2019 - 01:50:45: Starting Freeze period
+L 09/03/2019 - 01:50:45: "Brad<5><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:50:45: "Brad<5><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:50:45: "Quinn<4><BOT><TERRORIST>" picked up "knife"
+L 09/03/2019 - 01:50:45: "Quinn<4><BOT><TERRORIST>" picked up "glock"
+L 09/03/2019 - 01:50:45: "Quinn<4><BOT><TERRORIST>" picked up "c4"
+L 09/03/2019 - 01:50:45: "Quinn<4><BOT><TERRORIST>" triggered "Got_The_Bomb"
+L 09/03/2019 - 01:50:45: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" left buyzone with [ weapon_knife weapon_hkp2000 weapon_m4a1 defuser kevlar(100) helmet ]
+L 09/03/2019 - 01:50:45: "Quinn<3><BOT><TERRORIST>" money change 8900-2700 = $6200 (tracked) (purchase: weapon_ak47)
+L 09/03/2019 - 01:50:45: "Quinn<4><BOT><TERRORIST>" picked up "ak47"
+L 09/03/2019 - 01:50:45: "Quinn<4><BOT><TERRORIST>" purchased "ak47"
+L 09/03/2019 - 01:50:45: "Quinn<4><BOT><TERRORIST>" picked up "vesthelm"
+L 09/03/2019 - 01:50:45: "Quinn<3><BOT><TERRORIST>" money change 6200-1000 = $5200 (tracked) (purchase: item_assaultsuit)
+L 09/03/2019 - 01:50:45: "Quinn<4><BOT><TERRORIST>" purchased "item_assaultsuit"
+L 09/03/2019 - 01:50:45: "John<5><BOT><CT>" money change 7250-300 = $6950 (tracked) (purchase: weapon_p250)
+L 09/03/2019 - 01:50:45: "John<6><BOT><CT>" dropped "hkp2000"
+L 09/03/2019 - 01:50:45: "John<6><BOT><CT>" picked up "p250"
+L 09/03/2019 - 01:50:45: "John<6><BOT><CT>" purchased "p250"
+L 09/03/2019 - 01:50:45: "Brad<4><BOT><TERRORIST>" money change 5850-5000 = $850 (tracked) (purchase: weapon_g3sg1)
+L 09/03/2019 - 01:50:45: "Brad<5><BOT><TERRORIST>" picked up "g3sg1"
+L 09/03/2019 - 01:50:45: "Brad<5><BOT><TERRORIST>" purchased "g3sg1"
+L 09/03/2019 - 01:50:45: "Brad<5><BOT><TERRORIST>" picked up "vest"
+L 09/03/2019 - 01:50:45: "Brad<4><BOT><TERRORIST>" money change 850-650 = $200 (tracked) (purchase: item_kevlar)
+L 09/03/2019 - 01:50:45: "Brad<5><BOT><TERRORIST>" purchased "item_kevlar"
+L 09/03/2019 - 01:51:00: World triggered "Round_Start"
+L 09/03/2019 - 01:51:00: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [748 -237 -192] attacked "Quinn<4><BOT><TERRORIST>" [24 240 -192] with "m4a1" (damage "21") (damage_armor "4") (health "79") (armor "95") (hitgroup "chest")
+L 09/03/2019 - 01:51:00: "Brad<5><BOT><TERRORIST>" [25 573 -192] attacked "John<6><BOT><CT>" [833 172 -192] with "g3sg1" (damage "79") (damage_armor "8") (health "21") (armor "91") (hitgroup "stomach")
+L 09/03/2019 - 01:51:00: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [748 -237 -192] attacked "Quinn<4><BOT><TERRORIST>" [25 239 -192] with "m4a1" (damage "87") (damage_armor "18") (health "0") (armor "76") (hitgroup "head")
+L 09/03/2019 - 01:51:00: "Quinn<4><BOT><TERRORIST>" triggered "Dropped_The_Bomb"
+L 09/03/2019 - 01:51:00: "Quinn<4><BOT><TERRORIST>" dropped "c4"
+L 09/03/2019 - 01:51:00: "Quinn<4><BOT><TERRORIST>" dropped "ak47"
+L 09/03/2019 - 01:51:00: "Quinn<4><BOT><TERRORIST>" dropped "vesthelm"
+L 09/03/2019 - 01:51:00: "Quinn<4><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:51:00: "Quinn<4><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:51:00: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [748 -237 -192] killed "Quinn<4><BOT><TERRORIST>" [25 239 -128] with "m4a1" (headshot)
+L 09/03/2019 - 01:51:00: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 9350+300 = $9650 (tracked)
+L 09/03/2019 - 01:51:00: "Quinn<4><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:51:00: "John<6><BOT><CT>" left buyzone with [ weapon_knife weapon_p250 weapon_scar20 kevlar(91) helmet ]
+L 09/03/2019 - 01:51:01: "Brad<5><BOT><TERRORIST>" [25 573 -192] attacked "John<6><BOT><CT>" [833 227 -192] with "g3sg1" (damage "79") (damage_armor "8") (health "0") (armor "82") (hitgroup "stomach")
+L 09/03/2019 - 01:51:01: "John<6><BOT><CT>" dropped "scar20"
+L 09/03/2019 - 01:51:01: "John<6><BOT><CT>" dropped "vesthelm"
+L 09/03/2019 - 01:51:01: "John<6><BOT><CT>" dropped "knife"
+L 09/03/2019 - 01:51:01: "John<6><BOT><CT>" dropped "p250"
+L 09/03/2019 - 01:51:01: "Brad<5><BOT><TERRORIST>" [25 573 -192] killed "John<6><BOT><CT>" [833 227 -128] with "g3sg1"
+L 09/03/2019 - 01:51:01: "Brad<4><BOT><TERRORIST>" money change 200+300 = $500 (tracked)
+L 09/03/2019 - 01:51:01: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [748 -237 -192] attacked "Brad<5><BOT><TERRORIST>" [25 573 -192] with "m4a1" (damage "21") (damage_armor "4") (health "79") (armor "95") (hitgroup "chest")
+L 09/03/2019 - 01:51:01: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [748 -237 -192] attacked "Brad<5><BOT><TERRORIST>" [25 573 -192] with "m4a1" (damage "21") (damage_armor "4") (health "58") (armor "90") (hitgroup "chest")
+L 09/03/2019 - 01:51:01: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [748 -237 -192] attacked "Brad<5><BOT><TERRORIST>" [25 573 -192] with "m4a1" (damage "123") (damage_armor "0") (health "0") (armor "90") (hitgroup "head")
+L 09/03/2019 - 01:51:01: "Brad<5><BOT><TERRORIST>" dropped "g3sg1"
+L 09/03/2019 - 01:51:01: "Brad<5><BOT><TERRORIST>" dropped "knife"
+L 09/03/2019 - 01:51:01: "Brad<5><BOT><TERRORIST>" dropped "glock"
+L 09/03/2019 - 01:51:01: "Humorbot 5.0<3><STEAM_1:1:8675309><CT>" [748 -237 -192] killed "Brad<5><BOT><TERRORIST>" [25 573 -128] with "m4a1" (headshot)
+L 09/03/2019 - 01:51:01: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 9650+300 = $9950 (tracked)
+L 09/03/2019 - 01:51:01: Team "CT" triggered "SFUI_Notice_CTs_Win" (CT "4") (T "3")
+L 09/03/2019 - 01:51:01: Team "CT" scored "4" with "2" players
+L 09/03/2019 - 01:51:01: Team "TERRORIST" scored "3" with "2" players
+L 09/03/2019 - 01:51:01: World triggered "Round_End"
+L 09/03/2019 - 01:51:01: "[LL] Dudsmack<2><STEAM_1:1:3648970><CT>" money change 9950+3250 = $13200 (tracked)
+L 09/03/2019 - 01:51:01: "John<5><BOT><CT>" money change 6950+3250 = $10200 (tracked)
+L 09/03/2019 - 01:51:01: "Quinn<3><BOT><TERRORIST>" money change 5200+2400 = $7600 (tracked)
+L 09/03/2019 - 01:51:01: "Brad<4><BOT><TERRORIST>" money change 500+2400 = $2900 (tracked)
+L 09/03/2019 - 01:51:01: "Brad<5><BOT><TERRORIST>" left buyzone with [ ]
+L 09/03/2019 - 01:51:01: Game Over: competitive  de_lltest score 4:3 after 5 min
+L 09/03/2019 - 01:51:01: World triggered "Round_Start"
+L 09/03/2019 - 01:51:13: "John<6><BOT><>" disconnected (reason "Server shutting down")
+L 09/03/2019 - 01:51:13: "Brad<5><BOT><>" disconnected (reason "Server shutting down")
+L 09/03/2019 - 01:51:13: "Quinn<4><BOT><>" disconnected (reason "Server shutting down")
+L 09/03/2019 - 01:51:13: "Humorbot 5.0<3><STEAM_1:1:8675309><>" disconnected (reason "Server shutting down")
+L 09/03/2019 - 01:51:13: "gamesvr-csgo-tourney<2><BOT><>" disconnected (reason "Server shutting down")
+L 09/03/2019 - 01:51:14: server_message: "quit"
+L 09/03/2019 - 01:51:14: Log file closed
