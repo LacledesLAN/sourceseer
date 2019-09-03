@@ -3,6 +3,8 @@ package srcds
 import (
 	"testing"
 	"time"
+
+	"github.com/lacledeslan/sourceseer/pkg/srcds"
 )
 
 func Test_ParseClient(t *testing.T) {
@@ -273,7 +275,9 @@ func Test_ParseClientDisconnected(t *testing.T) {
 			"CSGO": {
 				{msg: `disconnected`, expectedReason: ""},
 				{msg: `disconnected (reason "David B. Robertson timed out")`, expectedReason: "timed out"},
+				{msg: `disconnected (reason "Disconnect")`, expectedReason: "Disconnect"},
 				{msg: `disconnected (reason "Kicked by Console")`, expectedReason: "Kicked by Console"},
+				{msg: `disconnected (reason "Server shutting down")`, expectedReason: "Server shutting down"},
 			},
 			"TF2": {
 				{msg: `disconnected (reason "Kicked from server")`, expectedReason: "Kicked from server"},
@@ -599,3 +603,55 @@ func Test_parseCvarResponse(t *testing.T) {
 		}
 	})
 }
+
+func Test_parseServerQuit(t *testing.T) {
+	t.Run("Valid Cases", func(t *testing.T) {
+		t.Parallel()
+
+		validCases := map[string][]string{
+			"CSGO": []string{
+				`server_message: "quit"`,
+			},
+			"TF2": []string{
+				`server_message: "quit"`,
+			},
+		}
+
+		for name, tests := range validCases {
+			t.Run(name, func(t *testing.T) {
+				for _, test := range tests {
+					if !parseServerQuit(LogEntry{Message: test}) {
+						t.Errorf("Message %q should have successfully parsed.", test)
+					}
+				}
+			})
+		}
+	})
+
+	t.Run("Invalid Cases", func(t *testing.T) {
+		t.Parallel()
+
+		invalidCases := map[string][]string{
+			"CSGO": []string{
+				``,
+				`sv_stopspeed - 80`,
+				`weapon_sound_falloff_multiplier - 1.0`,
+				`"Charles Nicole<1><STEAM_1:0:13377331><>" connected, address ""`
+			},
+			"TF2": []string{
+			},
+		}
+
+		for name, tests := range validCases {
+			t.Run(name, func(t *testing.T) {
+				for _, test := range tests {
+					if parseServerQuit(LogEntry{Message: test}) {
+						t.Errorf("Message %q should NOT have successfully parsed.", test)
+					}
+				}
+			})
+		}
+	})
+}
+
+

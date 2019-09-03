@@ -112,16 +112,16 @@ type CvarValueSet struct {
 }
 
 var (
-	cvarDescription  = regexp.MustCompile(`^([\w]{3,}) -(?:| (-?[\w.;]{0,}))$`)
-	cvarQuotedValue  = regexp.MustCompile(`^"([^\s]{3,})" = "([^\s"]{0,})"`)
-	cvarServerFormat = regexp.MustCompile(`^server_cvar: "([\w]{3,})" "(.*)"$`)
+	cvarDescriptionRegex  = regexp.MustCompile(`^([\w]{3,}) -(?:| (-?[\w.;]{0,}))$`)
+	cvarQuotedValueRegex  = regexp.MustCompile(`^"([^\s]{3,})" = "([^\s"]{0,})"`)
+	cvarServerFormatRegex = regexp.MustCompile(`^server_cvar: "([\w]{3,})" "(.*)"$`)
 )
 
 // parseCvar from logging output
 func parseCvar(le LogEntry) (cvar CvarValueSet, ok bool) {
-	tokens := cvarServerFormat.FindStringSubmatch(le.Message)
+	tokens := cvarServerFormatRegex.FindStringSubmatch(le.Message)
 	if len(tokens) != 3 {
-		tokens = cvarQuotedValue.FindStringSubmatch(le.Message)
+		tokens = cvarQuotedValueRegex.FindStringSubmatch(le.Message)
 	}
 
 	if len(tokens) == 3 {
@@ -136,9 +136,9 @@ func parseCvar(le LogEntry) (cvar CvarValueSet, ok bool) {
 
 // parseCvarResponse is sent via standard out when a cvar name is passed to SRCDS without an associated value
 func parseCvarResponse(s string) (cvar CvarValueSet, ok bool) {
-	tokens := cvarDescription.FindStringSubmatch(s)
+	tokens := cvarDescriptionRegex.FindStringSubmatch(s)
 	if len(tokens) != 3 {
-		tokens = cvarQuotedValue.FindStringSubmatch(s)
+		tokens = cvarQuotedValueRegex.FindStringSubmatch(s)
 	}
 
 	if len(tokens) != 3 {
@@ -149,6 +149,14 @@ func parseCvarResponse(s string) (cvar CvarValueSet, ok bool) {
 		Value: tokens[2],
 		Name:  tokens[1],
 	}, true
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var serverQuitRegex = regexp.MustCompile(`^server_message: "quit"$`)
+
+func parseServerQuit(le LogEntry) (ok bool) {
+	return serverQuitRegex.Match([]byte(le.Message))
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
