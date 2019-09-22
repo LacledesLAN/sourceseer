@@ -4,7 +4,7 @@ First off, thank you for considering contributing to `sourceseer`. It's people l
 
 ### Did you find a bug or have questions?
 
-Let us know by using [GitHub issues](https://sourceseer/issues) on this repository.
+Let us know by using [GitHub issues](https://github.com/LacledesLAN/sourceseer/issues) on this repository.
 
 ### Have a fix or feature?
 
