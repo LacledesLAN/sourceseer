@@ -3,7 +3,7 @@ package csgo
 import (
 	"testing"
 
-	"github.com/LacledesLAN/sourceseer/pkg/srcds"
+	"github.com/lacledeslan/sourceseer/pkg/srcds"
 )
 
 func Test_parseAffiliation(t *testing.T) {

@@ -3,7 +3,7 @@ package csgo
 import (
 	"strconv"
 
-	"github.com/LacledesLAN/sourceseer/pkg/srcds"
+	"github.com/lacledeslan/sourceseer/pkg/srcds"
 )
 
 //Args contains the command line options for the Counter-Strike: Global Offensive Server executable

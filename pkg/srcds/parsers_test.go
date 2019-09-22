@@ -3,8 +3,6 @@ package srcds
 import (
 	"testing"
 	"time"
-
-	"github.com/lacledeslan/sourceseer/pkg/srcds"
 )
 
 func Test_ParseClient(t *testing.T) {
@@ -636,13 +634,12 @@ func Test_parseServerQuit(t *testing.T) {
 				``,
 				`sv_stopspeed - 80`,
 				`weapon_sound_falloff_multiplier - 1.0`,
-				`"Charles Nicole<1><STEAM_1:0:13377331><>" connected, address ""`
+				`"Charles Nicole<1><STEAM_1:0:13377331><>" connected, address ""`,
 			},
-			"TF2": []string{
-			},
+			"TF2": []string{},
 		}
 
-		for name, tests := range validCases {
+		for name, tests := range invalidCases {
 			t.Run(name, func(t *testing.T) {
 				for _, test := range tests {
 					if parseServerQuit(LogEntry{Message: test}) {
@@ -653,5 +650,3 @@ func Test_parseServerQuit(t *testing.T) {
 		}
 	})
 }
-
-

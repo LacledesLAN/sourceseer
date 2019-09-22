@@ -2,6 +2,8 @@ package csgo
 
 import (
 	"time"
+
+	"github.com/rs/zerolog/log"
 )
 
 // affiliation represents a player's assigned side (CT/T)
@@ -57,11 +59,23 @@ func (g *gameInfo) currentMatchLastCompletedRound() lastInt {
 	if len(g.matches) == 0 {
 		return 0
 	}
-	matchIndex := len(g.matches) - 1
 
+	matchIndex := len(g.matches) - 1
 	return lastInt(len(g.matches[matchIndex].rounds))
 }
 
+func (g *gameInfo) teamName(t team) string {
+	switch t {
+	case mpTeam1:
+		return g.mpTeamname1
+	case mpTeam2:
+		return g.mpTeamname2
+	default:
+		return ""
+	}
+}
+
+// roundsWonCurrentMatch returns the number of rounds won for the current match by the specified team
 func (g *gameInfo) roundsWonCurrentMatch(t team) int {
 	if len(g.matches) == 0 {
 		return 0
@@ -82,7 +96,30 @@ func (g *gameInfo) roundsWonCurrentMatch(t team) int {
 	return r
 }
 
-func (g *gameInfo) setRoundWinner(a affiliation, t team, trigger string) {
+func (g *gameInfo) scoresCurrentMatch() (mpTeam1Wins, mpTeam2Wins lastInt) {
+	if len(g.matches) == 0 {
+		return 0, 0
+	}
+
+	matchIndex := len(g.matches) - 1
+	if len(g.matches[matchIndex].rounds) == 0 {
+		return 0, 0
+	}
+
+	mpTeam1Wins, mpTeam2Wins = lastInt(0), lastInt(0)
+
+	for _, round := range g.matches[matchIndex].rounds {
+		if round.winningTeam == mpTeam1 {
+			mpTeam1Wins++
+		} else if round.winningTeam == mpTeam2 {
+			mpTeam2Wins++
+		}
+	}
+
+	return mpTeam1Wins, mpTeam2Wins
+}
+
+func (g *gameInfo) setRoundWinner(aff affiliation, t team, trigger string) {
 	if len(g.matches) == 0 {
 		g.matches = []matchInfo{matchInfo{}}
 	}
@@ -93,10 +130,15 @@ func (g *gameInfo) setRoundWinner(a affiliation, t team, trigger string) {
 	}
 
 	g.matches[matchIndex].rounds = append(g.matches[matchIndex].rounds, roundInfo{
-		winningAffiliation: a,
+		winningAffiliation: aff,
 		winningTeam:        t,
 		winningTrigger:     trigger,
 	})
+
+	lastRound := int(g.currentMatchLastCompletedRound())
+	mpTeam1Wins, mpTeam2Wins := g.scoresCurrentMatch()
+
+	log.Info().Int("match", matchIndex+1).Int("round", lastRound).Int("team1_score", int(mpTeam1Wins)).Int("team2_score", int(mpTeam2Wins)).Msgf("Round %02d won by %v (%v as %v)", lastRound, t, g.teamName(t), aff)
 }
 
 // restart the current match
@@ -114,17 +156,25 @@ func (g *gameInfo) nextMatch(mapName string) {
 		g.matches = append(g.matches, matchInfo{
 			mapName: mapName,
 		})
+		log.Info().Msgf("Match 01 starting on map %q", mapName)
 	}
 	i := len(g.matches) - 1
 
-	// 2+ rounds have been completed; assume we can advance to next match
-	if g.currentMatchLastCompletedRound() > 1 {
+	if g.currentMatchLastCompletedRound() >= 1 {
+		// 1+ rounds have been completed; assume we completed the last match and are advancing ot the next
 		g.matches[i].ended = time.Now()
 		g.matches = append(g.matches, matchInfo{
 			mapName: mapName,
 		})
 		i++
+		log.Info().Msgf("Match %02d starting on map %q", i+1, mapName)
+		return
 	}
 
+	if len(g.matches[i].rounds) > 0 && len(g.matches[i].rounds[0].winningTrigger) > 0 {
+		log.Info().Msgf("Match %02d is restarting on map %q", i+1, mapName)
+	}
+
+	// Use to reset stats; even if no round history details are being reset
 	g.matches[i].reset()
 }

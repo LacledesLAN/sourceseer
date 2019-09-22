@@ -1,7 +1,7 @@
 package csgo
 
 import (
-	"github.com/LacledesLAN/sourceseer/pkg/srcds"
+	"github.com/lacledeslan/sourceseer/pkg/srcds"
 )
 
 // Server represents an interactive CSGO server
@@ -13,6 +13,20 @@ type Server interface {
 func (s *server) Start() {
 
 }
+
+//// WarMod Hacks ¯\_ಠ_ಠ_/¯
+//if strings.HasPrefix(le.Message, "[WarMod_BFG]") {
+//	// WarMod drops teamnames during the LO3 before knife fights
+//	if strings.Contains(le.Message, `", "event": "knife_round_`) {
+//		if len(o.game.mpTeamname1) > 0 {
+//			g.cmdIn <- "mp_teamname_1 " + g.teamAssignedToCT
+//		}
+//
+//		if len(o.game.mpTeamname1) > 0 {
+//			g.cmdIn <- "mp_teamname_2 " + g.teamAssignedToTerrorist
+//		}
+//	}
+//}
 
 //Wrapper for observing and interacting with a SRCDS instance
 //func Wrapper(osArgs ...string) Reactor {

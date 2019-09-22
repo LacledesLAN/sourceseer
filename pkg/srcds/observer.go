@@ -6,6 +6,8 @@ import (
 	"runtime"
 	"strings"
 	"time"
+
+	"github.com/rs/zerolog/log"
 )
 
 const (
@@ -52,15 +54,15 @@ func newReader(byteStream io.Reader) *observer {
 			if strings.HasSuffix(line, eolWindows) {
 				o.endOfLine = eolWindows
 				line = line[:len(line)-2]
-				Log(SourceSeer, "Windows EOL delimiter detected.")
+				log.Debug().Msg("Windows EOL delimiter detected.")
 			} else {
 				o.endOfLine = eolUnix
 
 				if strings.HasSuffix(line, eolUnix) {
-					Log(SourceSeer, "Unix EOL delimiter detected.")
+					log.Debug().Msg("Unix EOL delimiter detected.")
 					line = line[:len(line)-1]
 				} else {
-					Log(SourceSeer, "Defaulting to Unix EOL delimiter.")
+					log.Warn().Msg("Couldn't detect EOL delimiter; defaulting to Unix EOL.")
 					line = strings.TrimSpace(line)
 				}
 			}
@@ -146,19 +148,20 @@ func (o *observer) processMessage(line string, outEntries chan<- LogEntry) {
 			return
 		}
 
+		log.Debug().Str("source", "log entry").Msg(le.Message)
+
 		if outEntries != nil {
 			outEntries <- le
 		}
 
-		Log(SRCDSLog, le.Message)
 		return
 	}
 
 	if cvarSet, ok := parseCvarResponse(line); ok {
 		o.cvars.setIfWatched(cvarSet.Name, cvarSet.Value, time.Now())
-		Log(SRCDSCvar, line)
+		log.Debug().Str("source", "stdout").Msg(line)
 		return
 	}
 
-	Log(SRCDSOther, line)
+	log.Debug().Str("source", "stdout").Msg(line)
 }

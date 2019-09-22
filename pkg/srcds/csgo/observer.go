@@ -5,7 +5,8 @@ import (
 	"io"
 	"strings"
 
-	"github.com/LacledesLAN/sourceseer/pkg/srcds"
+	"github.com/lacledeslan/sourceseer/pkg/srcds"
+	"github.com/rs/zerolog/log"
 )
 
 //Observer for watching CSGO log streams
@@ -74,8 +75,8 @@ type observer struct {
 	srcdsObserver srcds.Observer
 }
 
-func (o *observer) processLogEntry(log srcds.LogEntry) {
-	if clientLog, ok := srcds.ParseClientLogEntry(log); ok {
+func (o *observer) processLogEntry(le srcds.LogEntry) {
+	if clientLog, ok := srcds.ParseClientLogEntry(le); ok {
 		if _, ok := parseClientSay(clientLog); ok {
 			// TODO: process the client saying something
 			return
@@ -88,19 +89,17 @@ func (o *observer) processLogEntry(log srcds.LogEntry) {
 
 		if m, ok := parseClientSetAffiliation(clientLog); ok {
 			o.playerJoined(m.to, clientLog.Client)
-			// TODO: Add ability to swap players
 			return
 		}
 
 		if _, ok := srcds.ParseClientDisconnected(clientLog); ok {
-			//o.playerDropped(clientLog.Client)
-			//TODO: Do we even need to drop players?
+			o.playerDropped(clientLog.Client)
 		}
 
 		return
 	}
 
-	if worldLog, ok := parseWorldTrigger(log); ok {
+	if worldLog, ok := parseWorldTrigger(le); ok {
 		if mapName, ok := parseWorldTriggerMatchStart(worldLog); ok {
 			o.game.nextMatch(mapName)
 		}
@@ -113,35 +112,78 @@ func (o *observer) processLogEntry(log srcds.LogEntry) {
 
 		if parseWorldTriggerGameCommencing(worldLog) {
 		}
+
+		return
 	}
 
-	if strings.HasPrefix(log.Message, "Team") {
-		if msg, ok := parseTeamTriggered(log); ok {
+	if strings.HasPrefix(le.Message, "Team") {
+		if msg, ok := parseTeamTriggered(le); ok {
 			team := o.getTeam(msg.affiliation)
 			o.game.setRoundWinner(msg.affiliation, team, msg.trigger)
-		}
 
-		if msg, ok := parseTeamSetName(log); ok {
-			switch teamName := o.getTeam(msg.affiliation); teamName {
-			case mpTeam1:
-				o.game.mpTeamname1 = msg.teamName
-			case mpTeam2:
-				o.game.mpTeamname2 = msg.teamName
+			// Let's see if a team won
+			maxrounds, _ := o.srcdsObserver.TryCvarAsInt("mp_maxrounds", defaultMpMaxrounds)
+			otMaxrounds, _ := o.srcdsObserver.TryCvarAsInt("mp_overtime_maxrounds", defaultMpOvertimeMaxrounds)
+
+			if winThreshold := calculateLastRoundWinThreshold(maxrounds, otMaxrounds, o.game.currentMatchLastCompletedRound()); o.game.currentMatchLastCompletedRound() >= winThreshold {
+				matchNum := len(o.game.matches)
+				roundNum := int(o.game.currentMatchLastCompletedRound())
+				mpTeam1Wins, mpTeam2Wins := o.game.scoresCurrentMatch()
+				winningTeam := spectator
+
+				if mpTeam1Wins >= winThreshold {
+					winningTeam = mpTeam1
+				} else if mpTeam2Wins >= winThreshold {
+					winningTeam = mpTeam2
+				} else {
+					return
+				}
+
+				log.Info().Int("match", matchNum).Int("round", roundNum).Int("team1_score", int(mpTeam1Wins)).Int("team2_score", int(mpTeam2Wins)).Msgf("Match %02d clinched by %v (%v)", matchNum, winningTeam, o.game.teamName(winningTeam))
 			}
 
 			return
 		}
 
-		//return
+		if msg, ok := parseTeamSetName(le); ok {
+			team := o.getTeam(msg.affiliation)
+
+			switch team {
+			case mpTeam1:
+				if o.game.mpTeamname1 == msg.teamName {
+					return
+				}
+
+				o.game.mpTeamname1 = msg.teamName
+				log.Info().Msgf("Team %q is playing as %v", msg.teamName, mpTeam1)
+			case mpTeam2:
+				if o.game.mpTeamname2 == msg.teamName {
+					return
+				}
+
+				o.game.mpTeamname2 = msg.teamName
+				log.Info().Msgf("Team %q is playing as %v", msg.teamName, mpTeam2)
+			}
+		}
+
+		return
 	}
 
-	if parseStartingFreezePeriod(log) {
+	if parseStartingFreezePeriod(le) {
 		return
+	}
+
+	// WarMod Warning
+	if strings.HasPrefix(le.Message, "[WarMod_BFG]") {
+		if strings.Contains(le.Message, `", "event": "log_start", `) {
+			log.Warn().Msg("WarMod BFG detected; there are multiple bugs with running WarMod across multiple matches.")
+		}
 	}
 }
 
-func (o *observer) getTeam(a affiliation) team {
-	if a == unassigned {
+// TODO: -- needs unit tests
+func (o *observer) getTeam(aff affiliation) team {
+	if aff == unassigned {
 		return ""
 	}
 
@@ -151,39 +193,71 @@ func (o *observer) getTeam(a affiliation) team {
 	completedRounds := o.game.currentMatchLastCompletedRound()
 
 	if calculateSidesAreCurrentlySwitched(mpHalftime, mpMaxrounds, mpOvertimeMaxrounds, completedRounds) {
-		if a == counterterrorist {
+		if aff == counterterrorist {
 			return mpTeam2
 		}
 
 		return mpTeam1
 	}
 
-	if a == counterterrorist {
+	if aff == counterterrorist {
 		return mpTeam1
 	}
 
 	return mpTeam2
 }
 
+// TODO: -- needs unit tests
 func (o *observer) playerDropped(c srcds.Client) {
 	o.players.mpTeam1.ClientDropped(c)
 	o.players.mpTeam2.ClientDropped(c)
 	o.players.unassigned.ClientDropped(c)
+	log.Info().Str("SteamID", c.SteamID).Msgf("Client %q disconnected.", c.Username)
 }
 
-func (o *observer) playerJoined(a affiliation, c srcds.Client) {
-	switch team := o.getTeam(a); team {
+// TODO: -- needs unit tests
+func (o *observer) playerJoined(aff affiliation, c srcds.Client) {
+	team := o.getTeam(aff)
+
+	switch team {
 	case mpTeam1:
+		if o.players.mpTeam1.HasClient(c) {
+			return
+		}
+
 		o.players.mpTeam1.ClientJoined(c)
 		o.players.mpTeam2.ClientDropped(c)
 		o.players.unassigned.ClientDropped(c)
 	case mpTeam2:
+		if o.players.mpTeam2.HasClient(c) {
+			return
+		}
+
 		o.players.mpTeam1.ClientDropped(c)
 		o.players.mpTeam2.ClientJoined(c)
 		o.players.unassigned.ClientDropped(c)
 	default:
-		o.players.mpTeam1.ClientDropped(c)
-		o.players.mpTeam2.ClientDropped(c)
+		if o.players.unassigned.HasClient(c) {
+			return
+		}
+
 		o.players.unassigned.ClientJoined(c)
+
+		if o.players.mpTeam1.HasClient(c) {
+			o.players.mpTeam1.ClientDropped(c)
+			log.Info().Str("SteamID", c.SteamID).Msgf("Client %q dropped from mpTeam1 and joined unassigned.", c.Username)
+			return
+		}
+
+		if o.players.mpTeam2.HasClient(c) {
+			o.players.mpTeam2.ClientDropped(c)
+			log.Info().Str("SteamID", c.SteamID).Msgf("Client %q dropped from mpTeam2 and joined unassigned.", c.Username)
+			return
+		}
+
+		log.Debug().Str("SteamID", c.SteamID).Msgf("Client %q connected and joined unassigned.", c.Username)
+		return
 	}
+
+	log.Info().Str("SteamID", c.SteamID).Msgf("Client %q joined %v.", c.Username, team)
 }

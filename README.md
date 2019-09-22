@@ -35,11 +35,3 @@ Not only did [Go](https://github.com/golang/go) meet all of these requirement bu
 ## Overview
 
 `Sourceseer` creates a child-process instance of `SRCDS` grabbing exclusive access to its `standard output`, `standard error`, and `standard in` streams. `Sourcseer` determines (and maintains) the state of the game server by observing all output from the `SRCDS` process and is automate changes by to sending `SRCDS` commands when certain conditions are met.
-
-## Common Definitions
-
-TODO
-
-* Affiliation
-* Match = map
-* Set = set of matches

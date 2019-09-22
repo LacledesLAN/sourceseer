@@ -5,11 +5,15 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/LacledesLAN/sourceseer/pkg/srcds/csgo"
+	"github.com/lacledeslan/sourceseer/pkg/srcds/csgo"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 )
 
 func main() {
-	fmt.Print("STARTING TESTS\n\n")
+	fmt.Print("\n=======================================================================\n\n")
+	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 
 	//file, err := os.Open(`C:\Workspace\sourceseer\pkg\srcds\csgo\testdata\tourney_3map_clinch.log`)
 	file, err := os.Open(`..\..\pkg\srcds\csgo\testdata\tourney_3map_clinch.log`)
@@ -23,6 +27,4 @@ func main() {
 	c := csgo.NewReader(r, 1, 30, 7)
 
 	c.Start()
-
-	c.DebugDump()
 }

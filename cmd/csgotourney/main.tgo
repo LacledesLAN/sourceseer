@@ -4,21 +4,14 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
-	"math/rand"
 	"os"
 	"runtime"
 	"strings"
 	"time"
 
 	"github.com/jessevdk/go-flags"
-	"github.com/lacledeslan/sourceseer/internal/pkg/srcds"
-	"github.com/lacledeslan/sourceseer/internal/pkg/srcds/csgo"
-)
-
-const (
-	alphaNumericChars  = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	lacledesMaps = "/de_lltest/de_tinyorange/poolday/"
-	stockMaps    = "/ar_baggage/ar_dizzy/ar_monastery/ar_shoots/cs_agency/cs_assault/cs_italy/cs_militia/cs_office/de_austria/de_bank/de_biome/de_cache/de_canals/de_cbble/de_dust2/de_inferno/de_lake/de_mirage/de_nuke/de_overpass/de_safehouse/de_shortnuke/de_stmarc/de_subzero/de_sugarcane/de_train/"
+	"github.com/lacledeslan/sourceseer/pkg/srcds"
+	"github.com/lacledeslan/sourceseer/pkg/srcds/csgo"
 )
 
 func main() {
@@ -57,22 +50,6 @@ func main() {
 		fmt.Fprint(os.Stderr, "When remote console is enabled argument rcon_pass must be provided!\n\n")
 		fmt.Fprint(os.Stderr, "\tExample: --rcon_password BulldogsFancy957Cupcakes\n\n")
 		os.Exit(87)
-	}
-
-	if len(csgoArgs.TVPassword) < 1 {
-		b := make([]byte, 16)
-		for i := range b {
-			b[i] = letterBytes[rand.Intn(len(letterBytes))]
-		}
-		csgoArgs.TVPassword = string(b)
-	}
-
-	if len(csgoArgs.TVRelayPassword) < 1 {
-		b := make([]byte, 16)
-		for i := range b {
-			b[i] = letterBytes[rand.Intn(len(letterBytes))]
-		}
-		csgoArgs.TVRelayPassword = string(b)
 	}
 
 	maps := args[1:]
