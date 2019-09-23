@@ -1,7 +1,6 @@
 package csgo
 
 import (
-	"fmt"
 	"io"
 	"strings"
 
@@ -11,7 +10,6 @@ import (
 
 //Observer for watching CSGO log streams
 type Observer interface {
-	DebugDump()
 	Start()
 }
 
@@ -26,36 +24,6 @@ func NewReader(r io.Reader, mpHalftime, mpMaxRounds, mpMaxOvertimeRounds int) Ob
 	o.srcdsObserver.AddCvarWatcherDefault("mp_overtime_maxrounds", string(mpMaxOvertimeRounds))
 
 	return o
-}
-
-func (o observer) DebugDump() {
-	fmt.Print("=======================================================================")
-	for i, m := range o.game.matches {
-		fmt.Printf("\nMatch #%02d on %q started %q; %q (mp_team1) vs %q (mp_team2).\n", i+1, m.mapName, m.started, o.game.mpTeamname1, o.game.mpTeamname2)
-
-		fmt.Printf("\tTotal rounds played: %d.\n\n", len(m.rounds))
-
-		for j, r := range m.rounds {
-			fmt.Printf("\t%02d - Won by %q as %q via trigger %q.\n", j+1, r.winningTeam, r.winningAffiliation, r.winningTrigger)
-		}
-	}
-
-	fmt.Println("\nUNASSIGNED")
-	for _, p := range o.players.unassigned {
-		fmt.Printf("\t%+v\n", p)
-	}
-
-	fmt.Println("\nMP TEAM 1")
-	for _, p := range o.players.mpTeam1 {
-		fmt.Printf("\t%+v\n", p)
-	}
-
-	fmt.Println("\nMP TEAM 2")
-	for _, p := range o.players.mpTeam2 {
-		fmt.Printf("\t%+v\n", p)
-	}
-
-	fmt.Println("\n=======================================================================")
 }
 
 // Starts the observer
@@ -99,18 +67,22 @@ func (o *observer) processLogEntry(le srcds.LogEntry) {
 		return
 	}
 
+	if parseStartingFreezePeriod(le) {
+		log.Info().Msg("Starting Freeze Period")
+		return
+	}
+
 	if worldLog, ok := parseWorldTrigger(le); ok {
 		if mapName, ok := parseWorldTriggerMatchStart(worldLog); ok {
-			o.game.nextMatch(mapName)
+			o.game.nextMatch(mapName, le.Timestamp)
 		}
 
 		if parseWorldTriggerRoundStart(worldLog) {
-		}
-
-		if parseWorldTriggerRoundEnd(worldLog) {
+			log.Info().Msg("Round Start")
 		}
 
 		if parseWorldTriggerGameCommencing(worldLog) {
+			log.Info().Msg("Game Commencing")
 		}
 
 		return
@@ -146,30 +118,9 @@ func (o *observer) processLogEntry(le srcds.LogEntry) {
 		}
 
 		if msg, ok := parseTeamSetName(le); ok {
-			team := o.getTeam(msg.affiliation)
-
-			switch team {
-			case mpTeam1:
-				if o.game.mpTeamname1 == msg.teamName {
-					return
-				}
-
-				o.game.mpTeamname1 = msg.teamName
-				log.Info().Msgf("Team %q is playing as %v", msg.teamName, mpTeam1)
-			case mpTeam2:
-				if o.game.mpTeamname2 == msg.teamName {
-					return
-				}
-
-				o.game.mpTeamname2 = msg.teamName
-				log.Info().Msgf("Team %q is playing as %v", msg.teamName, mpTeam2)
-			}
+			o.setTeamname(msg.affiliation, msg.teamName)
 		}
 
-		return
-	}
-
-	if parseStartingFreezePeriod(le) {
 		return
 	}
 
@@ -181,9 +132,10 @@ func (o *observer) processLogEntry(le srcds.LogEntry) {
 	}
 }
 
+// getTeam returns the team (mp_team1 / mp_team2 / unassigned)
 // TODO: -- needs unit tests
 func (o *observer) getTeam(aff affiliation) team {
-	if aff == unassigned {
+	if aff != counterterrorist && aff != terrorist {
 		return ""
 	}
 
@@ -260,4 +212,28 @@ func (o *observer) playerJoined(aff affiliation, c srcds.Client) {
 	}
 
 	log.Info().Str("SteamID", c.SteamID).Msgf("Client %q joined %v.", c.Username, team)
+}
+
+func (o *observer) setTeamname(aff affiliation, name string) {
+	team := o.getTeam(aff)
+	name = strings.TrimSpace(name)
+
+	switch team {
+	case mpTeam1:
+		if o.game.mpTeamname1 == name {
+			return
+		}
+
+		o.game.mpTeamname1 = name
+		log.Info().Msgf("Team %q is playing as %v (currently %v)", name, mpTeam1, aff)
+	case mpTeam2:
+		if o.game.mpTeamname2 == name {
+			return
+		}
+
+		o.game.mpTeamname2 = name
+		log.Info().Msgf("Team %q is playing as %v (currently %v)", name, mpTeam2, aff)
+	default:
+		log.Warn().Msgf("Cannot set a team name of %q for affiliation %q.", name, aff)
+	}
 }

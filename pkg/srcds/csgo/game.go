@@ -26,6 +26,13 @@ type matchInfo struct {
 	started time.Time
 }
 
+type matchPhase uint16
+
+const (
+	unknown matchPhase = 1 << iota
+	freezePeriod
+)
+
 // roundInfo contains statistics about a round
 type roundInfo struct {
 	winningAffiliation affiliation
@@ -43,9 +50,9 @@ const (
 )
 
 // reset the match information; preserving the map name
-func (m *matchInfo) reset() {
+func (m *matchInfo) reset(start time.Time) {
 	m.ended = time.Time{}
-	m.started = time.Now()
+	m.started = start
 	m.rounds = []roundInfo{}
 }
 
@@ -141,20 +148,13 @@ func (g *gameInfo) setRoundWinner(aff affiliation, t team, trigger string) {
 	log.Info().Int("match", matchIndex+1).Int("round", lastRound).Int("team1_score", int(mpTeam1Wins)).Int("team2_score", int(mpTeam2Wins)).Msgf("Round %02d won by %v (%v as %v)", lastRound, t, g.teamName(t), aff)
 }
 
-// restart the current match
-func (g *gameInfo) restartMatch() {
-	if len(g.matches) == 0 {
-		return
-	}
-
-	g.matches[len(g.matches)-1].reset()
-}
-
 // nextMatch will end the current match and start the next; if the current match has one or fewer completed round it will be reset and reused
-func (g *gameInfo) nextMatch(mapName string) {
+// TODO - better  documentation!
+func (g *gameInfo) nextMatch(mapName string, start time.Time) {
 	if len(g.matches) == 0 {
 		g.matches = append(g.matches, matchInfo{
 			mapName: mapName,
+			started: start,
 		})
 		log.Info().Msgf("Match 01 starting on map %q", mapName)
 	}
@@ -162,9 +162,10 @@ func (g *gameInfo) nextMatch(mapName string) {
 
 	if g.currentMatchLastCompletedRound() >= 1 {
 		// 1+ rounds have been completed; assume we completed the last match and are advancing ot the next
-		g.matches[i].ended = time.Now()
+		g.matches[i].ended = start
 		g.matches = append(g.matches, matchInfo{
 			mapName: mapName,
+			started: start,
 		})
 		i++
 		log.Info().Msgf("Match %02d starting on map %q", i+1, mapName)
@@ -176,5 +177,5 @@ func (g *gameInfo) nextMatch(mapName string) {
 	}
 
 	// Use to reset stats; even if no round history details are being reset
-	g.matches[i].reset()
+	g.matches[i].reset(start)
 }

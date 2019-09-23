@@ -35,7 +35,6 @@
         "weapon"
     ],
     "go.enableCodeLens":{
-        "references": false,
         "runtest": true
     }
 }
