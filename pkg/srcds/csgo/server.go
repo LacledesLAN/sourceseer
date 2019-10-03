@@ -4,11 +4,6 @@ import (
 	"github.com/lacledeslan/sourceseer/pkg/srcds"
 )
 
-// Server represents an interactive CSGO server
-type Server interface {
-	Observer
-}
-
 // Start the CSGO server
 func (s *server) Start() {
 
@@ -42,7 +37,7 @@ func (s *server) Start() {
 
 type server struct {
 	srcds.Server
-	observer
+	Observer
 }
 
 func newServer() *server {

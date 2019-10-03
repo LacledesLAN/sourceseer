@@ -60,7 +60,7 @@ func Test_matchInfo_resetMatch(t *testing.T) {
 		},
 	}
 
-	mock.reset()
+	mock.reset(time.Now())
 
 	if !mock.ended.IsZero() {
 		t.Errorf("Ended time did not get reset; was %q.", mock.ended)

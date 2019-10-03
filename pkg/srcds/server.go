@@ -60,6 +60,7 @@ func Command(name string, arg ...string) (*Server, error) {
 // CommandContext is like command but includes a context.
 func CommandContext(ctx context.Context, name string, arg ...string) (*Server, error) {
 	cmd := exec.CommandContext(ctx, name, arg...)
+	cmd.Start()
 
 	stdOut, err := cmd.StdoutPipe()
 	if err != nil {
@@ -71,16 +72,53 @@ func CommandContext(ctx context.Context, name string, arg ...string) (*Server, e
 		return nil, err
 	}
 
-	server := &Server{
-		cmdIn:    make(chan string, 6),
-		observer: *newReader(stdOut),
+	startFunc := func() {
+		cmd.Start()
 	}
 
+	server := wrapProcess(ctx, stdOut, cmdStdIn, startFunc)
+
+	go func(r io.ReadCloser) {
+		defer r.Close()
+		s := bufio.NewScanner(r)
+
+		for s.Scan() {
+			server.SendCommand(s.Text())
+		}
+	}(os.Stdin)
+
+	return server, nil
+}
+
+// Server represents an interactive SRCDS instance
+type Server struct {
+	cmdIn chan string
+	*observer
+}
+
+// Start the SRCDS process
+func (s *Server) Start() <-chan LogEntry {
+	return s.start()
+}
+
+// wrap a csgo srcds process
+func wrapProcess(ctx context.Context, stdOut io.Reader, stdIn io.WriteCloser, startFunc func()) *Server {
+	server := &Server{
+		cmdIn:    make(chan string, 6),
+		observer: newReader(stdOut),
+	}
+
+	server.start = func() <-chan LogEntry {
+		startFunc()
+		return server.start()
+	}
+
+	// connect to process's standard in
 	go func(wc io.WriteCloser, s *Server) {
 		prev := time.Time{}
 		ticker := time.NewTicker(90 * time.Millisecond)
-		defer wc.Close()
 		defer ticker.Stop()
+		defer wc.Close()
 
 		for {
 			select {
@@ -98,26 +136,11 @@ func CommandContext(ctx context.Context, name string, arg ...string) (*Server, e
 				// Politely ask SRCDS to shutdown
 				wc.Write([]byte("say server shutting down" + s.endOfLine))
 				wc.Write([]byte("quit" + s.endOfLine))
-				time.Sleep(500 * time.Millisecond)
+				time.Sleep(750 * time.Millisecond)
 				return
 			}
 		}
-	}(cmdStdIn, server)
+	}(stdIn, server)
 
-	go func(r io.ReadCloser) {
-		defer r.Close()
-		s := bufio.NewScanner(r)
-
-		for s.Scan() {
-			server.cmdIn <- s.Text()
-		}
-	}(os.Stdin)
-
-	return server, nil
-}
-
-// Server represents an interactive SRCDS instance
-type Server struct {
-	cmdIn chan string
-	observer
+	return server
 }

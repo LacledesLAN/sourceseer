@@ -19,7 +19,6 @@ func init() {
 
 // RunTourneyServer starts up a CSGO tourney server
 func RunTourneyServer(mpTeamname1, mpTeamname2, pass, rconPass, tvPass string, maps ...string) error {
-
 	mpTeamname1 = strings.TrimSpace(mpTeamname1)
 	if len(mpTeamname1) == 0 {
 		return errors.New("mpTeamname1 cannot be empty")

@@ -8,14 +8,9 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-//Observer for watching CSGO log streams
-type Observer interface {
-	Start()
-}
-
 // NewReader for observing streaming CSGO data
-func NewReader(r io.Reader, mpHalftime, mpMaxRounds, mpMaxOvertimeRounds int) Observer {
-	o := &observer{
+func NewReader(r io.Reader, mpHalftime, mpMaxRounds, mpMaxOvertimeRounds int) *Observer {
+	o := &Observer{
 		srcdsObserver: srcds.NewReader(r),
 	}
 
@@ -26,14 +21,15 @@ func NewReader(r io.Reader, mpHalftime, mpMaxRounds, mpMaxOvertimeRounds int) Ob
 	return o
 }
 
-// Starts the observer
-func (o *observer) Start() {
+// Start the CSGO observer
+func (o *Observer) Start() {
 	for le := range o.srcdsObserver.Start() {
 		o.processLogEntry(le)
 	}
 }
 
-type observer struct {
+//Observer for watching CSGO log streams
+type Observer struct {
 	players struct {
 		mpTeam1    srcds.Clients
 		mpTeam2    srcds.Clients
@@ -41,9 +37,16 @@ type observer struct {
 	}
 	game          gameInfo
 	srcdsObserver srcds.Observer
+	statistics    observerStatistics
 }
 
-func (o *observer) processLogEntry(le srcds.LogEntry) {
+type observerStatistics struct {
+	roundsStarted   uint32
+	roundsCompleted uint32
+	matchesStarted  uint16
+}
+
+func (o *Observer) processLogEntry(le srcds.LogEntry) {
 	if clientLog, ok := srcds.ParseClientLogEntry(le); ok {
 		if _, ok := parseClientSay(clientLog); ok {
 			// TODO: process the client saying something
@@ -79,6 +82,7 @@ func (o *observer) processLogEntry(le srcds.LogEntry) {
 
 		if parseWorldTriggerRoundStart(worldLog) {
 			log.Info().Msg("Round Start")
+			o.statistics.roundsStarted++
 		}
 
 		if parseWorldTriggerGameCommencing(worldLog) {
@@ -92,6 +96,7 @@ func (o *observer) processLogEntry(le srcds.LogEntry) {
 		if msg, ok := parseTeamTriggered(le); ok {
 			team := o.getTeam(msg.affiliation)
 			o.game.setRoundWinner(msg.affiliation, team, msg.trigger)
+			o.statistics.roundsCompleted++
 
 			// Let's see if a team won
 			maxrounds, _ := o.srcdsObserver.TryCvarAsInt("mp_maxrounds", defaultMpMaxrounds)
@@ -134,7 +139,7 @@ func (o *observer) processLogEntry(le srcds.LogEntry) {
 
 // getTeam returns the team (mp_team1 / mp_team2 / unassigned)
 // TODO: -- needs unit tests
-func (o *observer) getTeam(aff affiliation) team {
+func (o *Observer) getTeam(aff affiliation) team {
 	if aff != counterterrorist && aff != terrorist {
 		return ""
 	}
@@ -160,7 +165,7 @@ func (o *observer) getTeam(aff affiliation) team {
 }
 
 // TODO: -- needs unit tests
-func (o *observer) playerDropped(c srcds.Client) {
+func (o *Observer) playerDropped(c srcds.Client) {
 	o.players.mpTeam1.ClientDropped(c)
 	o.players.mpTeam2.ClientDropped(c)
 	o.players.unassigned.ClientDropped(c)
@@ -168,7 +173,7 @@ func (o *observer) playerDropped(c srcds.Client) {
 }
 
 // TODO: -- needs unit tests
-func (o *observer) playerJoined(aff affiliation, c srcds.Client) {
+func (o *Observer) playerJoined(aff affiliation, c srcds.Client) {
 	team := o.getTeam(aff)
 
 	switch team {
@@ -214,7 +219,7 @@ func (o *observer) playerJoined(aff affiliation, c srcds.Client) {
 	log.Info().Str("SteamID", c.SteamID).Msgf("Client %q joined %v.", c.Username, team)
 }
 
-func (o *observer) setTeamname(aff affiliation, name string) {
+func (o *Observer) setTeamname(aff affiliation, name string) {
 	team := o.getTeam(aff)
 	name = strings.TrimSpace(name)
 
