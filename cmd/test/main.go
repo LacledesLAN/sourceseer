@@ -1,9 +1,9 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/lacledeslan/sourceseer/pkg/srcds/csgo"
 	"github.com/rs/zerolog"
@@ -12,19 +12,15 @@ import (
 
 func main() {
 	fmt.Print("\n=======================================================================\n\n")
-	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	zerolog.SetGlobalLevel(zerolog.DebugLevel)
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 
-	//file, err := os.Open(`C:\Workspace\sourceseer\pkg\srcds\csgo\testdata\tourney_3map_clinch.log`)
-	file, err := os.Open(`..\..\pkg\srcds\csgo\testdata\tourney_3map_clinch.log`)
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
+	server, _ := csgo.NewServer(`docker`, `run -i --rm --net=host lltest/gamesvr-csgo-tourney ./srcds_run -game csgo +game_type 0 +game_mode 1 -tickrate 128 -console +map de_lltest +sv_lan 1 +mp_teamname_1 "team1" +mp_teamname_2 "team2"`)
 
-	r := bufio.NewReader(file)
+	server.Start()
 
-	c := csgo.NewReader(r, 1, 30, 7)
+	server.Wait()
 
-	c.Start()
+	time.Sleep(1 * time.Second)
+	fmt.Println("fin")
 }

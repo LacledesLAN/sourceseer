@@ -21,6 +21,10 @@ type Cvars struct {
 }
 
 func (c *Cvars) addWatcher(names ...string) {
+	if len(names) < 0 {
+		return
+	}
+
 	c.mux.Lock()
 	if c.v == nil {
 		c.v = make(map[string]Cvar)
@@ -128,6 +132,10 @@ func (c *Cvars) tryInt(name string, fallback int) (value int, nonFallback bool) 
 }
 
 func (c *Cvars) tryString(name, fallback string) (value string, nonFallback bool) {
+	if c == nil {
+		return fallback, false
+	}
+
 	c.mux.Lock()
 	cvar, found := c.v[name]
 	c.mux.Unlock()

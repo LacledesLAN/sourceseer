@@ -5,6 +5,7 @@ import (
 	"io"
 	"runtime"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/rs/zerolog/log"
@@ -43,7 +44,9 @@ func newReader(byteStream io.Reader) *observer {
 		runtime.GC()
 
 		go func(c chan<- LogEntry) {
+			o.waitGroup.Add(1)
 			defer close(c)
+			defer o.waitGroup.Done()
 			line, err := br.ReadString(0x0A)
 
 			if err == io.EOF || len(line) == 0 {
@@ -86,9 +89,17 @@ func NewReader(byteStream io.Reader) Observer {
 	return newReader(byteStream)
 }
 
-// Start the SRCDS process
+// Start the SRCDS observer
 func (o *observer) Start() <-chan LogEntry {
+	if o.start == nil {
+		panic("srcds > observer > start function was not instantiated.")
+	}
+
 	return o.start()
+}
+
+func (o *observer) Wait() {
+	o.waitGroup.Wait()
 }
 
 // TryCvarAsInt attempts to return a cvar as an integer, returning a bool indicating if the provided fallback value was returned
@@ -102,11 +113,13 @@ func (o *observer) TryCvarAsString(name, fallback string) (value string, nonFall
 }
 
 type observer struct {
-	cvars      Cvars
-	endOfLine  string
+	cvars     Cvars
+	endOfLine string
+	// Start the SRCDS observer
 	start      func() <-chan LogEntry
 	started    time.Time
 	statistics observerStatistics
+	waitGroup  sync.WaitGroup
 }
 
 type observerStatistics struct {
@@ -116,11 +129,7 @@ type observerStatistics struct {
 }
 
 func newObserver() *observer {
-	r := &observer{
-		start: func() <-chan LogEntry {
-			panic("srcds > observer > start function was not instantiated.")
-		},
-	}
+	r := &observer{}
 
 	if strings.ToLower(runtime.GOOS) == "windows" {
 		r.endOfLine = eolWindows
@@ -148,8 +157,6 @@ func (o *observer) processMessage(line string, outEntries chan<- LogEntry) {
 			return
 		}
 
-		log.Debug().Str("source", "log entry").Msg(le.Message)
-
 		if outEntries != nil {
 			outEntries <- le
 		}
@@ -159,9 +166,6 @@ func (o *observer) processMessage(line string, outEntries chan<- LogEntry) {
 
 	if cvarSet, ok := parseCvarResponse(line); ok {
 		o.cvars.setIfWatched(cvarSet.Name, cvarSet.Value, time.Now())
-		log.Debug().Str("source", "stdout").Msg(line)
 		return
 	}
-
-	log.Debug().Str("source", "stdout").Msg(line)
 }
