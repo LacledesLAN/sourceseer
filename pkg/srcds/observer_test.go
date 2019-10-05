@@ -43,18 +43,7 @@ func printableEOL(s string) string {
 	}
 }
 
-func Test_newObserver(t *testing.T) {
-	defer func() {
-		if r := recover(); r == nil {
-			t.Errorf("The default observer.Start() should panic")
-		}
-	}()
-
-	sut := newObserver()
-	sut.start()
-}
-
-func Test_NewReader(t *testing.T) {
+func Test_NewObserver(t *testing.T) {
 	tests := []struct {
 		filename      string
 		expectedStats observerStatistics
@@ -82,17 +71,16 @@ func Test_NewReader(t *testing.T) {
 
 			r := bufio.NewReader(fh)
 
-			sut := newReader(r)
-
-			for range sut.Start() {
-			}
+			sut := NewObserver()
+			sut.Read(r)
+			sut.Wait()
 
 			if sut.statistics != test.expectedStats {
 				t.Errorf("Statistics did not meet expectations; expected %+v but got %+v", test.expectedStats, sut.statistics)
 			}
 
-			if sut.endOfLine != test.expectedEOL {
-				t.Errorf("Expected end of line %q but got %q", printableEOL(test.expectedEOL), printableEOL(sut.endOfLine))
+			if sut.EndOfLine != test.expectedEOL {
+				t.Errorf("Expected end of line %q but got %q", printableEOL(test.expectedEOL), printableEOL(sut.EndOfLine))
 			}
 		})
 	}

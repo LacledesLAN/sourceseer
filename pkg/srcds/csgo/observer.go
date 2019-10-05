@@ -3,15 +3,16 @@ package csgo
 import (
 	"io"
 	"strings"
+	"sync"
 
 	"github.com/lacledeslan/sourceseer/pkg/srcds"
 	"github.com/rs/zerolog/log"
 )
 
-// NewReader for observing streaming CSGO data
-func NewReader(r io.Reader, mpHalftime, mpMaxRounds, mpMaxOvertimeRounds int) *Observer {
+// NewObserver for observing CSGO log streams
+func NewObserver(mpHalftime, mpMaxRounds, mpMaxOvertimeRounds int) *Observer {
 	o := &Observer{
-		srcdsObserver: srcds.NewReader(r),
+		srcdsObserver: srcds.NewObserver(),
 	}
 
 	o.srcdsObserver.AddCvarWatcherDefault("mp_halftime", string(mpHalftime))
@@ -21,11 +22,36 @@ func NewReader(r io.Reader, mpHalftime, mpMaxRounds, mpMaxOvertimeRounds int) *O
 	return o
 }
 
-// Start the CSGO observer
-func (o *Observer) Start() {
-	for le := range o.srcdsObserver.Start() {
-		o.processLogEntry(le)
-	}
+// Read a CSGO log output stream
+func (o *Observer) Read(r io.Reader) {
+	o.waitGroup.Add(1)
+	go func() {
+		defer o.waitGroup.Done()
+		for range o.Listen(r) {
+		}
+	}()
+}
+
+// Listen to a CSGO log output stream
+func (o *Observer) Listen(r io.Reader) <-chan srcds.LogEntry {
+	logStream := make(chan srcds.LogEntry, 6)
+	o.waitGroup.Add(1)
+
+	go func(l chan<- srcds.LogEntry) {
+		defer close(l)
+		defer o.waitGroup.Done()
+		for le := range o.srcdsObserver.Listen(r) {
+			o.processLogEntry(le)
+			l <- le
+		}
+	}(logStream)
+
+	return logStream
+}
+
+// Wait for the CSGO observer to exit naturally.
+func (o *Observer) Wait() {
+	o.waitGroup.Wait()
 }
 
 //Observer for watching CSGO log streams
@@ -36,8 +62,9 @@ type Observer struct {
 		unassigned srcds.Clients
 	}
 	game          gameInfo
-	srcdsObserver srcds.Observer
+	srcdsObserver *srcds.Observer
 	statistics    observerStatistics
+	waitGroup     sync.WaitGroup
 }
 
 type observerStatistics struct {
@@ -46,6 +73,7 @@ type observerStatistics struct {
 	matchesStarted  uint16
 }
 
+// processLogEntry and apply it to CSGO
 func (o *Observer) processLogEntry(le srcds.LogEntry) {
 	if clientLog, ok := srcds.ParseClientLogEntry(le); ok {
 		if _, ok := parseClientSay(clientLog); ok {

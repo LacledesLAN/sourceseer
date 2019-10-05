@@ -16,110 +16,104 @@ const (
 	eolWindows = "\r\n"
 )
 
-// Observer for watching SRCDS log streams
-type Observer interface {
-	AddCvarWatcher(names ...string)
-	AddCvarWatcherDefault(name string, defaultValue string)
-	Start() <-chan LogEntry
-	TryCvarAsInt(name string, fallback int) (value int, nonFallback bool)
-	TryCvarAsString(name, fallback string) (value string, nonFallback bool)
-}
-
 // AddCvarWatcher instructs the system to keep track of the specified cvar name
-func (o *observer) AddCvarWatcher(names ...string) {
+func (o *Observer) AddCvarWatcher(names ...string) {
 	o.cvars.addWatcher(names...)
 }
 
 // AddCvarWatcherDefault instructs the system to keep track of the specified cvar,  providing a default value
-func (o *observer) AddCvarWatcherDefault(name string, defaultValue string) {
+func (o *Observer) AddCvarWatcherDefault(name string, defaultValue string) {
 	o.cvars.seedWatcher(name, defaultValue)
 }
 
-func newReader(byteStream io.Reader) *observer {
-	o := newObserver()
+// NewObserver for SRCDS log streams
+func NewObserver() *Observer {
+	r := &Observer{}
 
-	o.start = func() <-chan LogEntry {
-		logStream := make(chan LogEntry, 6)
-		br := bufio.NewReader(byteStream)
-		runtime.GC()
-
-		go func(c chan<- LogEntry) {
-			o.waitGroup.Add(1)
-			defer close(c)
-			defer o.waitGroup.Done()
-			line, err := br.ReadString(0x0A)
-
-			if err == io.EOF || len(line) == 0 {
-				return
-			}
-
-			// Determine EOL delimiter as it may not match operating system's EOL
-			if strings.HasSuffix(line, eolWindows) {
-				o.endOfLine = eolWindows
-				line = line[:len(line)-2]
-				log.Debug().Msg("Windows EOL delimiter detected.")
-			} else {
-				o.endOfLine = eolUnix
-
-				if strings.HasSuffix(line, eolUnix) {
-					log.Debug().Msg("Unix EOL delimiter detected.")
-					line = line[:len(line)-1]
-				} else {
-					log.Warn().Msg("Couldn't detect EOL delimiter; defaulting to Unix EOL.")
-					line = strings.TrimSpace(line)
-				}
-			}
-
-			o.processMessage(line, c)
-
-			scanner := bufio.NewScanner(br)
-			for scanner.Scan() {
-				o.processMessage(scanner.Text(), c)
-			}
-		}(logStream)
-
-		return logStream
+	if strings.ToLower(runtime.GOOS) == "windows" {
+		r.EndOfLine = eolWindows
+	} else {
+		r.EndOfLine = eolUnix
 	}
 
-	return o
+	return r
 }
 
-// NewReader for processing streaming SRCDS log data
-func NewReader(byteStream io.Reader) Observer {
-	return newReader(byteStream)
+// Read a SRCDS log output stream
+func (o *Observer) Read(r io.Reader) {
+	o.wg.Add(1)
+	go func() {
+		defer o.wg.Done()
+		for range o.Listen(r) {
+		}
+	}()
 }
 
-// Start the SRCDS observer
-func (o *observer) Start() <-chan LogEntry {
-	if o.start == nil {
-		panic("srcds > observer > start function was not instantiated.")
+// Listen to a SRCDS log output stream
+func (o *Observer) Listen(r io.Reader) <-chan LogEntry {
+	br := bufio.NewReader(r)
+
+	firstLine, err := br.ReadString(0x0A)
+	if err == io.EOF {
+		return nil
 	}
 
-	return o.start()
+	// Determine EOL delimiter as it may not match operating system's EOL
+	if strings.HasSuffix(firstLine, eolWindows) {
+		log.Debug().Msg("Windows EOL delimiter detected (0x0D0A).")
+		o.EndOfLine = eolWindows
+	} else {
+		if strings.HasSuffix(firstLine, eolUnix) {
+			log.Debug().Msg("Unix EOL delimiter detected (0x0A).")
+		} else {
+			log.Warn().Msg("Couldn't detect EOL delimiter; defaulting to Unix EOL (0x0A).")
+		}
+
+		o.EndOfLine = eolUnix
+	}
+
+	o.wg.Add(1)
+	logStream := make(chan LogEntry, 6)
+	runtime.GC()
+
+	go func(firstLine string, br io.Reader, c chan<- LogEntry) {
+		log.Info().Msg("Now observing the SRCDS log stream")
+
+		defer close(c)
+		defer o.wg.Done()
+
+		o.processMessage(firstLine, c)
+
+		scanner := bufio.NewScanner(br)
+		for scanner.Scan() {
+			o.processMessage(scanner.Text(), c)
+		}
+	}(firstLine, br, logStream)
+
+	return logStream
 }
 
-func (o *observer) Wait() {
-	o.waitGroup.Wait()
+// Wait for the SRCDS observer to exit naturally.
+func (o *Observer) Wait() {
+	o.wg.Wait()
 }
 
 // TryCvarAsInt attempts to return a cvar as an integer, returning a bool indicating if the provided fallback value was returned
-func (o *observer) TryCvarAsInt(name string, fallback int) (value int, nonFallback bool) {
+func (o *Observer) TryCvarAsInt(name string, fallback int) (value int, nonFallback bool) {
 	return o.cvars.tryInt(name, fallback)
 }
 
 // TryCvarAsString attempts to return a cvar as an integer, returning a bool indicating if the provided fallback value was returned
-func (o *observer) TryCvarAsString(name, fallback string) (value string, nonFallback bool) {
+func (o *Observer) TryCvarAsString(name, fallback string) (value string, nonFallback bool) {
 	return o.cvars.tryString(name, fallback)
 }
 
-type observer struct {
-	cvars     Cvars
-	endOfLine string
-	// Start the SRCDS observer
-	start      func() <-chan LogEntry
+type Observer struct {
+	cvars      Cvars
+	EndOfLine  string
 	started    time.Time
 	statistics observerStatistics
-	waitGroup  sync.WaitGroup
+	wg         sync.WaitGroup
 }
 
 type observerStatistics struct {
@@ -128,19 +122,7 @@ type observerStatistics struct {
 	logLines   uint32
 }
 
-func newObserver() *observer {
-	r := &observer{}
-
-	if strings.ToLower(runtime.GOOS) == "windows" {
-		r.endOfLine = eolWindows
-	} else {
-		r.endOfLine = eolUnix
-	}
-
-	return r
-}
-
-func (o *observer) processMessage(line string, outEntries chan<- LogEntry) {
+func (o *Observer) processMessage(line string, outEntries chan<- LogEntry) {
 	o.statistics.totalLines++
 
 	line = strings.TrimSpace(line)

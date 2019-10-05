@@ -46,13 +46,14 @@ func (c *Cvars) addWatcher(names ...string) {
 
 func (c *Cvars) getNames() []string {
 	c.mux.Lock()
+	defer c.mux.Unlock()
+
 	r := make([]string, 0, len(c.v))
 
 	for name := range c.v {
 		r = append(r, name)
 	}
 
-	c.mux.Unlock()
 	return r
 }
 

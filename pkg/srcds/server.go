@@ -3,6 +3,7 @@ package srcds
 import (
 	"bufio"
 	"context"
+	"fmt"
 	"io"
 	"os"
 	"os/exec"
@@ -17,8 +18,23 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-// NewServer returns the Server struct for launching and wrapping a SRCDS instance.
-func NewServer(arg string, args ...string) (*Server, error) {
+// Server represents an interactive SRCDS instance
+type Server struct {
+	*Observer
+	process *exec.Cmd
+	cmdIn   chan string
+	wg      sync.WaitGroup
+}
+
+func NewServer() *Server {
+	s := &Server{
+		Observer: NewObserver(),
+	}
+
+	return s
+}
+
+func (s *Server) SetExec(arg string, args ...string) error {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	go func(cancel context.CancelFunc) {
@@ -31,11 +47,10 @@ func NewServer(arg string, args ...string) (*Server, error) {
 		<-sig
 	}(cancel)
 
-	return NewServerContext(ctx, arg, args...)
+	return s.SetExecContext(ctx, arg, args...)
 }
 
-// NewServerContext is like command but includes a context.
-func NewServerContext(ctx context.Context, arg string, args ...string) (*Server, error) {
+func (s *Server) SetExecContext(ctx context.Context, arg string, args ...string) error {
 	var osArgs []string
 	switch os := runtime.GOOS; os {
 	case "windows":
@@ -47,46 +62,63 @@ func NewServerContext(ctx context.Context, arg string, args ...string) (*Server,
 		osArgs = append(osArgs, args...)
 	}
 
-	cmd := exec.Command(osArgs[0], osArgs[1:len(osArgs)]...)
+	s.process = exec.Command(osArgs[0], osArgs[1:len(osArgs)]...)
 
-	stdOut, err := cmd.StdoutPipe()
+	s.linkStdIn(ctx)
+
+	return nil
+}
+
+func (s *Server) linkStdIn(ctx context.Context) error {
+	cmdStdIn, err := s.process.StdinPipe()
 	if err != nil {
-		return nil, errors.Errorf("Couldn't connect to process's standard out pipe: %w", err)
+		return errors.Errorf("Couldn't connect to process's standard in pipe: %w", err)
 	}
 
-	cmdStdIn, err := cmd.StdinPipe()
-	if err != nil {
-		return nil, errors.Errorf("Couldn't connect to process's standard in pipe: %w", err)
-	}
+	// connect to the process's standard in
+	go func(wc io.WriteCloser, cmdIn <-chan string) {
+		defer wc.Close()
+		//s.waitGroup.Add(1)
+		//defer s.waitGroup.Done()
+		prev := time.Time{}
+		ticker := time.NewTicker(175 * time.Millisecond)
+		defer ticker.Stop()
 
-	server := wrapProcess(ctx, stdOut, cmdStdIn)
+		for {
+			select {
+			case <-ctx.Done():
+				// Politely ask SRCDS to shutdown
+				log.Info().Msg("Attempting to gracefully shut down the SRCDS server")
+				io.WriteString(wc, "say server shutting down"+s.EndOfLine)
+				io.WriteString(wc, "quit"+s.EndOfLine)
+				time.Sleep(750 * time.Millisecond)
+				return
+			case cmd := <-cmdIn:
+				// Send the command to process's standard in
+				prev = time.Now()
+				log.Info().Msgf("Sending command %q to SRCDS", cmd)
+				io.WriteString(wc, cmd+s.EndOfLine)
+			case <-ticker.C:
+				// Send EOL to flush the process's standard out buffer
+				if time.Since(prev) >= 100*time.Millisecond {
+					prev = time.Now()
+					io.WriteString(wc, s.EndOfLine)
+				}
+			}
+		}
+	}(cmdStdIn, s.cmdIn)
 
-	// grab the terminal's standard in; send it to srcds
+	// grab the terminal's standard in
 	go func(r io.ReadCloser) {
 		defer r.Close()
-		s := bufio.NewScanner(r)
+		scanner := bufio.NewScanner(r)
 
-		for s.Scan() {
-			server.SendCommand(s.Text())
+		for scanner.Scan() {
+			s.SendCommand(scanner.Text())
 		}
 	}(os.Stdin)
 
-	server.start = func() {
-		err = cmd.Start()
-		if err != nil {
-			panic("Couldn't start process")
-		}
-	}
-
-	return server, nil
-}
-
-// Server represents an interactive SRCDS instance
-type Server struct {
-	cmdIn chan string
-	*observer
-	waitGroup sync.WaitGroup
-	start     func()
+	return nil
 }
 
 // RefreshWatchedCvars triggers SRCDS into echoing all watched cvars to the log stream.
@@ -101,72 +133,50 @@ func (s *Server) RefreshWatchedCvars() {
 
 // SendCommand to the interactive SRCDS instance.
 func (s *Server) SendCommand(cmd string) {
-	c := strings.TrimSpace(cmd)
-	if len(c) > 0 {
-		s.cmdIn <- c
+	cmd = strings.TrimSpace(cmd)
+	if len(cmd) > 0 {
+		s.cmdIn <- cmd
 	}
 }
 
-// Wait blocks until the server shuts down
-func (s *Server) Wait() {
-	s.waitGroup.Wait()
-	s.observer.Wait()
-}
-
-// Start the SRCDS Server
-func (s *Server) Start() <-chan LogEntry {
-	if s.start == nil {
-		panic("srcds > server > start function was not instantiated.")
+// Listen starts the SRCDS server, processes its output, and returns its log stream
+func (s *Server) Listen() (<-chan LogEntry, error) {
+	if s.process == nil {
+		return nil, errors.New("Exec was never set")
 	}
 
-	c := s.observer.start()
-	s.start()
-	return c
-}
-
-func newServer(stdOut io.Reader) *Server {
-	return &Server{
-		cmdIn:    make(chan string, 6),
-		observer: newReader(stdOut),
+	cmdStdOut, err := s.process.StdoutPipe()
+	if err != nil {
+		return nil, errors.Errorf("Couldn't connect to process's standard out pipe: %w", err)
 	}
+
+	if err := s.process.Start(); err != nil {
+		return nil, fmt.Errorf("Problem executing process: %w", err)
+	}
+
+	log.Debug().Msg("Server execution started")
+
+	return s.Observer.Listen(cmdStdOut), nil
 }
 
-// wrap a csgo srcds process
-func wrapProcess(ctx context.Context, processStdOut io.Reader, processStdIn io.WriteCloser) *Server {
-	server := newServer(processStdOut)
+// Read starts the SRCDS server and processes its output
+func (s *Server) Read() error {
+	c, err := s.Listen()
+	if err != nil {
+		return err
+	}
 
-	// connect to the process's standard in
-	go func(wc io.WriteCloser, s *Server) {
-		s.waitGroup.Add(1)
-		prev := time.Time{}
-		ticker := time.NewTicker(200 * time.Millisecond)
-		defer ticker.Stop()
-		defer wc.Close()
-		defer s.waitGroup.Done()
-
-		for {
-			select {
-			case <-ctx.Done():
-				// Politely ask SRCDS to shutdown
-				log.Info().Msg("Attempting to gracefully shut down the SRCDS server")
-				io.WriteString(wc, "say server shutting down"+s.endOfLine)
-				io.WriteString(wc, "quit"+s.endOfLine)
-				time.Sleep(750 * time.Millisecond)
-				return
-			case cmd := <-server.cmdIn:
-				// Send the command to process's standard in
-				prev = time.Now()
-				log.Info().Msgf("Sending command %q to SRCDS", cmd)
-				io.WriteString(wc, cmd+s.endOfLine)
-			case <-ticker.C:
-				// Send EOL to flush the process's standard out buffer
-				if time.Since(prev) >= 100*time.Millisecond {
-					prev = time.Now()
-					io.WriteString(wc, s.endOfLine)
-				}
-			}
+	s.wg.Add(1)
+	go func() {
+		defer s.wg.Done()
+		for range c {
 		}
-	}(processStdIn, server)
+	}()
 
-	return server
+	return nil
+}
+
+// Wait blocks until the SRCDS server stops executing
+func (s *Server) Wait() {
+	s.wg.Wait()
 }

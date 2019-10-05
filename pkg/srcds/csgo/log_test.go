@@ -58,17 +58,18 @@ func Test_ParseLogs(t *testing.T) {
 			}
 			defer file.Close()
 
-			reader := bufio.NewReader(file)
+			r := bufio.NewReader(file)
 
-			csgo := NewReader(reader, test.mpHalftime, test.mpMaxRounds, test.mpMaxOvertimeRounds)
-			csgo.Start()
+			sut := NewObserver(test.mpHalftime, test.mpMaxRounds, test.mpMaxOvertimeRounds)
+			sut.Read(r)
+			sut.Wait()
 
 			//if csgo.statistics.roundsStarted != test.expected.roundsStarted {
 			//	t.Errorf("Expected %02d rounds to have been started but saw %02d", test.expected.roundsStarted, csgo.statistics.roundsStarted)
 			//}
 
-			if csgo.statistics.roundsCompleted != test.expected.roundsCompleted {
-				t.Errorf("Expected %02d rounds to have been completed, not %02d.", test.expected.roundsCompleted, csgo.statistics.roundsCompleted)
+			if sut.statistics.roundsCompleted != test.expected.roundsCompleted {
+				t.Errorf("Expected %02d rounds to have been completed, not %02d.", test.expected.roundsCompleted, sut.statistics.roundsCompleted)
 			}
 
 			//if csgo.statistics.matchesStarted != test.expected.matchesStarted {
