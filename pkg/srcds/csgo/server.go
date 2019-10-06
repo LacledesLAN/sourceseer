@@ -7,12 +7,14 @@ import (
 	"github.com/lacledeslan/sourceseer/pkg/srcds"
 )
 
+// Server represents an interactive CSGO SRCDS instance
 type Server struct {
 	srcds *srcds.Server
 	Observer
 	wg sync.WaitGroup
 }
 
+// NewServer for interacting with a CSGO SRCDS instance
 func NewServer() *Server {
 	s := &Server{
 		srcds: srcds.NewServer(),
@@ -25,6 +27,7 @@ func NewServer() *Server {
 	return s
 }
 
+// SetExec prepares the CSGO SRCDS instance for execution using the given arguments
 func (s *Server) SetExec(arg string, args ...string) error {
 	err := s.srcds.SetExec(arg, args...)
 	if err != nil {
@@ -65,6 +68,7 @@ func (s *Server) Listen() (<-chan srcds.LogEntry, error) {
 		defer close(out)
 		for le := range in {
 			s.processLogEntry(le)
+			s.serverProcessLogEntry(le)
 			out <- le
 		}
 	}(c, logStream)

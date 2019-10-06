@@ -26,6 +26,7 @@ type Server struct {
 	wg      sync.WaitGroup
 }
 
+// NewServer for interacting with a SRCDS instance
 func NewServer() *Server {
 	s := &Server{
 		Observer: NewObserver(),
@@ -35,7 +36,8 @@ func NewServer() *Server {
 	return s
 }
 
-func (s *Server) SetExec(arg string, args ...string) error {
+// SetExec prepares the SRCDS instance for execution using the given arguments
+func (s *Server) SetExec(path string, args ...string) error {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	go func(cancel context.CancelFunc) {
@@ -48,9 +50,10 @@ func (s *Server) SetExec(arg string, args ...string) error {
 		<-sig
 	}(cancel)
 
-	return s.SetExecContext(ctx, arg, args...)
+	return s.SetExecContext(ctx, path, args...)
 }
 
+// SetExecContext is like SetExec but includes a context
 func (s *Server) SetExecContext(ctx context.Context, arg string, args ...string) error {
 	var osArgs []string
 	switch os := runtime.GOOS; os {
@@ -79,8 +82,8 @@ func (s *Server) linkStdIn(ctx context.Context) error {
 	// connect to the process's standard in
 	go func(wc io.WriteCloser, cmdIn <-chan string) {
 		defer wc.Close()
-		//s.waitGroup.Add(1)
-		//defer s.waitGroup.Done()
+		s.wg.Add(1)
+		defer s.wg.Done()
 		prev := time.Time{}
 		ticker := time.NewTicker(175 * time.Millisecond)
 		defer ticker.Stop()
@@ -91,6 +94,7 @@ func (s *Server) linkStdIn(ctx context.Context) error {
 				// Politely ask SRCDS to shutdown
 				log.Info().Msg("Attempting to gracefully shut down the SRCDS server")
 				io.WriteString(wc, "say server shutting down"+s.EndOfLine)
+				time.Sleep(250 * time.Millisecond)
 				io.WriteString(wc, "quit"+s.EndOfLine)
 				time.Sleep(750 * time.Millisecond)
 				return
@@ -116,7 +120,6 @@ func (s *Server) linkStdIn(ctx context.Context) error {
 
 		for scanner.Scan() {
 			s.SendCommand(scanner.Text())
-			fmt.Println(">>>>>>>>>>>>" + scanner.Text())
 		}
 	}(os.Stdin)
 
