@@ -16,10 +16,9 @@ type Server struct {
 func NewServer() *Server {
 	s := &Server{
 		srcds: srcds.NewServer(),
-		Observer: Observer{
-			srcdsObserver: srcds.NewObserver(),
-		},
 	}
+
+	s.Observer.srcdsObserver = s.srcds.Observer
 
 	s.srcds.AddCvarWatcher("mp_halftime", "mp_maxrounds", "mp_overtime_maxrounds")
 
@@ -76,4 +75,8 @@ func (s *Server) Listen() (<-chan srcds.LogEntry, error) {
 // Wait blocks until the CSGO server stops executing
 func (s *Server) Wait() {
 	s.wg.Wait()
+}
+
+func (s *Server) serverProcessLogEntry(le srcds.LogEntry) {
+
 }

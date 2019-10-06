@@ -29,6 +29,7 @@ type Server struct {
 func NewServer() *Server {
 	s := &Server{
 		Observer: NewObserver(),
+		cmdIn:    make(chan string, 4),
 	}
 
 	return s
@@ -72,7 +73,7 @@ func (s *Server) SetExecContext(ctx context.Context, arg string, args ...string)
 func (s *Server) linkStdIn(ctx context.Context) error {
 	cmdStdIn, err := s.process.StdinPipe()
 	if err != nil {
-		return errors.Errorf("Couldn't connect to process's standard in pipe: %w", err)
+		return fmt.Errorf("Couldn't connect to process's standard in pipe: %w", err)
 	}
 
 	// connect to the process's standard in
@@ -115,6 +116,7 @@ func (s *Server) linkStdIn(ctx context.Context) error {
 
 		for scanner.Scan() {
 			s.SendCommand(scanner.Text())
+			fmt.Println(">>>>>>>>>>>>" + scanner.Text())
 		}
 	}(os.Stdin)
 
@@ -132,10 +134,10 @@ func (s *Server) RefreshWatchedCvars() {
 }
 
 // SendCommand to the interactive SRCDS instance.
-func (s *Server) SendCommand(cmd string) {
-	cmd = strings.TrimSpace(cmd)
-	if len(cmd) > 0 {
-		s.cmdIn <- cmd
+func (s *Server) SendCommand(l string) {
+	l = strings.TrimSpace(l)
+	if len(l) > 0 {
+		s.cmdIn <- l
 	}
 }
 
@@ -147,7 +149,7 @@ func (s *Server) Listen() (<-chan LogEntry, error) {
 
 	cmdStdOut, err := s.process.StdoutPipe()
 	if err != nil {
-		return nil, errors.Errorf("Couldn't connect to process's standard out pipe: %w", err)
+		return nil, fmt.Errorf("Couldn't connect to process's standard out pipe: %w", err)
 	}
 
 	if err := s.process.Start(); err != nil {

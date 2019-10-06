@@ -22,8 +22,7 @@ func main() {
 		panic(err)
 	}
 
-	for t := range c {
-		fmt.Println(">>>" + t.Message)
+	for range c {
 	}
 
 	fmt.Println("fin")
