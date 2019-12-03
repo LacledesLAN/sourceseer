@@ -64,10 +64,15 @@ func Test_NewObserver(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.filename, func(t *testing.T) {
 			fh, err := os.Open(test.filename)
-			defer fh.Close()
 			if err != nil {
 				t.Fatalf("Could not open file: %q.", err)
 			}
+
+			defer func(filename string) {
+				if err := fh.Close(); err != nil {
+					t.Errorf("Encountered error will closing handle to file %q: %s", filename, err.Error())
+				}
+			}(test.filename)
 
 			r := bufio.NewReader(fh)
 
