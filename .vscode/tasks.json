@@ -15,7 +15,7 @@
         {
             "label":"Run unit tests & generate coverage report",
             "type":"shell",
-            "command": "go test ./... --covermode=count --coverprofile=coverage.out && tool cover --html=coverage.out",
+            "command": "go test ./... --covermode=count --coverprofile=coverage.out && go tool cover --html=coverage.out",
             "group":"none",
             "presentation": {
                 "reveal": "always",
