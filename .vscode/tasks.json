@@ -1,0 +1,38 @@
+{
+    "version":"2.0.0",
+    "tasks":[
+        {
+            "label":"Upgrade GO dependencies",
+            "type":"shell",
+            "command": "go get -u -t ./... && go mod tidy",
+            "group":"none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+        },
+        {
+            "label":"Run unit tests & generate coverage report",
+            "type":"shell",
+            "command": "go test ./... --covermode=count --coverprofile=coverage.out && tool cover --html=coverage.out",
+            "group":"none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+        },
+        {
+            "label":"Generate linting report",
+            "type":"shell",
+            "command":"golangci-lint run",
+            "group":"none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+            },
+            "problemMatcher": [],
+        }
+    ]
+}
