@@ -132,14 +132,12 @@ func (o *Observer) processLogEntry(le srcds.LogEntry) {
 
 			if winThreshold := calculateLastRoundWinThreshold(maxrounds, otMaxrounds, o.game.currentMatchLastCompletedRound()); o.game.currentMatchLastCompletedRound() >= winThreshold {
 				mpTeam1Wins, mpTeam2Wins := o.game.scoresCurrentMatch()
-				winningTeam := spectator
+				winningTeam := mpTeam1
 
 				switch {
-				case mpTeam1Wins >= winThreshold:
-					winningTeam = mpTeam1
 				case mpTeam2Wins >= winThreshold:
 					winningTeam = mpTeam2
-				default:
+				case mpTeam1Wins < winThreshold:
 					return
 				}
 
