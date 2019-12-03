@@ -131,18 +131,20 @@ func (o *Observer) processLogEntry(le srcds.LogEntry) {
 			otMaxrounds, _ := o.srcdsObserver.TryCvarAsInt("mp_overtime_maxrounds", defaultMpOvertimeMaxrounds)
 
 			if winThreshold := calculateLastRoundWinThreshold(maxrounds, otMaxrounds, o.game.currentMatchLastCompletedRound()); o.game.currentMatchLastCompletedRound() >= winThreshold {
-				matchNum := len(o.game.matches)
-				roundNum := int(o.game.currentMatchLastCompletedRound())
 				mpTeam1Wins, mpTeam2Wins := o.game.scoresCurrentMatch()
 				winningTeam := spectator
 
-				if mpTeam1Wins >= winThreshold {
+				switch {
+				case mpTeam1Wins >= winThreshold:
 					winningTeam = mpTeam1
-				} else if mpTeam2Wins >= winThreshold {
+				case mpTeam2Wins >= winThreshold:
 					winningTeam = mpTeam2
-				} else {
+				default:
 					return
 				}
+
+				matchNum := len(o.game.matches)
+				roundNum := int(o.game.currentMatchLastCompletedRound())
 
 				log.Info().Int("match", matchNum).Int("round", roundNum).Int("team1_score", int(mpTeam1Wins)).Int("team2_score", int(mpTeam2Wins)).Msgf("Match %02d clinched by %v (%v)", matchNum, winningTeam, o.game.teamName(winningTeam))
 			}
