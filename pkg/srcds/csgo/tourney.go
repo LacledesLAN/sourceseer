@@ -26,7 +26,7 @@ func TourneyServer(mpTeamname1, mpTeamname2, pass, rconPass, tvPass string, maps
 		return errors.New("mpTeamname2 cannot be empty")
 	}
 
-	if strings.ToLower(mpTeamname1) == strings.ToLower(mpTeamname2) {
+	if strings.EqualFold(mpTeamname1, mpTeamname2) {
 		return errors.New("mpTeamname1 and mpTeamname2 cannot match")
 	}
 
