@@ -66,7 +66,7 @@ func (s *Server) SetExecContext(ctx context.Context, arg string, args ...string)
 		osArgs = append(osArgs, args...)
 	}
 
-	s.process = exec.Command(osArgs[0], osArgs[1:len(osArgs)]...)
+	s.process = exec.Command(osArgs[0], osArgs[1:]...)
 
 	s.linkStdIn(ctx)
 
