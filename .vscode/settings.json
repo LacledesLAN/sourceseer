@@ -38,5 +38,12 @@
     ],
     "go.enableCodeLens":{
         "runtest": true
-    }
+    },
+    "files.encoding": "utf8",
+    "[go]": {
+        "editor.rulers": [140],
+    },
+    "[markdown]": {
+        "editor.rulers": [100],
+    },
 }

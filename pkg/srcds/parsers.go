@@ -73,11 +73,7 @@ var clientConnectedRegex = regexp.MustCompile(`^connected, address "[\S]*?"$`)
 
 // ParseClientConnected - determine if a client connected
 func ParseClientConnected(clientMsg ClientLogEntry) (ok bool) {
-	if clientConnectedRegex.FindIndex([]byte(clientMsg.Message)) != nil {
-		return true
-	}
-
-	return false
+	return clientConnectedRegex.FindIndex([]byte(clientMsg.Message)) != nil
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,17 +1,11 @@
 ### Go ###
-# Binaries for programs, plugins, and tests
 *.dll
 *.dylib
 *.exe
 *.exe~
+*.out
 *.so
 *.test
-
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
-
-### Go Patch ###
-/vendor/
 /Godeps/
 
 ### Linux Cruft ###
