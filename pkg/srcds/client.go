@@ -57,12 +57,12 @@ func (c *Client) RemoveAllFlags() {
 
 // RemoveFlag remove the specified flag for the client
 func (c *Client) RemoveFlag(f ClientFlag) {
-	c.flags = c.flags &^ f
+	c.flags &^= f
 }
 
 // ToggleFlag enables the flag if disabled; disable if it was enabled
 func (c *Client) ToggleFlag(f ClientFlag) {
-	c.flags = c.flags ^ f
+	c.flags ^= f
 }
 
 // IsBot determines if the client is a bot

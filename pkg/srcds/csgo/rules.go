@@ -40,7 +40,7 @@ func calculateLastRoundWinThreshold(mpMaxRounds, mpOvertimeMaxRounds int, lastCo
 				otPeriodsCompleted := calcOvertimePeriodNumber(mpMaxRounds, mpOvertimeMaxRounds, lastCompletedRound) - 1
 
 				if otRoundsCompleted%mpOvertimeMaxRounds == 0 {
-					otPeriodsCompleted = otPeriodsCompleted - 1
+					otPeriodsCompleted--
 				}
 
 				return lastInt(mpMaxRounds/2 + (mpOvertimeMaxRounds / 2 * (otPeriodsCompleted + 1)) + 1)

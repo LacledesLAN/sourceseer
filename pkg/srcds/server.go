@@ -56,8 +56,8 @@ func (s *Server) SetExec(path string, args ...string) error {
 // SetExecContext is like SetExec but includes a context
 func (s *Server) SetExecContext(ctx context.Context, arg string, args ...string) error {
 	var osArgs []string
-	switch os := runtime.GOOS; os {
-	case "windows":
+
+	if runtime.GOOS == "windows" {
 		osArgs = append(osArgs, "powershell.exe", "-NonInteractive", "-Command")
 	}
 

@@ -21,7 +21,7 @@ type Cvars struct {
 }
 
 func (c *Cvars) addWatcher(names ...string) {
-	if len(names) < 0 {
+	if len(names) < 1 {
 		return
 	}
 
